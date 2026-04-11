@@ -70,11 +70,16 @@ class SoundManager {
 
     private suspend fun playBuffer(buffer: ShortArray, durationMs: Int) {
         val track = buildAudioTrack(buffer.size)
-        track.write(buffer, 0, buffer.size)
-        track.play()
-        delay(durationMs.toLong() + 30)
-        track.stop()
-        track.release()
+        try {
+            if (track.state != AudioTrack.STATE_INITIALIZED) return
+            val written = track.write(buffer, 0, buffer.size)
+            if (written < 0) return
+            track.play()
+            delay(durationMs.toLong() + 30)
+        } finally {
+            runCatching { track.stop() }
+            runCatching { track.release() }
+        }
     }
 
     private fun buildAudioTrack(numSamples: Int): AudioTrack {

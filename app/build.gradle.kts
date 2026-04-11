@@ -11,11 +11,13 @@ val signingKeystorePath = System.getenv("KEYSTORE_PATH")
 val signingKeystorePassword = System.getenv("KEYSTORE_PASSWORD")?.takeIf { it.isNotBlank() }
 val signingKeyAlias = System.getenv("KEY_ALIAS")?.takeIf { it.isNotBlank() }
 val signingKeyPassword = System.getenv("KEY_PASSWORD")?.takeIf { it.isNotBlank() }
-val hasSigningConfig = signingKeystorePath != null &&
+val signingKeystoreFile = signingKeystorePath
+    ?.let { rootProject.file(it).absoluteFile }
+    ?.takeIf { it.exists() }
+val hasSigningConfig = signingKeystoreFile != null &&
     signingKeystorePassword != null &&
     signingKeyAlias != null &&
-    signingKeyPassword != null &&
-    file(signingKeystorePath).exists()
+    signingKeyPassword != null
 
 android {
     namespace = "com.cocode.battleship"
@@ -38,7 +40,7 @@ android {
     if (hasSigningConfig) {
         signingConfigs {
             create("release") {
-                storeFile = file(signingKeystorePath!!)
+                storeFile = signingKeystoreFile!!
                 storePassword = signingKeystorePassword
                 keyAlias = signingKeyAlias
                 keyPassword = signingKeyPassword

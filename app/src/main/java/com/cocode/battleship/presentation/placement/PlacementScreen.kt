@@ -38,6 +38,9 @@ import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
 
+private const val SYMBOL_DEPLOY = "▶"
+private const val SYMBOL_AUTO = "⚡"
+
 @Composable
 fun PlacementScreen(
     viewModel: GameViewModel,
@@ -92,7 +95,7 @@ fun PlacementScreen(
                 )
             } else {
                 Text(
-                    text = "▶  ${stringResource(R.string.placement_all_placed)}",
+                    text = "$SYMBOL_DEPLOY  ${stringResource(R.string.placement_all_placed)}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = PhosphorGreen,
                 )
@@ -122,7 +125,7 @@ fun PlacementScreen(
                     border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.6f)),
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
                 ) {
-                    Text(text = "⚡  ${stringResource(R.string.placement_auto_place)}", fontSize = 10.sp, letterSpacing = 1.sp)
+                    Text(text = "$SYMBOL_AUTO  ${stringResource(R.string.placement_auto_place)}", fontSize = 10.sp, letterSpacing = 1.sp)
                 }
             }
 

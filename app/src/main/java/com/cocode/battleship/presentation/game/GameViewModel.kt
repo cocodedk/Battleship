@@ -95,11 +95,7 @@ class GameViewModel : ViewModel() {
             return
         }
 
-        when (cellState) {
-            CellState.HIT -> sounds.playHit()
-            CellState.SUNK -> sounds.playSunk()
-            else -> sounds.playMiss()
-        }
+        playAttackSound(cellState)
 
         val hitMsg = when (cellState) {
             CellState.HIT -> "Hit! Keep going!"
@@ -144,11 +140,7 @@ class GameViewModel : ViewModel() {
             return
         }
 
-        when (cellState) {
-            CellState.HIT -> sounds.playHit()
-            CellState.SUNK -> sounds.playSunk()
-            else -> sounds.playMiss()
-        }
+        playAttackSound(cellState)
 
         val aiMsg = when (cellState) {
             CellState.HIT -> "AI hit your ship!"
@@ -161,6 +153,14 @@ class GameViewModel : ViewModel() {
             isPlayerTurn = true,
             message = aiMsg
         )
+    }
+
+    private fun playAttackSound(cellState: CellState) {
+        when (cellState) {
+            CellState.HIT -> sounds.playHit()
+            CellState.SUNK -> sounds.playSunk()
+            else -> sounds.playMiss()
+        }
     }
 
     fun resetGame() {

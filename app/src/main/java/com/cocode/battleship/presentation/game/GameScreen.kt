@@ -45,6 +45,9 @@ import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
 
+private const val SYMBOL_ARROW = "▶"
+private const val SYMBOL_SECTION = "◆"
+
 @Composable
 fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
     val state by viewModel.state.collectAsState()
@@ -99,7 +102,7 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
                         .padding(horizontal = 14.dp, vertical = 5.dp)
                 ) {
                     Text(
-                        text = "▶  $indicatorText",
+                        text = "$SYMBOL_ARROW  $indicatorText",
                         color = indicatorColor,
                         style = MaterialTheme.typography.labelLarge,
                         fontWeight = FontWeight.Bold,
@@ -138,7 +141,7 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
 @Composable
 private fun SectionLabel(text: String) {
     Text(
-        text = "◆  $text",
+        text = "$SYMBOL_SECTION  $text",
         style = MaterialTheme.typography.titleMedium,
         color = TextSecondary,
         letterSpacing = 1.5.sp,
