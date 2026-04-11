@@ -20,7 +20,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.cocode.battleship.R
 import com.cocode.battleship.presentation.components.BattleGrid
 import com.cocode.battleship.presentation.game.GameViewModel
 
@@ -44,7 +46,7 @@ fun PlacementScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Place Your Ships",
+                text = stringResource(R.string.placement_title),
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.onBackground
             )
@@ -62,16 +64,16 @@ fun PlacementScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Current ship info
-            if (state.currentShipType != null) {
+            val currentShip = state.currentShipType
+            if (currentShip != null) {
                 Text(
-                    text = "Placing: ${state.currentShipType!!.displayName} (size ${state.currentShipType!!.size})",
+                    text = stringResource(R.string.placement_placing, currentShip.displayName, currentShip.size),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
             } else {
                 Text(
-                    text = "All ships placed!",
+                    text = stringResource(R.string.placement_all_placed),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.tertiary
                 )
@@ -79,7 +81,6 @@ fun PlacementScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Orientation and auto-place buttons
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -89,20 +90,23 @@ fun PlacementScreen(
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(
-                        text = if (state.isHorizontal) "Rotate: Horizontal" else "Rotate: Vertical"
+                        text = if (state.isHorizontal) {
+                            stringResource(R.string.placement_rotate_horizontal)
+                        } else {
+                            stringResource(R.string.placement_rotate_vertical)
+                        }
                     )
                 }
                 OutlinedButton(
                     onClick = { viewModel.autoPlaceShips() },
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Auto Place")
+                    Text(text = stringResource(R.string.placement_auto_place))
                 }
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Start Battle button
             Button(
                 onClick = {
                     viewModel.confirmPlacement()
@@ -111,7 +115,7 @@ fun PlacementScreen(
                 enabled = state.shipsToPlace.isEmpty(),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Start Battle")
+                Text(text = stringResource(R.string.placement_start_battle))
             }
         }
     }

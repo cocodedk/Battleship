@@ -14,10 +14,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.cocode.battleship.R
 import com.cocode.battleship.ui.theme.BattleshipTheme
 
 @Composable
@@ -34,7 +36,7 @@ fun MenuScreen(onStartGame: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "BATTLESHIP",
+                text = stringResource(R.string.menu_title),
                 style = MaterialTheme.typography.displayLarge,
                 fontWeight = FontWeight.ExtraBold,
                 color = MaterialTheme.colorScheme.primary,
@@ -44,7 +46,7 @@ fun MenuScreen(onStartGame: () -> Unit) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Sink the Fleet",
+                text = stringResource(R.string.menu_tagline),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
                 textAlign = TextAlign.Center
@@ -59,7 +61,7 @@ fun MenuScreen(onStartGame: () -> Unit) {
                     .height(56.dp)
             ) {
                 Text(
-                    text = "Start Game",
+                    text = stringResource(R.string.menu_start_game),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )

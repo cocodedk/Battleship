@@ -128,7 +128,3 @@ object BattleshipAI {
         return board
     }
 }
-
-// Top-level convenience functions delegating to the object
-fun chooseAttack(playerBoard: Board): Pair<Int, Int> = BattleshipAI.chooseAttack(playerBoard)
-fun placeShipsRandomly(): Board = BattleshipAI.placeShipsRandomly()

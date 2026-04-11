@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">Battleship</string>
+
+    <!-- Menu -->
+    <string name="menu_title">BATTLESHIP</string>
+    <string name="menu_tagline">Sink the Fleet</string>
+    <string name="menu_start_game">Start Game</string>
+
+    <!-- Placement -->
+    <string name="placement_title">Place Your Ships</string>
+    <string name="placement_placing">Placing: %1$s (size %2$d)</string>
+    <string name="placement_all_placed">All ships placed!</string>
+    <string name="placement_rotate_horizontal">Rotate: Horizontal</string>
+    <string name="placement_rotate_vertical">Rotate: Vertical</string>
+    <string name="placement_auto_place">Auto Place</string>
+    <string name="placement_start_battle">Start Battle</string>
+
+    <!-- Game -->
+    <string name="game_enemy_waters">Enemy Waters</string>
+    <string name="game_your_fleet">Your Fleet</string>
+    <string name="game_your_turn">Your Turn</string>
+    <string name="game_ai_thinking">AI Thinking…</string>
+
+    <!-- Game Over -->
+    <string name="game_over_you_win">You Win! 🎉</string>
+    <string name="game_over_ai_wins">AI Wins!</string>
+    <string name="game_over_win_subtitle">Outstanding tactics! You sunk the enemy fleet.</string>
+    <string name="game_over_lose_subtitle">Better luck next time. The AI was relentless!</string>
+    <string name="game_over_play_again">Play Again</string>
+    <string name="game_over_main_menu">Main Menu</string>
 </resources>

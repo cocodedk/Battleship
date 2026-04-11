@@ -17,10 +17,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.cocode.battleship.R
 
 @Composable
 fun GameOverScreen(
@@ -29,12 +31,6 @@ fun GameOverScreen(
     onMainMenu: () -> Unit
 ) {
     val isPlayerWinner = winner == "Player"
-    val titleText = if (isPlayerWinner) "You Win! \uD83C\uDF89" else "AI Wins!"
-    val subtitleText = if (isPlayerWinner) {
-        "Outstanding tactics! You sunk the enemy fleet."
-    } else {
-        "Better luck next time. The AI was relentless!"
-    }
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -61,7 +57,11 @@ fun GameOverScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = titleText,
+                        text = if (isPlayerWinner) {
+                            stringResource(R.string.game_over_you_win)
+                        } else {
+                            stringResource(R.string.game_over_ai_wins)
+                        },
                         style = MaterialTheme.typography.displayMedium,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,
@@ -75,7 +75,11 @@ fun GameOverScreen(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Text(
-                        text = subtitleText,
+                        text = if (isPlayerWinner) {
+                            stringResource(R.string.game_over_win_subtitle)
+                        } else {
+                            stringResource(R.string.game_over_lose_subtitle)
+                        },
                         style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -89,7 +93,7 @@ fun GameOverScreen(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = "Play Again",
+                            text = stringResource(R.string.game_over_play_again),
                             fontWeight = FontWeight.SemiBold
                         )
                     }
@@ -100,7 +104,7 @@ fun GameOverScreen(
                         onClick = onMainMenu,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text(text = "Main Menu")
+                        Text(text = stringResource(R.string.game_over_main_menu))
                     }
                 }
             }

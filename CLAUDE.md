@@ -48,8 +48,8 @@ app/src/main/java/com/cocode/battleship/
 ├── presentation/             ← Android/Compose code
 │   ├── navigation/           ← Screen.kt (sealed class routes), BattleshipNavHost.kt
 │   ├── menu/                 ← MenuScreen.kt
-│   ├── placement/            ← PlacementScreen.kt, PlacementViewModel.kt
-│   ├── game/                 ← GameScreen.kt, GameViewModel.kt, GameOverScreen.kt
+│   ├── placement/            ← PlacementScreen.kt
+│   ├── game/                 ← GameScreen.kt, GameViewModel.kt, GameOverScreen.kt, GameUiState.kt
 │   └── components/           ← Reusable composables (BattleGrid, etc.)
 │
 └── ui/theme/                 ← Color.kt, Theme.kt, Type.kt (existing)
@@ -59,6 +59,7 @@ app/src/main/java/com/cocode/battleship/
 
 - `domain/` must never import anything from `android.*`, `androidx.*`, or `presentation/`
 - `presentation/` may import `domain/` freely
+- **Single `GameViewModel`** is shared across all screens. It is created at `BattleshipNavHost` level (outside `NavHost`) so all routes share the same instance. Do NOT call `viewModel()` inside a `composable { }` block for this ViewModel.
 - ViewModels live in `presentation/` and depend on domain models/AI directly (no repository layer needed for a local game)
 
 ---

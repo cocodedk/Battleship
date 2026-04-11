@@ -24,13 +24,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.cocode.battleship.R
 import com.cocode.battleship.domain.model.GamePhase
 import com.cocode.battleship.presentation.components.BattleGrid
 
-private val TURN_INDICATOR_ACTIVE_COLOR = Color(0xFF43A047)
-private val TURN_INDICATOR_WAITING_COLOR = Color(0xFFFFA000)
+private val TurnActiveColor = Color(0xFF43A047)
+private val TurnWaitingColor = Color(0xFFFFA000)
 
 @Composable
 fun GameScreen(
@@ -57,7 +59,6 @@ fun GameScreen(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Message bar
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -76,13 +77,16 @@ fun GameScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Turn indicator badge
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                val badgeColor = if (state.isPlayerTurn) TURN_INDICATOR_ACTIVE_COLOR else TURN_INDICATOR_WAITING_COLOR
-                val badgeText = if (state.isPlayerTurn) "Your Turn" else "AI Thinking..."
+                val badgeColor = if (state.isPlayerTurn) TurnActiveColor else TurnWaitingColor
+                val badgeText = if (state.isPlayerTurn) {
+                    stringResource(R.string.game_your_turn)
+                } else {
+                    stringResource(R.string.game_ai_thinking)
+                }
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(16.dp))
@@ -100,9 +104,8 @@ fun GameScreen(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Enemy waters board
             Text(
-                text = "Enemy Waters",
+                text = stringResource(R.string.game_enemy_waters),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier
@@ -125,9 +128,8 @@ fun GameScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Player's fleet board
             Text(
-                text = "Your Fleet",
+                text = stringResource(R.string.game_your_fleet),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier

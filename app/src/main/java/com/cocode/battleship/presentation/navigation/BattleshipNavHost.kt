@@ -41,7 +41,10 @@ fun BattleshipNavHost(
             PlacementScreen(
                 viewModel = gameViewModel,
                 onPlacementComplete = {
-                    navController.navigate(Screen.Game.route)
+                    // Pop Placement off the stack so Back from Game returns to Menu
+                    navController.navigate(Screen.Game.route) {
+                        popUpTo(Screen.Placement.route) { inclusive = true }
+                    }
                 }
             )
         }
@@ -49,7 +52,10 @@ fun BattleshipNavHost(
             GameScreen(
                 viewModel = gameViewModel,
                 onGameOver = {
-                    navController.navigate(Screen.GameOver.route)
+                    // Pop Game off the stack so Back from GameOver doesn't re-trigger GAME_OVER
+                    navController.navigate(Screen.GameOver.route) {
+                        popUpTo(Screen.Game.route) { inclusive = true }
+                    }
                 }
             )
         }

@@ -6,11 +6,13 @@ import com.cocode.battleship.domain.ai.BattleshipAI
 import com.cocode.battleship.domain.model.CellState
 import com.cocode.battleship.domain.model.GamePhase
 import com.cocode.battleship.domain.model.Ship
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class GameViewModel : ViewModel() {
     private val _state = MutableStateFlow(GameUiState())
@@ -48,12 +50,15 @@ class GameViewModel : ViewModel() {
     fun confirmPlacement() {
         val s = _state.value
         if (s.shipsToPlace.isNotEmpty()) return
-        _state.value = s.copy(
-            phase = GamePhase.BATTLE,
-            aiBoard = BattleshipAI.placeShipsRandomly(),
-            isPlayerTurn = true,
-            message = "Your turn — tap to fire!"
-        )
+        viewModelScope.launch {
+            val aiBoard = withContext(Dispatchers.Default) { BattleshipAI.placeShipsRandomly() }
+            _state.value = s.copy(
+                phase = GamePhase.BATTLE,
+                aiBoard = aiBoard,
+                isPlayerTurn = true,
+                message = "Your turn — tap to fire!"
+            )
+        }
     }
 
     fun playerAttack(row: Int, col: Int) {
@@ -92,9 +97,9 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    private fun aiAttack() {
+    private suspend fun aiAttack() {
         val s = _state.value
-        val (row, col) = BattleshipAI.chooseAttack(s.playerBoard)
+        val (row, col) = withContext(Dispatchers.Default) { BattleshipAI.chooseAttack(s.playerBoard) }
         val newPlayerBoard = s.playerBoard.receiveAttack(row, col)
         val cellState = newPlayerBoard.getCellState(row, col)
 
