@@ -17,6 +17,7 @@ import com.cocode.battleship.presentation.game.GameScreen
 import com.cocode.battleship.presentation.game.GameViewModel
 import com.cocode.battleship.presentation.menu.MenuScreen
 import com.cocode.battleship.presentation.placement.PlacementScreen
+import com.cocode.battleship.presentation.stats.StatsScreen
 
 @Composable
 fun BattleshipNavHost(
@@ -41,8 +42,12 @@ fun BattleshipNavHost(
                     onStartGame = {
                         gameViewModel.resetGame()
                         navController.navigate(Screen.Placement.route)
-                    }
+                    },
+                    onViewStats = { navController.navigate(Screen.Stats.route) }
                 )
+            }
+            composable(Screen.Stats.route) {
+                StatsScreen(onBack = { navController.popBackStack() })
             }
             composable(Screen.Placement.route) {
                 PlacementScreen(

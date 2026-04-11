@@ -7,6 +7,7 @@
     <string name="menu_start_game">START MISSION</string>
     <string name="menu_system_label">[ NAVAL COMMAND SYSTEM ]</string>
     <string name="menu_game_mode">SINGLE PLAYER  ·  vs AI  ·  10×10 GRID</string>
+    <string name="menu_view_stats">CAREER STATS</string>
 
     <!-- Placement -->
     <string name="placement_title">DEPLOY FLEET</string>
@@ -52,6 +53,18 @@
     <string name="game_over_session_streak">Streak</string>
     <string name="game_over_session_best">Best</string>
     <string name="game_over_session_footer">Games: %1$d  ·  Wins: %2$d  ·  Streak: %3$d  ·  Best: %4$d</string>
+
+    <!-- Stats Screen -->
+    <string name="stats_title">CAREER RECORD</string>
+    <string name="stats_rank_label">HIGHEST RANK</string>
+    <string name="stats_session_title">SESSION STATS</string>
+    <string name="stats_games_played">Games Played</string>
+    <string name="stats_wins">Victories</string>
+    <string name="stats_best_score">Best Score</string>
+    <string name="stats_longest_streak">Longest Streak</string>
+    <string name="stats_medals_title">MEDALS EARNED</string>
+    <string name="stats_no_games">No missions completed yet. Deploy your fleet!</string>
+    <string name="stats_back">RETURN TO BASE</string>
 
     <!-- Super Weapons -->
     <string name="weapons_available_label">SUPER WEAPONS</string>

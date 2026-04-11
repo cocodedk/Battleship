@@ -117,7 +117,7 @@ class GameViewModel : ViewModel() {
             val newTrackers = updateTrackersForFire(s.trackers, newAiBoard, firedCells, newlySunkTypes)
             val stats = buildGameStats(newTrackers, s.playerBoard, newAiBoard, GameOutcome.WIN)
             val result = computeScoreResult(stats, SessionStats.currentWinStreak + 1)
-            SessionStats.record(result.score, isWin = true)
+            SessionStats.record(result.score, isWin = true, earnedBadges = result.earnedBadges)
             _state.value = s.copy(
                 aiBoard = newAiBoard,
                 trackers = newTrackers,
@@ -160,7 +160,7 @@ class GameViewModel : ViewModel() {
             sounds.playLose()
             val stats = buildGameStats(s.trackers, newPlayerBoard, s.aiBoard, GameOutcome.LOSS)
             val result = computeScoreResult(stats, SessionStats.currentWinStreak)
-            SessionStats.record(result.score, isWin = false)
+            SessionStats.record(result.score, isWin = false, earnedBadges = result.earnedBadges)
             _state.value = s.copy(
                 playerBoard = newPlayerBoard,
                 phase = GamePhase.GAME_OVER,

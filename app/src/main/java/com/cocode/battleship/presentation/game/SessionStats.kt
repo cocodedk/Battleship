@@ -1,5 +1,7 @@
 package com.cocode.battleship.presentation.game
 
+import com.cocode.battleship.domain.scoring.Badge
+
 object SessionStats {
     var gamesPlayed: Int = 0
         private set
@@ -11,8 +13,10 @@ object SessionStats {
         private set
     var bestScore: Int = 0
         private set
+    private val _allEarnedBadges: MutableSet<Badge> = mutableSetOf()
+    val allEarnedBadges: Set<Badge> get() = _allEarnedBadges
 
-    fun record(score: Int, isWin: Boolean) {
+    fun record(score: Int, isWin: Boolean, earnedBadges: List<Badge> = emptyList()) {
         gamesPlayed++
         if (isWin) {
             totalWins++
@@ -22,6 +26,7 @@ object SessionStats {
             currentWinStreak = 0
         }
         if (score > bestScore) bestScore = score
+        _allEarnedBadges.addAll(earnedBadges)
     }
 
     fun reset() {
@@ -30,5 +35,6 @@ object SessionStats {
         currentWinStreak = 0
         longestWinStreak = 0
         bestScore = 0
+        _allEarnedBadges.clear()
     }
 }

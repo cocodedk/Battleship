@@ -18,10 +18,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,7 +47,7 @@ import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
 
 @Composable
-fun MenuScreen(onStartGame: () -> Unit) {
+fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}) {
     val infiniteTransition = rememberInfiniteTransition(label = "sonar")
     val sonarPulseSpec = infiniteRepeatable<Float>(tween(2800, easing = LinearEasing), RepeatMode.Restart)
     val pulseScale by infiniteTransition.animateFloat(0.2f, 2.0f, sonarPulseSpec, label = "scale")
@@ -130,7 +132,24 @@ fun MenuScreen(onStartGame: () -> Unit) {
                 )
             }
 
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(10.dp))
+
+            OutlinedButton(
+                onClick = onViewStats,
+                modifier = Modifier.fillMaxWidth().height(44.dp),
+                shape = RoundedCornerShape(4.dp),
+                border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.45f)),
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
+            ) {
+                Text(
+                    text = stringResource(R.string.menu_view_stats),
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 2.sp,
+                )
+            }
+
+            Spacer(Modifier.height(16.dp))
 
             Text(
                 text = stringResource(R.string.menu_game_mode),
