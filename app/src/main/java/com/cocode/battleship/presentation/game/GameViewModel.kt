@@ -6,6 +6,7 @@ import com.cocode.battleship.domain.ai.BattleshipAI
 import com.cocode.battleship.domain.model.CellState
 import com.cocode.battleship.domain.model.GamePhase
 import com.cocode.battleship.domain.model.Ship
+import com.cocode.battleship.domain.scoring.GameOutcome
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -78,11 +79,18 @@ class GameViewModel : ViewModel() {
 
         if (newAiBoard.allShipsSunk()) {
             sounds.playWin()
+            val newlySunkType = newAiBoard.ships.find { it.isSunk && it.occupies(row, col) }?.type
+            val newTrackers = updateTrackers(s.trackers, cellState, newlySunkType)
+            val stats = buildGameStats(newTrackers, s.playerBoard, newAiBoard, GameOutcome.WIN)
+            val result = computeScoreResult(stats, SessionStats.currentWinStreak)
+            SessionStats.record(result.score, isWin = true)
             _state.value = s.copy(
                 aiBoard = newAiBoard,
+                trackers = newTrackers,
                 phase = GamePhase.GAME_OVER,
                 winner = "Player",
-                message = "You sunk the fleet! You win!"
+                message = "You sunk the fleet! You win!",
+                scoreResult = result
             )
             return
         }
@@ -99,8 +107,12 @@ class GameViewModel : ViewModel() {
             else -> "Miss."
         }
 
+        val newlySunkType = if (cellState == CellState.SUNK)
+            newAiBoard.ships.find { it.isSunk && it.occupies(row, col) }?.type else null
+        val newTrackers = updateTrackers(s.trackers, cellState, newlySunkType)
         _state.value = s.copy(
             aiBoard = newAiBoard,
+            trackers = newTrackers,
             isPlayerTurn = false,
             message = hitMsg
         )
@@ -119,11 +131,15 @@ class GameViewModel : ViewModel() {
 
         if (newPlayerBoard.allShipsSunk()) {
             sounds.playLose()
+            val stats = buildGameStats(s.trackers, newPlayerBoard, s.aiBoard, GameOutcome.LOSS)
+            val result = computeScoreResult(stats, SessionStats.currentWinStreak)
+            SessionStats.record(result.score, isWin = false)
             _state.value = s.copy(
                 playerBoard = newPlayerBoard,
                 phase = GamePhase.GAME_OVER,
                 winner = "AI",
-                message = "AI sunk your fleet! You lose!"
+                message = "AI sunk your fleet! You lose!",
+                scoreResult = result
             )
             return
         }

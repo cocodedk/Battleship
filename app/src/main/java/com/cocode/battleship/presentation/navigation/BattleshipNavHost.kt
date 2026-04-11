@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -27,7 +25,6 @@ fun BattleshipNavHost(
 ) {
     // Single ViewModel shared across all screens — created outside NavHost so all routes share the same instance
     val gameViewModel: GameViewModel = viewModel()
-    val state by gameViewModel.state.collectAsState()
 
     Box(
         modifier = Modifier
@@ -71,7 +68,7 @@ fun BattleshipNavHost(
             }
             composable(Screen.GameOver.route) {
                 GameOverScreen(
-                    winner = state.winner ?: "",
+                    viewModel = gameViewModel,
                     onPlayAgain = {
                         gameViewModel.resetGame()
                         navController.navigate(Screen.Placement.route) {

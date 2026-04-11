@@ -40,3 +40,5 @@ val NeonViolet     = Color(0xFFCC00FF)   // Submarine
 val NeonVioletDim  = Color(0xFF2A003D)
 val NeonYellow     = Color(0xFFFFE200)   // Destroyer
 val NeonYellowDim  = Color(0xFF3D3600)
+
+val BronzeGold      = Color(0xFFFFD54F)   // Legendary rarity badge accent

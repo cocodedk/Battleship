@@ -34,4 +34,21 @@
     <string name="game_over_lose_subtitle">All ships lost. The enemy was relentless.</string>
     <string name="game_over_play_again">DEPLOY AGAIN</string>
     <string name="game_over_main_menu">MAIN MENU</string>
+
+    <!-- Score & Badges -->
+    <string name="game_over_rank_label">RANK</string>
+    <string name="game_over_score_label">SCORE</string>
+    <string name="game_over_stats_title">COMBAT STATS</string>
+    <string name="game_over_stats_shots">Shots</string>
+    <string name="game_over_stats_hits">Hits</string>
+    <string name="game_over_stats_misses">Misses</string>
+    <string name="game_over_stats_accuracy">Accuracy</string>
+    <string name="game_over_stats_ships_sunk">Ships Sunk</string>
+    <string name="game_over_badges_title">MEDALS EARNED</string>
+    <string name="game_over_badges_none">No medals earned — keep fighting, sailor.</string>
+    <string name="game_over_session_label">SESSION</string>
+    <string name="game_over_session_games">Games</string>
+    <string name="game_over_session_wins">Wins</string>
+    <string name="game_over_session_streak">Streak</string>
+    <string name="game_over_session_best">Best</string>
 </resources>

@@ -11,13 +11,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -27,6 +31,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
+import com.cocode.battleship.domain.scoring.Badge
+import com.cocode.battleship.domain.scoring.GameStats
+import com.cocode.battleship.domain.scoring.ScoreResult
+import com.cocode.battleship.presentation.game.components.BadgeShowcase
+import com.cocode.battleship.presentation.game.components.RankScorePanel
+import com.cocode.battleship.presentation.game.components.SessionFooter
+import com.cocode.battleship.presentation.game.components.StatsBreakdownPanel
 import com.cocode.battleship.ui.theme.DeepNavy
 import com.cocode.battleship.ui.theme.NavyCard
 import com.cocode.battleship.ui.theme.NavySurface
@@ -39,11 +50,14 @@ import com.cocode.battleship.ui.theme.TorpedoRedDim
 
 @Composable
 fun GameOverScreen(
-    winner: String,
+    viewModel: GameViewModel,
     onPlayAgain: () -> Unit,
     onMainMenu: () -> Unit
 ) {
+    val state by viewModel.state.collectAsState()
+    val winner = state.winner ?: ""
     val isPlayerWinner = winner == "Player"
+    val scoreResult = state.scoreResult
     val accentColor = if (isPlayerWinner) PhosphorGreen else TorpedoRed
     val accentDim = if (isPlayerWinner) PhosphorGreenDim else TorpedoRedDim
     val statusLabel = stringResource(if (isPlayerWinner) R.string.game_over_status_victory else R.string.game_over_status_defeat)
@@ -57,6 +71,7 @@ fun GameOverScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
                 .padding(32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -107,7 +122,23 @@ fun GameOverScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(32.dp))
+            if (scoreResult != null) {
+                Spacer(modifier = Modifier.height(16.dp))
+                RankScorePanel(scoreResult = scoreResult, isPlayerWinner = isPlayerWinner)
+                Spacer(modifier = Modifier.height(8.dp))
+                StatsBreakdownPanel(stats = scoreResult.stats)
+                Spacer(modifier = Modifier.height(8.dp))
+                BadgeShowcase(badges = scoreResult.earnedBadges)
+                Spacer(modifier = Modifier.height(8.dp))
+                SessionFooter(
+                    gamesPlayed = SessionStats.gamesPlayed,
+                    totalWins = SessionStats.totalWins,
+                    currentWinStreak = SessionStats.currentWinStreak,
+                    bestScore = SessionStats.bestScore
+                )
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
 
             Button(
                 onClick = onPlayAgain,
