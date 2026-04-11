@@ -44,14 +44,15 @@ import com.cocode.battleship.ui.theme.TextSecondary
 @Composable
 fun MenuScreen(onStartGame: () -> Unit) {
     val infiniteTransition = rememberInfiniteTransition(label = "sonar")
+    val sonarPulseSpec = infiniteRepeatable<Float>(tween(2800, easing = LinearEasing), RepeatMode.Restart)
     val pulseScale by infiniteTransition.animateFloat(
         initialValue = 0.2f, targetValue = 2.0f,
-        animationSpec = infiniteRepeatable(tween(2800, easing = LinearEasing), RepeatMode.Restart),
+        animationSpec = sonarPulseSpec,
         label = "scale"
     )
     val pulseAlpha by infiniteTransition.animateFloat(
         initialValue = 0.5f, targetValue = 0f,
-        animationSpec = infiniteRepeatable(tween(2800, easing = LinearEasing), RepeatMode.Restart),
+        animationSpec = sonarPulseSpec,
         label = "alpha"
     )
 
@@ -93,7 +94,7 @@ fun MenuScreen(onStartGame: () -> Unit) {
             Spacer(modifier = Modifier.height(6.dp))
 
             Text(
-                text = "[ NAVAL COMMAND SYSTEM ]",
+                text = stringResource(R.string.menu_system_label),
                 style = MaterialTheme.typography.labelMedium,
                 color = TextSecondary,
                 letterSpacing = 3.sp,
@@ -131,7 +132,7 @@ fun MenuScreen(onStartGame: () -> Unit) {
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "SINGLE PLAYER  ·  vs AI  ·  10×10 GRID",
+                text = stringResource(R.string.menu_game_mode),
                 style = MaterialTheme.typography.labelSmall,
                 color = TextDim,
                 letterSpacing = 1.sp,

@@ -46,7 +46,7 @@ fun GameOverScreen(
     val isPlayerWinner = winner == "Player"
     val accentColor = if (isPlayerWinner) PhosphorGreen else TorpedoRed
     val accentDim = if (isPlayerWinner) PhosphorGreenDim else TorpedoRedDim
-    val statusLabel = if (isPlayerWinner) "[ STATUS: VICTORY ]" else "[ STATUS: DEFEAT ]"
+    val statusLabel = stringResource(if (isPlayerWinner) R.string.game_over_status_victory else R.string.game_over_status_defeat)
 
     Box(
         modifier = Modifier

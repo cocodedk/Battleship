@@ -60,7 +60,7 @@ fun PlacementScreen(
                 color = SonarCyan,
             )
             Text(
-                text = "SELECT A CELL TO POSITION YOUR SHIP",
+                text = stringResource(R.string.placement_select_cell),
                 style = MaterialTheme.typography.labelSmall,
                 color = TextSecondary,
                 letterSpacing = 1.sp,

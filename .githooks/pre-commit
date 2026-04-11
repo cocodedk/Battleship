@@ -8,7 +8,7 @@ if [ -n "${KEYSTORE_PATH:-}" ] && [ -n "${KEYSTORE_PASSWORD:-}" ] && \
   if [ -f "$KEYSTORE_PATH" ]; then
     ./gradlew assembleRelease --no-daemon --quiet
   else
-    echo "KEYSTORE_PATH is set but file does not exist: $KEYSTORE_PATH"
+    echo "KEYSTORE_PATH is set but file does not exist: $KEYSTORE_PATH" >&2
     exit 1
   fi
 fi

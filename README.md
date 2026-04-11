@@ -67,7 +67,7 @@ APK output: `app/build/outputs/apk/release/app-release.apk`
 ./gradlew test
 ```
 
-16 unit tests cover the domain layer (pure Kotlin, no Android dependencies). All tests pass.
+Unit tests cover the domain layer (pure Kotlin, no Android dependencies).
 
 ---
 
@@ -75,7 +75,7 @@ APK output: `app/build/outputs/apk/release/app-release.apk`
 
 Clean Architecture with two layers. The domain layer has zero Android dependencies.
 
-```
+```text
 app/src/main/java/com/cocode/battleship/
 │
 ├── domain/                   ← Pure Kotlin — fully testable

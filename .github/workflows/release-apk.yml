@@ -40,7 +40,7 @@ jobs:
           VERSION=$(cat version.txt)
           NEW_VERSION=$((VERSION + 1))
           echo "$NEW_VERSION" > version.txt
-          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Commit version bump
         run: |

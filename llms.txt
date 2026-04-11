@@ -23,9 +23,9 @@ Battleship is an Android game implementing the classic naval combat game. One pl
 ## Key Files
 
 - `CLAUDE.md` — Project conventions, architecture, engineering principles
-- `domain/ai/BattleshipAI.kt` — Stateless hunt/target AI
-- `presentation/game/GameViewModel.kt` — Single shared ViewModel for all screens
-- `presentation/navigation/BattleshipNavHost.kt` — Navigation with shared ViewModel
+- `app/src/main/java/com/cocode/battleship/domain/ai/BattleshipAI.kt` — Stateless hunt/target AI
+- `app/src/main/java/com/cocode/battleship/presentation/game/GameViewModel.kt` — Single shared ViewModel for all screens
+- `app/src/main/java/com/cocode/battleship/presentation/navigation/BattleshipNavHost.kt` — Navigation with shared ViewModel
 
 ## Links
 

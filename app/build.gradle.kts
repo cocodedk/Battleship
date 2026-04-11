@@ -1,5 +1,3 @@
-import java.io.File
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -17,7 +15,7 @@ val hasSigningConfig = signingKeystorePath != null &&
     signingKeystorePassword != null &&
     signingKeyAlias != null &&
     signingKeyPassword != null &&
-    File(signingKeystorePath).exists()
+    file(signingKeystorePath).exists()
 
 android {
     namespace = "com.cocode.battleship"
@@ -31,7 +29,7 @@ android {
         applicationId = "com.cocode.battleship"
         minSdk = 24
         targetSdk = 36
-        versionCode = versionNumber.toInt()
+        versionCode = versionNumber.toIntOrNull() ?: 1
         versionName = versionNumber
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
