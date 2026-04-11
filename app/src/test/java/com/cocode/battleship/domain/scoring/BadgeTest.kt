@@ -12,7 +12,6 @@ class BadgeTest {
         totalShots: Int = 50,
         hits: Int = 30,
         misses: Int = 20,
-        accuracy: Float = 0.6f,
         survivingPlayerShips: Int = 3,
         totalPlayerShipHp: Int = 10,
         shipsSunkByPlayer: Int = 5,
@@ -22,7 +21,7 @@ class BadgeTest {
         firstEnemyShipSunkType: ShipType? = null,
         playerShipEndStates: Map<ShipType, ShipEndState> = emptyMap()
     ) = GameStats(
-        outcome, totalShots, hits, misses, accuracy,
+        outcome, totalShots, hits, misses,
         survivingPlayerShips, totalPlayerShipHp, shipsSunkByPlayer,
         longestHitStreak, longestMissStreak, firstShotHit,
         firstEnemyShipSunkType, playerShipEndStates
@@ -36,21 +35,21 @@ class BadgeTest {
         assertFalse(Badge.FIRST_BLOOD.matches(baseStats(firstShotHit = false)))
 
     // SHARPSHOOTER
-    @Test fun `SHARPSHOOTER matches when accuracy 0_60 and totalShots 10`() =
-        assertTrue(Badge.SHARPSHOOTER.matches(baseStats(accuracy = 0.60f, totalShots = 10)))
+    @Test fun `SHARPSHOOTER matches when hits 6 totalShots 10 misses 4`() =
+        assertTrue(Badge.SHARPSHOOTER.matches(baseStats(hits = 6, totalShots = 10, misses = 4)))
 
-    @Test fun `SHARPSHOOTER does not match when accuracy below 0_60`() =
-        assertFalse(Badge.SHARPSHOOTER.matches(baseStats(accuracy = 0.59f, totalShots = 10)))
+    @Test fun `SHARPSHOOTER does not match when hits 5 totalShots 10 misses 5`() =
+        assertFalse(Badge.SHARPSHOOTER.matches(baseStats(hits = 5, totalShots = 10, misses = 5)))
 
     @Test fun `SHARPSHOOTER does not match when totalShots below 10`() =
-        assertFalse(Badge.SHARPSHOOTER.matches(baseStats(accuracy = 0.60f, totalShots = 9)))
+        assertFalse(Badge.SHARPSHOOTER.matches(baseStats(hits = 6, totalShots = 9, misses = 3)))
 
     // DEAD_EYE
-    @Test fun `DEAD_EYE matches when accuracy 0_80 and totalShots 10`() =
-        assertTrue(Badge.DEAD_EYE.matches(baseStats(accuracy = 0.80f, totalShots = 10)))
+    @Test fun `DEAD_EYE matches when hits 8 totalShots 10 misses 2`() =
+        assertTrue(Badge.DEAD_EYE.matches(baseStats(hits = 8, totalShots = 10, misses = 2)))
 
-    @Test fun `DEAD_EYE does not match when accuracy below 0_80`() =
-        assertFalse(Badge.DEAD_EYE.matches(baseStats(accuracy = 0.79f, totalShots = 10)))
+    @Test fun `DEAD_EYE does not match when hits 7 totalShots 10 misses 3`() =
+        assertFalse(Badge.DEAD_EYE.matches(baseStats(hits = 7, totalShots = 10, misses = 3)))
 
     // HOT_STREAK
     @Test fun `HOT_STREAK matches when longestHitStreak is 5`() =

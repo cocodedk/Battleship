@@ -12,6 +12,6 @@ enum class Rank(val minScore: Int, val displayName: String) {
 
     companion object {
         fun fromScore(score: Int): Rank =
-            entries.sortedByDescending { it.minScore }.first { score >= it.minScore }
+            entries.sortedByDescending { it.minScore }.firstOrNull { score >= it.minScore } ?: CADET
     }
 }

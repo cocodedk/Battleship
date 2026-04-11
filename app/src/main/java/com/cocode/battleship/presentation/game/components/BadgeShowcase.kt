@@ -17,9 +17,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.cocode.battleship.R
 import com.cocode.battleship.domain.scoring.Badge
 import com.cocode.battleship.domain.scoring.Rarity
 import com.cocode.battleship.ui.theme.AmberWarning
@@ -40,7 +42,7 @@ fun BadgeShowcase(badges: List<Badge>) {
             .padding(horizontal = 16.dp, vertical = 10.dp)
     ) {
         Text(
-            text = "MEDALS EARNED",
+            text = stringResource(R.string.game_over_badges_title),
             style = MaterialTheme.typography.labelSmall,
             color = TextSecondary,
             letterSpacing = 3.sp,
@@ -48,7 +50,7 @@ fun BadgeShowcase(badges: List<Badge>) {
         )
         if (badges.isEmpty()) {
             Text(
-                text = "No medals earned — keep fighting, sailor.",
+                text = stringResource(R.string.game_over_badges_none),
                 style = MaterialTheme.typography.bodySmall,
                 color = TextDim,
                 modifier = Modifier.fillMaxWidth()

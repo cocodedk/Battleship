@@ -51,4 +51,5 @@
     <string name="game_over_session_wins">Wins</string>
     <string name="game_over_session_streak">Streak</string>
     <string name="game_over_session_best">Best</string>
+    <string name="game_over_session_footer">Games: %1$d  ·  Wins: %2$d  ·  Streak: %3$d  ·  Best: %4$d</string>
 </resources>

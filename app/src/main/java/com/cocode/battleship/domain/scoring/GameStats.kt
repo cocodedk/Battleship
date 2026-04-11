@@ -11,7 +11,6 @@ data class GameStats(
     val totalShots: Int,
     val hits: Int,
     val misses: Int,
-    val accuracy: Float,                            // hits / totalShots, or 0f if totalShots == 0
     val survivingPlayerShips: Int,
     val totalPlayerShipHp: Int,                     // sum of (size - hitCount) for surviving player ships
     val shipsSunkByPlayer: Int,
@@ -20,4 +19,6 @@ data class GameStats(
     val firstShotHit: Boolean,
     val firstEnemyShipSunkType: ShipType?,
     val playerShipEndStates: Map<ShipType, ShipEndState>
-)
+) {
+    val accuracy: Float get() = if (totalShots == 0) 0f else hits.toFloat() / totalShots
+}

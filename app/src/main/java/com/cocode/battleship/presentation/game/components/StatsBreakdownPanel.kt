@@ -11,10 +11,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.cocode.battleship.R
 import com.cocode.battleship.domain.scoring.GameStats
 import com.cocode.battleship.ui.theme.NavyBorder
 import com.cocode.battleship.ui.theme.NavyCard
@@ -25,11 +27,11 @@ import com.cocode.battleship.ui.theme.TextSecondary
 fun StatsBreakdownPanel(stats: GameStats) {
     val accuracyPct = (stats.accuracy * 100).toInt()
     val rows = listOf(
-        "Shots" to stats.totalShots.toString(),
-        "Hits" to stats.hits.toString(),
-        "Misses" to stats.misses.toString(),
-        "Accuracy" to "$accuracyPct%",
-        "Ships Sunk" to stats.shipsSunkByPlayer.toString(),
+        stringResource(R.string.game_over_stats_shots) to stats.totalShots.toString(),
+        stringResource(R.string.game_over_stats_hits) to stats.hits.toString(),
+        stringResource(R.string.game_over_stats_misses) to stats.misses.toString(),
+        stringResource(R.string.game_over_stats_accuracy) to "$accuracyPct%",
+        stringResource(R.string.game_over_stats_ships_sunk) to stats.shipsSunkByPlayer.toString(),
     )
 
     Column(
@@ -40,7 +42,7 @@ fun StatsBreakdownPanel(stats: GameStats) {
             .padding(horizontal = 16.dp, vertical = 10.dp)
     ) {
         Text(
-            text = "COMBAT STATS",
+            text = stringResource(R.string.game_over_stats_title),
             style = MaterialTheme.typography.labelSmall,
             color = TextSecondary,
             letterSpacing = 3.sp,

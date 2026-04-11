@@ -14,7 +14,6 @@ class ScoreCalculatorTest {
         totalShots = if (outcome == GameOutcome.WIN) 50 else 0,
         hits = 0,
         misses = if (outcome == GameOutcome.WIN) 1 else 0,
-        accuracy = 0f,
         survivingPlayerShips = 0,
         totalPlayerShipHp = 0,
         shipsSunkByPlayer = 0,
@@ -33,14 +32,13 @@ class ScoreCalculatorTest {
         assertEquals(1000, ScoreCalculator.calculate(stats))
     }
 
-    // 2. LOSS base is 200
+    // 2. LOSS base is 200 (verified via total = base - zero-hit penalty = 200 - 50 = 150)
     @Test
     fun `LOSS base score is 200`() {
         val stats = minStats(GameOutcome.LOSS)
-        // base=200, hits=0 but outcome==LOSS && hits==0 → -50 penalty
-        // We need hits=1 to avoid zero-hit LOSS penalty, or adjust
-        val neutralLoss = stats.copy(hits = 1, misses = 1, totalShots = 2)
-        assertEquals(200, ScoreCalculator.calculate(neutralLoss))
+        // totalShots=0 → accuracy=0f (computed), hits=0 → zero-hit LOSS penalty -50
+        // 200 (base) - 50 (zero-hit LOSS) = 150
+        assertEquals(150, ScoreCalculator.calculate(stats))
     }
 
     // 3. Victory bonus +300 per surviving ship (WIN, 3 ships alive -> +900)
@@ -59,11 +57,11 @@ class ScoreCalculatorTest {
         assertEquals(1050, ScoreCalculator.calculate(stats))
     }
 
-    // 5. Accuracy bonus is rounded (accuracy=0.4f, totalShots=50 -> +round(200) = +200; no kicker since <0.5)
+    // 5. Accuracy bonus is rounded (hits=20, totalShots=50 -> accuracy=0.4; +round(200) = +200; no kicker since <0.5)
     @Test
     fun `accuracy bonus is rounded correctly below 0 5 threshold`() {
         val stats = minStats(GameOutcome.WIN).copy(
-            accuracy = 0.4f,
+            hits = 20,
             misses = 1  // keep misses>0 so no perfect game
         )
         // 1000 (base) + round(0.4 * 500) = +200 = 1200
@@ -74,7 +72,7 @@ class ScoreCalculatorTest {
     @Test
     fun `accuracy kicker adds 250 when accuracy is at least 0 50`() {
         val stats = minStats(GameOutcome.WIN).copy(
-            accuracy = 0.5f,
+            hits = 25,
             misses = 1  // keep misses>0 so no perfect game
         )
         // 1000 (base) + round(0.5 * 500)=250 + kicker 250 = 1500
@@ -85,7 +83,6 @@ class ScoreCalculatorTest {
     @Test
     fun `perfect game bonus adds 500 on WIN with zero misses`() {
         val stats = minStats(GameOutcome.WIN).copy(
-            accuracy = 1.0f,
             hits = 17,
             misses = 0,
             totalShots = 17
@@ -100,7 +97,6 @@ class ScoreCalculatorTest {
     @Test
     fun `perfect game bonus is not applied on LOSS even with zero misses`() {
         val stats = minStats(GameOutcome.LOSS).copy(
-            accuracy = 1.0f,
             hits = 5,
             misses = 0,
             totalShots = 5
@@ -203,7 +199,6 @@ class ScoreCalculatorTest {
             totalShots = 40,
             hits = 17,
             misses = 23,
-            accuracy = 17f / 40f,        // ~0.425
             survivingPlayerShips = 2,
             totalPlayerShipHp = 8,
             shipsSunkByPlayer = 5,

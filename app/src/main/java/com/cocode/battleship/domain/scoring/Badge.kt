@@ -40,6 +40,6 @@ enum class Badge(
         SWIM_FOR_IT -> stats.outcome == GameOutcome.LOSS && stats.hits == 0
         FOG_OF_WAR -> stats.longestMissStreak >= 10
         DEPTH_CHARGE_DIPLOMAT -> stats.totalShots >= 100
-        ON_FIRE -> sessionWinStreak >= 3
+        ON_FIRE -> stats.outcome == GameOutcome.WIN && sessionWinStreak >= 3
     }
 }

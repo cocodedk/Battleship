@@ -4,7 +4,7 @@
 
 ### Score Formula
 
-```
+```text
 base:           WIN=1000, LOSS=200
 victory_bonus:  +300 × survivingPlayerShips  +5 × totalPlayerShipHp  (WIN only)
 accuracy_bonus: +round(accuracy × 500)  +250 if ≥50%  +500 if perfectGame
@@ -151,7 +151,7 @@ final =         max(0, sum)
 
 ## New Files Summary
 
-```
+```text
 domain/scoring/
   GameStats.kt          Task 1
   ScoreCalculator.kt    Task 2

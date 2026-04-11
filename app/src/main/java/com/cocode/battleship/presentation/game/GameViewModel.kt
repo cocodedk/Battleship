@@ -82,7 +82,7 @@ class GameViewModel : ViewModel() {
             val newlySunkType = newAiBoard.ships.find { it.isSunk && it.occupies(row, col) }?.type
             val newTrackers = updateTrackers(s.trackers, cellState, newlySunkType)
             val stats = buildGameStats(newTrackers, s.playerBoard, newAiBoard, GameOutcome.WIN)
-            val result = computeScoreResult(stats, SessionStats.currentWinStreak)
+            val result = computeScoreResult(stats, SessionStats.currentWinStreak + 1)
             SessionStats.record(result.score, isWin = true)
             _state.value = s.copy(
                 aiBoard = newAiBoard,

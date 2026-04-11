@@ -66,14 +66,11 @@ fun buildGameStats(
             else -> ShipEndState.UNTOUCHED
         }
     }
-    val accuracy = if (trackers.totalShots > 0)
-        trackers.hits.toFloat() / trackers.totalShots else 0f
     return GameStats(
         outcome = outcome,
         totalShots = trackers.totalShots,
         hits = trackers.hits,
         misses = trackers.misses,
-        accuracy = accuracy,
         survivingPlayerShips = surviving,
         totalPlayerShipHp = totalHp,
         shipsSunkByPlayer = sunkByPlayer,

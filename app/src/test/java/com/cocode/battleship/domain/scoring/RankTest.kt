@@ -41,6 +41,26 @@ class RankTest {
     }
 
     @Test
+    fun `score 1499 yields CAPTAIN`() {
+        assertEquals(Rank.CAPTAIN, Rank.fromScore(1499))
+    }
+
+    @Test
+    fun `score 1500 yields COMMODORE`() {
+        assertEquals(Rank.COMMODORE, Rank.fromScore(1500))
+    }
+
+    @Test
+    fun `score 1999 yields COMMODORE`() {
+        assertEquals(Rank.COMMODORE, Rank.fromScore(1999))
+    }
+
+    @Test
+    fun `score 2000 yields VICE_ADMIRAL`() {
+        assertEquals(Rank.VICE_ADMIRAL, Rank.fromScore(2000))
+    }
+
+    @Test
     fun `score 2599 yields VICE_ADMIRAL`() {
         assertEquals(Rank.VICE_ADMIRAL, Rank.fromScore(2599))
     }
@@ -58,5 +78,10 @@ class RankTest {
     @Test
     fun `score 9999 yields FLEET_ADMIRAL`() {
         assertEquals(Rank.FLEET_ADMIRAL, Rank.fromScore(9999))
+    }
+
+    @Test
+    fun `negative score yields CADET`() {
+        assertEquals(Rank.CADET, Rank.fromScore(-1))
     }
 }
