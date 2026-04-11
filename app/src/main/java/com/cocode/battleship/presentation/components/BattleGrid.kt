@@ -26,14 +26,18 @@ import com.cocode.battleship.domain.model.Board
 import com.cocode.battleship.domain.model.CellState
 import com.cocode.battleship.domain.model.GRID_SIZE
 import com.cocode.battleship.domain.model.Ship
-import com.cocode.battleship.ui.theme.DeepNavy
+import com.cocode.battleship.domain.model.ShipType
 import com.cocode.battleship.ui.theme.MissWhite
 import com.cocode.battleship.ui.theme.NavyBorder
 import com.cocode.battleship.ui.theme.NavyCard
 import com.cocode.battleship.ui.theme.NavySurface
+import com.cocode.battleship.ui.theme.NeonLime
+import com.cocode.battleship.ui.theme.NeonMagenta
+import com.cocode.battleship.ui.theme.NeonOrange
+import com.cocode.battleship.ui.theme.NeonViolet
+import com.cocode.battleship.ui.theme.NeonYellow
 import com.cocode.battleship.ui.theme.PhosphorGreen
 import com.cocode.battleship.ui.theme.PhosphorGreenDim
-import com.cocode.battleship.ui.theme.ShipSteel
 import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TorpedoRed
@@ -111,7 +115,8 @@ private fun GridCell(
     modifier: Modifier,
 ) {
     val cellState = board.getCellState(row, col)
-    val hasShip = showShips && board.getShipAt(row, col) != null
+    val ship = if (showShips) board.getShipAt(row, col) else null
+    val hasShip = ship != null
     val isPreviewCell = previewPositions.contains(Pair(row, col))
     val hasBeenAttacked = board.hasBeenAttacked(row, col)
     val isClickable = onCellClick != null && !hasBeenAttacked
@@ -131,8 +136,10 @@ private fun GridCell(
             CellAppearance(PhosphorGreenDim, PhosphorGreen.copy(alpha = 0.5f), "✕", PhosphorGreen.copy(alpha = 0.9f))
         cellState == CellState.MISS ->
             CellAppearance(NavyCard, NavyBorder, "·", MissWhite.copy(alpha = 0.6f))
-        hasShip ->
-            CellAppearance(ShipSteel.copy(alpha = 0.65f), ShipSteel, null, null)
+        hasShip -> {
+            val neon = shipNeonColor(ship!!.type)
+            CellAppearance(neon.copy(alpha = 0.20f), neon.copy(alpha = 0.80f), null, null)
+        }
         isClickable ->
             CellAppearance(NavySurface, SonarCyan.copy(alpha = 0.2f), null, null)
         else ->
@@ -158,4 +165,12 @@ private fun GridCell(
             )
         }
     }
+}
+
+private fun shipNeonColor(type: ShipType): Color = when (type) {
+    ShipType.CARRIER    -> NeonMagenta
+    ShipType.BATTLESHIP -> NeonOrange
+    ShipType.CRUISER    -> NeonLime
+    ShipType.SUBMARINE  -> NeonViolet
+    ShipType.DESTROYER  -> NeonYellow
 }

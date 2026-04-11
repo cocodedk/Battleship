@@ -28,3 +28,15 @@ val MissWhite = Color(0xFFB0BEC5)
 val TextPrimary = Color(0xFFCCE8FF)
 val TextSecondary = Color(0xFF7AACCC)
 val TextDim = Color(0xFF2A4D6E)
+
+// Ship neon colours — one per ShipType, plus dim variants for cell backgrounds
+val NeonMagenta    = Color(0xFFFF00AA)   // Carrier
+val NeonMagentaDim = Color(0xFF3D0020)
+val NeonOrange     = Color(0xFFFF6D00)   // Battleship
+val NeonOrangeDim  = Color(0xFF3D1A00)
+val NeonLime       = Color(0xFFAAFF00)   // Cruiser
+val NeonLimeDim    = Color(0xFF1A3300)
+val NeonViolet     = Color(0xFFCC00FF)   // Submarine
+val NeonVioletDim  = Color(0xFF2A003D)
+val NeonYellow     = Color(0xFFFFE200)   // Destroyer
+val NeonYellowDim  = Color(0xFF3D3600)
