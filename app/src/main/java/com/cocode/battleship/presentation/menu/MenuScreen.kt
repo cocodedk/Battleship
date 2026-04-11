@@ -97,9 +97,13 @@ fun MenuScreen(onStartGame: () -> Unit) {
 
             Text(
                 text = stringResource(R.string.menu_title),
-                style = MaterialTheme.typography.displayLarge,
+                style = MaterialTheme.typography.displayLarge.copy(
+                    fontSize = 36.sp,
+                    letterSpacing = 2.sp,
+                ),
                 color = SonarCyan,
                 textAlign = TextAlign.Center,
+                maxLines = 1,
             )
 
             Spacer(modifier = Modifier.height(6.dp))
