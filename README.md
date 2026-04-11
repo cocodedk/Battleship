@@ -11,12 +11,36 @@ A local naval combat game for Android. No network connection required — play a
 
 ## Features
 
+### Core Gameplay
+
 - **Fully offline** — no network, no account, no tracking
-- **10×10 grid** — standard Battleship rules
-- **AI opponent** — hunt/target algorithm that adapts after a hit
-- **Ship placement** — manual drag-and-drop or one-tap auto-placement
+- **10×10 grid** — 5-ship fleet (Carrier, Battleship, Cruiser, Submarine, Destroyer)
+- **AI opponent** — hunt/target algorithm with checkerboard parity
+- **Ship placement** — manual drag-and-drop or one-tap auto-deployment
 - **Two-player mode** — pass-and-play on a single device
-- **Naval Sonar Command aesthetic** — dark navy theme with cyan/green accents built on Material3
+- **Naval Sonar Command aesthetic** — dark navy theme on Material3
+
+### Super Weapons
+
+Unlock special attack abilities by sinking enemy ships (5 total):
+
+- **Carpet Bomb** — 3×3 area bombardment (unlock: sink Carrier)
+- **Battleship Barrage** — 9-cell cross saturation fire (unlock: sink Battleship)
+- **Sonar Sweep** — 5-cell horizontal ping (unlock: sink Cruiser)
+- **Torpedo Spread** — 5-cell vertical salvo (unlock: sink Submarine)
+- **Precision Strike** — 5-cell X-pattern surgical strike (unlock: sink Destroyer)
+
+### Medals & Ranking System
+
+- **15 medals** across 4 rarities (Common, Rare, Epic, Legendary)
+  - Examples: Perfect Gunner (win with 0 misses), Flawless Victory (all 5 ships intact), Dead-Eye (80%+ accuracy)
+- **8 career ranks**: Cadet → Ensign → Lieutenant → Captain → Commodore → Vice Admiral → Admiral → Fleet Admiral
+- **Career stats screen** — track accumulated medals, best rank, and win streaks across games
+
+### Visual & Audio Effects
+
+- **PCM-synthesized audio** — hit impacts, miss sweeps, ship sunk explosions, victory fanfare (no audio files needed)
+- **Visual effects** — hit flash animations, sunk ship glow pulse, animated sonar UI
 
 ---
 
@@ -87,6 +111,7 @@ app/src/main/java/com/cocode/battleship/
 │   ├── menu/                 ← MenuScreen
 │   ├── placement/            ← PlacementScreen
 │   ├── game/                 ← GameScreen, GameViewModel, GameOverScreen
+│   ├── stats/                ← StatsScreen (career stats, medals, ranks)
 │   └── components/           ← Reusable composables (BattleGrid, etc.)
 │
 └── ui/theme/                 ← Material3 theme, colors, typography

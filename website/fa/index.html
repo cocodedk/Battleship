@@ -4,15 +4,18 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>بتلشیپ — بازی فرماندهی دریایی برای اندروید</title>
-  <meta name="description" content="بتلشیپ یک بازی اندرویدی رایگان و آفلاین است. نبرد دریایی تاکتیکی — ناوگان خود را مستقر کنید و دشمن را غرق کنید. بدون حساب کاربری، بدون اینترنت."/>
+  <meta name="description" content="بتلشیپ یک بازی اندرویدی رایگان و آفلاین است. نبرد دریایی تاکتیکی — ناوگان خود را مستقر کنید، ۵ سلاح فوق‌العاده را باز کنید، ۱۵ مدال کسب کنید، ۸ رتبه نظامی را طی کنید. بدون حساب کاربری، بدون اینترنت، بدون تبلیغات."/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://cocodedk.github.io/Battleship/fa/"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="Battleship"/>
   <meta property="og:title" content="بتلشیپ — بازی فرماندهی دریایی برای اندروید"/>
-  <meta property="og:description" content="نبرد دریایی تاکتیکی برای اندروید. بدون نیاز به اینترنت."/>
+  <meta property="og:description" content="نبرد دریایی تاکتیکی برای اندروید. ناوگان خود را مستقر کنید، دشمن را شکار کنید، سلاح‌های فوق‌العاده را باز کنید، مدال کسب کنید و رتبه نظامی بگیرید. بدون نیاز به اینترنت."/>
   <meta property="og:url" content="https://cocodedk.github.io/Battleship/fa/"/>
   <meta property="og:image" content="https://cocodedk.github.io/Battleship/og.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="بتلشیپ — بازی فرماندهی دریایی برای اندروید"/>
+  <meta name="twitter:image" content="https://cocodedk.github.io/Battleship/og.png"/>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
@@ -21,88 +24,609 @@
     [dir="rtl"] body { font-family: 'Vazirmatn', 'Tahoma', sans-serif; }
     [dir="rtl"] .code-block { direction: ltr; text-align: left; font-family: 'Share Tech Mono', monospace; }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Battleship",
+    "description": "بازی نبرد دریایی تاکتیکی برای اندروید. ناوگان را مستقر کنید، ۵ سلاح فوق‌العاده را باز کنید، ۱۵ مدال کسب کنید، ۸ رتبه نظامی را طی کنید. کاملاً آفلاین، بدون نیاز به حساب کاربری.",
+    "url": "https://cocodedk.github.io/Battleship/",
+    "downloadUrl": "https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk",
+    "operatingSystem": "Android",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "Babak Bandpey", "url": "https://cocode.dk" },
+    "applicationFeature": [
+      "5-ship fleet on 10×10 tactical grid",
+      "Hunt/target AI with checkerboard parity",
+      "5 super weapons unlocked by sinking enemy ships",
+      "15 medals across 4 rarity tiers",
+      "8-rank career progression system",
+      "PCM-synthesized audio, no audio files",
+      "Visual hit flash and sunk glow effects",
+      "Career stats screen with persistent session stats",
+      "Fully offline — no network, no account, no ads"
+    ]
+  }
+  </script>
 </head>
 <body>
   <a href="../" class="lang-switch">English</a>
 
+  <!-- ═══ HERO ═══ -->
   <header>
     <div class="sonar-ring"></div>
     <div class="sonar-ring"></div>
     <span class="eyemark">◈</span>
     <h1>BATTLESHIP</h1>
     <p class="tagline">[ سیستم فرماندهی دریایی ]</p>
-    <p class="sub-tagline">ناوگان دشمن را غرق کنید</p>
+    <p class="hero-tagline-main">ناوگان شما. استراتژی شما. افتخار شما.</p>
+    <p class="sub-tagline">ناوگان دشمن را غرق کنید — رتبه خود را کسب کنید — هیچ کشتی‌ای باقی نماند</p>
     <div class="cta-group">
-      <a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk" class="btn btn-primary">دانلود APK</a>
+      <a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk" class="btn btn-primary">⚓ دانلود APK</a>
       <a href="https://github.com/cocodedk/Battleship" class="btn btn-outline">کد منبع</a>
     </div>
   </header>
 
   <main>
+
+    <!-- ═══ MISSION BRIEFING ═══ -->
     <section>
-      <p class="section-label">◆ توضیحات مأموریت</p>
-      <h2>درباره بازی</h2>
-      <p style="color:var(--text-secondary);font-size:.95rem;line-height:1.9">
-        بتلشیپ یک بازی اندرویدی رایگان و متن‌باز است که تجربه کلاسیک نبرد دریایی را ارائه می‌دهد.
-        ناوگان خود را روی شبکه ۱۰×۱۰ مستقر کنید، سپس کشتی‌های هوش مصنوعی را پیدا و نابود کنید.
-        کاملاً آفلاین — بدون حساب کاربری، بدون اینترنت، بدون تبلیغات.
-      </p>
+      <p class="section-label">◆ محرمانه — توضیحات مأموریت</p>
+      <h2>بریفینگ مأموریت</h2>
+      <div class="briefing-text">
+        <p>ناوگان دشمن جایی در آن آب‌ها پنهان شده است. سونار شما حضور آن‌ها را تشخیص داده، اما موقعیت دقیقشان هنوز ناشناخته است. جایی در آن شبکه ۱۰×۱۰ از دریای خاکستری و سکوت، پنج کشتی منتظرند — یک ناو هواپیمابر، یک رزمناو، یک کروزر، یک زیردریایی، یک ناوشکن. دستورات شما ساده است: پیداشان کنید. غرقشان کنید. همه را.</p>
+        <p>ناوگان خود را با دقت مستقر کنید — جایابی خود نوعی استراتژی است. سپس اولین شلیک خود را به درون مه انجام دهید. یک پینگ. یک پاشش. یک اصابت. هر کشتی دشمن که غرق می‌کنید یک سلاح فوق‌العاده به زرادخانه شما اضافه می‌کند — یک بمباران فرشی، یک رگبار، یک پیمایش سونار، یک پخش اژدر، یک حمله دقیق. آن‌ها را با خرد استفاده کنید. حریف هوش مصنوعی فکر می‌کند. شکار می‌کند. سازگار می‌شود.</p>
+        <p>هر نبرد پرونده شما را می‌نویسد. درصد اصابت‌ها، رشته پیروزی‌ها، مدال‌های کسب‌شده در میان نبرد — همه در پرونده کارنامه شما انباشته می‌شوند. از ستوان‌یار به فرمانده ناوگان ارتقا یابید. ثابت کنید فرماندهی شما بی‌نقص است. اقیانوس تردید را نمی‌بخشد. دشمن هم نمی‌بخشد.</p>
+      </div>
     </section>
 
+    <!-- ═══ THE FLEET ═══ -->
     <section>
-      <p class="section-label">◆ قابلیت‌های سیستم</p>
-      <h2>ویژگی‌ها</h2>
-      <div class="features">
-        <div class="feature-card">
-          <span class="icon">◎</span>
-          <h3>بازی آفلاین</h3>
-          <p>بدون سرور و اینترنت. کاملاً روی دستگاه شما اجرا می‌شود. همه‌جا در دسترس است.</p>
+      <p class="section-label">◆ گزارش اطلاعاتی — فهرست ناوگان</p>
+      <h2>ناوگان</h2>
+      <div class="fleet-list">
+
+        <div class="ship-row">
+          <div class="ship-display">
+            <span class="ship-cell carrier"></span>
+            <span class="ship-cell carrier"></span>
+            <span class="ship-cell carrier"></span>
+            <span class="ship-cell carrier"></span>
+            <span class="ship-cell carrier"></span>
+          </div>
+          <div class="ship-info">
+            <div class="ship-name">ناو هواپیمابر</div>
+            <div class="ship-size">۵ خانه — بزرگ‌ترین کشتی</div>
+            <div class="ship-unlock">💣 با غرق شدن، بمباران فرشی را باز می‌کند</div>
+          </div>
         </div>
-        <div class="feature-card">
-          <span class="icon">⊞</span>
-          <h3>شبکه تاکتیکی ۱۰×۱۰</h3>
-          <p>ناوگان ۵ کشتی: ناو هواپیمابر، رزمناو، کروزر، زیردریایی، ناوشکن.</p>
+
+        <div class="ship-row">
+          <div class="ship-display">
+            <span class="ship-cell battleship"></span>
+            <span class="ship-cell battleship"></span>
+            <span class="ship-cell battleship"></span>
+            <span class="ship-cell battleship"></span>
+          </div>
+          <div class="ship-info">
+            <div class="ship-name">رزمناو</div>
+            <div class="ship-size">۴ خانه</div>
+            <div class="ship-unlock">💥 با غرق شدن، رگبار رزمناو را باز می‌کند</div>
+          </div>
         </div>
-        <div class="feature-card">
-          <span class="icon">◈</span>
-          <h3>حریف هوش مصنوعی</h3>
-          <p>الگوریتم شکار و هدف‌گیری با الگوی شطرنجی — یک چالش واقعی.</p>
+
+        <div class="ship-row">
+          <div class="ship-display">
+            <span class="ship-cell cruiser"></span>
+            <span class="ship-cell cruiser"></span>
+            <span class="ship-cell cruiser"></span>
+          </div>
+          <div class="ship-info">
+            <div class="ship-name">کروزر</div>
+            <div class="ship-size">۳ خانه</div>
+            <div class="ship-unlock">📡 با غرق شدن، پیمایش سونار را باز می‌کند</div>
+          </div>
         </div>
-        <div class="feature-card">
-          <span class="icon">▶</span>
-          <h3>استقرار ناوگان</h3>
-          <p>کشتی‌ها را به صورت دستی روی شبکه قرار دهید یا از استقرار خودکار استفاده کنید.</p>
+
+        <div class="ship-row">
+          <div class="ship-display">
+            <span class="ship-cell submarine"></span>
+            <span class="ship-cell submarine"></span>
+            <span class="ship-cell submarine"></span>
+          </div>
+          <div class="ship-info">
+            <div class="ship-name">زیردریایی</div>
+            <div class="ship-size">۳ خانه</div>
+            <div class="ship-unlock">🐠 با غرق شدن، پخش اژدر را باز می‌کند</div>
+          </div>
+        </div>
+
+        <div class="ship-row">
+          <div class="ship-display">
+            <span class="ship-cell destroyer"></span>
+            <span class="ship-cell destroyer"></span>
+          </div>
+          <div class="ship-info">
+            <div class="ship-name">ناوشکن</div>
+            <div class="ship-size">۲ خانه — کوچک‌ترین کشتی</div>
+            <div class="ship-unlock">🎯 با غرق شدن، حمله دقیق را باز می‌کند</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ SUPER WEAPONS ═══ -->
+    <section>
+      <p class="section-label">◆ زرادخانه — سلاح‌های فوق‌العاده</p>
+      <h2>سلاح‌های فوق‌العاده</h2>
+      <div class="weapons-grid">
+
+        <div class="weapon-card">
+          <span class="weapon-icon">💣</span>
+          <div class="weapon-name">بمباران فرشی</div>
+          <div class="weapon-desc">بمباران منطقه ۳×۳ — ۹ خانه در یک ضربه نابود می‌شوند. مخرب‌ترین سلاح منطقه‌ای در زرادخانه.</div>
+          <div class="weapon-pattern">
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
+            </div>
+          </div>
+          <div class="weapon-unlock">با غرق کردن ناو هواپیمابر دشمن باز می‌شود</div>
+        </div>
+
+        <div class="weapon-card">
+          <span class="weapon-icon">💥</span>
+          <div class="weapon-name">رگبار رزمناو</div>
+          <div class="weapon-desc">آتش اشباع صلیبی ۹ خانه‌ای — الگوی به شکل علامت جمع که ردیف مرکزی و ستون مرکزی را می‌کوبد.</div>
+          <div class="weapon-pattern">
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
+            </div>
+          </div>
+          <div class="weapon-unlock">با غرق کردن رزمناو دشمن باز می‌شود</div>
+        </div>
+
+        <div class="weapon-card">
+          <span class="weapon-icon">📡</span>
+          <div class="weapon-name">پیمایش سونار</div>
+          <div class="weapon-desc">پینگ افقی ۵ خانه‌ای که کل یک ردیف را پوشش می‌دهد — ضربه اطلاعاتی عرضی گسترده.</div>
+          <div class="weapon-pattern">
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
+            </div>
+          </div>
+          <div class="weapon-unlock">با غرق کردن کروزر دشمن باز می‌شود</div>
+        </div>
+
+        <div class="weapon-card">
+          <span class="weapon-icon">🐠</span>
+          <div class="weapon-name">پخش اژدر</div>
+          <div class="weapon-desc">رگبار عمودی ۵ خانه‌ای که یک ستون را می‌کوبد — حمله عمقی از اعماق دریا.</div>
+          <div class="weapon-pattern">
+            <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
+            <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
+            <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
+            <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
+            <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
+          </div>
+          <div class="weapon-unlock">با غرق کردن زیردریایی دشمن باز می‌شود</div>
+        </div>
+
+        <div class="weapon-card">
+          <span class="weapon-icon">🎯</span>
+          <div class="weapon-name">حمله دقیق</div>
+          <div class="weapon-desc">ضربه جراحی ۵ خانه‌ای به شکل X — هدف‌گیری ضربدری قطری که اگر کشتی در گوشه پنهان شده باشد، فرار غیرممکن است.</div>
+          <div class="weapon-pattern">
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div>
+            </div>
+          </div>
+          <div class="weapon-unlock">با غرق کردن ناوشکن دشمن باز می‌شود</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ MEDALS & HONOURS ═══ -->
+    <section>
+      <p class="section-label">◆ محرمانه — افتخارات و نشان‌ها</p>
+      <h2>مدال‌ها و افتخارات</h2>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.5rem;">۱۵ مدال که در حین بازی کسب می‌شوند در پرونده کارنامه شما انباشته می‌شوند. مدال‌ها همچنین امتیاز پاداش می‌دهند.</p>
+
+      <div class="medals-tier">
+        <div class="tier-label tier-legendary">⭐ افسانه‌ای</div>
+        <div class="medals-row">
+          <div class="medal-card medal-legendary">
+            <span class="medal-icon">💎</span>
+            <div class="medal-name">توپچی کامل</div>
+            <div class="medal-condition">با صفر خطا بازی را ببرید — هر شلیک به هدف می‌خورد.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="medals-tier">
+        <div class="tier-label tier-epic">⚡ حماسی</div>
+        <div class="medals-row">
+          <div class="medal-card medal-epic">
+            <span class="medal-icon">🎯🎯</span>
+            <div class="medal-name">چشم تیز</div>
+            <div class="medal-condition">با دقت ۸۰٪ یا بیشتر بازی را تمام کنید (حداقل ۱۰ شلیک).</div>
+          </div>
+          <div class="medal-card medal-epic">
+            <span class="medal-icon">⚡</span>
+            <div class="medal-name">شکست‌ناپذیر</div>
+            <div class="medal-condition">۸ اصابت متوالی بدون هیچ خطایی.</div>
+          </div>
+          <div class="medal-card medal-epic">
+            <span class="medal-icon">👑</span>
+            <div class="medal-name">پیروزی بی‌نقص</div>
+            <div class="medal-condition">با تمام ۵ کشتی خود کاملاً سالم بازی را ببرید.</div>
+          </div>
+          <div class="medal-card medal-epic">
+            <span class="medal-icon">🔥🔥</span>
+            <div class="medal-name">آتش‌بار</div>
+            <div class="medal-condition">با رشته ۳ یا بیشتر پیروزی متوالی بازی را ببرید.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="medals-tier">
+        <div class="tier-label tier-rare">◈ نادر</div>
+        <div class="medals-row">
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🎯</span>
+            <div class="medal-name">اولین خون</div>
+            <div class="medal-condition">اولین شلیک بازی مستقیماً به هدف اصابت می‌کند.</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🏹</span>
+            <div class="medal-name">تک‌تیرانداز</div>
+            <div class="medal-condition">با دقت ۶۰٪ یا بیشتر بازی را تمام کنید (حداقل ۱۰ شلیک).</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🔥</span>
+            <div class="medal-name">رشته پیروزی</div>
+            <div class="medal-condition">۵ اصابت متوالی بدون خطا.</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🐋</span>
+            <div class="medal-name">قاتل لویاتان</div>
+            <div class="medal-condition">اولین کشتی که غرق می‌کنید ناو هواپیمابر دشمن باشد.</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🤫</span>
+            <div class="medal-name">خدمت خاموش</div>
+            <div class="medal-condition">زیردریایی شما در تمام نبرد دست‌نخورده باقی می‌ماند.</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🛡️</span>
+            <div class="medal-name">آخرین مقاومت</div>
+            <div class="medal-condition">با تنها یک کشتی باقی‌مانده در ناوگان بازی را ببرید.</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🏊</span>
+            <div class="medal-name">شنا کن</div>
+            <div class="medal-condition">بازی را بدون هیچ اصابتی به دشمن ببازید.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="medals-tier">
+        <div class="tier-label tier-common">◎ معمولی</div>
+        <div class="medals-row">
+          <div class="medal-card medal-common">
+            <span class="medal-icon">🚤</span>
+            <div class="medal-name">ناوشکن زنده است</div>
+            <div class="medal-condition">ناوشکن شما در تمام نبرد دست‌نخورده باقی می‌ماند.</div>
+          </div>
+          <div class="medal-card medal-common">
+            <span class="medal-icon">🌫️</span>
+            <div class="medal-name">مه جنگ</div>
+            <div class="medal-condition">۱۰ شلیک متوالی خطا — اقیانوس رازهایش را نگه می‌دارد.</div>
+          </div>
+          <div class="medal-card medal-common">
+            <span class="medal-icon">💣</span>
+            <div class="medal-name">دیپلمات بمب عمق</div>
+            <div class="medal-condition">۱۰۰ شلیک یا بیشتر در یک بازی انجام دهید.</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ═══ RANK PROGRESSION ═══ -->
+    <section>
+      <p class="section-label">◆ سلسله مراتب فرماندهی — رتبه‌های کارنامه</p>
+      <h2>پیشرفت رتبه</h2>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">رتبه‌ها بر اساس بهترین امتیاز تک‌بازی شما تعیین می‌شوند. هر اصابت، هر کشتی غرق‌شده، هر پاداش سرعت، امتیاز — و کارنامه — شما را بالاتر می‌برد.</p>
+      <div class="rank-ladder">
+
+        <div class="rank-row">
+          <span class="rank-insignia">🎖️</span>
+          <span class="rank-name">ستوان‌یار</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:2%;background:var(--text-dim)"></div></div>
+          <span class="rank-score">۰+ امتیاز</span>
+        </div>
+
+        <div class="rank-row">
+          <span class="rank-insignia">⚓</span>
+          <span class="rank-name">ملوان</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:10%;background:var(--teal)"></div></div>
+          <span class="rank-score">۳۵۰+ امتیاز</span>
+        </div>
+
+        <div class="rank-row">
+          <span class="rank-insignia">🔵</span>
+          <span class="rank-name">ستوان</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:20%;background:var(--teal)"></div></div>
+          <span class="rank-score">۷۰۰+ امتیاز</span>
+        </div>
+
+        <div class="rank-row rank-captain">
+          <span class="rank-insignia">🟢</span>
+          <span class="rank-name">ناخدا</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:32%;background:var(--green)"></div></div>
+          <span class="rank-score">۱۱۰۰+ امتیاز</span>
+        </div>
+
+        <div class="rank-row rank-commodore">
+          <span class="rank-insignia">🌀</span>
+          <span class="rank-name">دریادار</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:44%;background:var(--cyan)"></div></div>
+          <span class="rank-score">۱۵۰۰+ امتیاز</span>
+        </div>
+
+        <div class="rank-row rank-vice-admiral">
+          <span class="rank-insignia">💜</span>
+          <span class="rank-name">دریاسالار دوم</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:58%;background:#A78BFA"></div></div>
+          <span class="rank-score">۲۰۰۰+ امتیاز</span>
+        </div>
+
+        <div class="rank-row rank-admiral">
+          <span class="rank-insignia">🟠</span>
+          <span class="rank-name">دریاسالار</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:75%;background:var(--amber)"></div></div>
+          <span class="rank-score">۲۶۰۰+ امتیاز</span>
+        </div>
+
+        <div class="rank-row rank-fleet-admiral">
+          <span class="rank-insignia">⭐</span>
+          <span class="rank-name">فرمانده ناوگان</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:100%;background:var(--gold)"></div></div>
+          <span class="rank-score">۳۵۰۰+ امتیاز</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ SENSES OF WAR ═══ -->
+    <section>
+      <p class="section-label">◆ اطلاعات میدانی — سیستم‌های بازخورد نبرد</p>
+      <h2>حواس نبرد</h2>
+      <div class="senses-grid">
+
+        <div class="sense-card">
+          <span class="sense-icon">💥</span>
+          <div class="sense-title">فلاش اصابت</div>
+          <div class="sense-desc">یک انفجار سفید روی خانه‌های اصابت‌شده ظاهر می‌شود و در ۵۰۰ میلی‌ثانیه محو می‌شود — تأیید بصری ضربه مستقیم.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">🔴</span>
+          <div class="sense-title">درخشش غرق‌شده</div>
+          <div class="sense-desc">خانه‌های کشتی غرق‌شده با انیمیشن درخشش قرمز می‌تپند — بی‌پایان، بی‌امان، پیروزی‌های شما را در شبکه نشان می‌دهند.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">🟠</span>
+          <div class="sense-title">نشانگر نوبت هوش مصنوعی</div>
+          <div class="sense-desc">نبض کهربایی در حالی که هوش مصنوعی حمله بعدی را محاسبه می‌کند چشمک می‌زند — وقتی دشمن فکر می‌کند زمان کند می‌شود.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">🔊</span>
+          <div class="sense-title">صدای اصابت PCM</div>
+          <div class="sense-desc">ضربه دو تن: ۱۸۰۰ هرتز که به ۱۰۰۰ هرتز می‌افتد. سنتز‌شده در کد — هیچ فایل صوتی با اپ ارسال نمی‌شود.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">💧</span>
+          <div class="sense-title">صدای خطا PCM</div>
+          <div class="sense-desc">پیمایش نزولی از ۵۰۰ هرتز تا ۱۵۰ هرتز — صدای توخالی گلوله‌ای که در اعماق ناپدید می‌شود.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">💀</span>
+          <div class="sense-title">صدای غرق‌شدن PCM</div>
+          <div class="sense-desc">غرش انفجاری باس لایه‌بندی‌شده با نویز — صدای اشتباه‌نشدنی کشتی که از هم می‌پاشد.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">🎺</span>
+          <div class="sense-title">فانفار پیروزی PCM</div>
+          <div class="sense-desc">فانفار پیروزی صعودی — دنباله آکورد C-E-G-C که بالا می‌رود تا فرماندهی شما بر دریاها را نشان دهد.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">📡</span>
+          <div class="sense-title">پینگ سونار PCM</div>
+          <div class="sense-desc">یک بیپ تیز ۲۲۰۰ هرتزی هنگام انتخاب سلاح فوق‌العاده — سونار می‌گوید: هدف شناسایی شد.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ CAREER COMMAND ═══ -->
+    <section>
+      <p class="section-label">◆ مرکز فرماندهی — آمار کارنامه</p>
+      <h2>مرکز فرماندهی کارنامه</h2>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">از طریق دکمه <strong style="color:var(--cyan)">آمار کارنامه</strong> در منوی اصلی قابل دسترسی است. سوابق در طول جلسه باقی می‌مانند — میراث شما اگر اپ بسته شود بازنشینی می‌شود.</p>
+      <div class="career-panel">
+        <div class="career-header">
+          <span class="career-rank-badge">⭐</span>
+          <div>
+            <div class="career-rank-name">فرمانده ناوگان</div>
+            <div class="career-rank-sub">بالاترین رتبه کسب‌شده</div>
+          </div>
+        </div>
+        <div class="mock-stats">
+          <div class="mock-stat">
+            <div class="mock-stat-label">بازی‌های انجام‌شده</div>
+            <div class="mock-stat-value">47</div>
+          </div>
+          <div class="mock-stat">
+            <div class="mock-stat-label">پیروزی‌ها</div>
+            <div class="mock-stat-value">31</div>
+          </div>
+          <div class="mock-stat">
+            <div class="mock-stat-label">نرخ پیروزی</div>
+            <div class="mock-stat-value">65.9%</div>
+          </div>
+          <div class="mock-stat">
+            <div class="mock-stat-label">طولانی‌ترین رشته</div>
+            <div class="mock-stat-value">7</div>
+          </div>
+        </div>
+        <div class="career-medals-label">مدال‌های کسب‌شده در این جلسه</div>
+        <div class="career-medals-row">
+          💎 🎯🎯 ⚡ 👑 🎯 🏹 🔥 🐋 🤫 🛡️ 🚤
         </div>
       </div>
     </section>
 
+    <!-- ═══ TACTICAL OVERVIEW ═══ -->
+    <section>
+      <p class="section-label">◆ قابلیت‌های سیستم</p>
+      <h2>نمای تاکتیکی</h2>
+      <div class="features">
+        <div class="feature-card">
+          <span class="icon">◎</span>
+          <h3>بازی آفلاین</h3>
+          <p>بدون سرور، بدون اینترنت. کاملاً روی دستگاه شما اجرا می‌شود. همه‌جا و هر زمان در دسترس است.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">◈</span>
+          <h3>حریف هوش مصنوعی</h3>
+          <p>الگوریتم شکار/هدف با الگوی شطرنجی — یک چالش تاکتیکی واقعی که سازگار می‌شود.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">⊞</span>
+          <h3>شبکه تاکتیکی ۱۰×۱۰</h3>
+          <p>ناوگان ۵ کشتی روی شبکه بتلشیپ کامل. دستی جایابی کنید یا از استقرار خودکار استفاده کنید.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">💣</span>
+          <h3>۵ سلاح فوق‌العاده</h3>
+          <p>بمباران فرشی، رگبار، پیمایش سونار، پخش اژدر، حمله دقیق. با غرق کردن کشتی‌ها به دست آورید.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🏅</span>
+          <h3>۱۵ مدال</h3>
+          <p>چهار سطح نادرت: افسانه‌ای، حماسی، نادر، معمولی. در حین بازی کسب، امتیازدهی و ثبت می‌شوند.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">⭐</span>
+          <h3>۸ رتبه نظامی</h3>
+          <p>از ستوان‌یار تا فرمانده ناوگان. بهترین امتیاز شما رتبه کارنامه‌تان را تعیین می‌کند.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🔊</span>
+          <h3>صدای PCM</h3>
+          <p>صداهای اصابت، خطا، غرق‌شدن، پیروزی و پینگ سونار سنتزشده — بدون هیچ فایل صوتی همراه.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🚫</span>
+          <h3>بدون تبلیغ · بدون حساب</h3>
+          <p>رایگان، متن‌باز، Apache-2.0. بدون ردیابی، بدون ورود، بدون دیوار پرداخت.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BUILD FROM SOURCE ═══ -->
     <section>
       <p class="section-label">◆ نصب</p>
       <h2>ساخت از کد منبع</h2>
-      <div class="code-block">
-# کلون کردن مخزن
+      <div class="code-block"># کلون کردن مخزن
 git clone https://github.com/cocodedk/Battleship.git
 cd Battleship
 
 # ساخت APK دیباگ
 ./gradlew assembleDebug
 
-# اجرای تست‌ها
+# اجرای تست‌های واحد
 ./gradlew test
+
+# بررسی کامل CI (دیباگ + تست + lint)
+./gradlew buildSmoke
+
+# خروجی APK
+app/build/outputs/apk/debug/app-debug.apk</div>
+    </section>
+
+    <!-- ═══ ARCHITECTURE ═══ -->
+    <section>
+      <p class="section-label">◆ پشته فناوری</p>
+      <h2>معماری</h2>
+      <div class="code-block">Kotlin 2.2.10  ·  Jetpack Compose BOM 2026.02.01  ·  Material3
+Navigation Compose  ·  Coroutines  ·  Min SDK 24 (Android 7.0)
+
+Clean Architecture + MVVM — single GameViewModel across all screens
+
+domain/          ← Pure Kotlin, zero Android deps, fully testable
+  model/         ← Ship, Board, ShipType, CellState, GamePhase, GameState
+  ai/            ← BattleshipAI (stateless hunt/target algorithm)
+
+presentation/    ← Android / Jetpack Compose
+  navigation/    ← BattleshipNavHost, Screen (sealed class routes)
+  menu/          ← MenuScreen
+  placement/     ← PlacementScreen
+  game/          ← GameScreen, GameOverScreen, GameViewModel, GameUiState
+  components/    ← BattleGrid (reusable board composable)</div>
+    </section>
+
+    <!-- ═══ DOWNLOAD CTA ═══ -->
+    <section class="download-section">
+      <span class="download-eyemark">⚓</span>
+      <p class="section-label" style="margin-bottom:0.5rem;">◆ استقرار میدانی</p>
+      <h2>دانلود و استقرار</h2>
+      <p class="download-desc">رایگان، متن‌باز، آفلاین. بدون حساب. بدون اینترنت. APK را نصب کنید و فرماندهی را به دست بگیرید.</p>
+      <div class="cta-group">
+        <a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk" class="btn btn-primary">⚓ دانلود APK</a>
+        <a href="https://github.com/cocodedk/Battleship" class="btn btn-outline">مشاهده کد</a>
       </div>
     </section>
 
-    <section>
-      <p class="section-label">◆ مشارکت</p>
-      <h2>منابع</h2>
-      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.8">
-        برای مشارکت، لطفاً فایل
-        <a href="https://github.com/cocodedk/Battleship/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
-        را مطالعه کنید. تمام پرسش‌ها و گزارش باگ‌ها از طریق
-        <a href="https://github.com/cocodedk/Battleship/issues">GitHub Issues</a>
-        پذیرفته می‌شود.
-      </p>
-    </section>
   </main>
 
   <footer>
