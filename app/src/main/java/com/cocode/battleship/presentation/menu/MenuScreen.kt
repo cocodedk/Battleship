@@ -1,5 +1,6 @@
 package com.cocode.battleship.presentation.menu
 
+import android.provider.Settings
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -25,10 +26,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -40,6 +43,8 @@ import com.cocode.battleship.ui.theme.NavySurface
 import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
+
+private const val SONAR_GLYPH = "◈"
 
 @Composable
 fun MenuScreen(onStartGame: () -> Unit) {
@@ -56,6 +61,12 @@ fun MenuScreen(onStartGame: () -> Unit) {
         label = "alpha"
     )
 
+    val context = LocalContext.current
+    val prefersReducedMotion = remember {
+        Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f
+    }
+    val effectivePulseAlpha = if (prefersReducedMotion) 0f else pulseAlpha
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -66,13 +77,13 @@ fun MenuScreen(onStartGame: () -> Unit) {
             modifier = Modifier
                 .size(320.dp)
                 .scale(pulseScale)
-                .border(1.5.dp, SonarCyan.copy(alpha = pulseAlpha * 0.4f), CircleShape)
+                .border(1.5.dp, SonarCyan.copy(alpha = effectivePulseAlpha * 0.4f), CircleShape)
         )
         Box(
             modifier = Modifier
                 .size(220.dp)
                 .scale(pulseScale * 0.65f)
-                .border(1.dp, SonarCyan.copy(alpha = pulseAlpha * 0.7f), CircleShape)
+                .border(1.dp, SonarCyan.copy(alpha = effectivePulseAlpha * 0.7f), CircleShape)
         )
 
         Column(
@@ -80,7 +91,7 @@ fun MenuScreen(onStartGame: () -> Unit) {
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.padding(horizontal = 32.dp)
         ) {
-            Text(text = "◈", fontSize = 28.sp, color = SonarCyan)
+            Text(text = SONAR_GLYPH, fontSize = 28.sp, color = SonarCyan)
 
             Spacer(modifier = Modifier.height(8.dp))
 

@@ -4,6 +4,9 @@
 # Run once from the project root: ./scripts/setup-signing.sh
 set -eu
 
+restore_tty() { stty echo 2>/dev/null || true; }
+trap restore_tty EXIT INT TERM
+
 REPO="cocodedk/Battleship"
 KEYSTORE="${KEYSTORE_FILE:-$HOME/release.keystore}"  # override: KEYSTORE_FILE=/path/to/key.jks ./scripts/setup-signing.sh
 ALIAS="${KEYSTORE_ALIAS:-android}"                   # override: KEYSTORE_ALIAS=mykey ./scripts/setup-signing.sh
@@ -39,13 +42,13 @@ echo ""
 printf "Keystore password: "
 stty -echo 2>/dev/null || true
 read -r KSPASS
-stty echo 2>/dev/null || true
+restore_tty
 echo ""
 
 printf "Key password (Enter = same as keystore password): "
 stty -echo 2>/dev/null || true
 read -r KEYPASS
-stty echo 2>/dev/null || true
+restore_tty
 echo ""
 
 [ -z "$KEYPASS" ] && KEYPASS="$KSPASS"
@@ -61,7 +64,7 @@ keytool -list -keystore "$KEYSTORE" -alias "$ALIAS" \
 echo "✓ Keystore valid"
 
 # ── Upload secrets ────────────────────────────────────────────────────────────
-KEYSTORE_B64=$(base64 -w 0 "$KEYSTORE")
+KEYSTORE_B64=$(base64 "$KEYSTORE" | tr -d '\n')
 
 echo "Uploading secrets to $REPO..."
 printf '%s' "$KEYSTORE_B64" | gh secret set KEYSTORE_BASE64  --repo "$REPO"
