@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>بتلشیپ — بازی فرماندهی دریایی برای اندروید</title>
+  <meta name="description" content="بتلشیپ یک بازی اندرویدی رایگان و آفلاین است. نبرد دریایی تاکتیکی — ناوگان خود را مستقر کنید و دشمن را غرق کنید. بدون حساب کاربری، بدون اینترنت."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cocodedk.github.io/Battleship/fa/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Battleship"/>
+  <meta property="og:title" content="بتلشیپ — بازی فرماندهی دریایی برای اندروید"/>
+  <meta property="og:description" content="نبرد دریایی تاکتیکی برای اندروید. بدون نیاز به اینترنت."/>
+  <meta property="og:url" content="https://cocodedk.github.io/Battleship/fa/"/>
+  <meta property="og:image" content="https://cocodedk.github.io/Battleship/og.png"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles.css"/>
+  <style>
+    [dir="rtl"] body { font-family: 'Vazirmatn', 'Tahoma', sans-serif; }
+    [dir="rtl"] .code-block { direction: ltr; text-align: left; font-family: 'Share Tech Mono', monospace; }
+  </style>
+</head>
+<body>
+  <a href="../" class="lang-switch">English</a>
+
+  <header>
+    <div class="sonar-ring"></div>
+    <div class="sonar-ring"></div>
+    <span class="eyemark">◈</span>
+    <h1>BATTLESHIP</h1>
+    <p class="tagline">[ سیستم فرماندهی دریایی ]</p>
+    <p class="sub-tagline">ناوگان دشمن را غرق کنید</p>
+    <div class="cta-group">
+      <a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk" class="btn btn-primary">دانلود APK</a>
+      <a href="https://github.com/cocodedk/Battleship" class="btn btn-outline">کد منبع</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <p class="section-label">◆ توضیحات مأموریت</p>
+      <h2>درباره بازی</h2>
+      <p style="color:var(--text-secondary);font-size:.95rem;line-height:1.9">
+        بتلشیپ یک بازی اندرویدی رایگان و متن‌باز است که تجربه کلاسیک نبرد دریایی را ارائه می‌دهد.
+        ناوگان خود را روی شبکه ۱۰×۱۰ مستقر کنید، سپس کشتی‌های هوش مصنوعی را پیدا و نابود کنید.
+        کاملاً آفلاین — بدون حساب کاربری، بدون اینترنت، بدون تبلیغات.
+      </p>
+    </section>
+
+    <section>
+      <p class="section-label">◆ قابلیت‌های سیستم</p>
+      <h2>ویژگی‌ها</h2>
+      <div class="features">
+        <div class="feature-card">
+          <span class="icon">◎</span>
+          <h3>بازی آفلاین</h3>
+          <p>بدون سرور و اینترنت. کاملاً روی دستگاه شما اجرا می‌شود. همه‌جا در دسترس است.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">⊞</span>
+          <h3>شبکه تاکتیکی ۱۰×۱۰</h3>
+          <p>ناوگان ۵ کشتی: ناو هواپیمابر، رزمناو، کروزر، زیردریایی، ناوشکن.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">◈</span>
+          <h3>حریف هوش مصنوعی</h3>
+          <p>الگوریتم شکار و هدف‌گیری با الگوی شطرنجی — یک چالش واقعی.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">▶</span>
+          <h3>استقرار ناوگان</h3>
+          <p>کشتی‌ها را به صورت دستی روی شبکه قرار دهید یا از استقرار خودکار استفاده کنید.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="section-label">◆ نصب</p>
+      <h2>ساخت از کد منبع</h2>
+      <div class="code-block">
+# کلون کردن مخزن
+git clone https://github.com/cocodedk/Battleship.git
+cd Battleship
+
+# ساخت APK دیباگ
+./gradlew assembleDebug
+
+# اجرای تست‌ها
+./gradlew test
+      </div>
+    </section>
+
+    <section>
+      <p class="section-label">◆ مشارکت</p>
+      <h2>منابع</h2>
+      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.8">
+        برای مشارکت، لطفاً فایل
+        <a href="https://github.com/cocodedk/Battleship/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
+        را مطالعه کنید. تمام پرسش‌ها و گزارش باگ‌ها از طریق
+        <a href="https://github.com/cocodedk/Battleship/issues">GitHub Issues</a>
+        پذیرفته می‌شود.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Apache-2.0 &nbsp;|&nbsp; © ۲۰۲۶ <a href="https://cocode.dk">Cocode</a> &nbsp;|&nbsp; ساخته شده توسط بابک بندپی</p>
+  </footer>
+</body>
+</html>

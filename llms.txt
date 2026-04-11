@@ -1,0 +1,35 @@
+# Battleship
+
+> A local Battleship game for Android with no server or network connection required. Built with Kotlin + Jetpack Compose + Material3.
+
+## Overview
+
+Battleship is an Android game implementing the classic naval combat game. One player competes against an AI opponent on a 10×10 grid. Ships are placed manually or auto-deployed. The AI uses a hunt/target algorithm with checkerboard parity for intelligent attack patterns.
+
+## Technology Stack
+
+- Kotlin 2.2.10
+- Jetpack Compose (BOM 2026.02.01) + Material3
+- Navigation Compose 2.8.4
+- ViewModel + StateFlow (MVVM)
+- Clean Architecture (domain / presentation)
+- No network, no persistence, fully local
+
+## Architecture
+
+- `domain/` — Pure Kotlin models (Ship, Board, ShipType, CellState) and AI (BattleshipAI)
+- `presentation/` — Compose screens (Menu, Placement, Game, GameOver), ViewModel, Navigation
+
+## Key Files
+
+- `CLAUDE.md` — Project conventions, architecture, engineering principles
+- `domain/ai/BattleshipAI.kt` — Stateless hunt/target AI
+- `presentation/game/GameViewModel.kt` — Single shared ViewModel for all screens
+- `presentation/navigation/BattleshipNavHost.kt` — Navigation with shared ViewModel
+
+## Links
+
+- GitHub: https://github.com/cocodedk/Battleship
+- Releases: https://github.com/cocodedk/Battleship/releases
+- Website: https://cocodedk.github.io/Battleship/
+- Built by: [Cocode](https://cocode.dk)

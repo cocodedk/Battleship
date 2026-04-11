@@ -1,79 +1,141 @@
 package com.cocode.battleship.presentation.menu
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
-import com.cocode.battleship.ui.theme.BattleshipTheme
+import com.cocode.battleship.ui.theme.DeepNavy
+import com.cocode.battleship.ui.theme.NavySurface
+import com.cocode.battleship.ui.theme.SonarCyan
+import com.cocode.battleship.ui.theme.TextDim
+import com.cocode.battleship.ui.theme.TextSecondary
 
 @Composable
 fun MenuScreen(onStartGame: () -> Unit) {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+    val infiniteTransition = rememberInfiniteTransition(label = "sonar")
+    val pulseScale by infiniteTransition.animateFloat(
+        initialValue = 0.2f, targetValue = 2.0f,
+        animationSpec = infiniteRepeatable(tween(2800, easing = LinearEasing), RepeatMode.Restart),
+        label = "scale"
+    )
+    val pulseAlpha by infiniteTransition.animateFloat(
+        initialValue = 0.5f, targetValue = 0f,
+        animationSpec = infiniteRepeatable(tween(2800, easing = LinearEasing), RepeatMode.Restart),
+        label = "alpha"
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Brush.verticalGradient(listOf(DeepNavy, NavySurface, DeepNavy))),
+        contentAlignment = Alignment.Center
     ) {
-        Column(
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 32.dp),
+                .size(320.dp)
+                .scale(pulseScale)
+                .border(1.5.dp, SonarCyan.copy(alpha = pulseAlpha * 0.4f), CircleShape)
+        )
+        Box(
+            modifier = Modifier
+                .size(220.dp)
+                .scale(pulseScale * 0.65f)
+                .border(1.dp, SonarCyan.copy(alpha = pulseAlpha * 0.7f), CircleShape)
+        )
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.padding(horizontal = 32.dp)
         ) {
-            Text(
-                text = stringResource(R.string.menu_title),
-                style = MaterialTheme.typography.displayLarge,
-                fontWeight = FontWeight.ExtraBold,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center
-            )
+            Text(text = "◈", fontSize = 28.sp, color = SonarCyan)
 
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = stringResource(R.string.menu_tagline),
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
-                textAlign = TextAlign.Center
+                text = stringResource(R.string.menu_title),
+                style = MaterialTheme.typography.displayLarge,
+                color = SonarCyan,
+                textAlign = TextAlign.Center,
             )
 
-            Spacer(modifier = Modifier.height(64.dp))
+            Spacer(modifier = Modifier.height(6.dp))
+
+            Text(
+                text = "[ NAVAL COMMAND SYSTEM ]",
+                style = MaterialTheme.typography.labelMedium,
+                color = TextSecondary,
+                letterSpacing = 3.sp,
+            )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            Text(
+                text = stringResource(R.string.menu_tagline).uppercase(),
+                style = MaterialTheme.typography.bodyMedium,
+                color = TextSecondary.copy(alpha = 0.65f),
+                textAlign = TextAlign.Center,
+                letterSpacing = 1.sp,
+            )
+
+            Spacer(modifier = Modifier.height(52.dp))
 
             Button(
                 onClick = onStartGame,
-                modifier = Modifier
-                    .widthIn(min = 200.dp)
-                    .height(56.dp)
+                modifier = Modifier.fillMaxWidth().height(52.dp),
+                shape = RoundedCornerShape(4.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = SonarCyan,
+                    contentColor = DeepNavy,
+                )
             ) {
                 Text(
                     text = stringResource(R.string.menu_start_game),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.ExtraBold,
+                    letterSpacing = 3.sp,
                 )
             }
-        }
-    }
-}
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun MenuScreenPreview() {
-    BattleshipTheme {
-        MenuScreen(onStartGame = {})
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                text = "SINGLE PLAYER  ·  vs AI  ·  10×10 GRID",
+                style = MaterialTheme.typography.labelSmall,
+                color = TextDim,
+                letterSpacing = 1.sp,
+            )
+        }
     }
 }

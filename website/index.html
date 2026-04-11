@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Battleship — Naval Command Game for Android</title>
+  <meta name="description" content="Battleship is a free, offline Android game. Tactical naval combat — place your fleet and sink the enemy AI. No account, no network, no ads."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cocodedk.github.io/Battleship/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Battleship"/>
+  <meta property="og:title" content="Battleship — Naval Command Game for Android"/>
+  <meta property="og:description" content="Tactical naval combat for Android. Deploy your fleet, hunt the enemy, no network required."/>
+  <meta property="og:url" content="https://cocodedk.github.io/Battleship/"/>
+  <meta property="og:image" content="https://cocodedk.github.io/Battleship/og.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Battleship — Naval Command Game for Android"/>
+  <meta name="twitter:image" content="https://cocodedk.github.io/Battleship/og.png"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Battleship",
+    "description": "Tactical naval combat game for Android. Play offline, no account required.",
+    "url": "https://cocodedk.github.io/Battleship/",
+    "downloadUrl": "https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk",
+    "operatingSystem": "Android",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "Babak Bandpey", "url": "https://cocode.dk" }
+  }
+  </script>
+</head>
+<body>
+  <a href="fa/" class="lang-switch">فارسی</a>
+
+  <header>
+    <div class="sonar-ring"></div>
+    <div class="sonar-ring"></div>
+    <span class="eyemark">◈</span>
+    <h1>BATTLESHIP</h1>
+    <p class="tagline">[ NAVAL COMMAND SYSTEM ]</p>
+    <p class="sub-tagline">SINK THE ENEMY FLEET</p>
+    <div class="cta-group">
+      <a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk" class="btn btn-primary">DOWNLOAD APK</a>
+      <a href="https://github.com/cocodedk/Battleship" class="btn btn-outline">SOURCE CODE</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <p class="section-label">◆ Mission Briefing</p>
+      <h2>ABOUT</h2>
+      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.7">
+        Battleship is a free, open-source Android game implementing the classic naval combat experience.
+        Deploy your fleet on a 10×10 grid, then hunt down the AI's ships before yours are destroyed.
+        Fully offline — no account, no network, no ads.
+      </p>
+    </section>
+
+    <section>
+      <p class="section-label">◆ System Capabilities</p>
+      <h2>FEATURES</h2>
+      <div class="features">
+        <div class="feature-card">
+          <span class="icon">◎</span>
+          <h3>OFFLINE PLAY</h3>
+          <p>No server, no network. Runs entirely on your device. Works anywhere.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">⊞</span>
+          <h3>10×10 TACTICAL GRID</h3>
+          <p>5-ship fleet: Carrier, Battleship, Cruiser, Submarine, Destroyer.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">◈</span>
+          <h3>AI OPPONENT</h3>
+          <p>Hunt/target algorithm with checkerboard parity — a real challenge.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">▶</span>
+          <h3>FLEET DEPLOYMENT</h3>
+          <p>Place ships manually on the grid or use auto-deployment for fast starts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="section-label">◆ Installation</p>
+      <h2>BUILD FROM SOURCE</h2>
+      <div class="code-block">
+# Clone
+git clone https://github.com/cocodedk/Battleship.git
+cd Battleship
+
+# Debug APK
+./gradlew assembleDebug
+
+# Run tests
+./gradlew test
+      </div>
+    </section>
+
+    <section>
+      <p class="section-label">◆ Tech Stack</p>
+      <h2>ARCHITECTURE</h2>
+      <div class="code-block">
+Kotlin 2.2.10  ·  Jetpack Compose BOM 2026.02.01  ·  Material3
+Navigation Compose 2.8.4  ·  Coroutines 1.9.0
+
+domain/          ← Pure Kotlin, zero Android deps, fully testable
+  model/         ← Ship, Board, ShipType, CellState, GamePhase
+  ai/            ← BattleshipAI (stateless hunt/target algorithm)
+
+presentation/    ← Android/Compose
+  navigation/    ← BattleshipNavHost, Screen
+  menu/          ← MenuScreen
+  placement/     ← PlacementScreen
+  game/          ← GameScreen, GameOverScreen, GameViewModel, GameUiState
+  components/    ← BattleGrid (reusable)
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Apache-2.0 &nbsp;|&nbsp; © 2026 <a href="https://cocode.dk">Cocode</a> &nbsp;|&nbsp; Created by Babak Bandpey</p>
+  </footer>
+</body>
+</html>

@@ -3,29 +3,29 @@
 
     <!-- Menu -->
     <string name="menu_title">BATTLESHIP</string>
-    <string name="menu_tagline">Sink the Fleet</string>
-    <string name="menu_start_game">Start Game</string>
+    <string name="menu_tagline">Sink the Enemy Fleet</string>
+    <string name="menu_start_game">START MISSION</string>
 
     <!-- Placement -->
-    <string name="placement_title">Place Your Ships</string>
-    <string name="placement_placing">Placing: %1$s (size %2$d)</string>
-    <string name="placement_all_placed">All ships placed!</string>
-    <string name="placement_rotate_horizontal">Rotate: Horizontal</string>
-    <string name="placement_rotate_vertical">Rotate: Vertical</string>
-    <string name="placement_auto_place">Auto Place</string>
-    <string name="placement_start_battle">Start Battle</string>
+    <string name="placement_title">DEPLOY FLEET</string>
+    <string name="placement_placing">DEPLOYING: %1$s (SIZE %2$d)</string>
+    <string name="placement_all_placed">FLEET DEPLOYED — READY FOR COMBAT</string>
+    <string name="placement_rotate_horizontal">HORIZONTAL</string>
+    <string name="placement_rotate_vertical">VERTICAL</string>
+    <string name="placement_auto_place">AUTO DEPLOY</string>
+    <string name="placement_start_battle">INITIATE COMBAT</string>
 
     <!-- Game -->
-    <string name="game_enemy_waters">Enemy Waters</string>
-    <string name="game_your_fleet">Your Fleet</string>
-    <string name="game_your_turn">Your Turn</string>
-    <string name="game_ai_thinking">AI Thinking…</string>
+    <string name="game_enemy_waters">TARGET ZONE</string>
+    <string name="game_your_fleet">YOUR GRID</string>
+    <string name="game_your_turn">TARGETING ACTIVE</string>
+    <string name="game_ai_thinking">ENEMY CALCULATING...</string>
 
     <!-- Game Over -->
-    <string name="game_over_you_win">You Win! 🎉</string>
-    <string name="game_over_ai_wins">AI Wins!</string>
-    <string name="game_over_win_subtitle">Outstanding tactics! You sunk the enemy fleet.</string>
-    <string name="game_over_lose_subtitle">Better luck next time. The AI was relentless!</string>
-    <string name="game_over_play_again">Play Again</string>
-    <string name="game_over_main_menu">Main Menu</string>
+    <string name="game_over_you_win">MISSION ACCOMPLISHED</string>
+    <string name="game_over_ai_wins">FLEET DESTROYED</string>
+    <string name="game_over_win_subtitle">Outstanding tactics. Enemy fleet neutralised.</string>
+    <string name="game_over_lose_subtitle">All ships lost. The enemy was relentless.</string>
+    <string name="game_over_play_again">DEPLOY AGAIN</string>
+    <string name="game_over_main_menu">MAIN MENU</string>
 </resources>
