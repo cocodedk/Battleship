@@ -139,9 +139,10 @@ app/src/main/java/com/cocode/battleship/
 
 ```bash
 ./gradlew assembleDebug      # Build debug APK
-./gradlew assembleRelease    # Build release APK
+./gradlew assembleRelease    # Build release APK (requires signing env vars)
 ./gradlew test               # Run unit tests
 ./gradlew lint               # Run lint checks
+./gradlew buildSmoke         # Debug + tests + lint (CI smoke check)
 ```
 
 ---
