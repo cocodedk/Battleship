@@ -7,13 +7,13 @@ val versionNumber = System.getenv("VERSION_NAME")
     ?: file("../version.txt").takeIf { it.exists() }?.readText()?.trim()
     ?: "1"
 
-val signingKeystorePath = System.getenv("KEYSTORE_PATH")
+val signingKeystorePath = System.getenv("KEYSTORE_PATH")?.takeIf { it.isNotBlank() }
 val signingKeystorePassword = System.getenv("KEYSTORE_PASSWORD")?.takeIf { it.isNotBlank() }
 val signingKeyAlias = System.getenv("KEY_ALIAS")?.takeIf { it.isNotBlank() }
 val signingKeyPassword = System.getenv("KEY_PASSWORD")?.takeIf { it.isNotBlank() }
 val signingKeystoreFile = signingKeystorePath
     ?.let { rootProject.file(it).absoluteFile }
-    ?.takeIf { it.exists() }
+    ?.takeIf { it.isFile }
 val hasSigningConfig = signingKeystoreFile != null &&
     signingKeystorePassword != null &&
     signingKeyAlias != null &&
