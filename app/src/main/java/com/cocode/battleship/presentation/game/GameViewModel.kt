@@ -18,6 +18,13 @@ class GameViewModel : ViewModel() {
     private val _state = MutableStateFlow(GameUiState())
     val state: StateFlow<GameUiState> = _state.asStateFlow()
 
+    private val sounds = SoundManager()
+
+    override fun onCleared() {
+        super.onCleared()
+        sounds.release()
+    }
+
     fun toggleOrientation() {
         _state.value = _state.value.copy(isHorizontal = !_state.value.isHorizontal)
     }
@@ -70,6 +77,7 @@ class GameViewModel : ViewModel() {
         val cellState = newAiBoard.getCellState(row, col)
 
         if (newAiBoard.allShipsSunk()) {
+            sounds.playWin()
             _state.value = s.copy(
                 aiBoard = newAiBoard,
                 phase = GamePhase.GAME_OVER,
@@ -77,6 +85,12 @@ class GameViewModel : ViewModel() {
                 message = "You sunk the fleet! You win!"
             )
             return
+        }
+
+        when (cellState) {
+            CellState.HIT -> sounds.playHit()
+            CellState.SUNK -> sounds.playSunk()
+            else -> sounds.playMiss()
         }
 
         val hitMsg = when (cellState) {
@@ -104,6 +118,7 @@ class GameViewModel : ViewModel() {
         val cellState = newPlayerBoard.getCellState(row, col)
 
         if (newPlayerBoard.allShipsSunk()) {
+            sounds.playLose()
             _state.value = s.copy(
                 playerBoard = newPlayerBoard,
                 phase = GamePhase.GAME_OVER,
@@ -111,6 +126,12 @@ class GameViewModel : ViewModel() {
                 message = "AI sunk your fleet! You lose!"
             )
             return
+        }
+
+        when (cellState) {
+            CellState.HIT -> sounds.playHit()
+            CellState.SUNK -> sounds.playSunk()
+            else -> sounds.playMiss()
         }
 
         val aiMsg = when (cellState) {
