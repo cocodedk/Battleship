@@ -58,6 +58,7 @@ fun BattleGrid(
     showShips: Boolean,
     onCellClick: ((row: Int, col: Int) -> Unit)? = null,
     previewShip: Ship? = null,
+    allowAttackedClicks: Boolean = false,
     modifier: Modifier = Modifier
 ) {
     val previewPositions = previewShip?.positions?.toSet() ?: emptySet()
@@ -95,6 +96,7 @@ fun BattleGrid(
                         previewPositions = previewPositions,
                         isPreviewValid = isPreviewValid,
                         onCellClick = onCellClick,
+                        allowAttackedClicks = allowAttackedClicks,
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -112,6 +114,7 @@ private fun GridCell(
     previewPositions: Set<Pair<Int, Int>>,
     isPreviewValid: Boolean,
     onCellClick: ((row: Int, col: Int) -> Unit)?,
+    allowAttackedClicks: Boolean,
     modifier: Modifier,
 ) {
     val cellState = board.getCellState(row, col)
@@ -119,7 +122,7 @@ private fun GridCell(
     val hasShip = ship != null
     val isPreviewCell = previewPositions.contains(Pair(row, col))
     val hasBeenAttacked = board.hasBeenAttacked(row, col)
-    val isClickable = onCellClick != null && !hasBeenAttacked
+    val isClickable = onCellClick != null && (allowAttackedClicks || !hasBeenAttacked)
 
     val appearance = when {
         isPreviewCell -> if (isPreviewValid)

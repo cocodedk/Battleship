@@ -6,6 +6,8 @@ import com.cocode.battleship.domain.ai.BattleshipAI
 import com.cocode.battleship.domain.model.CellState
 import com.cocode.battleship.domain.model.GamePhase
 import com.cocode.battleship.domain.model.Ship
+import com.cocode.battleship.domain.model.SuperWeapon
+import com.cocode.battleship.domain.model.resolveWeaponCells
 import com.cocode.battleship.domain.scoring.GameOutcome
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -69,24 +71,58 @@ class GameViewModel : ViewModel() {
         }
     }
 
+    fun selectWeapon(weapon: SuperWeapon) {
+        val s = _state.value
+        if (s.phase != GamePhase.BATTLE || !s.isPlayerTurn) return
+        if (weapon !in s.availableWeapons) return
+        _state.value = s.copy(
+            selectedWeapon = if (s.selectedWeapon == weapon) null else weapon
+        )
+    }
+
+    fun deselectWeapon() {
+        _state.value = _state.value.copy(selectedWeapon = null)
+    }
+
     fun playerAttack(row: Int, col: Int) {
         val s = _state.value
         if (s.phase != GamePhase.BATTLE || !s.isPlayerTurn) return
-        if (s.aiBoard.hasBeenAttacked(row, col)) return
 
-        val newAiBoard = s.aiBoard.receiveAttack(row, col)
-        val cellState = newAiBoard.getCellState(row, col)
+        val selected = s.selectedWeapon
+        val firedCells: List<Pair<Int, Int>>
+        val newAiBoard: com.cocode.battleship.domain.model.Board
+
+        if (selected != null) {
+            firedCells = resolveWeaponCells(selected, row, col)
+            newAiBoard = s.aiBoard.receiveWeaponAttack(firedCells)
+        } else {
+            if (s.aiBoard.hasBeenAttacked(row, col)) return
+            firedCells = listOf(row to col)
+            newAiBoard = s.aiBoard.receiveAttack(row, col)
+        }
+
+        val previouslySunk = s.aiBoard.ships.filter { it.isSunk }.map { it.type }.toSet()
+        val nowSunk = newAiBoard.ships.filter { it.isSunk }.map { it.type }.toSet()
+        val newlySunkTypes = nowSunk - previouslySunk
+
+        val alreadyGrantedTypes = (s.availableWeapons + listOfNotNull(selected))
+            .map { it.unlockShip }.toSet()
+        val newAvailable = s.availableWeapons.filter { it != selected } +
+            newlySunkTypes.filter { it !in alreadyGrantedTypes }.map { SuperWeapon.forShipType(it) }
+
+        val primaryCellState = newAiBoard.getCellState(row, col)
 
         if (newAiBoard.allShipsSunk()) {
             sounds.playWin()
-            val newlySunkType = newAiBoard.ships.find { it.isSunk && it.occupies(row, col) }?.type
-            val newTrackers = updateTrackers(s.trackers, cellState, newlySunkType)
+            val newTrackers = updateTrackersForFire(s.trackers, newAiBoard, firedCells, newlySunkTypes)
             val stats = buildGameStats(newTrackers, s.playerBoard, newAiBoard, GameOutcome.WIN)
             val result = computeScoreResult(stats, SessionStats.currentWinStreak + 1)
             SessionStats.record(result.score, isWin = true)
             _state.value = s.copy(
                 aiBoard = newAiBoard,
                 trackers = newTrackers,
+                availableWeapons = newAvailable,
+                selectedWeapon = null,
                 phase = GamePhase.GAME_OVER,
                 winner = "Player",
                 message = "You sunk the fleet! You win!",
@@ -95,20 +131,15 @@ class GameViewModel : ViewModel() {
             return
         }
 
-        playAttackSound(cellState)
+        playAttackSound(primaryCellState)
+        val hitMsg = buildPlayerHitMessage(selected, primaryCellState, newlySunkTypes, newAiBoard)
+        val newTrackers = updateTrackersForFire(s.trackers, newAiBoard, firedCells, newlySunkTypes)
 
-        val hitMsg = when (cellState) {
-            CellState.HIT -> "Hit! Keep going!"
-            CellState.SUNK -> "You sunk a ${newAiBoard.ships.find { it.isSunk && it.occupies(row, col) }?.type?.displayName ?: "ship"}!"
-            else -> "Miss."
-        }
-
-        val newlySunkType = if (cellState == CellState.SUNK)
-            newAiBoard.ships.find { it.isSunk && it.occupies(row, col) }?.type else null
-        val newTrackers = updateTrackers(s.trackers, cellState, newlySunkType)
         _state.value = s.copy(
             aiBoard = newAiBoard,
             trackers = newTrackers,
+            availableWeapons = newAvailable,
+            selectedWeapon = null,
             isPlayerTurn = false,
             message = hitMsg
         )

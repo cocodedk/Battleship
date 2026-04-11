@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
 import com.cocode.battleship.domain.model.GamePhase
 import com.cocode.battleship.presentation.components.BattleGrid
+import com.cocode.battleship.presentation.game.components.WeaponSelector
 import com.cocode.battleship.ui.theme.AmberWarning
 import com.cocode.battleship.ui.theme.DeepNavy
 import com.cocode.battleship.ui.theme.NavyCard
@@ -111,6 +112,16 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
                 }
             }
 
+            if (state.availableWeapons.isNotEmpty() && state.isPlayerTurn) {
+                Spacer(modifier = Modifier.height(10.dp))
+                WeaponSelector(
+                    available = state.availableWeapons,
+                    selected = state.selectedWeapon,
+                    onSelect = { viewModel.selectWeapon(it) },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
             Spacer(modifier = Modifier.height(12.dp))
 
             SectionLabel(text = stringResource(R.string.game_enemy_waters))
@@ -119,6 +130,7 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
                 board = state.aiBoard,
                 showShips = false,
                 onCellClick = if (state.isPlayerTurn) { r, c -> viewModel.playerAttack(r, c) } else null,
+                allowAttackedClicks = state.selectedWeapon != null,
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp)
             )
 

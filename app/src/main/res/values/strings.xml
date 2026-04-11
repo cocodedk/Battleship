@@ -52,4 +52,17 @@
     <string name="game_over_session_streak">Streak</string>
     <string name="game_over_session_best">Best</string>
     <string name="game_over_session_footer">Games: %1$d  ·  Wins: %2$d  ·  Streak: %3$d  ·  Best: %4$d</string>
+
+    <!-- Super Weapons -->
+    <string name="weapons_available_label">SUPER WEAPONS</string>
+    <string name="weapon_carpet_bomb_name">CARPET BOMB</string>
+    <string name="weapon_carpet_bomb_desc">3×3 area bombardment centered on target.</string>
+    <string name="weapon_barrage_name">BARRAGE</string>
+    <string name="weapon_barrage_desc">9-cell cross saturation fire.</string>
+    <string name="weapon_sonar_name">SONAR SWEEP</string>
+    <string name="weapon_sonar_desc">5-cell horizontal sonar ping.</string>
+    <string name="weapon_torpedo_name">TORPEDO SPREAD</string>
+    <string name="weapon_torpedo_desc">5-cell vertical torpedo salvo.</string>
+    <string name="weapon_precision_name">PRECISION STRIKE</string>
+    <string name="weapon_precision_desc">5-cell X-pattern surgical strike.</string>
 </resources>
