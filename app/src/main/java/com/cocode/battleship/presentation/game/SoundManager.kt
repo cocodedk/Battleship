@@ -71,7 +71,7 @@ class SoundManager {
     private suspend fun playBuffer(buffer: ShortArray, durationMs: Int) {
         val track = buildAudioTrack(buffer.size)
         try {
-            if (track.state != AudioTrack.STATE_INITIALIZED) return
+            if (track.state == AudioTrack.STATE_UNINITIALIZED) return
             val written = track.write(buffer, 0, buffer.size)
             if (written < 0) return
             track.play()
