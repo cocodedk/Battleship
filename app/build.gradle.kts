@@ -7,9 +7,10 @@ val versionName = System.getenv("VERSION_NAME")
     ?: file("../version.txt").takeIf { it.exists() }?.readText()?.trim()
     ?: "1.0.0"
 val semverParts = versionName.split(".")
-val versionCode = (semverParts.getOrNull(0)?.toIntOrNull() ?: 1) * 10000 +
-    (semverParts.getOrNull(1)?.toIntOrNull() ?: 0) * 100 +
-    (semverParts.getOrNull(2)?.toIntOrNull() ?: 0)
+val major = semverParts.getOrNull(0)?.toIntOrNull() ?: 1
+val minor = semverParts.getOrNull(1)?.toIntOrNull() ?: 0
+val patch = semverParts.getOrNull(2)?.toIntOrNull() ?: 0
+val versionCode = major * 1_000_000 + minor * 1_000 + patch
 
 val signingKeystorePath = System.getenv("KEYSTORE_PATH")?.takeIf { it.isNotBlank() }
 val signingKeystorePassword = System.getenv("KEYSTORE_PASSWORD")?.takeIf { it.isNotBlank() }
