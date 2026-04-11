@@ -74,7 +74,7 @@ fun BattleGrid(
         }
         for (row in 0 until GRID_SIZE) {
             Row(
-                modifier = Modifier.fillMaxWidth().weight(1f),
+                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(

@@ -5,8 +5,8 @@
 set -eu
 
 REPO="cocodedk/Battleship"
-KEYSTORE="release.keystore"
-ALIAS="battleship"
+KEYSTORE="${KEYSTORE_FILE:-$HOME/release.keystore}"  # override: KEYSTORE_FILE=/path/to/key.jks ./scripts/setup-signing.sh
+ALIAS="${KEYSTORE_ALIAS:-android}"                   # override: KEYSTORE_ALIAS=mykey ./scripts/setup-signing.sh
 
 echo ""
 echo "=== Battleship Release Signing Setup ==="
