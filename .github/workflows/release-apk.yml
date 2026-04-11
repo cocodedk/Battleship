@@ -30,12 +30,17 @@ jobs:
           cache: gradle
 
       - name: Verify required secrets
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           missing=()
-          [ -z "${{ secrets.KEYSTORE_BASE64 }}" ] && missing+=("KEYSTORE_BASE64")
-          [ -z "${{ secrets.KEYSTORE_PASSWORD }}" ] && missing+=("KEYSTORE_PASSWORD")
-          [ -z "${{ secrets.KEY_ALIAS }}" ] && missing+=("KEY_ALIAS")
-          [ -z "${{ secrets.KEY_PASSWORD }}" ] && missing+=("KEY_PASSWORD")
+          [ -z "$KEYSTORE_BASE64" ] && missing+=("KEYSTORE_BASE64")
+          [ -z "$KEYSTORE_PASSWORD" ] && missing+=("KEYSTORE_PASSWORD")
+          [ -z "$KEY_ALIAS" ] && missing+=("KEY_ALIAS")
+          [ -z "$KEY_PASSWORD" ] && missing+=("KEY_PASSWORD")
           if [ ${#missing[@]} -gt 0 ]; then
             echo "Missing secrets: ${missing[*]}"
             exit 1
