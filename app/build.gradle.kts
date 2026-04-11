@@ -3,9 +3,14 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-val versionNumber = System.getenv("VERSION_NAME")
+val versionName = System.getenv("VERSION_NAME")
     ?: file("../version.txt").takeIf { it.exists() }?.readText()?.trim()
-    ?: "1"
+    ?: "1.0.0"
+val semverParts = versionName.split(".")
+val major = semverParts.getOrNull(0)?.toIntOrNull() ?: 1
+val minor = semverParts.getOrNull(1)?.toIntOrNull() ?: 0
+val patch = semverParts.getOrNull(2)?.toIntOrNull() ?: 0
+val versionCode = major * 1_000_000 + minor * 1_000 + patch
 
 val signingKeystorePath = System.getenv("KEYSTORE_PATH")?.takeIf { it.isNotBlank() }
 val signingKeystorePassword = System.getenv("KEYSTORE_PASSWORD")?.takeIf { it.isNotBlank() }
@@ -31,8 +36,8 @@ android {
         applicationId = "com.cocode.battleship"
         minSdk = 24
         targetSdk = 36
-        versionCode = versionNumber.toIntOrNull() ?: 1
-        versionName = versionNumber
+        versionCode = versionCode
+        versionName = versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
