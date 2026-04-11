@@ -27,7 +27,7 @@ Enum with 5 entries. Each entry has: `displayName`, `icon`, `displayNameKey`, `d
 
 ### `domain/model/SuperWeaponAttack.kt` (~20 lines)
 Single top-level pure function:
-```
+```kotlin
 fun resolveWeaponCells(weapon: SuperWeapon, row: Int, col: Int): List<Pair<Int,Int>>
 ```
 Maps offsets to absolute cells, discards out-of-bounds, deduplicates.
