@@ -75,11 +75,11 @@ class GameViewModel : ViewModel() {
         val s = _state.value
         if (s.phase != GamePhase.BATTLE || !s.isPlayerTurn) return
         if (weapon !in s.availableWeapons) return
+        if (s.selectedWeapon != weapon) sounds.playSonarPing()
         _state.value = s.copy(
             selectedWeapon = if (s.selectedWeapon == weapon) null else weapon
         )
     }
-
     fun deselectWeapon() {
         _state.value = _state.value.copy(selectedWeapon = null)
     }

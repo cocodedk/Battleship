@@ -15,13 +15,19 @@ import kotlinx.coroutines.launch
 class SoundManager {
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
-    fun playHit() = scope.launch { sweep(600f, 1000f, 200, decay = true) }
-    fun playMiss() = scope.launch { tone(260f, 140, decay = true) }
-    fun playSunk() = scope.launch { explosion(450) }
-    fun playWin() = scope.launch {
-        tone(440f, 180); delay(50); tone(660f, 180); delay(50); tone(880f, 300)
+    fun playHit() = scope.launch {
+        tone(1800f, 50, decay = true); delay(80); tone(1000f, 40, decay = true)
     }
-    fun playLose() = scope.launch { sweep(700f, 160f, 900, decay = false) }
+    fun playMiss() = scope.launch { sweep(500f, 150f, 350, decay = false) }
+    fun playSunk() = scope.launch {
+        sweep(700f, 80f, 180, decay = true); delay(30); explosion(600)
+    }
+    fun playWin() = scope.launch {
+        tone(262f, 130); delay(40); tone(330f, 130); delay(40)
+        tone(392f, 130); delay(40); tone(523f, 350, decay = true)
+    }
+    fun playLose() = scope.launch { sweep(600f, 35f, 1300, decay = false) }
+    fun playSonarPing() = scope.launch { tone(2200f, 70, decay = true) }
 
     fun release() { scope.cancel() }
 
