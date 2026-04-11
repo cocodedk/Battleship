@@ -3,29 +3,79 @@
 
     <!-- Menu -->
     <string name="menu_title">BATTLESHIP</string>
-    <string name="menu_tagline">Sink the Fleet</string>
-    <string name="menu_start_game">Start Game</string>
+    <string name="menu_tagline">Sink the Enemy Fleet</string>
+    <string name="menu_start_game">START MISSION</string>
+    <string name="menu_system_label">[ NAVAL COMMAND SYSTEM ]</string>
+    <string name="menu_game_mode">SINGLE PLAYER  ·  vs AI  ·  10×10 GRID</string>
+    <string name="menu_view_stats">CAREER STATS</string>
 
     <!-- Placement -->
-    <string name="placement_title">Place Your Ships</string>
-    <string name="placement_placing">Placing: %1$s (size %2$d)</string>
-    <string name="placement_all_placed">All ships placed!</string>
-    <string name="placement_rotate_horizontal">Rotate: Horizontal</string>
-    <string name="placement_rotate_vertical">Rotate: Vertical</string>
-    <string name="placement_auto_place">Auto Place</string>
-    <string name="placement_start_battle">Start Battle</string>
+    <string name="placement_title">DEPLOY FLEET</string>
+    <string name="placement_select_cell">SELECT A CELL TO POSITION YOUR SHIP</string>
+    <string name="placement_placing">DEPLOYING: %1$s (SIZE %2$d)</string>
+    <string name="placement_all_placed">FLEET DEPLOYED — READY FOR COMBAT</string>
+    <string name="placement_rotate_horizontal">HORIZONTAL</string>
+    <string name="placement_rotate_vertical">VERTICAL</string>
+    <string name="placement_auto_place">AUTO DEPLOY</string>
+    <string name="placement_start_battle">INITIATE COMBAT</string>
 
     <!-- Game -->
-    <string name="game_enemy_waters">Enemy Waters</string>
-    <string name="game_your_fleet">Your Fleet</string>
-    <string name="game_your_turn">Your Turn</string>
-    <string name="game_ai_thinking">AI Thinking…</string>
+    <string name="game_message_format">[COM]  %1$s</string>
+    <string name="game_enemy_waters">TARGET ZONE</string>
+    <string name="game_your_fleet">YOUR GRID</string>
+    <string name="game_your_turn">TARGETING ACTIVE</string>
+    <string name="game_ai_thinking">ENEMY CALCULATING...</string>
 
     <!-- Game Over -->
-    <string name="game_over_you_win">You Win! 🎉</string>
-    <string name="game_over_ai_wins">AI Wins!</string>
-    <string name="game_over_win_subtitle">Outstanding tactics! You sunk the enemy fleet.</string>
-    <string name="game_over_lose_subtitle">Better luck next time. The AI was relentless!</string>
-    <string name="game_over_play_again">Play Again</string>
-    <string name="game_over_main_menu">Main Menu</string>
+    <string name="game_over_status_victory">[ STATUS: VICTORY ]</string>
+    <string name="game_over_status_defeat">[ STATUS: DEFEAT ]</string>
+    <string name="game_over_you_win">MISSION ACCOMPLISHED</string>
+    <string name="game_over_ai_wins">FLEET DESTROYED</string>
+    <string name="game_over_win_subtitle">Outstanding tactics. Enemy fleet neutralised.</string>
+    <string name="game_over_lose_subtitle">All ships lost. The enemy was relentless.</string>
+    <string name="game_over_play_again">DEPLOY AGAIN</string>
+    <string name="game_over_main_menu">MAIN MENU</string>
+
+    <!-- Score & Badges -->
+    <string name="game_over_rank_label">RANK</string>
+    <string name="game_over_score_label">SCORE</string>
+    <string name="game_over_stats_title">COMBAT STATS</string>
+    <string name="game_over_stats_shots">Shots</string>
+    <string name="game_over_stats_hits">Hits</string>
+    <string name="game_over_stats_misses">Misses</string>
+    <string name="game_over_stats_accuracy">Accuracy</string>
+    <string name="game_over_stats_ships_sunk">Ships Sunk</string>
+    <string name="game_over_badges_title">MEDALS EARNED</string>
+    <string name="game_over_badges_none">No medals earned — keep fighting, sailor.</string>
+    <string name="game_over_session_label">SESSION</string>
+    <string name="game_over_session_games">Games</string>
+    <string name="game_over_session_wins">Wins</string>
+    <string name="game_over_session_streak">Streak</string>
+    <string name="game_over_session_best">Best</string>
+    <string name="game_over_session_footer">Games: %1$d  ·  Wins: %2$d  ·  Streak: %3$d  ·  Best: %4$d</string>
+
+    <!-- Stats Screen -->
+    <string name="stats_title">CAREER RECORD</string>
+    <string name="stats_rank_label">HIGHEST RANK</string>
+    <string name="stats_session_title">SESSION STATS</string>
+    <string name="stats_games_played">Games Played</string>
+    <string name="stats_wins">Victories</string>
+    <string name="stats_best_score">Best Score</string>
+    <string name="stats_longest_streak">Longest Streak</string>
+    <string name="stats_medals_title">MEDALS EARNED</string>
+    <string name="stats_no_games">No missions completed yet. Deploy your fleet!</string>
+    <string name="stats_back">RETURN TO BASE</string>
+
+    <!-- Super Weapons -->
+    <string name="weapons_available_label">SUPER WEAPONS</string>
+    <string name="weapon_carpet_bomb_name">CARPET BOMB</string>
+    <string name="weapon_carpet_bomb_desc">3×3 area bombardment centered on target.</string>
+    <string name="weapon_barrage_name">BARRAGE</string>
+    <string name="weapon_barrage_desc">9-cell cross saturation fire.</string>
+    <string name="weapon_sonar_name">SONAR SWEEP</string>
+    <string name="weapon_sonar_desc">5-cell horizontal sonar ping.</string>
+    <string name="weapon_torpedo_name">TORPEDO SPREAD</string>
+    <string name="weapon_torpedo_desc">5-cell vertical torpedo salvo.</string>
+    <string name="weapon_precision_name">PRECISION STRIKE</string>
+    <string name="weapon_precision_desc">5-cell X-pattern surgical strike.</string>
 </resources>

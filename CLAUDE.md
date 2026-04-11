@@ -93,13 +93,41 @@ app/src/main/java/com/cocode/battleship/
 
 ---
 
+## Engineering Principles
+
+### File Size
+- **200-line maximum per file** — if a file approaches this, extract a class, function, or composable
+
+### DRY — Don't Repeat Yourself
+- Extract shared logic into named functions or domain utilities; never copy-paste logic
+- Reuse `BattleGrid` and components rather than duplicating grid rendering
+- Use `stringResource()` to avoid duplicated string literals across composables
+
+### SOLID
+- **S**ingle Responsibility — one class/function does one thing (`BattleshipAI` only picks attacks)
+- **O**pen/Closed — extend via new classes, not by modifying stable domain models
+- **L**iskov Substitution — subtypes are substitutable; use sealed classes for variants
+- **I**nterface Segregation — keep domain contracts focused; avoid God objects
+- **D**ependency Inversion — domain layer depends on abstractions, not Android/Compose
+
+### TDD
+- Write the failing test first, make it pass, then refactor
+- Test names describe behavior: `` fun `attack on already-hit cell is rejected`() ``
+- One assertion per test — keep tests focused and readable
+- Invoke `superpowers:test-driven-development` before writing any domain logic
+
+### KISS & YAGNI
+- Don't add features not yet needed (no server, no persistence, no multiplayer until asked)
+- Prefer readable code over clever abstractions; remove dead code immediately
+
+---
+
 ## Testing
 
 - Unit tests cover the **domain layer only** — no Android framework needed
 - Test location: `app/src/test/java/com/cocode/battleship/` (not `androidTest/`)
 - Naming convention: `XxxTest.kt` mirroring the source file (e.g., `BattleshipAITest.kt`)
 - Test runner: JUnit4
-- Invoke `superpowers:test-driven-development` before writing any domain logic
 
 ```bash
 ./gradlew test          # Run all unit tests
@@ -111,9 +139,10 @@ app/src/main/java/com/cocode/battleship/
 
 ```bash
 ./gradlew assembleDebug      # Build debug APK
-./gradlew assembleRelease    # Build release APK
+./gradlew assembleRelease    # Build release APK (requires signing env vars)
 ./gradlew test               # Run unit tests
 ./gradlew lint               # Run lint checks
+./gradlew buildSmoke         # Debug + tests + lint (CI smoke check)
 ```
 
 ---

@@ -3,6 +3,22 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+val versionNumber = System.getenv("VERSION_NAME")
+    ?: file("../version.txt").takeIf { it.exists() }?.readText()?.trim()
+    ?: "1"
+
+val signingKeystorePath = System.getenv("KEYSTORE_PATH")?.takeIf { it.isNotBlank() }
+val signingKeystorePassword = System.getenv("KEYSTORE_PASSWORD")?.takeIf { it.isNotBlank() }
+val signingKeyAlias = System.getenv("KEY_ALIAS")?.takeIf { it.isNotBlank() }
+val signingKeyPassword = System.getenv("KEY_PASSWORD")?.takeIf { it.isNotBlank() }
+val signingKeystoreFile = signingKeystorePath
+    ?.let { rootProject.file(it).absoluteFile }
+    ?.takeIf { it.isFile }
+val hasSigningConfig = signingKeystoreFile != null &&
+    signingKeystorePassword != null &&
+    signingKeyAlias != null &&
+    signingKeyPassword != null
+
 android {
     namespace = "com.cocode.battleship"
     compileSdk {
@@ -15,10 +31,21 @@ android {
         applicationId = "com.cocode.battleship"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = versionNumber.toIntOrNull() ?: 1
+        versionName = versionNumber
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    if (hasSigningConfig) {
+        signingConfigs {
+            create("release") {
+                storeFile = signingKeystoreFile!!
+                storePassword = signingKeystorePassword
+                keyAlias = signingKeyAlias
+                keyPassword = signingKeyPassword
+            }
+        }
     }
 
     buildTypes {
@@ -28,6 +55,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            if (hasSigningConfig) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
     compileOptions {

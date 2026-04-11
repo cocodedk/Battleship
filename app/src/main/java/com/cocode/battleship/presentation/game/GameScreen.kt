@@ -1,5 +1,11 @@
 package com.cocode.battleship.presentation.game
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,130 +29,134 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
 import com.cocode.battleship.domain.model.GamePhase
 import com.cocode.battleship.presentation.components.BattleGrid
+import com.cocode.battleship.presentation.game.components.WeaponSelector
+import com.cocode.battleship.ui.theme.AmberWarning
+import com.cocode.battleship.ui.theme.DeepNavy
+import com.cocode.battleship.ui.theme.NavyCard
+import com.cocode.battleship.ui.theme.NavySurface
+import com.cocode.battleship.ui.theme.PhosphorGreen
+import com.cocode.battleship.ui.theme.SonarCyan
+import com.cocode.battleship.ui.theme.TextDim
+import com.cocode.battleship.ui.theme.TextSecondary
 
-private val TurnActiveColor = Color(0xFF43A047)
-private val TurnWaitingColor = Color(0xFFFFA000)
+private const val SYMBOL_ARROW = "▶"
+private const val SYMBOL_SECTION = "◆"
 
 @Composable
-fun GameScreen(
-    viewModel: GameViewModel,
-    onGameOver: () -> Unit
-) {
+fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
     val state by viewModel.state.collectAsState()
     val scrollState = rememberScrollState()
 
     LaunchedEffect(state.phase) {
-        if (state.phase == GamePhase.GAME_OVER) {
-            onGameOver()
-        }
+        if (state.phase == GamePhase.GAME_OVER) onGameOver()
     }
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
+    val infiniteTransition = rememberInfiniteTransition(label = "blink")
+    val blinkAlpha by infiniteTransition.animateFloat(
+        initialValue = 1f, targetValue = 0.3f,
+        animationSpec = infiniteRepeatable(tween(700, easing = LinearEasing), RepeatMode.Reverse),
+        label = "blink_alpha"
+    )
+
+    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .padding(16.dp),
+            modifier = Modifier.fillMaxSize().verticalScroll(scrollState).padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // Status message bar
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(MaterialTheme.colorScheme.primaryContainer)
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
-                contentAlignment = Alignment.Center
+                    .clip(RoundedCornerShape(4.dp))
+                    .background(NavyCard)
+                    .padding(horizontal = 12.dp, vertical = 6.dp)
             ) {
                 Text(
-                    text = state.message,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    fontWeight = FontWeight.Medium
+                    text = stringResource(R.string.game_message_format, state.message),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = SonarCyan.copy(alpha = 0.9f),
                 )
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                val badgeColor = if (state.isPlayerTurn) TurnActiveColor else TurnWaitingColor
-                val badgeText = if (state.isPlayerTurn) {
-                    stringResource(R.string.game_your_turn)
-                } else {
-                    stringResource(R.string.game_ai_thinking)
-                }
+            // Turn indicator
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                val indicatorBg = if (state.isPlayerTurn) PhosphorGreen.copy(alpha = 0.15f) else AmberWarning.copy(alpha = 0.1f)
+                val indicatorBorder = if (state.isPlayerTurn) PhosphorGreen else AmberWarning
+                val indicatorText = if (state.isPlayerTurn) stringResource(R.string.game_your_turn)
+                else stringResource(R.string.game_ai_thinking)
+                val indicatorColor = if (state.isPlayerTurn) PhosphorGreen
+                else AmberWarning.copy(alpha = blinkAlpha)
+
                 Box(
                     modifier = Modifier
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(badgeColor)
-                        .padding(horizontal = 16.dp, vertical = 4.dp)
+                        .clip(RoundedCornerShape(3.dp))
+                        .background(indicatorBg)
+                        .padding(horizontal = 14.dp, vertical = 5.dp)
                 ) {
                     Text(
-                        text = badgeText,
-                        color = Color.White,
+                        text = "$SYMBOL_ARROW  $indicatorText",
+                        color = indicatorColor,
                         style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 1.5.sp,
                     )
                 }
             }
 
+            if (state.availableWeapons.isNotEmpty() && state.isPlayerTurn) {
+                Spacer(modifier = Modifier.height(10.dp))
+                WeaponSelector(
+                    available = state.availableWeapons,
+                    selected = state.selectedWeapon,
+                    onSelect = { viewModel.selectWeapon(it) },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
             Spacer(modifier = Modifier.height(12.dp))
 
-            Text(
-                text = stringResource(R.string.game_enemy_waters),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 4.dp)
-            )
+            SectionLabel(text = stringResource(R.string.game_enemy_waters))
 
             BattleGrid(
                 board = state.aiBoard,
                 showShips = false,
-                onCellClick = if (state.isPlayerTurn) {
-                    { r, c -> viewModel.playerAttack(r, c) }
-                } else {
-                    null
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 4.dp)
+                onCellClick = if (state.isPlayerTurn) { r, c -> viewModel.playerAttack(r, c) } else null,
+                allowAttackedClicks = state.selectedWeapon != null,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp)
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(14.dp))
 
-            Text(
-                text = stringResource(R.string.game_your_fleet),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 4.dp)
-            )
+            SectionLabel(text = stringResource(R.string.game_your_fleet))
 
             BattleGrid(
                 board = state.playerBoard,
                 showShips = true,
                 onCellClick = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 4.dp)
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp)
             )
 
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
+}
+
+@Composable
+private fun SectionLabel(text: String) {
+    Text(
+        text = "$SYMBOL_SECTION  $text",
+        style = MaterialTheme.typography.titleMedium,
+        color = TextSecondary,
+        letterSpacing = 1.5.sp,
+        modifier = Modifier.fillMaxWidth().padding(bottom = 6.dp)
+    )
 }

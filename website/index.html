@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Battleship — Naval Command Game for Android</title>
+  <meta name="description" content="Battleship is a free, offline Android game. Tactical naval combat — deploy your fleet, unlock 5 super weapons, earn 15 medals, climb 8 military ranks. No account, no network, no ads."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cocodedk.github.io/Battleship/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Battleship"/>
+  <meta property="og:title" content="Battleship — Naval Command Game for Android"/>
+  <meta property="og:description" content="Tactical naval combat for Android. Deploy your fleet, hunt the enemy, unlock super weapons, earn medals and climb military ranks. No network required."/>
+  <meta property="og:url" content="https://cocodedk.github.io/Battleship/"/>
+  <meta property="og:image" content="https://cocodedk.github.io/Battleship/og.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Battleship — Naval Command Game for Android"/>
+  <meta name="twitter:image" content="https://cocodedk.github.io/Battleship/og.png"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Battleship",
+    "description": "Tactical naval combat game for Android. Deploy a fleet, unlock super weapons, earn 15 medals, climb 8 military ranks. Fully offline, no account required.",
+    "url": "https://cocodedk.github.io/Battleship/",
+    "downloadUrl": "https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk",
+    "operatingSystem": "Android",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "Babak Bandpey", "url": "https://cocode.dk" },
+    "applicationFeature": [
+      "5-ship fleet on 10×10 tactical grid",
+      "Hunt/target AI with checkerboard parity",
+      "5 super weapons unlocked by sinking enemy ships",
+      "15 medals across 4 rarity tiers",
+      "8-rank career progression system",
+      "PCM-synthesized audio, no audio files",
+      "Visual hit flash and sunk glow effects",
+      "Career stats screen with persistent session stats",
+      "Fully offline — no network, no account, no ads"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a href="fa/" class="lang-switch">فارسی</a>
+
+  <!-- ═══ HERO ═══ -->
+  <header>
+    <div class="sonar-ring"></div>
+    <div class="sonar-ring"></div>
+    <span class="eyemark">◈</span>
+    <h1>BATTLESHIP</h1>
+    <p class="tagline">[ NAVAL COMMAND SYSTEM ]</p>
+    <p class="hero-tagline-main">Your Fleet. Your Strategy. Your Glory.</p>
+    <p class="sub-tagline">SINK THE ENEMY FLEET — EARN YOUR RANK — LEAVE NO SHIP STANDING</p>
+    <div class="cta-group">
+      <a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk" class="btn btn-primary">⚓ DOWNLOAD APK</a>
+      <a href="https://github.com/cocodedk/Battleship" class="btn btn-outline">SOURCE CODE</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══ MISSION BRIEFING ═══ -->
+    <section>
+      <p class="section-label">◆ CLASSIFIED — MISSION BRIEFING</p>
+      <h2>THE BRIEFING</h2>
+      <div class="briefing-text">
+        <p>The enemy fleet lurks somewhere in those waters. Your sonar has detected their presence, but their exact positions remain unknown. Somewhere in that 10×10 grid of grey sea and silence, five ships wait — a Carrier, a Battleship, a Cruiser, a Submarine, a Destroyer. Your orders are simple: find them. Sink them. All of them.</p>
+        <p>Deploy your own fleet with care — placement is strategy. Then fire your first shot into the fog. A ping. A splash. A hit. Each sunken enemy ship delivers a super weapon into your arsenal — a Carpet Bomb, a Barrage, a Sonar Sweep, a Torpedo Spread, a Precision Strike. Use them wisely. The AI opponent thinks. It hunts. It adapts.</p>
+        <p>Every battle writes your record. Hit percentages, win streaks, medals earned mid-fight — they all accumulate in your career file. Rise from Cadet to Fleet Admiral. Prove your command is flawless. The ocean doesn't forgive hesitation. Neither does the enemy.</p>
+      </div>
+    </section>
+
+    <!-- ═══ THE FLEET ═══ -->
+    <section>
+      <p class="section-label">◆ INTELLIGENCE REPORT — FLEET MANIFEST</p>
+      <h2>THE FLEET</h2>
+      <div class="fleet-list">
+
+        <div class="ship-row">
+          <div class="ship-display">
+            <span class="ship-cell carrier"></span>
+            <span class="ship-cell carrier"></span>
+            <span class="ship-cell carrier"></span>
+            <span class="ship-cell carrier"></span>
+            <span class="ship-cell carrier"></span>
+          </div>
+          <div class="ship-info">
+            <div class="ship-name">CARRIER</div>
+            <div class="ship-size">5 CELLS — LARGEST SHIP</div>
+            <div class="ship-unlock">💣 Unlocks CARPET BOMB on sink</div>
+          </div>
+        </div>
+
+        <div class="ship-row">
+          <div class="ship-display">
+            <span class="ship-cell battleship"></span>
+            <span class="ship-cell battleship"></span>
+            <span class="ship-cell battleship"></span>
+            <span class="ship-cell battleship"></span>
+          </div>
+          <div class="ship-info">
+            <div class="ship-name">BATTLESHIP</div>
+            <div class="ship-size">4 CELLS</div>
+            <div class="ship-unlock">💥 Unlocks BATTLESHIP BARRAGE on sink</div>
+          </div>
+        </div>
+
+        <div class="ship-row">
+          <div class="ship-display">
+            <span class="ship-cell cruiser"></span>
+            <span class="ship-cell cruiser"></span>
+            <span class="ship-cell cruiser"></span>
+          </div>
+          <div class="ship-info">
+            <div class="ship-name">CRUISER</div>
+            <div class="ship-size">3 CELLS</div>
+            <div class="ship-unlock">📡 Unlocks SONAR SWEEP on sink</div>
+          </div>
+        </div>
+
+        <div class="ship-row">
+          <div class="ship-display">
+            <span class="ship-cell submarine"></span>
+            <span class="ship-cell submarine"></span>
+            <span class="ship-cell submarine"></span>
+          </div>
+          <div class="ship-info">
+            <div class="ship-name">SUBMARINE</div>
+            <div class="ship-size">3 CELLS</div>
+            <div class="ship-unlock">🐠 Unlocks TORPEDO SPREAD on sink</div>
+          </div>
+        </div>
+
+        <div class="ship-row">
+          <div class="ship-display">
+            <span class="ship-cell destroyer"></span>
+            <span class="ship-cell destroyer"></span>
+          </div>
+          <div class="ship-info">
+            <div class="ship-name">DESTROYER</div>
+            <div class="ship-size">2 CELLS — SMALLEST SHIP</div>
+            <div class="ship-unlock">🎯 Unlocks PRECISION STRIKE on sink</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ SUPER WEAPONS ═══ -->
+    <section>
+      <p class="section-label">◆ ARSENAL — SUPER WEAPONS CLEARED FOR USE</p>
+      <h2>SUPER WEAPONS</h2>
+      <div class="weapons-grid">
+
+        <div class="weapon-card">
+          <span class="weapon-icon">💣</span>
+          <div class="weapon-name">CARPET BOMB</div>
+          <div class="weapon-desc">3×3 area bombardment — 9 cells obliterated in a single strike. The most devastating area weapon in the arsenal.</div>
+          <div class="weapon-pattern">
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
+            </div>
+          </div>
+          <div class="weapon-unlock">Unlocked by sinking the enemy CARRIER</div>
+        </div>
+
+        <div class="weapon-card">
+          <span class="weapon-icon">💥</span>
+          <div class="weapon-name">BATTLESHIP BARRAGE</div>
+          <div class="weapon-desc">9-cell cross saturation fire — a plus-shaped pattern punching through center row and center column.</div>
+          <div class="weapon-pattern">
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
+            </div>
+          </div>
+          <div class="weapon-unlock">Unlocked by sinking the enemy BATTLESHIP</div>
+        </div>
+
+        <div class="weapon-card">
+          <span class="weapon-icon">📡</span>
+          <div class="weapon-name">SONAR SWEEP</div>
+          <div class="weapon-desc">5-cell horizontal ping that sweeps an entire row — wide lateral intelligence strike.</div>
+          <div class="weapon-pattern">
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
+            </div>
+          </div>
+          <div class="weapon-unlock">Unlocked by sinking the enemy CRUISER</div>
+        </div>
+
+        <div class="weapon-card">
+          <span class="weapon-icon">🐠</span>
+          <div class="weapon-name">TORPEDO SPREAD</div>
+          <div class="weapon-desc">5-cell vertical salvo punching down a column — depth attack delivered from the deep.</div>
+          <div class="weapon-pattern">
+            <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
+            <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
+            <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
+            <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
+            <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
+          </div>
+          <div class="weapon-unlock">Unlocked by sinking the enemy SUBMARINE</div>
+        </div>
+
+        <div class="weapon-card">
+          <span class="weapon-icon">🎯</span>
+          <div class="weapon-name">PRECISION STRIKE</div>
+          <div class="weapon-desc">5-cell X-pattern surgical strike — diagonal cross targeting, impossible to evade if a ship hides in the corner.</div>
+          <div class="weapon-pattern">
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div>
+            </div>
+            <div class="weapon-pattern-row">
+              <div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div>
+            </div>
+          </div>
+          <div class="weapon-unlock">Unlocked by sinking the enemy DESTROYER</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ MEDALS & HONOURS ═══ -->
+    <section>
+      <p class="section-label">◆ CLASSIFIED — HONOURS &amp; COMMENDATIONS</p>
+      <h2>MEDALS &amp; HONOURS</h2>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.5rem;">15 medals earned mid-game accumulate in your career file. Medals also award bonus score points.</p>
+
+      <div class="medals-tier">
+        <div class="tier-label tier-legendary">⭐ LEGENDARY</div>
+        <div class="medals-row">
+          <div class="medal-card medal-legendary">
+            <span class="medal-icon">💎</span>
+            <div class="medal-name">PERFECT GUNNER</div>
+            <div class="medal-condition">Win a game with zero misses — every shot connects.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="medals-tier">
+        <div class="tier-label tier-epic">⚡ EPIC</div>
+        <div class="medals-row">
+          <div class="medal-card medal-epic">
+            <span class="medal-icon">🎯🎯</span>
+            <div class="medal-name">DEAD-EYE</div>
+            <div class="medal-condition">Finish with 80%+ accuracy (minimum 10 shots fired).</div>
+          </div>
+          <div class="medal-card medal-epic">
+            <span class="medal-icon">⚡</span>
+            <div class="medal-name">UNSTOPPABLE</div>
+            <div class="medal-condition">Land 8 consecutive hits without a single miss.</div>
+          </div>
+          <div class="medal-card medal-epic">
+            <span class="medal-icon">👑</span>
+            <div class="medal-name">FLAWLESS VICTORY</div>
+            <div class="medal-condition">Win with all 5 of your ships completely intact.</div>
+          </div>
+          <div class="medal-card medal-epic">
+            <span class="medal-icon">🔥🔥</span>
+            <div class="medal-name">ON FIRE</div>
+            <div class="medal-condition">Win with a streak of 3+ consecutive victories.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="medals-tier">
+        <div class="tier-label tier-rare">◈ RARE</div>
+        <div class="medals-row">
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🎯</span>
+            <div class="medal-name">FIRST BLOOD</div>
+            <div class="medal-condition">Your very first shot of the game is a direct hit.</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🏹</span>
+            <div class="medal-name">SHARPSHOOTER</div>
+            <div class="medal-condition">Finish with 60%+ accuracy (minimum 10 shots fired).</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🔥</span>
+            <div class="medal-name">HOT STREAK</div>
+            <div class="medal-condition">Land 5 consecutive hits without a miss.</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🐋</span>
+            <div class="medal-name">LEVIATHAN SLAYER</div>
+            <div class="medal-condition">The first ship you sink is the enemy Carrier.</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🤫</span>
+            <div class="medal-name">SILENT SERVICE</div>
+            <div class="medal-condition">Your Submarine survives the entire battle untouched.</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🛡️</span>
+            <div class="medal-name">LAST STAND</div>
+            <div class="medal-condition">Win with only a single ship remaining in your fleet.</div>
+          </div>
+          <div class="medal-card medal-rare">
+            <span class="medal-icon">🏊</span>
+            <div class="medal-name">SWIM FOR IT</div>
+            <div class="medal-condition">Lose a game without landing a single hit on the enemy.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="medals-tier">
+        <div class="tier-label tier-common">◎ COMMON</div>
+        <div class="medals-row">
+          <div class="medal-card medal-common">
+            <span class="medal-icon">🚤</span>
+            <div class="medal-name">DESTROYER LIVES</div>
+            <div class="medal-condition">Your Destroyer survives the entire battle untouched.</div>
+          </div>
+          <div class="medal-card medal-common">
+            <span class="medal-icon">🌫️</span>
+            <div class="medal-name">FOG OF WAR</div>
+            <div class="medal-condition">Miss 10 consecutive shots in a row — the ocean keeps its secrets.</div>
+          </div>
+          <div class="medal-card medal-common">
+            <span class="medal-icon">💣</span>
+            <div class="medal-name">DEPTH CHARGE DIPLOMAT</div>
+            <div class="medal-condition">Fire 100 or more shots in a single game.</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ═══ RANK PROGRESSION ═══ -->
+    <section>
+      <p class="section-label">◆ COMMAND HIERARCHY — CAREER RANKS</p>
+      <h2>RANK PROGRESSION</h2>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">Ranks are determined by your best single-game score. Every hit, every sunk ship, every speed bonus pushes your score — and your career — higher.</p>
+      <div class="rank-ladder">
+
+        <div class="rank-row">
+          <span class="rank-insignia">🎖️</span>
+          <span class="rank-name">CADET</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:2%;background:var(--text-dim)"></div></div>
+          <span class="rank-score">0+ pts</span>
+        </div>
+
+        <div class="rank-row">
+          <span class="rank-insignia">⚓</span>
+          <span class="rank-name">ENSIGN</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:10%;background:var(--teal)"></div></div>
+          <span class="rank-score">350+ pts</span>
+        </div>
+
+        <div class="rank-row">
+          <span class="rank-insignia">🔵</span>
+          <span class="rank-name">LIEUTENANT</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:20%;background:var(--teal)"></div></div>
+          <span class="rank-score">700+ pts</span>
+        </div>
+
+        <div class="rank-row rank-captain">
+          <span class="rank-insignia">🟢</span>
+          <span class="rank-name">CAPTAIN</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:32%;background:var(--green)"></div></div>
+          <span class="rank-score">1100+ pts</span>
+        </div>
+
+        <div class="rank-row rank-commodore">
+          <span class="rank-insignia">🌀</span>
+          <span class="rank-name">COMMODORE</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:44%;background:var(--cyan)"></div></div>
+          <span class="rank-score">1500+ pts</span>
+        </div>
+
+        <div class="rank-row rank-vice-admiral">
+          <span class="rank-insignia">💜</span>
+          <span class="rank-name">VICE ADMIRAL</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:58%;background:#A78BFA"></div></div>
+          <span class="rank-score">2000+ pts</span>
+        </div>
+
+        <div class="rank-row rank-admiral">
+          <span class="rank-insignia">🟠</span>
+          <span class="rank-name">ADMIRAL</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:75%;background:var(--amber)"></div></div>
+          <span class="rank-score">2600+ pts</span>
+        </div>
+
+        <div class="rank-row rank-fleet-admiral">
+          <span class="rank-insignia">⭐</span>
+          <span class="rank-name">FLEET ADMIRAL</span>
+          <div class="rank-bar-wrap"><div class="rank-bar" style="width:100%;background:var(--gold)"></div></div>
+          <span class="rank-score">3500+ pts</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ SENSES OF WAR ═══ -->
+    <section>
+      <p class="section-label">◆ FIELD INTELLIGENCE — COMBAT FEEDBACK SYSTEMS</p>
+      <h2>SENSES OF WAR</h2>
+      <div class="senses-grid">
+
+        <div class="sense-card">
+          <span class="sense-icon">💥</span>
+          <div class="sense-title">HIT FLASH</div>
+          <div class="sense-desc">A white burst erupts on hit cells and fades over 500ms — the visual confirmation of a direct strike.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">🔴</span>
+          <div class="sense-title">SUNK GLOW</div>
+          <div class="sense-desc">Sunk ship cells pulse with a red glow animation — infinite, relentless, marking your victories in the grid.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">🟠</span>
+          <div class="sense-title">AI TURN INDICATOR</div>
+          <div class="sense-desc">Amber pulse blinks while the AI calculates its next attack — time slows when the enemy thinks.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">🔊</span>
+          <div class="sense-title">PCM HIT SOUND</div>
+          <div class="sense-desc">Two-tone impact: 1800Hz dropping to 1000Hz. Synthesized in code — no audio files shipped with the app.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">💧</span>
+          <div class="sense-title">PCM MISS SOUND</div>
+          <div class="sense-desc">Descending sweep from 500Hz down to 150Hz — the hollow sound of a shell vanishing into the deep.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">💀</span>
+          <div class="sense-title">PCM SUNK SOUND</div>
+          <div class="sense-desc">Explosive bass rumble layered with noise — the unmistakable sound of a ship breaking apart.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">🎺</span>
+          <div class="sense-title">PCM WIN FANFARE</div>
+          <div class="sense-desc">Ascending victory fanfare — a C-E-G-C chord sequence rising to mark your command of the seas.</div>
+        </div>
+
+        <div class="sense-card">
+          <span class="sense-icon">📡</span>
+          <div class="sense-title">PCM SONAR PING</div>
+          <div class="sense-desc">A sharp 2200Hz blip fires when you select a super weapon — the sonar saying: target acquired.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ CAREER COMMAND ═══ -->
+    <section>
+      <p class="section-label">◆ COMMAND CENTER — CAREER STATISTICS</p>
+      <h2>CAREER COMMAND</h2>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">Accessible from the main menu via the <strong style="color:var(--cyan)">CAREER STATS</strong> button. Records persist for the session — your legacy resets if the app is closed.</p>
+      <div class="career-panel">
+        <div class="career-header">
+          <span class="career-rank-badge">⭐</span>
+          <div>
+            <div class="career-rank-name">FLEET ADMIRAL</div>
+            <div class="career-rank-sub">HIGHEST RANK EARNED</div>
+          </div>
+        </div>
+        <div class="mock-stats">
+          <div class="mock-stat">
+            <div class="mock-stat-label">Games Played</div>
+            <div class="mock-stat-value">47</div>
+          </div>
+          <div class="mock-stat">
+            <div class="mock-stat-label">Victories</div>
+            <div class="mock-stat-value">31</div>
+          </div>
+          <div class="mock-stat">
+            <div class="mock-stat-label">Win Rate</div>
+            <div class="mock-stat-value">65.9%</div>
+          </div>
+          <div class="mock-stat">
+            <div class="mock-stat-label">Longest Streak</div>
+            <div class="mock-stat-value">7</div>
+          </div>
+        </div>
+        <div class="career-medals-label">Medals Earned This Session</div>
+        <div class="career-medals-row">
+          💎 🎯🎯 ⚡ 👑 🎯 🏹 🔥 🐋 🤫 🛡️ 🚤
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TACTICAL OVERVIEW ═══ -->
+    <section>
+      <p class="section-label">◆ SYSTEM CAPABILITIES</p>
+      <h2>TACTICAL OVERVIEW</h2>
+      <div class="features">
+        <div class="feature-card">
+          <span class="icon">◎</span>
+          <h3>OFFLINE PLAY</h3>
+          <p>No server, no network. Runs entirely on your device. Works anywhere, any time.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">◈</span>
+          <h3>AI OPPONENT</h3>
+          <p>Hunt/target algorithm with checkerboard parity — a real tactical challenge that adapts.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">⊞</span>
+          <h3>10×10 TACTICAL GRID</h3>
+          <p>5-ship fleet on a full-size Battleship grid. Place manually or use auto-deploy.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">💣</span>
+          <h3>5 SUPER WEAPONS</h3>
+          <p>Carpet Bomb, Barrage, Sonar Sweep, Torpedo Spread, Precision Strike. Earn them by sinking ships.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🏅</span>
+          <h3>15 MEDALS</h3>
+          <p>Four rarity tiers: Legendary, Epic, Rare, Common. Earned mid-game, scored, recorded.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">⭐</span>
+          <h3>8 MILITARY RANKS</h3>
+          <p>Cadet to Fleet Admiral. Your best score determines your career rank.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🔊</span>
+          <h3>PCM AUDIO</h3>
+          <p>Synthesized hit, miss, sunk, win, and sonar ping sounds — zero audio files bundled.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🚫</span>
+          <h3>NO ADS · NO ACCOUNT</h3>
+          <p>Free, open-source, Apache-2.0. No tracking, no sign-in, no paywalls.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BUILD FROM SOURCE ═══ -->
+    <section>
+      <p class="section-label">◆ INSTALLATION</p>
+      <h2>BUILD FROM SOURCE</h2>
+      <div class="code-block"># Clone the repository
+git clone https://github.com/cocodedk/Battleship.git
+cd Battleship
+
+# Build debug APK
+./gradlew assembleDebug
+
+# Run unit tests
+./gradlew test
+
+# Full CI smoke check (debug + tests + lint)
+./gradlew buildSmoke
+
+# Output APK
+app/build/outputs/apk/debug/app-debug.apk</div>
+    </section>
+
+    <!-- ═══ ARCHITECTURE ═══ -->
+    <section>
+      <p class="section-label">◆ TECH STACK</p>
+      <h2>ARCHITECTURE</h2>
+      <div class="code-block">Kotlin 2.2.10  ·  Jetpack Compose BOM 2026.02.01  ·  Material3
+Navigation Compose  ·  Coroutines  ·  Min SDK 24 (Android 7.0)
+
+Clean Architecture + MVVM — single GameViewModel across all screens
+
+domain/          ← Pure Kotlin, zero Android deps, fully testable
+  model/         ← Ship, Board, ShipType, CellState, GamePhase, GameState
+  ai/            ← BattleshipAI (stateless hunt/target algorithm)
+
+presentation/    ← Android / Jetpack Compose
+  navigation/    ← BattleshipNavHost, Screen (sealed class routes)
+  menu/          ← MenuScreen
+  placement/     ← PlacementScreen
+  game/          ← GameScreen, GameOverScreen, GameViewModel, GameUiState
+  components/    ← BattleGrid (reusable board composable)</div>
+    </section>
+
+    <!-- ═══ DOWNLOAD CTA ═══ -->
+    <section class="download-section">
+      <span class="download-eyemark">⚓</span>
+      <p class="section-label" style="margin-bottom:0.5rem;">◆ FIELD DEPLOYMENT</p>
+      <h2>DOWNLOAD &amp; DEPLOY</h2>
+      <p class="download-desc">Free, open-source, offline. No account. No network. Install the APK and take command.</p>
+      <div class="cta-group">
+        <a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk" class="btn btn-primary">⚓ DOWNLOAD APK</a>
+        <a href="https://github.com/cocodedk/Battleship" class="btn btn-outline">VIEW SOURCE</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Apache-2.0 &nbsp;|&nbsp; © 2026 <a href="https://cocode.dk">Cocode</a> &nbsp;|&nbsp; Created by Babak Bandpey</p>
+  </footer>
+</body>
+</html>

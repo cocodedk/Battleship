@@ -1,0 +1,388 @@
+:root {
+  --bg: #050C18;
+  --surface: #091524;
+  --card: #0F1E35;
+  --border: #1A3A5C;
+  --cyan: #00D4FF;
+  --green: #00E676;
+  --red: #FF3D3D;
+  --amber: #FFAB00;
+  --text: #CCE8FF;
+  --text-secondary: #7AACCC;
+  --text-dim: #2A4D6E;
+  --gold: #FFD700;
+  --teal: #00B4A0;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+header {
+  text-align: center;
+  padding: 5rem 1.5rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.sonar-ring {
+  position: absolute; top: 50%; left: 50%;
+  width: 400px; height: 400px;
+  border: 1px solid var(--cyan);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: sonar-pulse 3s linear infinite;
+  opacity: 0;
+}
+.sonar-ring:nth-child(2) { animation-delay: 1s; }
+@keyframes sonar-pulse {
+  from { transform: translate(-50%, -50%) scale(0.1); opacity: 0.5; }
+  to   { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+}
+
+.eyemark { font-size: 2.5rem; color: var(--cyan); display: block; margin-bottom: 0.5rem; }
+
+h1 {
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  letter-spacing: 0.3em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.tagline {
+  color: var(--text-secondary);
+  letter-spacing: 0.15em;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.sub-tagline { color: var(--text-dim); font-size: 0.8rem; letter-spacing: 0.1em; }
+
+.hero-tagline-main {
+  font-size: 1.1rem;
+  color: var(--text);
+  letter-spacing: 0.12em;
+  margin-top: 0.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.cta-group { margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 2rem;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn:hover { opacity: 0.85; text-decoration: none; }
+.btn-primary { background: var(--cyan); color: var(--bg); }
+.btn-outline { border: 1px solid var(--cyan); color: var(--cyan); }
+
+main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+.section-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  letter-spacing: 0.15em;
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+section { margin-bottom: 3.5rem; }
+
+/* ─── BRIEFING ─── */
+.briefing-text {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  max-width: 720px;
+}
+.briefing-text p { margin-bottom: 1rem; }
+.briefing-text p:last-child { margin-bottom: 0; }
+
+/* ─── FLEET / SHIP DISPLAY ─── */
+.fleet-list { display: flex; flex-direction: column; gap: 1.2rem; }
+
+.ship-row {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.ship-info { flex: 1; min-width: 180px; }
+.ship-name { color: var(--cyan); font-size: 0.95rem; letter-spacing: 0.1em; }
+.ship-size { color: var(--text-dim); font-size: 0.75rem; margin-top: 0.2rem; }
+.ship-unlock { color: var(--amber); font-size: 0.75rem; margin-top: 0.3rem; letter-spacing: 0.05em; }
+
+.ship-display { display: flex; gap: 3px; align-items: center; }
+.ship-cell {
+  width: 22px; height: 22px;
+  border-radius: 2px;
+  display: inline-block;
+  background: var(--cyan);
+  opacity: 0.85;
+  border: 1px solid rgba(0,212,255,0.4);
+}
+.ship-cell.carrier  { background: #00B4D8; }
+.ship-cell.battleship { background: #4895EF; }
+.ship-cell.cruiser  { background: #4CC9F0; }
+.ship-cell.submarine { background: #7209B7; }
+.ship-cell.destroyer { background: #3A0CA3; }
+
+/* ─── SUPER WEAPONS ─── */
+.weapons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+
+.weapon-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.2rem;
+  position: relative;
+  transition: border-color 0.2s;
+}
+.weapon-card:hover { border-color: var(--amber); }
+
+.weapon-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+.weapon-name { color: var(--amber); font-size: 0.9rem; letter-spacing: 0.12em; margin-bottom: 0.3rem; }
+.weapon-desc { color: var(--text-secondary); font-size: 0.78rem; line-height: 1.5; margin-bottom: 0.6rem; }
+.weapon-unlock { color: var(--text-dim); font-size: 0.72rem; letter-spacing: 0.06em; }
+
+.weapon-pattern {
+  margin: 0.8rem 0;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 6px;
+  border-radius: 3px;
+}
+.weapon-pattern-row { display: flex; gap: 2px; }
+.wp-cell {
+  width: 14px; height: 14px;
+  border-radius: 1px;
+  background: var(--text-dim);
+}
+.wp-cell.hit { background: var(--amber); box-shadow: 0 0 4px var(--amber); }
+
+/* ─── MEDALS ─── */
+.medals-tier { margin-bottom: 2rem; }
+.tier-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  display: inline-block;
+  border-radius: 2px;
+}
+.tier-legendary { color: var(--gold); border: 1px solid var(--gold); background: rgba(255,215,0,0.06); }
+.tier-epic      { color: var(--amber); border: 1px solid var(--amber); background: rgba(255,171,0,0.06); }
+.tier-rare      { color: var(--cyan); border: 1px solid var(--cyan); background: rgba(0,212,255,0.06); }
+.tier-common    { color: var(--teal); border: 1px solid var(--teal); background: rgba(0,180,160,0.06); }
+
+.medals-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
+
+.medal-card {
+  background: var(--card);
+  border-radius: 4px;
+  padding: 0.9rem 1rem;
+  border-left: 3px solid transparent;
+  border: 1px solid var(--border);
+}
+.medal-legendary { border-left: 3px solid var(--gold); box-shadow: 0 0 12px rgba(255,215,0,0.15); }
+.medal-epic      { border-left: 3px solid var(--amber); box-shadow: 0 0 10px rgba(255,171,0,0.12); }
+.medal-rare      { border-left: 3px solid var(--cyan); box-shadow: 0 0 10px rgba(0,212,255,0.10); }
+.medal-common    { border-left: 3px solid var(--teal); box-shadow: 0 0 8px rgba(0,180,160,0.08); }
+
+.medal-icon  { font-size: 1.4rem; margin-bottom: 0.3rem; display: block; }
+.medal-name  { font-size: 0.82rem; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+.medal-legendary .medal-name { color: var(--gold); }
+.medal-epic      .medal-name { color: var(--amber); }
+.medal-rare      .medal-name { color: var(--cyan); }
+.medal-common    .medal-name { color: var(--teal); }
+.medal-condition { color: var(--text-secondary); font-size: 0.72rem; line-height: 1.4; }
+
+/* ─── RANK PROGRESSION ─── */
+.rank-ladder { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.rank-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.65rem 1rem;
+}
+.rank-row.current { border-color: var(--cyan); background: rgba(0,212,255,0.04); }
+
+.rank-insignia { font-size: 1.2rem; min-width: 2rem; text-align: center; }
+.rank-name { color: var(--text); font-size: 0.9rem; letter-spacing: 0.1em; flex: 1; }
+.rank-score { color: var(--text-dim); font-size: 0.75rem; letter-spacing: 0.05em; min-width: 80px; text-align: right; }
+.rank-bar-wrap { flex: 1; max-width: 200px; height: 4px; background: var(--surface); border-radius: 2px; overflow: hidden; }
+.rank-bar { height: 100%; border-radius: 2px; background: var(--cyan); }
+
+.rank-row.rank-fleet-admiral .rank-name { color: var(--gold); }
+.rank-row.rank-admiral       .rank-name { color: var(--amber); }
+.rank-row.rank-vice-admiral  .rank-name { color: #A78BFA; }
+.rank-row.rank-commodore     .rank-name { color: var(--cyan); }
+.rank-row.rank-captain       .rank-name { color: var(--green); }
+
+/* ─── SENSES OF WAR ─── */
+.senses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+
+.sense-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+}
+.sense-icon { font-size: 1.4rem; margin-bottom: 0.4rem; display: block; }
+.sense-title { font-size: 0.82rem; letter-spacing: 0.1em; color: var(--green); margin-bottom: 0.3rem; }
+.sense-desc { color: var(--text-secondary); font-size: 0.76rem; line-height: 1.5; }
+
+/* ─── CAREER COMMAND / MOCK STATS ─── */
+.career-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  max-width: 560px;
+}
+.career-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+.career-rank-badge {
+  font-size: 2rem;
+}
+.career-rank-name {
+  color: var(--gold);
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+}
+.career-rank-sub {
+  color: var(--text-dim);
+  font-size: 0.72rem;
+}
+
+.mock-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 1.2rem; }
+.mock-stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.6rem 0.8rem;
+}
+.mock-stat-label { color: var(--text-dim); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.mock-stat-value { color: var(--cyan); font-size: 1.1rem; letter-spacing: 0.05em; margin-top: 0.2rem; }
+
+.career-medals-label { color: var(--text-dim); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.career-medals-row { display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 1.2rem; }
+
+/* ─── FEATURES ─── */
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.2rem;
+}
+.feature-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+.feature-card h3 { color: var(--green); font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+.feature-card p { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5; }
+
+/* ─── CODE BLOCK ─── */
+.code-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  font-size: 0.8rem;
+  color: var(--green);
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+/* ─── DOWNLOAD CTA ─── */
+.download-section {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.download-section h2 { border-bottom: none; justify-content: center; }
+.download-eyemark { font-size: 3rem; margin-bottom: 0.8rem; display: block; }
+.download-desc { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+/* ─── LANGUAGE SWITCH ─── */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  z-index: 100;
+}
+.lang-switch:hover { color: var(--cyan); text-decoration: none; }
+
+footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+[dir="rtl"] body { direction: rtl; }
+[dir="rtl"] h1 { letter-spacing: 0.1em; }
+[dir="rtl"] .lang-switch { right: auto; left: 1rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sonar-ring { animation: none; opacity: 0; }
+  .medal-legendary, .medal-epic, .medal-rare, .medal-common { box-shadow: none; }
+}
+
+@media (max-width: 600px) {
+  .ship-row { flex-direction: column; align-items: flex-start; }
+  .mock-stats { grid-template-columns: 1fr; }
+  .weapons-grid { grid-template-columns: 1fr; }
+}

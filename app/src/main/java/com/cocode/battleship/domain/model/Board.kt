@@ -36,5 +36,22 @@ data class Board(
         }
     }
 
+    /**
+     * Applies multiple attacks at once (super weapon fire).
+     * Cells already in [attacks] are skipped silently.
+     * Callers are responsible for ensuring cells are in-bounds.
+     */
+    fun receiveWeaponAttack(cells: List<Pair<Int, Int>>): Board {
+        val newCells = cells.filter { it !in attacks }
+        if (newCells.isEmpty()) return this
+        val updatedShips = ships.map { ship ->
+            newCells.fold(ship) { acc, (r, c) -> acc.receiveHit(r, c) }
+        }
+        return copy(ships = updatedShips, attacks = attacks + newCells.toSet())
+    }
+
+    fun getCellStates(cells: List<Pair<Int, Int>>): List<CellState> =
+        cells.map { (r, c) -> getCellState(r, c) }
+
     fun getShipAt(row: Int, col: Int): Ship? = ships.find { it.occupies(row, col) }
 }

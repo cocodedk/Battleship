@@ -4,6 +4,8 @@ import com.cocode.battleship.domain.model.Board
 import com.cocode.battleship.domain.model.FLEET
 import com.cocode.battleship.domain.model.GamePhase
 import com.cocode.battleship.domain.model.ShipType
+import com.cocode.battleship.domain.model.SuperWeapon
+import com.cocode.battleship.domain.scoring.ScoreResult
 
 data class GameUiState(
     val phase: GamePhase = GamePhase.PLACEMENT,
@@ -14,5 +16,9 @@ data class GameUiState(
     val message: String = "Place your ships",
     val shipsToPlace: List<ShipType> = FLEET,
     val currentShipType: ShipType? = FLEET.first(),
-    val isHorizontal: Boolean = true
+    val isHorizontal: Boolean = true,
+    val trackers: TrackerState = TrackerState(),
+    val availableWeapons: List<SuperWeapon> = emptyList(),
+    val selectedWeapon: SuperWeapon? = null,
+    val scoreResult: ScoreResult? = null
 )
