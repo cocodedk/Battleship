@@ -507,7 +507,7 @@
     <section>
       <p class="section-label">◆ مرکز فرماندهی — آمار کارنامه</p>
       <h2>مرکز فرماندهی کارنامه</h2>
-      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">از طریق دکمه <strong style="color:var(--cyan)">آمار کارنامه</strong> در منوی اصلی قابل دسترسی است. سوابق در طول جلسه باقی می‌مانند — میراث شما اگر اپ بسته شود بازنشینی می‌شود.</p>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">دو صفحه اختصاصی از منوی اصلی: <strong style="color:var(--cyan)">مشاهده آمار</strong> رتبه و اعداد کارنامه را نشان می‌دهد؛ <strong style="color:var(--cyan)">دفتر مدال‌ها</strong> تمام ۱۵ مدال را با طراحی Canvas شش‌ضلعی و تعداد دفعات کسب هر مدال نمایش می‌دهد. سوابق پس از بستن اپ نیز باقی می‌مانند.</p>
       <div class="career-panel">
         <div class="career-header">
           <span class="career-rank-badge">⭐</span>
@@ -534,9 +534,9 @@
             <div class="mock-stat-value">7</div>
           </div>
         </div>
-        <div class="career-medals-label">مدال‌های کسب‌شده در این جلسه</div>
-        <div class="career-medals-row">
-          💎 🎯🎯 ⚡ 👑 🎯 🏹 🔥 🐋 🤫 🛡️ 🚤
+        <div class="career-medals-label">دفتر مدال‌ها — تعداد کسب در تمام دوران</div>
+        <div class="career-medals-row" style="font-size:0.75rem;letter-spacing:0.5px;">
+          💎×3 &nbsp; 🎯🎯×1 &nbsp; ⚡×2 &nbsp; 👑×1 &nbsp; 🎯×8 &nbsp; 🏹×5 &nbsp; 🔥×4 &nbsp; 🐋×2 &nbsp; 🤫×1 &nbsp; 🛡️×1 &nbsp; 🚤×3
         </div>
       </div>
     </section>
@@ -569,7 +569,7 @@
         <div class="feature-card">
           <span class="icon">🏅</span>
           <h3>۱۵ مدال</h3>
-          <p>چهار سطح نادرت: افسانه‌ای، حماسی، نادر، معمولی. در حین بازی کسب، امتیازدهی و ثبت می‌شوند.</p>
+          <p>چهار سطح نادرت: افسانه‌ای، حماسی، نادر، معمولی. صفحه اختصاصی دفتر مدال‌ها با طراحی Canvas شش‌ضلعی و تعداد کسب هر مدال در تمام دوران.</p>
         </div>
         <div class="feature-card">
           <span class="icon">⭐</span>
@@ -628,7 +628,10 @@ presentation/    ← Android / Jetpack Compose
   menu/          ← MenuScreen
   placement/     ← PlacementScreen
   game/          ← GameScreen, GameOverScreen, GameViewModel, GameUiState
-  components/    ← BattleGrid (reusable board composable)</div>
+  components/    ← BattleGrid (reusable board composable)
+  medals/        ← MedalsScreen, MedalCanvas (hex art), MedalSymbols,
+                    MedalsViewModel, MedalsStorage, SharedPreferencesMedalsStorage
+  stats/         ← StatsScreen</div>
     </section>
 
     <!-- ═══ DOWNLOAD CTA ═══ -->

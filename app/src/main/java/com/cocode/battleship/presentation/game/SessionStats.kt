@@ -1,6 +1,7 @@
 package com.cocode.battleship.presentation.game
 
 import com.cocode.battleship.domain.scoring.Badge
+import com.cocode.battleship.presentation.medals.MedalsStorage
 
 data class SessionStatsSnapshot(
     val gamesPlayed: Int = 0,
@@ -18,6 +19,7 @@ interface SessionStatsStorage {
 
 object SessionStats {
     private var storage: SessionStatsStorage? = null
+    private var medalsStorage: MedalsStorage? = null
 
     var gamesPlayed: Int = 0
         private set
@@ -32,8 +34,9 @@ object SessionStats {
     private val _allEarnedBadges: MutableSet<Badge> = mutableSetOf()
     val allEarnedBadges: Set<Badge> get() = _allEarnedBadges
 
-    fun initialize(storage: SessionStatsStorage) {
+    fun initialize(storage: SessionStatsStorage, medalsStorage: MedalsStorage? = null) {
         this.storage = storage
+        this.medalsStorage = medalsStorage
         restore(storage.load())
     }
 
@@ -48,6 +51,7 @@ object SessionStats {
         }
         if (score > bestScore) bestScore = score
         _allEarnedBadges.addAll(earnedBadges)
+        if (earnedBadges.isNotEmpty()) medalsStorage?.increment(earnedBadges)
         persist()
     }
 

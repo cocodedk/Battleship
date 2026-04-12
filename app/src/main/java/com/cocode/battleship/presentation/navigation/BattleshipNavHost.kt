@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -15,6 +17,9 @@ import androidx.navigation.compose.rememberNavController
 import com.cocode.battleship.presentation.game.GameOverScreen
 import com.cocode.battleship.presentation.game.GameScreen
 import com.cocode.battleship.presentation.game.GameViewModel
+import com.cocode.battleship.presentation.medals.MedalsScreen
+import com.cocode.battleship.presentation.medals.MedalsViewModel
+import com.cocode.battleship.presentation.medals.SharedPreferencesMedalsStorage
 import com.cocode.battleship.presentation.menu.MenuScreen
 import com.cocode.battleship.presentation.placement.PlacementScreen
 import com.cocode.battleship.presentation.stats.StatsScreen
@@ -26,6 +31,8 @@ fun BattleshipNavHost(
 ) {
     // Single ViewModel shared across all screens — created outside NavHost so all routes share the same instance
     val gameViewModel: GameViewModel = viewModel()
+    val context = LocalContext.current
+    val medalsStorage = remember { SharedPreferencesMedalsStorage(context) }
 
     Box(
         modifier = Modifier
@@ -43,11 +50,21 @@ fun BattleshipNavHost(
                         gameViewModel.resetGame()
                         navController.navigate(Screen.Placement.route)
                     },
-                    onViewStats = { navController.navigate(Screen.Stats.route) }
+                    onViewStats = { navController.navigate(Screen.Stats.route) },
+                    onViewMedals = { navController.navigate(Screen.Medals.route) }
                 )
             }
             composable(Screen.Stats.route) {
                 StatsScreen(onBack = { navController.popBackStack() })
+            }
+            composable(Screen.Medals.route) {
+                val medalsViewModel: MedalsViewModel = viewModel(
+                    factory = MedalsViewModel.factory(medalsStorage)
+                )
+                MedalsScreen(
+                    viewModel = medalsViewModel,
+                    onBack = { navController.popBackStack() }
+                )
             }
             composable(Screen.Placement.route) {
                 PlacementScreen(

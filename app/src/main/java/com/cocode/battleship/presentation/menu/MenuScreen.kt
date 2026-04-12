@@ -51,7 +51,7 @@ import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
 
 @Composable
-fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}) {
+fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}, onViewMedals: () -> Unit = {}) {
     val context = LocalContext.current
     val prefersReducedMotion = remember {
         Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f
@@ -176,6 +176,27 @@ fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}) {
             ) {
                 Text(
                     text = stringResource(R.string.menu_view_stats),
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 2.sp,
+                )
+            }
+
+            Spacer(Modifier.height(8.dp))
+
+            OutlinedButton(
+                onClick = onViewMedals,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(44.dp)
+                    .alpha(entry.secondaryButtonAlpha)
+                    .offset(x = entry.secondaryButtonOffsetX),
+                shape = RoundedCornerShape(4.dp),
+                border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.35f)),
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan.copy(alpha = 0.8f)),
+            ) {
+                Text(
+                    text = stringResource(R.string.menu_view_medals),
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Bold,
                     letterSpacing = 2.sp,
