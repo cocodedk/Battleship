@@ -46,12 +46,16 @@ jobs:
             exit 1
           fi
 
-      - name: Read and bump version
+      - name: Compute next version from latest tag
         id: version
         run: |
-          VERSION=$(tr -d '\r\n' < version.txt)
-          if [[ ! "$VERSION" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
-            echo "Invalid version format in version.txt: $VERSION"
+          LATEST=$(git tag --list 'v*' --sort=-version:refname | head -1)
+          BASE=${LATEST#v}
+          if [[ -z "$BASE" ]]; then
+            BASE=$(tr -d '\r\n' < version.txt)
+          fi
+          if [[ ! "$BASE" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            echo "Cannot determine base version (latest tag: '${LATEST}', version.txt: '${BASE}')"
             exit 1
           fi
           MAJOR="${BASH_REMATCH[1]}"
@@ -65,16 +69,7 @@ jobs:
             *) echo "Unsupported bump type: $BUMP"; exit 1 ;;
           esac
           NEW_VERSION="$MAJOR.$MINOR.$PATCH"
-          echo "$NEW_VERSION" > version.txt
           echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
-
-      - name: Commit version bump
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add version.txt
-          git commit -m "chore: bump version to ${{ steps.version.outputs.version }}"
-          git push
 
       - name: Decode keystore
         run: |
