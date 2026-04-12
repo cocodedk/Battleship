@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
 import com.cocode.battleship.domain.scoring.Rank
 import com.cocode.battleship.presentation.game.SessionStats
-import com.cocode.battleship.presentation.game.components.BadgeShowcase
 import com.cocode.battleship.ui.theme.AmberWarning
 import com.cocode.battleship.ui.theme.DeepNavy
 import com.cocode.battleship.ui.theme.NavyBorder
@@ -95,8 +94,6 @@ fun StatsScreen(onBack: () -> Unit) {
                 RankBanner(rank = rank)
                 Spacer(Modifier.height(12.dp))
                 SessionStatsPanel()
-                Spacer(Modifier.height(12.dp))
-                BadgeShowcase(badges = SessionStats.allEarnedBadges.toList())
             }
 
             Spacer(Modifier.height(24.dp))
