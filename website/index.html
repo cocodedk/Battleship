@@ -496,7 +496,7 @@
     <section>
       <p class="section-label">◆ COMMAND CENTER — CAREER STATISTICS</p>
       <h2>CAREER COMMAND</h2>
-      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">Accessible from the main menu via the <strong style="color:var(--cyan)">CAREER STATS</strong> button. Records persist across app restarts, so your career history survives when the app is closed.</p>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">Two dedicated screens accessible from the main menu: <strong style="color:var(--cyan)">VIEW STATS</strong> shows your rank and career numbers; <strong style="color:var(--cyan)">MEDAL REGISTRY</strong> shows all 15 medals as hexagonal Canvas art with per-badge earn counts. Records persist across app restarts.</p>
       <div class="career-panel">
         <div class="career-header">
           <span class="career-rank-badge">⭐</span>
@@ -523,9 +523,9 @@
             <div class="mock-stat-value">7</div>
           </div>
         </div>
-        <div class="career-medals-label">Medals Earned This Session</div>
-        <div class="career-medals-row">
-          💎 🎯🎯 ⚡ 👑 🎯 🏹 🔥 🐋 🤫 🛡️ 🚤
+        <div class="career-medals-label">Medal Registry — lifetime earn counts</div>
+        <div class="career-medals-row" style="font-size:0.75rem;letter-spacing:0.5px;">
+          💎×3 &nbsp; 🎯🎯×1 &nbsp; ⚡×2 &nbsp; 👑×1 &nbsp; 🎯×8 &nbsp; 🏹×5 &nbsp; 🔥×4 &nbsp; 🐋×2 &nbsp; 🤫×1 &nbsp; 🛡️×1 &nbsp; 🚤×3
         </div>
       </div>
     </section>
@@ -558,7 +558,7 @@
         <div class="feature-card">
           <span class="icon">🏅</span>
           <h3>15 MEDALS</h3>
-          <p>Four rarity tiers: Legendary, Epic, Rare, Common. Earned mid-game, scored, recorded.</p>
+          <p>Four rarity tiers: Legendary, Epic, Rare, Common. Dedicated Medal Registry screen with hexagonal Canvas art and lifetime earn counts per badge.</p>
         </div>
         <div class="feature-card">
           <span class="icon">⭐</span>
@@ -617,7 +617,10 @@ presentation/    ← Android / Jetpack Compose
   menu/          ← MenuScreen
   placement/     ← PlacementScreen
   game/          ← GameScreen, GameOverScreen, GameViewModel, GameUiState
-  components/    ← BattleGrid (reusable board composable)</div>
+  components/    ← BattleGrid (reusable board composable)
+  medals/        ← MedalsScreen, MedalCanvas (hex art), MedalSymbols,
+                    MedalsViewModel, MedalsStorage, SharedPreferencesMedalsStorage
+  stats/         ← StatsScreen</div>
     </section>
 
     <!-- ═══ DOWNLOAD CTA ═══ -->
