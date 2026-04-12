@@ -3,6 +3,7 @@ package com.cocode.battleship.presentation.game
 import android.media.AudioAttributes
 import android.media.AudioFormat
 import android.media.AudioTrack
+import com.cocode.battleship.domain.model.SuperWeapon
 import kotlin.math.PI
 import kotlin.math.sin
 import kotlinx.coroutines.CoroutineScope
@@ -28,6 +29,28 @@ class SoundManager {
     }
     fun playLose() = scope.launch { sweep(600f, 35f, 1300, decay = false) }
     fun playSonarPing() = scope.launch { tone(2200f, 70, decay = true) }
+    fun playWeaponFire(weapon: SuperWeapon) = scope.launch {
+        when (weapon) {
+            SuperWeapon.CARPET_BOMB -> {
+                tone(140f, 60, decay = true); delay(25); tone(110f, 90, decay = true); delay(20); explosion(220)
+            }
+            SuperWeapon.BATTLESHIP_BARRAGE -> {
+                repeat(4) {
+                    tone(950f, 35, decay = true)
+                    delay(20)
+                }
+            }
+            SuperWeapon.SONAR_SWEEP -> {
+                sweep(1800f, 300f, 220, decay = true)
+            }
+            SuperWeapon.TORPEDO_SPREAD -> {
+                tone(600f, 35, decay = true); delay(18); tone(520f, 45, decay = true); delay(18); tone(440f, 65, decay = true)
+            }
+            SuperWeapon.PRECISION_STRIKE -> {
+                tone(2100f, 25, decay = true); delay(18); tone(2500f, 45, decay = true)
+            }
+        }
+    }
 
     fun release() { scope.cancel() }
 

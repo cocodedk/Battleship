@@ -14,7 +14,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,13 +27,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cocode.battleship.domain.model.Board
 import com.cocode.battleship.domain.model.CellState
 import com.cocode.battleship.domain.model.Ship
 import com.cocode.battleship.domain.model.ShipType
+import com.cocode.battleship.domain.model.SuperWeapon
+import com.cocode.battleship.presentation.game.WeaponEffectCell
 import com.cocode.battleship.ui.theme.MissWhite
 import com.cocode.battleship.ui.theme.NavyBorder
 import com.cocode.battleship.ui.theme.NavyCard
@@ -61,6 +68,7 @@ internal fun GridCell(
     showShips: Boolean,
     previewPositions: Set<Pair<Int, Int>>,
     isPreviewValid: Boolean,
+    weaponEffectCell: WeaponEffectCell?,
     onCellClick: ((row: Int, col: Int) -> Unit)?,
     allowAttackedClicks: Boolean,
     modifier: Modifier,
@@ -106,6 +114,20 @@ internal fun GridCell(
         }
     }
 
+    val weaponEffectAlpha = remember { Animatable(0f) }
+    val weaponEffectScale = remember { Animatable(0.45f) }
+    LaunchedEffect(weaponEffectCell?.triggerId) {
+        if (weaponEffectCell != null) {
+            kotlinx.coroutines.delay(weaponEffectCell.delayMs.toLong())
+            weaponEffectAlpha.snapTo(0.95f)
+            weaponEffectScale.snapTo(0.45f)
+            weaponEffectScale.animateTo(1f, tween(320, easing = FastOutSlowInEasing))
+            weaponEffectAlpha.animateTo(0f, tween(420, easing = FastOutSlowInEasing))
+        } else {
+            weaponEffectAlpha.snapTo(0f)
+        }
+    }
+
     Box(
         modifier = modifier
             .aspectRatio(1f)
@@ -128,6 +150,13 @@ internal fun GridCell(
         if (flashAlpha.value > 0f) {
             Box(Modifier.fillMaxSize().background(Color.White.copy(alpha = flashAlpha.value)))
         }
+        if (weaponEffectCell != null && weaponEffectAlpha.value > 0f) {
+            WeaponEffectOverlay(
+                weapon = weaponEffectCell.weapon,
+                alpha = weaponEffectAlpha.value,
+                scale = weaponEffectScale.value
+            )
+        }
         // Sunk glow
         if (cellState == CellState.SUNK) {
             SunkGlowOverlay()
@@ -144,6 +173,83 @@ private fun SunkGlowOverlay() {
         label = "glow"
     )
     Box(Modifier.fillMaxSize().background(TorpedoRed.copy(alpha = alpha)))
+}
+
+@Composable
+private fun WeaponEffectOverlay(
+    weapon: SuperWeapon,
+    alpha: Float,
+    scale: Float
+) {
+    val tint = weaponTint(weapon)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+                this.alpha = alpha
+            },
+        contentAlignment = Alignment.Center
+    ) {
+        when (weapon) {
+            SuperWeapon.CARPET_BOMB -> {
+                Box(
+                    Modifier
+                        .fillMaxSize()
+                        .background(tint.copy(alpha = 0.28f), RoundedCornerShape(2.dp))
+                        .border(1.dp, tint.copy(alpha = 0.9f), RoundedCornerShape(2.dp))
+                )
+                Text(text = "✹", color = tint, fontSize = 12.sp)
+            }
+            SuperWeapon.BATTLESHIP_BARRAGE -> {
+                Box(Modifier.fillMaxWidth().height(3.dp).background(tint.copy(alpha = 0.95f)))
+                Box(Modifier.width(3.dp).fillMaxSize().background(tint.copy(alpha = 0.95f)))
+            }
+            SuperWeapon.SONAR_SWEEP -> {
+                Box(Modifier.fillMaxWidth().height(4.dp).background(tint.copy(alpha = 0.95f)))
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(10.dp)
+                        .background(tint.copy(alpha = 0.20f))
+                )
+            }
+            SuperWeapon.TORPEDO_SPREAD -> {
+                Box(Modifier.width(4.dp).fillMaxSize().background(tint.copy(alpha = 0.95f)))
+                Box(
+                    Modifier
+                        .width(10.dp)
+                        .fillMaxSize()
+                        .background(tint.copy(alpha = 0.20f))
+                )
+            }
+            SuperWeapon.PRECISION_STRIKE -> {
+                Box(
+                    Modifier
+                        .width(3.dp)
+                        .fillMaxSize()
+                        .graphicsLayer { rotationZ = 45f }
+                        .background(tint.copy(alpha = 0.95f))
+                )
+                Box(
+                    Modifier
+                        .width(3.dp)
+                        .fillMaxSize()
+                        .graphicsLayer { rotationZ = -45f }
+                        .background(tint.copy(alpha = 0.95f))
+                )
+            }
+        }
+    }
+}
+
+private fun weaponTint(weapon: SuperWeapon): Color = when (weapon) {
+    SuperWeapon.CARPET_BOMB -> NeonOrange
+    SuperWeapon.BATTLESHIP_BARRAGE -> SonarCyan
+    SuperWeapon.SONAR_SWEEP -> SonarCyan
+    SuperWeapon.TORPEDO_SPREAD -> TorpedoRed
+    SuperWeapon.PRECISION_STRIKE -> NeonViolet
 }
 
 internal fun shipNeonColor(type: ShipType): Color = when (type) {

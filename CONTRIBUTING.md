@@ -37,3 +37,31 @@ The pre-commit hook runs the smoke check before every commit.
 - [ ] Composables reviewed against the naval command aesthetic
 - [ ] No files exceed 200 lines
 - [ ] Strings added to `res/values/strings.xml` (no hardcoded strings in composables)
+
+## Local Git Setup
+
+Run these once after cloning (recommended):
+
+```bash
+git config pull.rebase true          # rebase on pull instead of merge commit
+git config core.autocrlf input       # normalize CRLF → LF on commit (macOS/Linux)
+git config push.autoSetupRemote true # git push without needing -u the first time
+git config init.defaultBranch main   # default branch name for new repos
+```
+
+Windows contributors: use `core.autocrlf true` instead of `input`.
+
+## Branch Naming
+
+Branch names must match the Conventional Commit type used in the PR:
+
+| Branch prefix | Conventional Commit type | Example |
+|---|---|---|
+| `feature/` | `feat:` | `feature/add-ship-placement` |
+| `fix/` | `fix:` | `fix/crash-on-empty-board` |
+| `chore/` | `chore:` | `chore/update-dependencies` |
+| `docs/` | `docs:` | `docs/update-contributing` |
+| `refactor/` | `refactor:` | `refactor/extract-ai-logic` |
+| `ci/` | `ci:` | `ci/add-dependabot` |
+
+Branch names use kebab-case. Never commit directly to `main` — always open a PR.

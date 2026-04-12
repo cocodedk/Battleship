@@ -1,5 +1,10 @@
 package com.cocode.battleship.presentation.game
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -26,9 +31,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -38,13 +45,11 @@ import com.cocode.battleship.domain.model.GamePhase
 import com.cocode.battleship.presentation.components.BattleGrid
 import com.cocode.battleship.presentation.game.components.WeaponSelector
 import com.cocode.battleship.ui.theme.AmberWarning
-import com.cocode.battleship.ui.theme.DeepNavy
 import com.cocode.battleship.ui.theme.NavyCard
-import com.cocode.battleship.ui.theme.NavySurface
 import com.cocode.battleship.ui.theme.PhosphorGreen
 import com.cocode.battleship.ui.theme.SonarCyan
-import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
+import kotlinx.coroutines.delay
 
 private const val SYMBOL_ARROW = "▶"
 private const val SYMBOL_SECTION = "◆"
@@ -53,9 +58,18 @@ private const val SYMBOL_SECTION = "◆"
 fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
     val state by viewModel.state.collectAsState()
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
+    val weaponHaptics = remember(context) { WeaponHaptics(context.applicationContext) }
 
-    LaunchedEffect(state.phase) {
-        if (state.phase == GamePhase.GAME_OVER) onGameOver()
+    LaunchedEffect(state.phase, state.activeWeaponEffect?.triggerId) {
+        if (state.phase == GamePhase.GAME_OVER) {
+            if (state.activeWeaponEffect != null) delay(650)
+            onGameOver()
+        }
+    }
+
+    LaunchedEffect(state.activeWeaponEffect?.triggerId) {
+        state.activeWeaponEffect?.let { weaponHaptics.perform(it.weapon) }
     }
 
     val infiniteTransition = rememberInfiniteTransition(label = "blink")
@@ -112,14 +126,20 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
                 }
             }
 
-            if (state.availableWeapons.isNotEmpty() && state.isPlayerTurn) {
-                Spacer(modifier = Modifier.height(10.dp))
-                WeaponSelector(
-                    available = state.availableWeapons,
-                    selected = state.selectedWeapon,
-                    onSelect = { viewModel.selectWeapon(it) },
-                    modifier = Modifier.fillMaxWidth()
-                )
+            AnimatedVisibility(
+                visible = state.availableWeapons.isNotEmpty() && state.isPlayerTurn,
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut()
+            ) {
+                Column {
+                    Spacer(modifier = Modifier.height(10.dp))
+                    WeaponSelector(
+                        available = state.availableWeapons,
+                        selected = state.selectedWeapon,
+                        onSelect = { viewModel.selectWeapon(it) },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -131,6 +151,7 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
                 showShips = false,
                 onCellClick = if (state.isPlayerTurn) { r, c -> viewModel.playerAttack(r, c) } else null,
                 allowAttackedClicks = state.selectedWeapon != null,
+                weaponEffect = state.activeWeaponEffect,
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp)
             )
 

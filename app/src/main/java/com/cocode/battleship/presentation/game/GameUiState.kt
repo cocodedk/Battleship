@@ -20,5 +20,6 @@ data class GameUiState(
     val trackers: TrackerState = TrackerState(),
     val availableWeapons: List<SuperWeapon> = emptyList(),
     val selectedWeapon: SuperWeapon? = null,
+    val activeWeaponEffect: SuperWeaponEffect? = null,
     val scoreResult: ScoreResult? = null
 )
