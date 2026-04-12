@@ -3,9 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-val versionName = System.getenv("VERSION_NAME")
-    ?: file("../version.txt").takeIf { it.exists() }?.readText()?.trim()
-    ?: "1.0.0"
+val versionName = System.getenv("VERSION_NAME") ?: "0.0.0-local"
 val semverParts = versionName.split(".")
 val major = semverParts.getOrNull(0)?.toIntOrNull() ?: 1
 val minor = semverParts.getOrNull(1)?.toIntOrNull() ?: 0
