@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.cocode.battleship.domain.model.Board
 import com.cocode.battleship.domain.model.GRID_SIZE
 import com.cocode.battleship.domain.model.Ship
+import com.cocode.battleship.presentation.game.SuperWeaponEffect
 import com.cocode.battleship.ui.theme.TextDim
 
 private val ROW_LABELS = listOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
@@ -27,6 +28,7 @@ fun BattleGrid(
     onCellClick: ((row: Int, col: Int) -> Unit)? = null,
     previewShip: Ship? = null,
     allowAttackedClicks: Boolean = false,
+    weaponEffect: SuperWeaponEffect? = null,
     modifier: Modifier = Modifier
 ) {
     val previewPositions = previewShip?.positions?.toSet() ?: emptySet()
@@ -63,6 +65,7 @@ fun BattleGrid(
                         showShips = showShips,
                         previewPositions = previewPositions,
                         isPreviewValid = isPreviewValid,
+                        weaponEffectCell = weaponEffect?.effectCellAt(row, col),
                         onCellClick = onCellClick,
                         allowAttackedClicks = allowAttackedClicks,
                         modifier = Modifier.weight(1f)

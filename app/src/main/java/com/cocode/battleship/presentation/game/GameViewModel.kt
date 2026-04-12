@@ -22,6 +22,7 @@ class GameViewModel : ViewModel() {
     val state: StateFlow<GameUiState> = _state.asStateFlow()
 
     private val sounds = SoundManager()
+    private var nextWeaponEffectId: Int = 1
 
     override fun onCleared() {
         super.onCleared()
@@ -91,9 +92,19 @@ class GameViewModel : ViewModel() {
         val selected = s.selectedWeapon
         val firedCells: List<Pair<Int, Int>>
         val newAiBoard: com.cocode.battleship.domain.model.Board
+        val weaponEffect = selected?.let {
+            SuperWeaponEffect(
+                triggerId = nextWeaponEffectId++,
+                weapon = it,
+                targetRow = row,
+                targetCol = col,
+                cells = resolveWeaponCells(it, row, col).toSet()
+            )
+        }
 
         if (selected != null) {
-            firedCells = resolveWeaponCells(selected, row, col)
+            sounds.playWeaponFire(selected)
+            firedCells = weaponEffect!!.cells.toList()
             newAiBoard = s.aiBoard.receiveWeaponAttack(firedCells)
         } else {
             if (s.aiBoard.hasBeenAttacked(row, col)) return
@@ -123,6 +134,7 @@ class GameViewModel : ViewModel() {
                 trackers = newTrackers,
                 availableWeapons = newAvailable,
                 selectedWeapon = null,
+                activeWeaponEffect = weaponEffect,
                 phase = GamePhase.GAME_OVER,
                 winner = "Player",
                 message = "You sunk the fleet! You win!",
@@ -140,9 +152,19 @@ class GameViewModel : ViewModel() {
             trackers = newTrackers,
             availableWeapons = newAvailable,
             selectedWeapon = null,
+            activeWeaponEffect = weaponEffect,
             isPlayerTurn = false,
             message = hitMsg
         )
+
+        viewModelScope.launch {
+            if (weaponEffect != null) {
+                delay(650)
+                if (_state.value.activeWeaponEffect?.triggerId == weaponEffect.triggerId) {
+                    _state.value = _state.value.copy(activeWeaponEffect = null)
+                }
+            }
+        }
 
         viewModelScope.launch {
             delay(800)

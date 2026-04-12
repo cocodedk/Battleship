@@ -35,7 +35,7 @@ Unlock special attack abilities by sinking enemy ships (5 total):
 - **15 medals** across 4 rarities (Common, Rare, Epic, Legendary)
   - Examples: Perfect Gunner (win with 0 misses), Flawless Victory (all 5 ships intact), Dead-Eye (80%+ accuracy)
 - **8 career ranks**: Cadet → Ensign → Lieutenant → Captain → Commodore → Vice Admiral → Admiral → Fleet Admiral
-- **Career stats screen** — track accumulated medals, best rank, and win streaks across games
+- **Career stats screen** — track accumulated medals, best rank, and win streaks across games and app restarts
 
 ### Visual & Audio Effects
 
@@ -136,8 +136,10 @@ app/src/main/java/com/cocode/battleship/
 
 ---
 
+## Author
+
+**Babak Bandpey** — [cocode.dk](https://cocode.dk) | [LinkedIn](https://linkedin.com/in/babakbandpey) | [GitHub](https://github.com/cocodedk)
+
 ## License
 
-Apache-2.0 | © 2026 [Cocode](https://cocode.dk) | Battleship
-
-Created by Babak Bandpey
+Apache-2.0 | © 2026 [Cocode](https://cocode.dk) | Created by [Babak Bandpey](https://linkedin.com/in/babakbandpey)

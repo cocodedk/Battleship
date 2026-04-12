@@ -31,6 +31,8 @@ import com.cocode.battleship.domain.model.Board
 import com.cocode.battleship.domain.model.CellState
 import com.cocode.battleship.domain.model.Ship
 import com.cocode.battleship.domain.model.ShipType
+import com.cocode.battleship.domain.model.SuperWeapon
+import com.cocode.battleship.presentation.game.WeaponEffectCell
 import com.cocode.battleship.ui.theme.MissWhite
 import com.cocode.battleship.ui.theme.NavyBorder
 import com.cocode.battleship.ui.theme.NavyCard
@@ -61,6 +63,7 @@ internal fun GridCell(
     showShips: Boolean,
     previewPositions: Set<Pair<Int, Int>>,
     isPreviewValid: Boolean,
+    weaponEffectCell: WeaponEffectCell?,
     onCellClick: ((row: Int, col: Int) -> Unit)?,
     allowAttackedClicks: Boolean,
     modifier: Modifier,
@@ -106,6 +109,20 @@ internal fun GridCell(
         }
     }
 
+    val weaponEffectAlpha = remember { Animatable(0f) }
+    val weaponEffectScale = remember { Animatable(0.45f) }
+    LaunchedEffect(weaponEffectCell?.triggerId) {
+        if (weaponEffectCell != null) {
+            kotlinx.coroutines.delay(weaponEffectCell.delayMs.toLong())
+            weaponEffectAlpha.snapTo(0.95f)
+            weaponEffectScale.snapTo(0.45f)
+            weaponEffectScale.animateTo(1f, tween(320, easing = FastOutSlowInEasing))
+            weaponEffectAlpha.animateTo(0f, tween(420, easing = FastOutSlowInEasing))
+        } else {
+            weaponEffectAlpha.snapTo(0f)
+        }
+    }
+
     Box(
         modifier = modifier
             .aspectRatio(1f)
@@ -127,6 +144,13 @@ internal fun GridCell(
         // Flash overlay
         if (flashAlpha.value > 0f) {
             Box(Modifier.fillMaxSize().background(Color.White.copy(alpha = flashAlpha.value)))
+        }
+        if (weaponEffectCell != null && weaponEffectAlpha.value > 0f) {
+            WeaponEffectOverlay(
+                weapon = weaponEffectCell.weapon,
+                alpha = weaponEffectAlpha.value,
+                scale = weaponEffectScale.value
+            )
         }
         // Sunk glow
         if (cellState == CellState.SUNK) {

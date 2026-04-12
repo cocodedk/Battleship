@@ -2,7 +2,23 @@ package com.cocode.battleship.presentation.game
 
 import com.cocode.battleship.domain.scoring.Badge
 
+data class SessionStatsSnapshot(
+    val gamesPlayed: Int = 0,
+    val totalWins: Int = 0,
+    val currentWinStreak: Int = 0,
+    val longestWinStreak: Int = 0,
+    val bestScore: Int = 0,
+    val earnedBadges: Set<Badge> = emptySet()
+)
+
+interface SessionStatsStorage {
+    fun load(): SessionStatsSnapshot
+    fun save(snapshot: SessionStatsSnapshot)
+}
+
 object SessionStats {
+    private var storage: SessionStatsStorage? = null
+
     var gamesPlayed: Int = 0
         private set
     var totalWins: Int = 0
@@ -16,6 +32,11 @@ object SessionStats {
     private val _allEarnedBadges: MutableSet<Badge> = mutableSetOf()
     val allEarnedBadges: Set<Badge> get() = _allEarnedBadges
 
+    fun initialize(storage: SessionStatsStorage) {
+        this.storage = storage
+        restore(storage.load())
+    }
+
     fun record(score: Int, isWin: Boolean, earnedBadges: List<Badge> = emptyList()) {
         gamesPlayed++
         if (isWin) {
@@ -27,14 +48,34 @@ object SessionStats {
         }
         if (score > bestScore) bestScore = score
         _allEarnedBadges.addAll(earnedBadges)
+        persist()
     }
 
     fun reset() {
-        gamesPlayed = 0
-        totalWins = 0
-        currentWinStreak = 0
-        longestWinStreak = 0
-        bestScore = 0
+        restore(SessionStatsSnapshot())
+        persist()
+    }
+
+    internal fun snapshot(): SessionStatsSnapshot = SessionStatsSnapshot(
+        gamesPlayed = gamesPlayed,
+        totalWins = totalWins,
+        currentWinStreak = currentWinStreak,
+        longestWinStreak = longestWinStreak,
+        bestScore = bestScore,
+        earnedBadges = _allEarnedBadges.toSet()
+    )
+
+    private fun restore(snapshot: SessionStatsSnapshot) {
+        gamesPlayed = snapshot.gamesPlayed
+        totalWins = snapshot.totalWins
+        currentWinStreak = snapshot.currentWinStreak
+        longestWinStreak = snapshot.longestWinStreak
+        bestScore = snapshot.bestScore
         _allEarnedBadges.clear()
+        _allEarnedBadges.addAll(snapshot.earnedBadges)
+    }
+
+    private fun persist() {
+        storage?.save(snapshot())
     }
 }
