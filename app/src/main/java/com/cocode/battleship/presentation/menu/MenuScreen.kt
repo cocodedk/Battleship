@@ -157,6 +157,8 @@ fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}) {
                 color = TextDim,
                 letterSpacing = 1.sp,
             )
+
+            MenuFooter()
         }
     }
 }

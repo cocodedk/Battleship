@@ -8,6 +8,9 @@
     <string name="menu_system_label">[ NAVAL COMMAND SYSTEM ]</string>
     <string name="menu_game_mode">SINGLE PLAYER  ·  vs AI  ·  10×10 GRID</string>
     <string name="menu_view_stats">CAREER STATS</string>
+    <string name="menu_developed_by">DEVELOPED BY BABAK BANDPEY</string>
+    <string name="menu_website_link">[ cocode.dk ]</string>
+    <string name="menu_apk_link">[ GET APK ↗ ]</string>
 
     <!-- Placement -->
     <string name="placement_title">DEPLOY FLEET</string>
@@ -47,7 +50,7 @@
     <string name="game_over_stats_ships_sunk">Ships Sunk</string>
     <string name="game_over_badges_title">MEDALS EARNED</string>
     <string name="game_over_badges_none">No medals earned — keep fighting, sailor.</string>
-    <string name="game_over_session_label">SESSION</string>
+    <string name="game_over_session_label">CAREER</string>
     <string name="game_over_session_games">Games</string>
     <string name="game_over_session_wins">Wins</string>
     <string name="game_over_session_streak">Streak</string>
@@ -57,7 +60,7 @@
     <!-- Stats Screen -->
     <string name="stats_title">CAREER RECORD</string>
     <string name="stats_rank_label">HIGHEST RANK</string>
-    <string name="stats_session_title">SESSION STATS</string>
+    <string name="stats_session_title">CAREER STATS</string>
     <string name="stats_games_played">Games Played</string>
     <string name="stats_wins">Victories</string>
     <string name="stats_best_score">Best Score</string>
