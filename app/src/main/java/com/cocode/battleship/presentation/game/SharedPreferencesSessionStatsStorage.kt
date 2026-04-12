@@ -26,7 +26,7 @@ class SharedPreferencesSessionStatsStorage(context: Context) : SessionStatsStora
             .putInt(KEY_LONGEST_WIN_STREAK, snapshot.longestWinStreak)
             .putInt(KEY_BEST_SCORE, snapshot.bestScore)
             .putStringSet(KEY_EARNED_BADGES, snapshot.earnedBadges.mapTo(mutableSetOf()) { it.name })
-            .apply()
+            .commit()
     }
 
     private companion object {

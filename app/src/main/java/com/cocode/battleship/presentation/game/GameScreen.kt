@@ -65,7 +65,7 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
     val context = LocalContext.current
     val weaponHaptics = remember(context) { WeaponHaptics(context.applicationContext) }
 
-    LaunchedEffect(state.phase, state.activeWeaponEffect?.triggerId) {
+    LaunchedEffect(state.phase) {
         if (state.phase == GamePhase.GAME_OVER) {
             if (state.activeWeaponEffect != null) delay(650)
             onGameOver()

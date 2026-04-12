@@ -31,7 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
@@ -66,8 +66,8 @@ fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}) {
         0.5f, 0f, infiniteRepeatable(tween(2800, easing = LinearEasing), RepeatMode.Restart), label = "alpha")
     val radarAngle by infiniteTransition.animateFloat(
         0f, 360f, infiniteRepeatable(tween(4000, easing = LinearEasing), RepeatMode.Restart), label = "radar")
-
     val entry = rememberMenuEntryState(prefersReducedMotion)
+    val effectiveBlinkAlpha = if (prefersReducedMotion) 1f else blinkAlpha
     val effectivePulse = if (prefersReducedMotion) 0f else pulseAlpha
     val effectiveScale = if (prefersReducedMotion) 0f else pulseScale
     val subtitleMod = Modifier.alpha(entry.subtitleAlpha).offset(y = entry.subtitleOffsetY)
@@ -135,9 +135,10 @@ fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}) {
                     .height(52.dp)
                     .alpha(entry.primaryButtonAlpha)
                     .offset(x = entry.primaryButtonOffsetX)
-                    .drawBehind {
+                    .drawWithContent {
+                        drawContent()
                         drawOval(
-                            color = AmberWarning.copy(alpha = blinkAlpha * 0.35f),
+                            color = AmberWarning.copy(alpha = effectiveBlinkAlpha * 0.35f),
                             style = Stroke(width = 10.dp.toPx())
                         )
                     }

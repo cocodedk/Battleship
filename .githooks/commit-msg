@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
-MSG=$(cat "$1")
-if ! echo "$MSG" | grep -qE '^(feat|fix|chore|docs|style|refactor|test|ci|build|perf|revert)(\(.+\))?: .+'; then
+SUBJECT=$(grep -v '^#' "$1" | grep -v '^[[:space:]]*$' | head -1)
+if ! echo "$SUBJECT" | grep -qE '^(feat|fix|chore|docs|style|refactor|test|ci|build|perf|revert)(\(.+\))?: .+'; then
   echo "ERROR: Commit message must follow Conventional Commits."
   echo "  Example: feat: add user login"
   echo "  Types: feat|fix|chore|docs|style|refactor|test|ci|build|perf|revert"

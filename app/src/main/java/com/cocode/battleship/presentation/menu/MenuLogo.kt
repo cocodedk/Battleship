@@ -17,10 +17,10 @@ private fun revealAlpha(reveal: Float, threshold: Float): Float =
 
 private fun nearCardinal(angle: Float, threshold: Float = 15f): Boolean {
     val a = ((angle % 360) + 360) % 360
-    return a < threshold || a > 360 - threshold ||
-           abs(a - 90) < threshold ||
-           abs(a - 180) < threshold ||
-           abs(a - 270) < threshold
+    return a <= threshold || a >= 360 - threshold ||
+           abs(a - 90) <= threshold ||
+           abs(a - 180) <= threshold ||
+           abs(a - 270) <= threshold
 }
 
 @Composable
