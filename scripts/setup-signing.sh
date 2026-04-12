@@ -43,12 +43,24 @@ printf "Keystore password: "
 stty -echo 2>/dev/null || true
 read -r KSPASS
 restore_tty
+case "$KSPASS" in
+  *'"'*)
+    echo 'ERROR: Password must not contain " (double quote).'
+    exit 1
+    ;;
+esac
 echo ""
 
 printf "Key password (Enter = same as keystore password): "
 stty -echo 2>/dev/null || true
 read -r KEYPASS
 restore_tty
+case "$KEYPASS" in
+  *'"'*)
+    echo 'ERROR: Key password must not contain " (double quote).'
+    exit 1
+    ;;
+esac
 echo ""
 
 [ -z "$KEYPASS" ] && KEYPASS="$KSPASS"
