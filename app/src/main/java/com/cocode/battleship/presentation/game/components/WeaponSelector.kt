@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,6 +36,7 @@ fun WeaponSelector(
     available: List<SuperWeapon>,
     selected: SuperWeapon?,
     onSelect: (SuperWeapon) -> Unit,
+    enabled: Boolean = true,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
@@ -56,6 +58,7 @@ fun WeaponSelector(
                 WeaponChip(
                     weapon = weapon,
                     isSelected = weapon == selected,
+                    enabled = enabled,
                     onClick = { onSelect(weapon) }
                 )
             }
@@ -67,6 +70,7 @@ fun WeaponSelector(
 private fun WeaponChip(
     weapon: SuperWeapon,
     isSelected: Boolean,
+    enabled: Boolean,
     onClick: () -> Unit
 ) {
     val bg = if (isSelected) SonarCyan.copy(alpha = 0.25f) else NavyCard
@@ -74,10 +78,11 @@ private fun WeaponChip(
     val textColor = if (isSelected) SonarCyan else TextSecondary
     Row(
         modifier = Modifier
+            .alpha(if (enabled) 1f else 0.4f)
             .clip(RoundedCornerShape(4.dp))
             .background(bg)
             .border(1.dp, border, RoundedCornerShape(4.dp))
-            .clickable { onClick() }
+            .then(if (enabled) Modifier.clickable { onClick() } else Modifier)
             .padding(horizontal = 10.dp, vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

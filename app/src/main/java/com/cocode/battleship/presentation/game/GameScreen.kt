@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
 import com.cocode.battleship.domain.model.GamePhase
+import com.cocode.battleship.domain.model.SuperWeapon
 import com.cocode.battleship.presentation.components.BattleGrid
 import com.cocode.battleship.presentation.game.components.WeaponSelector
 import com.cocode.battleship.ui.theme.AmberWarning
@@ -53,6 +54,9 @@ import kotlinx.coroutines.delay
 
 private const val SYMBOL_ARROW = "▶"
 private const val SYMBOL_SECTION = "◆"
+
+internal fun weaponSelectorVisible(availableWeapons: List<SuperWeapon>): Boolean =
+    availableWeapons.isNotEmpty()
 
 @Composable
 fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
@@ -127,7 +131,7 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
             }
 
             AnimatedVisibility(
-                visible = state.availableWeapons.isNotEmpty() && state.isPlayerTurn,
+                visible = weaponSelectorVisible(state.availableWeapons),
                 enter = expandVertically() + fadeIn(),
                 exit = shrinkVertically() + fadeOut()
             ) {
@@ -137,6 +141,7 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
                         available = state.availableWeapons,
                         selected = state.selectedWeapon,
                         onSelect = { viewModel.selectWeapon(it) },
+                        enabled = state.isPlayerTurn,
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
