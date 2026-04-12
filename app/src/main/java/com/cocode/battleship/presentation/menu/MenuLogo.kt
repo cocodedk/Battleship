@@ -8,16 +8,27 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
+import com.cocode.battleship.ui.theme.PhosphorGreen
 import com.cocode.battleship.ui.theme.SonarCyan
+import kotlin.math.abs
 
 private fun revealAlpha(reveal: Float, threshold: Float): Float =
     ((reveal - threshold) / (1f - threshold)).coerceIn(0f, 1f)
+
+private fun nearCardinal(angle: Float, threshold: Float = 15f): Boolean {
+    val a = ((angle % 360) + 360) % 360
+    return a < threshold || a > 360 - threshold ||
+           abs(a - 90) < threshold ||
+           abs(a - 180) < threshold ||
+           abs(a - 270) < threshold
+}
 
 @Composable
 fun MenuLogo(
     pulseScale: Float,
     pulseAlpha: Float,
     reveal: Float = 1f,
+    radarAngle: Float = -1f,
     modifier: Modifier = Modifier
 ) {
     Canvas(modifier = modifier) {
@@ -59,8 +70,11 @@ fun MenuLogo(
         val crosshairAlpha = revealAlpha(reveal, 0.75f)
         if (crosshairAlpha > 0f) {
             val gap = innerR + 3.dp.toPx()
-            val lineColor = SonarCyan.copy(alpha = 0.70f * crosshairAlpha)
-            val tickColor = SonarCyan.copy(alpha = 0.9f * crosshairAlpha)
+            val lit = radarAngle >= 0f && nearCardinal(radarAngle)
+            val lineColor = if (lit) PhosphorGreen.copy(alpha = 0.95f * crosshairAlpha)
+                            else SonarCyan.copy(alpha = 0.70f * crosshairAlpha)
+            val tickColor = if (lit) PhosphorGreen.copy(alpha = 1.0f * crosshairAlpha)
+                            else SonarCyan.copy(alpha = 0.9f * crosshairAlpha)
             val tickLen = 5.dp.toPx()
             drawLine(lineColor, Offset(cx - outerR, cy), Offset(cx - gap, cy), stroke15.width, StrokeCap.Round)
             drawLine(lineColor, Offset(cx + gap, cy),   Offset(cx + outerR, cy), stroke15.width, StrokeCap.Round)

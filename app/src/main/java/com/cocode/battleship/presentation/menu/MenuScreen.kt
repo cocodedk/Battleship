@@ -64,6 +64,8 @@ fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}) {
         0.2f, 2.0f, infiniteRepeatable(tween(2800, easing = LinearEasing), RepeatMode.Restart), label = "scale")
     val pulseAlpha by infiniteTransition.animateFloat(
         0.5f, 0f, infiniteRepeatable(tween(2800, easing = LinearEasing), RepeatMode.Restart), label = "alpha")
+    val radarAngle by infiniteTransition.animateFloat(
+        0f, 360f, infiniteRepeatable(tween(4000, easing = LinearEasing), RepeatMode.Restart), label = "radar")
 
     val entry = rememberMenuEntryState(prefersReducedMotion)
     val effectivePulse = if (prefersReducedMotion) 0f else pulseAlpha
@@ -71,7 +73,7 @@ fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}) {
     val subtitleMod = Modifier.alpha(entry.subtitleAlpha).offset(y = entry.subtitleOffsetY)
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        MenuBackground(animate = !prefersReducedMotion)
+        MenuBackground(animate = !prefersReducedMotion, radarAngle = if (prefersReducedMotion) -1f else radarAngle)
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -82,6 +84,7 @@ fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}) {
                 pulseScale = effectiveScale,
                 pulseAlpha = effectivePulse,
                 reveal = entry.reticleReveal,
+                radarAngle = if (prefersReducedMotion) -1f else radarAngle,
                 modifier = Modifier.size(180.dp)
             )
 

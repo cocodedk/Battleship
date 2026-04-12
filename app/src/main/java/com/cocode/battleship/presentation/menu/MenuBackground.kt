@@ -28,14 +28,9 @@ private val PARTICLE_COLORS = listOf(SonarCyan, PhosphorGreen, AmberWarning, Tor
 private const val PARTICLE_COUNT = 25
 
 @Composable
-fun MenuBackground(animate: Boolean, modifier: Modifier = Modifier) {
+fun MenuBackground(animate: Boolean, radarAngle: Float, modifier: Modifier = Modifier) {
     val infiniteTransition = rememberInfiniteTransition(label = "bg")
 
-    val radarAngle by infiniteTransition.animateFloat(
-        initialValue = 0f, targetValue = 360f,
-        animationSpec = infiniteRepeatable(tween(4000, easing = LinearEasing), RepeatMode.Restart),
-        label = "radar"
-    )
     val particleTime by infiniteTransition.animateFloat(
         initialValue = 0f, targetValue = 1000f,
         animationSpec = infiniteRepeatable(tween(20000, easing = LinearEasing), RepeatMode.Restart),
