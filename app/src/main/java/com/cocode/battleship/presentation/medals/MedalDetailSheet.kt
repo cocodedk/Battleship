@@ -44,6 +44,7 @@ fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
                 .padding(horizontal = 24.dp)
                 .padding(bottom = 32.dp)
         ) {
+            Spacer(Modifier.height(16.dp))
             MedalCanvas(
                 badge = item.badge,
                 count = item.count,
@@ -51,7 +52,7 @@ fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
             )
             Spacer(Modifier.height(12.dp))
             Text(
-                text = item.badge.displayName.uppercase(),
+                text = item.badge.displayName.uppercase(java.util.Locale.ROOT),
                 style = MaterialTheme.typography.titleMedium,
                 color = rarityColor,
                 fontWeight = FontWeight.ExtraBold,
