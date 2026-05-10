@@ -74,6 +74,12 @@
     <string name="medals_title">MEDAL REGISTRY</string>
     <string name="medals_earned_format">%1$d / 15 MEDALS EARNED</string>
     <string name="medals_back">RETURN TO BASE</string>
+    <string name="medal_detail_how_to_earn">HOW TO EARN</string>
+    <string name="medal_detail_rarity_common">◆ COMMON</string>
+    <string name="medal_detail_rarity_rare">◆ RARE</string>
+    <string name="medal_detail_rarity_epic">◆ EPIC</string>
+    <string name="medal_detail_rarity_legendary">◆ LEGENDARY</string>
+    <string name="medal_detail_earned_count">× %1$d earned</string>
 
     <!-- Super Weapons -->
     <string name="weapons_available_label">SUPER WEAPONS</string>
