@@ -127,7 +127,12 @@ class GameViewModel : ViewModel() {
             sounds.playWin()
             val newTrackers = updateTrackersForFire(s.trackers, newAiBoard, firedCells, newlySunkTypes)
             val stats = buildGameStats(newTrackers, s.playerBoard, newAiBoard, GameOutcome.WIN)
-            val result = computeScoreResult(stats, SessionStats.currentWinStreak + 1)
+            val result = computeScoreResult(
+                stats,
+                sessionWinStreak = SessionStats.currentWinStreak + 1,
+                sessionTotalWins = SessionStats.totalWins + 1,
+                sessionGamesPlayed = SessionStats.gamesPlayed + 1
+            )
             SessionStats.record(
                 result.score,
                 isWin = true,
@@ -187,7 +192,12 @@ class GameViewModel : ViewModel() {
         if (newPlayerBoard.allShipsSunk()) {
             sounds.playLose()
             val stats = buildGameStats(s.trackers, newPlayerBoard, s.aiBoard, GameOutcome.LOSS)
-            val result = computeScoreResult(stats, SessionStats.currentWinStreak)
+            val result = computeScoreResult(
+                stats,
+                sessionWinStreak = SessionStats.currentWinStreak,
+                sessionTotalWins = SessionStats.totalWins,
+                sessionGamesPlayed = SessionStats.gamesPlayed + 1
+            )
             SessionStats.record(
                 result.score,
                 isWin = false,

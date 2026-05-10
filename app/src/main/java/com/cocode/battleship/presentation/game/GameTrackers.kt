@@ -84,10 +84,14 @@ fun buildGameStats(
 
 fun computeScoreResult(
     stats: GameStats,
-    sessionWinStreak: Int
+    sessionWinStreak: Int,
+    sessionTotalWins: Int = 0,
+    sessionGamesPlayed: Int = 0
 ): ScoreResult {
     val score = ScoreCalculator.calculate(stats)
     val rank = Rank.fromScore(score)
-    val badges = Badge.entries.filter { it.matches(stats, sessionWinStreak) }
+    val badges = Badge.entries.filter {
+        it.matches(stats, sessionWinStreak, sessionTotalWins, sessionGamesPlayed)
+    }
     return ScoreResult(score, rank, badges, stats)
 }
