@@ -64,21 +64,19 @@ fun MedalsScreen(viewModel: MedalsViewModel, onBack: () -> Unit) {
                     MedalCell(item = item, onClick = { viewModel.selectItem(item) })
                 }
             }
-            Box(modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)) {
-                OutlinedButton(
-                    onClick = onBack,
-                    modifier = Modifier.fillMaxWidth().height(48.dp),
-                    shape = RoundedCornerShape(4.dp),
-                    border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.5f)),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
-                ) {
-                    Text(
-                        text = stringResource(R.string.medals_back),
-                        letterSpacing = 2.sp,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
+            OutlinedButton(
+                onClick = onBack,
+                modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp).fillMaxWidth().height(48.dp),
+                shape = RoundedCornerShape(4.dp),
+                border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.5f)),
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
+            ) {
+                Text(
+                    text = stringResource(R.string.medals_back),
+                    letterSpacing = 2.sp,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                )
             }
         }
     }

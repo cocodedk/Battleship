@@ -13,7 +13,7 @@ class SharedPreferencesSessionStatsStorage(context: Context) : SessionStatsStora
         longestWinStreak = prefs.getInt(KEY_LONGEST_WIN_STREAK, 0),
         bestScore = prefs.getInt(KEY_BEST_SCORE, 0),
         earnedBadges = prefs.getStringSet(KEY_EARNED_BADGES, emptySet())
-            ?.mapNotNull { badgeName -> Badge.entries.find { it.name == badgeName } }
+            ?.mapNotNull { badgeName -> Badge.byName[badgeName] }
             ?.toSet()
             ?: emptySet(),
         totalShotsLifetime = prefs.getInt(KEY_TOTAL_SHOTS_LIFETIME, 0),

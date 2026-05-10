@@ -66,6 +66,8 @@
     <string name="stats_best_score">Best Score</string>
     <string name="stats_longest_streak">Longest Streak</string>
     <string name="stats_medals_title">MEDALS EARNED</string>
+    <string name="stats_naval_subtitle">[ NAVAL COMMAND DATABASE ]</string>
+    <string name="stats_best_score_value">Best score: %1$d</string>
     <string name="stats_no_games">No missions completed yet. Deploy your fleet!</string>
     <string name="stats_win_rate">Win Rate</string>
     <string name="stats_current_streak">Current Streak</string>

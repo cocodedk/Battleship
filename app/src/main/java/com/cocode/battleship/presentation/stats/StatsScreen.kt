@@ -40,6 +40,8 @@ import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
 
+private const val SYM_SECTION = "◆"
+
 @Composable
 fun StatsScreen(onBack: () -> Unit) {
     val noGames = SessionStats.gamesPlayed == 0
@@ -67,7 +69,7 @@ fun StatsScreen(onBack: () -> Unit) {
 
             Spacer(Modifier.height(4.dp))
             Text(
-                text = "[ NAVAL COMMAND DATABASE ]",
+                text = stringResource(R.string.stats_naval_subtitle),
                 style = MaterialTheme.typography.labelSmall,
                 color = TextSecondary.copy(alpha = 0.5f),
                 letterSpacing = 2.sp,
@@ -131,7 +133,7 @@ private fun RankBanner(rank: Rank) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "◆  ${stringResource(R.string.stats_rank_label)}",
+            text = "$SYM_SECTION  ${stringResource(R.string.stats_rank_label)}",
             style = MaterialTheme.typography.labelSmall,
             color = TextSecondary,
             letterSpacing = 3.sp,
@@ -145,7 +147,7 @@ private fun RankBanner(rank: Rank) {
             letterSpacing = 2.sp,
         )
         Text(
-            text = "Best score: ${SessionStats.bestScore}",
+            text = stringResource(R.string.stats_best_score_value, SessionStats.bestScore),
             style = MaterialTheme.typography.labelSmall,
             color = AmberWarning.copy(alpha = 0.6f),
             letterSpacing = 1.sp,
@@ -164,7 +166,7 @@ private fun SessionStatsPanel() {
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
         Text(
-            text = "◆  ${stringResource(R.string.stats_session_title)}",
+            text = "$SYM_SECTION  ${stringResource(R.string.stats_session_title)}",
             style = MaterialTheme.typography.labelSmall,
             color = TextSecondary,
             letterSpacing = 3.sp,

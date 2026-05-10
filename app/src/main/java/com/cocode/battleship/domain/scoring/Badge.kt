@@ -71,6 +71,10 @@ enum class Badge(
         "Win at least 3 games in a row in the same session"
     );
 
+    companion object {
+        val byName: Map<String, Badge> = entries.associateBy { it.name }
+    }
+
     fun matches(stats: GameStats, sessionWinStreak: Int = 0): Boolean = when (this) {
         FIRST_BLOOD -> stats.firstShotHit
         SHARPSHOOTER -> stats.accuracy >= 0.60f && stats.totalShots >= 10

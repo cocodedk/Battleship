@@ -29,6 +29,8 @@ import com.cocode.battleship.ui.theme.NavyCard
 import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextSecondary
 
+private const val SYM_SECTION = "◆"
+
 @Composable
 internal fun StatItem(label: String, value: String) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -59,7 +61,7 @@ internal fun LifetimeCombatPanel(totalShots: Int, totalHits: Int) {
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
         Text(
-            text = "◆  ${stringResource(R.string.stats_lifetime_title)}",
+            text = "$SYM_SECTION  ${stringResource(R.string.stats_lifetime_title)}",
             style = MaterialTheme.typography.labelSmall,
             color = TextSecondary,
             letterSpacing = 3.sp,
@@ -86,7 +88,7 @@ internal fun BadgesEarnedPanel(earnedBadges: Set<Badge>) {
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
         Text(
-            text = "◆  ${stringResource(R.string.stats_medals_title)}",
+            text = "$SYM_SECTION  ${stringResource(R.string.stats_medals_title)}",
             style = MaterialTheme.typography.labelSmall,
             color = TextSecondary,
             letterSpacing = 3.sp,
