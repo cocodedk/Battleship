@@ -143,4 +143,5 @@ class BadgeTest {
 
     @Test fun `ON_FIRE does not match when sessionWinStreak is 2`() =
         assertFalse(Badge.ON_FIRE.matches(baseStats(), sessionWinStreak = 2))
+
 }

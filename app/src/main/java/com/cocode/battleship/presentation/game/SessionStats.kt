@@ -9,7 +9,9 @@ data class SessionStatsSnapshot(
     val currentWinStreak: Int = 0,
     val longestWinStreak: Int = 0,
     val bestScore: Int = 0,
-    val earnedBadges: Set<Badge> = emptySet()
+    val earnedBadges: Set<Badge> = emptySet(),
+    val totalShotsLifetime: Int = 0,
+    val totalHitsLifetime: Int = 0
 )
 
 interface SessionStatsStorage {
@@ -31,6 +33,10 @@ object SessionStats {
         private set
     var bestScore: Int = 0
         private set
+    var totalShotsLifetime: Int = 0
+        private set
+    var totalHitsLifetime: Int = 0
+        private set
     private val _allEarnedBadges: MutableSet<Badge> = mutableSetOf()
     val allEarnedBadges: Set<Badge> get() = _allEarnedBadges
 
@@ -40,7 +46,15 @@ object SessionStats {
         restore(storage.load())
     }
 
-    fun record(score: Int, isWin: Boolean, earnedBadges: List<Badge> = emptyList()) {
+    fun record(
+        score: Int,
+        isWin: Boolean,
+        earnedBadges: List<Badge> = emptyList(),
+        totalShots: Int = 0,
+        hits: Int = 0
+    ) {
+        val safeShots = totalShots.coerceAtLeast(0)
+        val safeHits = hits.coerceIn(0, safeShots)
         gamesPlayed++
         if (isWin) {
             totalWins++
@@ -50,6 +64,8 @@ object SessionStats {
             currentWinStreak = 0
         }
         if (score > bestScore) bestScore = score
+        totalShotsLifetime += safeShots
+        totalHitsLifetime += safeHits
         _allEarnedBadges.addAll(earnedBadges)
         if (earnedBadges.isNotEmpty()) medalsStorage?.increment(earnedBadges)
         persist()
@@ -66,7 +82,9 @@ object SessionStats {
         currentWinStreak = currentWinStreak,
         longestWinStreak = longestWinStreak,
         bestScore = bestScore,
-        earnedBadges = _allEarnedBadges.toSet()
+        earnedBadges = _allEarnedBadges.toSet(),
+        totalShotsLifetime = totalShotsLifetime,
+        totalHitsLifetime = totalHitsLifetime
     )
 
     private fun restore(snapshot: SessionStatsSnapshot) {
@@ -75,6 +93,8 @@ object SessionStats {
         currentWinStreak = snapshot.currentWinStreak
         longestWinStreak = snapshot.longestWinStreak
         bestScore = snapshot.bestScore
+        totalShotsLifetime = snapshot.totalShotsLifetime
+        totalHitsLifetime = snapshot.totalHitsLifetime
         _allEarnedBadges.clear()
         _allEarnedBadges.addAll(snapshot.earnedBadges)
     }

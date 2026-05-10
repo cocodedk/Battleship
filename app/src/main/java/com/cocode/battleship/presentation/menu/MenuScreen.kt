@@ -7,7 +7,6 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,7 +22,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -51,7 +49,7 @@ import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
 
 @Composable
-fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}, onViewMedals: () -> Unit = {}) {
+fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}, onViewMedals: () -> Unit = {}, onViewBadges: () -> Unit = {}) {
     val context = LocalContext.current
     val prefersReducedMotion = remember {
         Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f
@@ -163,45 +161,12 @@ fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}, onViewMeda
 
             Spacer(Modifier.height(10.dp))
 
-            OutlinedButton(
-                onClick = onViewStats,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(44.dp)
-                    .alpha(entry.secondaryButtonAlpha)
-                    .offset(x = entry.secondaryButtonOffsetX),
-                shape = RoundedCornerShape(4.dp),
-                border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.45f)),
-                colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
-            ) {
-                Text(
-                    text = stringResource(R.string.menu_view_stats),
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = 2.sp,
-                )
-            }
-
-            Spacer(Modifier.height(8.dp))
-
-            OutlinedButton(
-                onClick = onViewMedals,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(44.dp)
-                    .alpha(entry.secondaryButtonAlpha)
-                    .offset(x = entry.secondaryButtonOffsetX),
-                shape = RoundedCornerShape(4.dp),
-                border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.35f)),
-                colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan.copy(alpha = 0.8f)),
-            ) {
-                Text(
-                    text = stringResource(R.string.menu_view_medals),
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = 2.sp,
-                )
-            }
+            MenuButtons(
+                entry = entry,
+                onViewStats = onViewStats,
+                onViewMedals = onViewMedals,
+                onViewBadges = onViewBadges,
+            )
 
             Spacer(Modifier.height(16.dp))
 

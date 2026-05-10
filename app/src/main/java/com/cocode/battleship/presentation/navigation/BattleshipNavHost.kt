@@ -17,6 +17,8 @@ import androidx.navigation.compose.rememberNavController
 import com.cocode.battleship.presentation.game.GameOverScreen
 import com.cocode.battleship.presentation.game.GameScreen
 import com.cocode.battleship.presentation.game.GameViewModel
+import com.cocode.battleship.presentation.badges.BadgesScreen
+import com.cocode.battleship.presentation.badges.BadgesViewModel
 import com.cocode.battleship.presentation.medals.MedalsScreen
 import com.cocode.battleship.presentation.medals.MedalsViewModel
 import com.cocode.battleship.presentation.medals.SharedPreferencesMedalsStorage
@@ -51,7 +53,8 @@ fun BattleshipNavHost(
                         navController.navigate(Screen.Placement.route)
                     },
                     onViewStats = { navController.navigate(Screen.Stats.route) },
-                    onViewMedals = { navController.navigate(Screen.Medals.route) }
+                    onViewMedals = { navController.navigate(Screen.Medals.route) },
+                    onViewBadges = { navController.navigate(Screen.Badges.route) }
                 )
             }
             composable(Screen.Stats.route) {
@@ -63,6 +66,15 @@ fun BattleshipNavHost(
                 )
                 MedalsScreen(
                     viewModel = medalsViewModel,
+                    onBack = { navController.popBackStack() }
+                )
+            }
+            composable(Screen.Badges.route) {
+                val badgesViewModel: BadgesViewModel = viewModel(
+                    factory = BadgesViewModel.factory(medalsStorage)
+                )
+                BadgesScreen(
+                    viewModel = badgesViewModel,
                     onBack = { navController.popBackStack() }
                 )
             }
@@ -101,7 +113,8 @@ fun BattleshipNavHost(
                         navController.navigate(Screen.Menu.route) {
                             popUpTo(Screen.Menu.route) { inclusive = true }
                         }
-                    }
+                    },
+                    onBadges = { navController.navigate(Screen.Badges.route) }
                 )
             }
         }

@@ -15,7 +15,7 @@ class SharedPreferencesMedalsStorage(context: Context) : MedalsStorage {
         return raw.split(",").mapNotNull { entry ->
             val parts = entry.split(":")
             if (parts.size != 2) return@mapNotNull null
-            val badge = Badge.entries.find { it.name == parts[0] } ?: return@mapNotNull null
+            val badge = Badge.byName[parts[0]] ?: return@mapNotNull null
             val count = parts[1].toIntOrNull() ?: return@mapNotNull null
             badge to count
         }.toMap()
@@ -25,19 +25,19 @@ class SharedPreferencesMedalsStorage(context: Context) : MedalsStorage {
         if (badges.isEmpty()) return
         val current = load().toMutableMap()
         badges.forEach { current[it] = (current[it] ?: 0) + 1 }
-        prefs.edit().putString(KEY_BADGE_COUNTS, encode(current)).commit()
+        prefs.edit().putString(KEY_BADGE_COUNTS, encode(current)).apply()
     }
 
     private fun migrateLegacyIfNeeded() {
         if (!prefs.contains(KEY_EARNED_BADGES)) return
         val legacy = prefs.getStringSet(KEY_EARNED_BADGES, emptySet()) ?: emptySet()
         val counts = legacy.mapNotNull { name ->
-            Badge.entries.find { it.name == name }?.let { it to 1 }
+            Badge.byName[name]?.let { it to 1 }
         }.toMap()
         prefs.edit()
             .putString(KEY_BADGE_COUNTS, encode(counts))
             .remove(KEY_EARNED_BADGES)
-            .commit()
+            .apply()
     }
 
     private fun encode(counts: Map<Badge, Int>): String =

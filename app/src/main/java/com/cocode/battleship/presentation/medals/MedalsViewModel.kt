@@ -12,6 +12,10 @@ class MedalsViewModel(storage: MedalsStorage) : ViewModel() {
     private val _state = MutableStateFlow(buildState(storage.load()))
     val state: StateFlow<MedalsUiState> = _state.asStateFlow()
 
+    fun selectItem(item: MedalItem?) {
+        _state.value = _state.value.copy(selectedItem = item)
+    }
+
     companion object {
         fun factory(storage: MedalsStorage): ViewModelProvider.Factory =
             object : ViewModelProvider.Factory {
@@ -26,5 +30,5 @@ private fun buildState(counts: Map<Badge, Int>): MedalsUiState {
     val items = Badge.entries.map { badge ->
         MedalItem(badge = badge, count = counts[badge] ?: 0)
     }
-    return MedalsUiState(items = items, earnedCount = items.count { it.isEarned })
+    return MedalsUiState(items = items)
 }

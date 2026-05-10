@@ -35,6 +35,7 @@ import com.cocode.battleship.domain.scoring.Badge
 import com.cocode.battleship.domain.scoring.GameStats
 import com.cocode.battleship.domain.scoring.ScoreResult
 import com.cocode.battleship.presentation.game.components.BadgeShowcase
+import com.cocode.battleship.presentation.game.components.MedalsEarnedSection
 import com.cocode.battleship.presentation.game.components.RankScorePanel
 import com.cocode.battleship.presentation.game.components.SessionFooter
 import com.cocode.battleship.presentation.game.components.StatsBreakdownPanel
@@ -52,7 +53,8 @@ import com.cocode.battleship.ui.theme.TorpedoRedDim
 fun GameOverScreen(
     viewModel: GameViewModel,
     onPlayAgain: () -> Unit,
-    onMainMenu: () -> Unit
+    onMainMenu: () -> Unit,
+    onBadges: () -> Unit = {},
 ) {
     val state by viewModel.state.collectAsState()
     val winner = state.winner ?: ""
@@ -128,7 +130,9 @@ fun GameOverScreen(
                 Spacer(modifier = Modifier.height(8.dp))
                 StatsBreakdownPanel(stats = scoreResult.stats)
                 Spacer(modifier = Modifier.height(8.dp))
-                BadgeShowcase(badges = scoreResult.earnedBadges)
+                BadgeShowcase(badges = scoreResult.earnedBadges, onViewAllBadges = onBadges)
+                Spacer(modifier = Modifier.height(8.dp))
+                MedalsEarnedSection(earnedBadges = scoreResult.earnedBadges)
                 Spacer(modifier = Modifier.height(8.dp))
                 SessionFooter(
                     gamesPlayed = SessionStats.gamesPlayed,

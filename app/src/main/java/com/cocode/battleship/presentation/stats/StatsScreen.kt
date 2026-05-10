@@ -38,6 +38,7 @@ import com.cocode.battleship.ui.theme.NavyCard
 import com.cocode.battleship.ui.theme.NavySurface
 import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
+import com.cocode.battleship.presentation.SYM_SECTION
 import com.cocode.battleship.ui.theme.TextSecondary
 
 @Composable
@@ -67,7 +68,7 @@ fun StatsScreen(onBack: () -> Unit) {
 
             Spacer(Modifier.height(4.dp))
             Text(
-                text = "[ NAVAL COMMAND DATABASE ]",
+                text = stringResource(R.string.stats_naval_subtitle),
                 style = MaterialTheme.typography.labelSmall,
                 color = TextSecondary.copy(alpha = 0.5f),
                 letterSpacing = 2.sp,
@@ -94,6 +95,8 @@ fun StatsScreen(onBack: () -> Unit) {
                 RankBanner(rank = rank)
                 Spacer(Modifier.height(12.dp))
                 SessionStatsPanel()
+                Spacer(Modifier.height(12.dp))
+                LifetimeCombatPanel(totalShots = SessionStats.totalShotsLifetime, totalHits = SessionStats.totalHitsLifetime)
             }
 
             Spacer(Modifier.height(24.dp))
@@ -127,7 +130,7 @@ private fun RankBanner(rank: Rank) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "◆  ${stringResource(R.string.stats_rank_label)}",
+            text = "$SYM_SECTION  ${stringResource(R.string.stats_rank_label)}",
             style = MaterialTheme.typography.labelSmall,
             color = TextSecondary,
             letterSpacing = 3.sp,
@@ -141,7 +144,7 @@ private fun RankBanner(rank: Rank) {
             letterSpacing = 2.sp,
         )
         Text(
-            text = "Best score: ${SessionStats.bestScore}",
+            text = stringResource(R.string.stats_best_score_value, SessionStats.bestScore),
             style = MaterialTheme.typography.labelSmall,
             color = AmberWarning.copy(alpha = 0.6f),
             letterSpacing = 1.sp,
@@ -151,6 +154,7 @@ private fun RankBanner(rank: Rank) {
 
 @Composable
 private fun SessionStatsPanel() {
+    val winRate = if (SessionStats.gamesPlayed > 0) SessionStats.totalWins * 100 / SessionStats.gamesPlayed else 0
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -159,7 +163,7 @@ private fun SessionStatsPanel() {
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
         Text(
-            text = "◆  ${stringResource(R.string.stats_session_title)}",
+            text = "$SYM_SECTION  ${stringResource(R.string.stats_session_title)}",
             style = MaterialTheme.typography.labelSmall,
             color = TextSecondary,
             letterSpacing = 3.sp,
@@ -171,26 +175,15 @@ private fun SessionStatsPanel() {
         ) {
             StatItem(label = stringResource(R.string.stats_games_played), value = "${SessionStats.gamesPlayed}")
             StatItem(label = stringResource(R.string.stats_wins), value = "${SessionStats.totalWins}")
+            StatItem(label = stringResource(R.string.stats_win_rate), value = "$winRate%")
+        }
+        Spacer(Modifier.height(8.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            StatItem(label = stringResource(R.string.stats_current_streak), value = "${SessionStats.currentWinStreak}")
             StatItem(label = stringResource(R.string.stats_longest_streak), value = "${SessionStats.longestWinStreak}")
         }
-    }
-}
-
-@Composable
-private fun StatItem(label: String, value: String) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = value,
-            style = MaterialTheme.typography.headlineSmall,
-            color = SonarCyan,
-            fontWeight = FontWeight.ExtraBold,
-        )
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
-            color = TextSecondary,
-            letterSpacing = 0.5.sp,
-            textAlign = TextAlign.Center,
-        )
     }
 }

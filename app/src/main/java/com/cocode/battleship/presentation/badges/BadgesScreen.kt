@@ -1,4 +1,4 @@
-package com.cocode.battleship.presentation.medals
+package com.cocode.battleship.presentation.badges
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -33,16 +33,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
+import com.cocode.battleship.presentation.medals.rarityColor
 import com.cocode.battleship.ui.theme.DeepNavy
 import com.cocode.battleship.ui.theme.NavySurface
 import com.cocode.battleship.ui.theme.PhosphorGreen
-import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.presentation.SYM_ARROW
 import com.cocode.battleship.presentation.SYM_SECTION
+import com.cocode.battleship.ui.theme.SonarCyan
 import java.util.Locale
 
 @Composable
-fun MedalsScreen(viewModel: MedalsViewModel, onBack: () -> Unit) {
+fun BadgesScreen(viewModel: BadgesViewModel, onBack: () -> Unit) {
     val state by viewModel.state.collectAsState()
 
     Box(
@@ -51,7 +52,7 @@ fun MedalsScreen(viewModel: MedalsViewModel, onBack: () -> Unit) {
             .background(Brush.verticalGradient(listOf(DeepNavy, NavySurface, DeepNavy)))
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            MedalsHeader(earnedCount = state.earnedCount, totalCount = state.totalCount)
+            BadgesHeader(earnedCount = state.earnedCount, totalCount = state.totalCount)
             LazyVerticalGrid(
                 columns = GridCells.Fixed(3),
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
@@ -60,18 +61,21 @@ fun MedalsScreen(viewModel: MedalsViewModel, onBack: () -> Unit) {
                 modifier = Modifier.weight(1f)
             ) {
                 items(state.items) { item ->
-                    MedalCell(item = item, onClick = { viewModel.selectItem(item) })
+                    BadgeCell(item = item, onClick = { viewModel.selectItem(item) })
                 }
             }
             OutlinedButton(
                 onClick = onBack,
-                modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp).fillMaxWidth().height(48.dp),
+                modifier = Modifier
+                    .padding(horizontal = 24.dp, vertical = 16.dp)
+                    .fillMaxWidth()
+                    .height(48.dp),
                 shape = RoundedCornerShape(4.dp),
                 border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.5f)),
                 colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
             ) {
                 Text(
-                    text = stringResource(R.string.medals_back),
+                    text = stringResource(R.string.badges_back),
                     letterSpacing = 2.sp,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
@@ -81,12 +85,12 @@ fun MedalsScreen(viewModel: MedalsViewModel, onBack: () -> Unit) {
     }
 
     state.selectedItem?.let { item ->
-        MedalDetailSheet(item = item, onDismiss = { viewModel.selectItem(null) })
+        BadgeDetailSheet(item = item, onDismiss = { viewModel.selectItem(null) })
     }
 }
 
 @Composable
-private fun MedalsHeader(earnedCount: Int, totalCount: Int) {
+private fun BadgesHeader(earnedCount: Int, totalCount: Int) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -94,7 +98,7 @@ private fun MedalsHeader(earnedCount: Int, totalCount: Int) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "$SYM_SECTION  ${stringResource(R.string.medals_title)}",
+            text = "$SYM_SECTION  ${stringResource(R.string.badges_title)}",
             style = MaterialTheme.typography.titleLarge,
             color = SonarCyan,
             letterSpacing = 3.sp,
@@ -102,7 +106,7 @@ private fun MedalsHeader(earnedCount: Int, totalCount: Int) {
         )
         Spacer(Modifier.height(4.dp))
         Text(
-            text = "$SYM_ARROW  ${stringResource(R.string.medals_earned_format, earnedCount, totalCount)}",
+            text = "$SYM_ARROW  ${stringResource(R.string.badges_earned_format, earnedCount, totalCount)}",
             style = MaterialTheme.typography.labelMedium,
             color = PhosphorGreen,
             letterSpacing = 1.5.sp,
@@ -111,14 +115,14 @@ private fun MedalsHeader(earnedCount: Int, totalCount: Int) {
 }
 
 @Composable
-private fun MedalCell(item: MedalItem, onClick: () -> Unit) {
+private fun BadgeCell(item: BadgeItem, onClick: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
     ) {
-        MedalCanvas(
+        BadgeCanvas(
             badge = item.badge,
             count = item.count,
             modifier = Modifier.size(72.dp)

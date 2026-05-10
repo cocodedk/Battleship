@@ -93,6 +93,36 @@ class SessionStatsTest {
         assertTrue(SessionStats.allEarnedBadges.isEmpty())
     }
 
+    @Test
+    fun `record accumulates lifetime shots and hits across games`() {
+        SessionStats.record(score = 500, isWin = true, totalShots = 20, hits = 12)
+        assertEquals(20, SessionStats.totalShotsLifetime)
+        assertEquals(12, SessionStats.totalHitsLifetime)
+
+        SessionStats.record(score = 300, isWin = false, totalShots = 15, hits = 8)
+        assertEquals(35, SessionStats.totalShotsLifetime)
+        assertEquals(20, SessionStats.totalHitsLifetime)
+    }
+
+    @Test
+    fun `initialize restores totalShotsLifetime and totalHitsLifetime`() {
+        SessionStats.initialize(
+            FakeSessionStatsStorage(
+                SessionStatsSnapshot(totalShotsLifetime = 120, totalHitsLifetime = 60)
+            )
+        )
+        assertEquals(120, SessionStats.totalShotsLifetime)
+        assertEquals(60, SessionStats.totalHitsLifetime)
+    }
+
+    @Test
+    fun `snapshot includes totalShotsLifetime and totalHitsLifetime`() {
+        SessionStats.record(score = 400, isWin = true, totalShots = 30, hits = 18)
+        val snap = SessionStats.snapshot()
+        assertEquals(30, snap.totalShotsLifetime)
+        assertEquals(18, snap.totalHitsLifetime)
+    }
+
     private class FakeSessionStatsStorage(
         private val persistedSnapshot: SessionStatsSnapshot = SessionStatsSnapshot()
     ) : SessionStatsStorage {
