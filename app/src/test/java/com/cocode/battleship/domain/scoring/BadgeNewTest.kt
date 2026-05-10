@@ -172,8 +172,8 @@ class BadgeNewTest {
     @Test fun `FLEET_COMMANDER matches when WIN and sessionTotalWins is exactly 10`() =
         assertTrue(Badge.FLEET_COMMANDER.matches(baseStats(outcome = GameOutcome.WIN), sessionTotalWins = 10))
 
-    @Test fun `FLEET_COMMANDER does not match when sessionTotalWins is 11`() =
-        assertFalse(Badge.FLEET_COMMANDER.matches(baseStats(outcome = GameOutcome.WIN), sessionTotalWins = 11))
+    @Test fun `FLEET_COMMANDER matches when WIN and sessionTotalWins is 11`() =
+        assertTrue(Badge.FLEET_COMMANDER.matches(baseStats(outcome = GameOutcome.WIN), sessionTotalWins = 11))
 
     @Test fun `FLEET_COMMANDER does not match when LOSS and sessionTotalWins is 10`() =
         assertFalse(Badge.FLEET_COMMANDER.matches(baseStats(outcome = GameOutcome.LOSS), sessionTotalWins = 10))
@@ -185,8 +185,8 @@ class BadgeNewTest {
     @Test fun `SEA_VETERAN does not match when sessionGamesPlayed is 24`() =
         assertFalse(Badge.SEA_VETERAN.matches(baseStats(), sessionGamesPlayed = 24))
 
-    @Test fun `SEA_VETERAN does not match when sessionGamesPlayed is 26`() =
-        assertFalse(Badge.SEA_VETERAN.matches(baseStats(), sessionGamesPlayed = 26))
+    @Test fun `SEA_VETERAN matches when sessionGamesPlayed is 26`() =
+        assertTrue(Badge.SEA_VETERAN.matches(baseStats(), sessionGamesPlayed = 26))
 
     // IRON_ADMIRAL
     @Test fun `IRON_ADMIRAL matches when WIN and sessionTotalWins is exactly 25`() =

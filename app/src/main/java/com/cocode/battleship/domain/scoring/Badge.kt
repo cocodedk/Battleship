@@ -183,8 +183,8 @@ enum class Badge(
         TACTICAL_RETREAT -> stats.outcome == GameOutcome.LOSS && stats.shipsSunkByPlayer >= 3
         PHOENIX -> stats.outcome == GameOutcome.WIN && stats.survivingPlayerShips == 2
         SPITE -> stats.outcome == GameOutcome.WIN && stats.totalShots >= 30 && stats.accuracy < 0.30f
-        FLEET_COMMANDER -> stats.outcome == GameOutcome.WIN && sessionTotalWins == 10
-        SEA_VETERAN -> sessionGamesPlayed == 25
-        IRON_ADMIRAL -> stats.outcome == GameOutcome.WIN && sessionTotalWins == 25
+        FLEET_COMMANDER -> stats.outcome == GameOutcome.WIN && sessionTotalWins >= 10
+        SEA_VETERAN -> sessionGamesPlayed >= 25
+        IRON_ADMIRAL -> stats.outcome == GameOutcome.WIN && sessionTotalWins >= 25
     }
 }

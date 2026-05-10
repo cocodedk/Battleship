@@ -140,9 +140,9 @@ class GameTrackersTest {
         assertTrue(Badge.FLEET_COMMANDER in result.earnedBadges)
     }
 
-    @Test fun `computeScoreResult does not include FLEET_COMMANDER when sessionTotalWins is 11`() {
+    @Test fun `computeScoreResult includes FLEET_COMMANDER when sessionTotalWins is 11`() {
         val result = computeScoreResult(scoreStats(), sessionWinStreak = 0, sessionTotalWins = 11, sessionGamesPlayed = 11)
-        assertFalse(Badge.FLEET_COMMANDER in result.earnedBadges)
+        assertTrue(Badge.FLEET_COMMANDER in result.earnedBadges)
     }
 
     @Test fun `computeScoreResult includes IRON_ADMIRAL when sessionTotalWins is 25`() {
