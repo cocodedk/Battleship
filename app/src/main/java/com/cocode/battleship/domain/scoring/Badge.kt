@@ -4,144 +4,40 @@ import com.cocode.battleship.domain.model.ShipType
 
 enum class Rarity { COMMON, RARE, EPIC, LEGENDARY }
 
-enum class Badge(
-    val displayName: String,
-    val rarity: Rarity,
-    val icon: String,
-    val unlockHint: String
-) {
-    FIRST_BLOOD(
-        "First Blood", Rarity.RARE, "🎯",
-        "Hit the enemy on your very first shot"
-    ),
-    SHARPSHOOTER(
-        "Sharpshooter", Rarity.RARE, "🏹",
-        "Finish with 60% accuracy or better (minimum 10 shots)"
-    ),
-    DEAD_EYE(
-        "Dead-Eye", Rarity.EPIC, "🎯🎯",
-        "Finish with 80% accuracy or better (minimum 10 shots)"
-    ),
-    HOT_STREAK(
-        "Hot Streak", Rarity.RARE, "🔥",
-        "Land at least 5 hits in a row without missing"
-    ),
-    UNSTOPPABLE(
-        "Unstoppable", Rarity.EPIC, "⚡",
-        "Land at least 8 hits in a row without missing"
-    ),
-    FLAWLESS_VICTORY(
-        "Flawless Victory", Rarity.EPIC, "👑",
-        "Win with all 5 of your ships still afloat"
-    ),
-    PERFECT_GUNNER(
-        "Perfect Gunner", Rarity.LEGENDARY, "💎",
-        "Win without missing a single shot"
-    ),
-    LEVIATHAN_SLAYER(
-        "Leviathan Slayer", Rarity.RARE, "🐋",
-        "Sink the enemy Carrier as your first kill"
-    ),
-    SILENT_SERVICE(
-        "Silent Service", Rarity.RARE, "🤫",
-        "Keep your Submarine untouched for the entire game"
-    ),
-    LAST_STAND(
-        "Last Stand", Rarity.RARE, "🛡️",
-        "Win with only 1 ship surviving"
-    ),
-    DESTROYER_LIVES(
-        "Destroyer Lives", Rarity.COMMON, "🚤",
-        "Keep your Destroyer untouched for the entire game"
-    ),
-    SWIM_FOR_IT(
-        "Swim for It", Rarity.RARE, "🏊",
-        "Lose without landing a single hit on the enemy"
-    ),
-    FOG_OF_WAR(
-        "Fog of War", Rarity.COMMON, "🌫️",
-        "Miss at least 10 shots in a row"
-    ),
-    DEPTH_CHARGE_DIPLOMAT(
-        "Depth Charge Diplomat", Rarity.COMMON, "💣",
-        "Fire 100 or more shots in a single game"
-    ),
-    ON_FIRE(
-        "On Fire", Rarity.EPIC, "🔥🔥",
-        "Win at least 3 games in a row"
-    ),
-    BLITZ(
-        "Blitz", Rarity.EPIC, "⚡⚡",
-        "Win in 25 shots or fewer"
-    ),
-    SEA_WOLF(
-        "Sea Wolf", Rarity.EPIC, "🐺",
-        "Win 5 games in a row"
-    ),
-    LUCKY_DOG(
-        "Lucky Dog", Rarity.RARE, "🎲",
-        "Win with accuracy below 25% (minimum 20 shots)"
-    ),
-    COLD_OPENER(
-        "Cold Opener", Rarity.COMMON, "❄️",
-        "Miss your first shot but still win"
-    ),
-    IRON_HULL(
-        "Iron Hull", Rarity.RARE, "🛡️🛡️",
-        "Keep your Battleship untouched for the entire game"
-    ),
-    CRUISER_LIVES(
-        "Cruiser Lives", Rarity.COMMON, "🚢",
-        "Keep your Cruiser untouched for the entire game"
-    ),
-    TORPEDO_ACE(
-        "Torpedo Ace", Rarity.RARE, "🌊",
-        "Sink the enemy Submarine as your first kill"
-    ),
-    BATTLESHIP_HUNTER(
-        "Battleship Hunter", Rarity.RARE, "⚓",
-        "Sink the enemy Battleship as your first kill"
-    ),
-    SMALL_GAME(
-        "Small Game", Rarity.COMMON, "🎣",
-        "Sink the enemy Destroyer as your first kill"
-    ),
-    SPRAY_AND_PRAY(
-        "Spray and Pray", Rarity.COMMON, "💨",
-        "Miss at least 20 shots in a row"
-    ),
-    NUCLEAR_OPTION(
-        "Nuclear Option", Rarity.COMMON, "☢️",
-        "Fire 150 or more shots in a single game"
-    ),
-    SCATTERSHOT(
-        "Scattershot", Rarity.COMMON, "🌀",
-        "Fire 50 or more shots and miss more than you hit"
-    ),
-    TACTICAL_RETREAT(
-        "Tactical Retreat", Rarity.RARE, "🏳️",
-        "Lose after sinking at least 3 enemy ships"
-    ),
-    PHOENIX(
-        "Phoenix", Rarity.COMMON, "🌅",
-        "Win with exactly 2 ships surviving"
-    ),
-    SPITE(
-        "Spite", Rarity.RARE, "😤",
-        "Win with accuracy below 30% (minimum 30 shots)"
-    ),
-    FLEET_COMMANDER(
-        "Fleet Commander", Rarity.RARE, "🎖️",
-        "Reach 10 lifetime wins"
-    ),
-    SEA_VETERAN(
-        "Sea Veteran", Rarity.COMMON, "⚓⚓",
-        "Play your 25th game"
-    ),
-    IRON_ADMIRAL(
-        "Iron Admiral", Rarity.LEGENDARY, "👑⚓",
-        "Reach 25 lifetime wins"
-    );
+enum class Badge(val displayName: String, val rarity: Rarity) {
+    FIRST_BLOOD("First Blood", Rarity.RARE),
+    SHARPSHOOTER("Sharpshooter", Rarity.RARE),
+    DEAD_EYE("Dead-Eye", Rarity.EPIC),
+    HOT_STREAK("Hot Streak", Rarity.RARE),
+    UNSTOPPABLE("Unstoppable", Rarity.EPIC),
+    FLAWLESS_VICTORY("Flawless Victory", Rarity.EPIC),
+    PERFECT_GUNNER("Perfect Gunner", Rarity.LEGENDARY),
+    LEVIATHAN_SLAYER("Leviathan Slayer", Rarity.RARE),
+    SILENT_SERVICE("Silent Service", Rarity.RARE),
+    LAST_STAND("Last Stand", Rarity.RARE),
+    DESTROYER_LIVES("Destroyer Lives", Rarity.COMMON),
+    SWIM_FOR_IT("Swim for It", Rarity.RARE),
+    FOG_OF_WAR("Fog of War", Rarity.COMMON),
+    DEPTH_CHARGE_DIPLOMAT("Depth Charge Diplomat", Rarity.COMMON),
+    ON_FIRE("On Fire", Rarity.EPIC),
+    BLITZ("Blitz", Rarity.EPIC),
+    SEA_WOLF("Sea Wolf", Rarity.EPIC),
+    LUCKY_DOG("Lucky Dog", Rarity.RARE),
+    COLD_OPENER("Cold Opener", Rarity.COMMON),
+    IRON_HULL("Iron Hull", Rarity.RARE),
+    CRUISER_LIVES("Cruiser Lives", Rarity.COMMON),
+    TORPEDO_ACE("Torpedo Ace", Rarity.RARE),
+    BATTLESHIP_HUNTER("Battleship Hunter", Rarity.RARE),
+    SMALL_GAME("Small Game", Rarity.COMMON),
+    SPRAY_AND_PRAY("Spray and Pray", Rarity.COMMON),
+    NUCLEAR_OPTION("Nuclear Option", Rarity.COMMON),
+    SCATTERSHOT("Scattershot", Rarity.COMMON),
+    TACTICAL_RETREAT("Tactical Retreat", Rarity.RARE),
+    PHOENIX("Phoenix", Rarity.COMMON),
+    SPITE("Spite", Rarity.RARE),
+    FLEET_COMMANDER("Fleet Commander", Rarity.RARE),
+    SEA_VETERAN("Sea Veteran", Rarity.COMMON),
+    IRON_ADMIRAL("Iron Admiral", Rarity.LEGENDARY);
 
     companion object {
         val byName: Map<String, Badge> = entries.associateBy { it.name }

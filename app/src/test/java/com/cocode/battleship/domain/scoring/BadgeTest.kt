@@ -144,12 +144,4 @@ class BadgeTest {
     @Test fun `ON_FIRE does not match when sessionWinStreak is 2`() =
         assertFalse(Badge.ON_FIRE.matches(baseStats(), sessionWinStreak = 2))
 
-    @Test fun `all badges have a non-blank unlockHint`() {
-        Badge.entries.forEach { badge ->
-            assertTrue(
-                "Badge ${badge.name} has blank unlockHint",
-                badge.unlockHint.isNotBlank()
-            )
-        }
-    }
 }
