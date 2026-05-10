@@ -94,6 +94,10 @@ fun StatsScreen(onBack: () -> Unit) {
                 RankBanner(rank = rank)
                 Spacer(Modifier.height(12.dp))
                 SessionStatsPanel()
+                Spacer(Modifier.height(12.dp))
+                LifetimeCombatPanel(totalShots = SessionStats.totalShotsLifetime, totalHits = SessionStats.totalHitsLifetime)
+                Spacer(Modifier.height(12.dp))
+                BadgesEarnedPanel(earnedBadges = SessionStats.allEarnedBadges)
             }
 
             Spacer(Modifier.height(24.dp))
@@ -151,6 +155,7 @@ private fun RankBanner(rank: Rank) {
 
 @Composable
 private fun SessionStatsPanel() {
+    val winRate = if (SessionStats.gamesPlayed > 0) SessionStats.totalWins * 100 / SessionStats.gamesPlayed else 0
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -171,6 +176,14 @@ private fun SessionStatsPanel() {
         ) {
             StatItem(label = stringResource(R.string.stats_games_played), value = "${SessionStats.gamesPlayed}")
             StatItem(label = stringResource(R.string.stats_wins), value = "${SessionStats.totalWins}")
+            StatItem(label = stringResource(R.string.stats_win_rate), value = "$winRate%")
+        }
+        Spacer(Modifier.height(8.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            StatItem(label = stringResource(R.string.stats_current_streak), value = "${SessionStats.currentWinStreak}")
             StatItem(label = stringResource(R.string.stats_longest_streak), value = "${SessionStats.longestWinStreak}")
         }
     }
