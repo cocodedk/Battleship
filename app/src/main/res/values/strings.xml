@@ -48,8 +48,10 @@
     <string name="game_over_stats_misses">Misses</string>
     <string name="game_over_stats_accuracy">Accuracy</string>
     <string name="game_over_stats_ships_sunk">Ships Sunk</string>
-    <string name="game_over_badges_title">MEDALS EARNED</string>
-    <string name="game_over_badges_none">No medals earned — keep fighting, sailor.</string>
+    <string name="game_over_badges_title">BADGES EARNED</string>
+    <string name="game_over_badges_none">No badges earned — keep fighting, sailor.</string>
+    <string name="game_over_medals_earned_title">MEDALS EARNED</string>
+    <string name="game_over_view_all_badges">VIEW ALL BADGES</string>
     <string name="game_over_session_label">CAREER</string>
     <string name="game_over_session_games">Games</string>
     <string name="game_over_session_wins">Wins</string>
@@ -77,9 +79,15 @@
 
     <!-- Medals Screen -->
     <string name="menu_view_medals">MEDAL REGISTRY</string>
+    <string name="menu_badges">BADGES</string>
     <string name="medals_title">MEDAL REGISTRY</string>
     <string name="medals_earned_format">%1$d / %2$d MEDALS EARNED</string>
     <string name="medals_back">RETURN TO BASE</string>
+
+    <!-- Badges Screen -->
+    <string name="badges_title">BADGES</string>
+    <string name="badges_earned_format">%1$d / %2$d EARNED</string>
+    <string name="badges_back">RETURN TO BASE</string>
     <string name="medal_detail_how_to_earn">HOW TO EARN</string>
     <string name="medal_detail_rarity_common">◆ COMMON</string>
     <string name="medal_detail_rarity_rare">◆ RARE</string>

@@ -1,6 +1,5 @@
 package com.cocode.battleship.presentation.game.components
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
@@ -12,9 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,16 +20,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
 import com.cocode.battleship.domain.scoring.Badge
-import com.cocode.battleship.presentation.badges.BadgeCanvas
+import com.cocode.battleship.presentation.medals.MedalCanvas
 import com.cocode.battleship.ui.theme.NavyBorder
 import com.cocode.battleship.ui.theme.NavyCard
-import com.cocode.battleship.ui.theme.SonarCyan
-import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
 
 
 @Composable
-fun BadgeShowcase(badges: List<Badge>, onViewAllBadges: () -> Unit = {}) {
+fun MedalsEarnedSection(earnedBadges: List<Badge>) {
+    if (earnedBadges.isEmpty()) return
+    val uniqueBadges = earnedBadges.distinct()
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -41,45 +38,25 @@ fun BadgeShowcase(badges: List<Badge>, onViewAllBadges: () -> Unit = {}) {
             .padding(horizontal = 16.dp, vertical = 10.dp)
     ) {
         Text(
-            text = "$SYM_SECTION  ${stringResource(R.string.game_over_badges_title)}",
+            text = "$SYM_SECTION  ${stringResource(R.string.game_over_medals_earned_title)}",
             style = MaterialTheme.typography.labelSmall,
             color = TextSecondary,
             letterSpacing = 3.sp,
             modifier = Modifier.padding(bottom = 8.dp)
         )
-        if (badges.isEmpty()) {
-            Text(
-                text = stringResource(R.string.game_over_badges_none),
-                style = MaterialTheme.typography.bodySmall,
-                color = TextDim,
-                modifier = Modifier.fillMaxWidth()
-            )
-        } else {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .horizontalScroll(rememberScrollState())
-            ) {
-                badges.distinct().forEach { badge ->
-                    BadgeCanvas(badge = badge, count = badges.count { it == badge }, modifier = Modifier.size(56.dp))
-                }
-            }
-        }
-        OutlinedButton(
-            onClick = onViewAllBadges,
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp),
-            shape = RoundedCornerShape(4.dp),
-            border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.4f)),
-            colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
+                .horizontalScroll(rememberScrollState())
         ) {
-            Text(
-                text = stringResource(R.string.game_over_view_all_badges),
-                fontSize = 10.sp,
-                letterSpacing = 1.5.sp,
-            )
+            uniqueBadges.forEach { badge ->
+                MedalCanvas(
+                    badge = badge,
+                    count = earnedBadges.count { it == badge },
+                    modifier = Modifier.size(56.dp)
+                )
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.cocode.battleship.presentation.medals
+package com.cocode.battleship.presentation.badges
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,6 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.util.Locale
 import com.cocode.battleship.R
+import com.cocode.battleship.presentation.medals.rarityColor
+import com.cocode.battleship.presentation.medals.rarityLabel
+import com.cocode.battleship.presentation.medals.unlockHintResId
 import com.cocode.battleship.ui.theme.AmberWarning
 import com.cocode.battleship.ui.theme.NavyCard
 import com.cocode.battleship.ui.theme.TextPrimary
@@ -29,9 +32,9 @@ import com.cocode.battleship.ui.theme.TextSecondary
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
+fun BadgeDetailSheet(item: BadgeItem, onDismiss: () -> Unit) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-    val rarityColor = rarityColor(item.badge.rarity)
+    val color = rarityColor(item.badge.rarity)
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
@@ -46,7 +49,7 @@ fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
                 .padding(bottom = 32.dp)
         ) {
             Spacer(Modifier.height(16.dp))
-            MedalCanvas(
+            BadgeCanvas(
                 badge = item.badge,
                 count = item.count,
                 modifier = Modifier.size(120.dp)
@@ -55,7 +58,7 @@ fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
             Text(
                 text = item.badge.displayName.uppercase(Locale.ROOT),
                 style = MaterialTheme.typography.titleMedium,
-                color = rarityColor,
+                color = color,
                 fontWeight = FontWeight.ExtraBold,
                 letterSpacing = 2.sp,
             )
@@ -63,7 +66,7 @@ fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
             Text(
                 text = rarityLabel(item.badge.rarity),
                 style = MaterialTheme.typography.labelSmall,
-                color = rarityColor.copy(alpha = 0.6f),
+                color = color.copy(alpha = 0.6f),
                 letterSpacing = 2.sp,
             )
             Spacer(Modifier.height(16.dp))

@@ -1,44 +1,24 @@
 package com.cocode.battleship.presentation.medals
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.cocode.battleship.domain.scoring.Badge
 import com.cocode.battleship.domain.scoring.Rarity
 import kotlin.math.cos
 import kotlin.math.sin
-
-private val RarityCommon    = Color(0xFFB87333)
-private val RarityRare      = Color(0xFF7EB8D4)
-private val RarityEpic      = Color(0xFFFFD700)
-private val RarityLegendary = Color(0xFF00D4FF)
-
-internal fun rarityColor(rarity: Rarity): Color = when (rarity) {
-    Rarity.COMMON    -> RarityCommon
-    Rarity.RARE      -> RarityRare
-    Rarity.EPIC      -> RarityEpic
-    Rarity.LEGENDARY -> RarityLegendary
-}
 
 @Composable
 fun MedalCanvas(badge: Badge, count: Int, modifier: Modifier = Modifier) {
@@ -65,22 +45,12 @@ fun MedalCanvas(badge: Badge, count: Int, modifier: Modifier = Modifier) {
             else drawLockSymbol(cx, cy, outerR * 0.42f, c)
         }
         if (isEarned) {
-            Box(
+            CountBadgeOverlay(
+                count = count,
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(top = 1.dp, end = 1.dp)
-                    .background(Color(0xFF5C2800), RoundedCornerShape(6.dp))
-                    .border(1.dp, Color(0xFFFF8C00), RoundedCornerShape(6.dp))
-                    .padding(horizontal = 4.dp, vertical = 2.dp)
-            ) {
-                Text(
-                    text = "×$count",
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = Color(0xFFFFAA44),
-                    fontFamily = FontFamily.Monospace,
-                )
-            }
+            )
         }
     }
 }
@@ -115,15 +85,3 @@ private fun DrawScope.drawVertexAccents(cx: Float, cy: Float, r: Float, rarity: 
     }
 }
 
-private fun DrawScope.drawLockSymbol(cx: Float, cy: Float, r: Float, color: Color) {
-    val stroke = Stroke(1.5.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round)
-    drawRect(color, topLeft = Offset(cx - r * 0.55f, cy - r * 0.08f), size = Size(r * 1.1f, r * 0.88f), style = stroke)
-    val bow = Path().apply {
-        moveTo(cx - r * 0.35f, cy - r * 0.08f)
-        lineTo(cx - r * 0.35f, cy - r * 0.52f)
-        cubicTo(cx - r * 0.35f, cy - r, cx + r * 0.35f, cy - r, cx + r * 0.35f, cy - r * 0.52f)
-        lineTo(cx + r * 0.35f, cy - r * 0.08f)
-    }
-    drawPath(bow, color, style = stroke)
-    drawCircle(color, r * 0.14f, Offset(cx, cy + r * 0.28f))
-}
