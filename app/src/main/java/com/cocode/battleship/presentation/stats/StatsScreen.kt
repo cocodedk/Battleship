@@ -98,8 +98,6 @@ fun StatsScreen(onBack: () -> Unit) {
                 SessionStatsPanel()
                 Spacer(Modifier.height(12.dp))
                 LifetimeCombatPanel(totalShots = SessionStats.totalShotsLifetime, totalHits = SessionStats.totalHitsLifetime)
-                Spacer(Modifier.height(12.dp))
-                BadgesEarnedPanel(earnedBadges = SessionStats.allEarnedBadges)
             }
 
             Spacer(Modifier.height(24.dp))

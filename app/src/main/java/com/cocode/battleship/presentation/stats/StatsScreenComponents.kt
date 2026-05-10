@@ -4,12 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,8 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
-import com.cocode.battleship.domain.scoring.Badge
-import com.cocode.battleship.presentation.medals.MedalCanvas
 import com.cocode.battleship.ui.theme.NavyBorder
 import com.cocode.battleship.ui.theme.NavyCard
 import com.cocode.battleship.ui.theme.SonarCyan
@@ -77,40 +72,3 @@ internal fun LifetimeCombatPanel(totalShots: Int, totalHits: Int) {
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-internal fun BadgesEarnedPanel(earnedBadges: Set<Badge>) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(NavyCard, RoundedCornerShape(4.dp))
-            .border(1.dp, NavyBorder, RoundedCornerShape(4.dp))
-            .padding(horizontal = 16.dp, vertical = 12.dp)
-    ) {
-        Text(
-            text = "$SYM_SECTION  ${stringResource(R.string.stats_medals_title)}",
-            style = MaterialTheme.typography.labelSmall,
-            color = TextSecondary,
-            letterSpacing = 3.sp,
-            modifier = Modifier.padding(bottom = 10.dp)
-        )
-        if (earnedBadges.isEmpty()) {
-            Text(
-                text = stringResource(R.string.stats_no_badges),
-                style = MaterialTheme.typography.bodySmall,
-                color = TextSecondary.copy(alpha = 0.5f),
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center,
-            )
-        } else {
-            FlowRow(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                earnedBadges.forEach { badge ->
-                    MedalCanvas(badge = badge, count = 1, modifier = Modifier.size(56.dp))
-                }
-            }
-        }
-    }
-}
