@@ -54,7 +54,7 @@ object SessionStats {
         hits: Int = 0
     ) {
         val safeShots = totalShots.coerceAtLeast(0)
-        val safeHits = hits.coerceAtLeast(0)
+        val safeHits = hits.coerceIn(0, safeShots)
         gamesPlayed++
         if (isWin) {
             totalWins++

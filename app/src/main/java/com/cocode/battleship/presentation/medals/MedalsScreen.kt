@@ -52,7 +52,7 @@ fun MedalsScreen(viewModel: MedalsViewModel, onBack: () -> Unit) {
             .background(Brush.verticalGradient(listOf(DeepNavy, NavySurface, DeepNavy)))
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            MedalsHeader(earnedCount = state.earnedCount)
+            MedalsHeader(earnedCount = state.earnedCount, totalCount = state.totalCount)
             LazyVerticalGrid(
                 columns = GridCells.Fixed(3),
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
@@ -87,7 +87,7 @@ fun MedalsScreen(viewModel: MedalsViewModel, onBack: () -> Unit) {
 }
 
 @Composable
-private fun MedalsHeader(earnedCount: Int) {
+private fun MedalsHeader(earnedCount: Int, totalCount: Int) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -103,7 +103,7 @@ private fun MedalsHeader(earnedCount: Int) {
         )
         Spacer(Modifier.height(4.dp))
         Text(
-            text = "$SYM_ARROW  ${stringResource(R.string.medals_earned_format, earnedCount)}",
+            text = "$SYM_ARROW  ${stringResource(R.string.medals_earned_format, earnedCount, totalCount)}",
             style = MaterialTheme.typography.labelMedium,
             color = PhosphorGreen,
             letterSpacing = 1.5.sp,

@@ -11,4 +11,5 @@ data class MedalsUiState(
     val selectedItem: MedalItem? = null
 ) {
     val earnedCount: Int get() = items.count { it.isEarned }
+    val totalCount: Int get() = items.size
 }

@@ -76,13 +76,15 @@ fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
                 color = TextSecondary,
                 letterSpacing = 3.sp,
                 textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
             )
             Spacer(Modifier.height(6.dp))
             Text(
-                text = item.badge.unlockHint,
+                text = stringResource(item.badge.unlockHintResId()),
                 style = MaterialTheme.typography.bodyMedium,
                 color = TextPrimary,
                 textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
             )
             if (item.isEarned) {
                 Spacer(Modifier.height(12.dp))

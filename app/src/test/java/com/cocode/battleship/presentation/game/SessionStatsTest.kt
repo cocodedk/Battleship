@@ -95,11 +95,11 @@ class SessionStatsTest {
 
     @Test
     fun `record accumulates lifetime shots and hits across games`() {
-        SessionStats.record(score = 500, isWin = true, totalShots =20, hits = 12)
+        SessionStats.record(score = 500, isWin = true, totalShots = 20, hits = 12)
         assertEquals(20, SessionStats.totalShotsLifetime)
         assertEquals(12, SessionStats.totalHitsLifetime)
 
-        SessionStats.record(score = 300, isWin = false, totalShots =15, hits = 8)
+        SessionStats.record(score = 300, isWin = false, totalShots = 15, hits = 8)
         assertEquals(35, SessionStats.totalShotsLifetime)
         assertEquals(20, SessionStats.totalHitsLifetime)
     }
@@ -117,7 +117,7 @@ class SessionStatsTest {
 
     @Test
     fun `snapshot includes totalShotsLifetime and totalHitsLifetime`() {
-        SessionStats.record(score = 400, isWin = true, totalShots =30, hits = 18)
+        SessionStats.record(score = 400, isWin = true, totalShots = 30, hits = 18)
         val snap = SessionStats.snapshot()
         assertEquals(30, snap.totalShotsLifetime)
         assertEquals(18, snap.totalHitsLifetime)
