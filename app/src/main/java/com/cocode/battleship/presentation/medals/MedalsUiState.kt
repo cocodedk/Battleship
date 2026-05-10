@@ -8,6 +8,7 @@ data class MedalItem(val badge: Badge, val count: Int) {
 
 data class MedalsUiState(
     val items: List<MedalItem>,
-    val earnedCount: Int,
     val selectedItem: MedalItem? = null
-)
+) {
+    val earnedCount: Int get() = items.count { it.isEarned }
+}

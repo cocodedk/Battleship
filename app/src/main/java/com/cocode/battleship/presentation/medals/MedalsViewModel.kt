@@ -30,5 +30,5 @@ private fun buildState(counts: Map<Badge, Int>): MedalsUiState {
     val items = Badge.entries.map { badge ->
         MedalItem(badge = badge, count = counts[badge] ?: 0)
     }
-    return MedalsUiState(items = items, earnedCount = items.count { it.isEarned })
+    return MedalsUiState(items = items)
 }

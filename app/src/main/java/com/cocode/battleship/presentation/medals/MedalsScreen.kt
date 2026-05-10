@@ -119,7 +119,7 @@ private fun MedalCell(item: MedalItem, onClick: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() }
+            .clickable(onClick = onClick)
     ) {
         MedalCanvas(
             badge = item.badge,
