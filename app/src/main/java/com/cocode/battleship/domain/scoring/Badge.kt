@@ -68,7 +68,7 @@ enum class Badge(
     ),
     ON_FIRE(
         "On Fire", Rarity.EPIC, "🔥🔥",
-        "Win at least 3 games in a row in the same session"
+        "Win at least 3 games in a row"
     );
 
     companion object {
