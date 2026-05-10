@@ -2,6 +2,7 @@ package com.cocode.battleship.presentation.medals
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,6 +44,7 @@ private const val SYM_ARROW = "▶"
 @Composable
 fun MedalsScreen(viewModel: MedalsViewModel, onBack: () -> Unit) {
     val state by viewModel.state.collectAsState()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -58,7 +60,7 @@ fun MedalsScreen(viewModel: MedalsViewModel, onBack: () -> Unit) {
                 modifier = Modifier.weight(1f)
             ) {
                 items(state.items) { item ->
-                    MedalCell(item)
+                    MedalCell(item = item, onClick = { viewModel.selectItem(item) })
                 }
             }
             Box(modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)) {
@@ -78,6 +80,10 @@ fun MedalsScreen(viewModel: MedalsViewModel, onBack: () -> Unit) {
                 }
             }
         }
+    }
+
+    state.selectedItem?.let { item ->
+        MedalDetailSheet(item = item, onDismiss = { viewModel.selectItem(null) })
     }
 }
 
@@ -107,10 +113,12 @@ private fun MedalsHeader(earnedCount: Int) {
 }
 
 @Composable
-private fun MedalCell(item: MedalItem) {
+private fun MedalCell(item: MedalItem, onClick: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() }
     ) {
         MedalCanvas(
             badge = item.badge,
