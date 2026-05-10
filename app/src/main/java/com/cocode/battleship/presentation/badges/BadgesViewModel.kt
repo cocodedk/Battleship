@@ -22,8 +22,12 @@ class BadgesViewModel(storage: MedalsStorage) : ViewModel() {
         fun factory(storage: MedalsStorage): ViewModelProvider.Factory =
             object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
-                override fun <T : ViewModel> create(modelClass: Class<T>): T =
-                    BadgesViewModel(storage) as T
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    require(modelClass.isAssignableFrom(BadgesViewModel::class.java)) {
+                        "Unknown ViewModel class: ${modelClass.name}"
+                    }
+                    return BadgesViewModel(storage) as T
+                }
             }
     }
 }

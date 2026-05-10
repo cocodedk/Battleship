@@ -30,7 +30,7 @@ import com.cocode.battleship.ui.theme.TextSecondary
 @Composable
 fun MedalsEarnedSection(earnedBadges: List<Badge>) {
     if (earnedBadges.isEmpty()) return
-    val uniqueBadges = earnedBadges.distinct()
+    val badgeCounts = earnedBadges.groupingBy { it }.eachCount()
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -51,10 +51,10 @@ fun MedalsEarnedSection(earnedBadges: List<Badge>) {
                 .fillMaxWidth()
                 .horizontalScroll(rememberScrollState())
         ) {
-            uniqueBadges.forEach { badge ->
+            badgeCounts.forEach { (badge, count) ->
                 MedalCanvas(
                     badge = badge,
-                    count = earnedBadges.count { it == badge },
+                    count = count,
                     modifier = Modifier.size(56.dp)
                 )
             }

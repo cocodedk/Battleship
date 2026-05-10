@@ -62,8 +62,8 @@ fun BadgeShowcase(badges: List<Badge>, onViewAllBadges: () -> Unit = {}) {
                     .fillMaxWidth()
                     .horizontalScroll(rememberScrollState())
             ) {
-                badges.distinct().forEach { badge ->
-                    BadgeCanvas(badge = badge, count = badges.count { it == badge }, modifier = Modifier.size(56.dp))
+                badges.groupingBy { it }.eachCount().forEach { (badge, count) ->
+                    BadgeCanvas(badge = badge, count = count, modifier = Modifier.size(56.dp))
                 }
             }
         }
