@@ -2,6 +2,9 @@ package com.cocode.battleship.presentation.game
 
 import com.cocode.battleship.domain.model.CellState
 import com.cocode.battleship.domain.model.ShipType
+import com.cocode.battleship.domain.scoring.Badge
+import com.cocode.battleship.domain.scoring.GameOutcome
+import com.cocode.battleship.domain.scoring.GameStats
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -122,5 +125,40 @@ class GameTrackersTest {
         val after1 = updateTrackers(blank(), CellState.MISS, null)
         val after2 = updateTrackers(after1, CellState.MISS, null)
         assertEquals(2, after2.misses)
+    }
+
+    private fun scoreStats(outcome: GameOutcome = GameOutcome.WIN) = GameStats(
+        outcome = outcome,
+        totalShots = 50, hits = 30, misses = 20,
+        survivingPlayerShips = 3, totalPlayerShipHp = 10, shipsSunkByPlayer = 5,
+        longestHitStreak = 0, longestMissStreak = 0,
+        firstShotHit = false, firstEnemyShipSunkType = null, playerShipEndStates = emptyMap()
+    )
+
+    @Test fun `computeScoreResult includes FLEET_COMMANDER when sessionTotalWins is 10`() {
+        val result = computeScoreResult(scoreStats(), sessionWinStreak = 0, sessionTotalWins = 10, sessionGamesPlayed = 10)
+        assertTrue(Badge.FLEET_COMMANDER in result.earnedBadges)
+    }
+
+    @Test fun `computeScoreResult does not include FLEET_COMMANDER when sessionTotalWins is 11`() {
+        val result = computeScoreResult(scoreStats(), sessionWinStreak = 0, sessionTotalWins = 11, sessionGamesPlayed = 11)
+        assertFalse(Badge.FLEET_COMMANDER in result.earnedBadges)
+    }
+
+    @Test fun `computeScoreResult includes IRON_ADMIRAL when sessionTotalWins is 25`() {
+        val result = computeScoreResult(scoreStats(), sessionWinStreak = 0, sessionTotalWins = 25, sessionGamesPlayed = 25)
+        assertTrue(Badge.IRON_ADMIRAL in result.earnedBadges)
+    }
+
+    @Test fun `computeScoreResult includes SEA_VETERAN when sessionGamesPlayed is 25`() {
+        val result = computeScoreResult(scoreStats(), sessionWinStreak = 0, sessionTotalWins = 0, sessionGamesPlayed = 25)
+        assertTrue(Badge.SEA_VETERAN in result.earnedBadges)
+    }
+
+    @Test fun `computeScoreResult with default session params does not award progression badges`() {
+        val result = computeScoreResult(scoreStats(), sessionWinStreak = 0)
+        assertFalse(Badge.FLEET_COMMANDER in result.earnedBadges)
+        assertFalse(Badge.IRON_ADMIRAL in result.earnedBadges)
+        assertFalse(Badge.SEA_VETERAN in result.earnedBadges)
     }
 }
