@@ -176,21 +176,3 @@ private fun SessionStatsPanel() {
     }
 }
 
-@Composable
-private fun StatItem(label: String, value: String) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = value,
-            style = MaterialTheme.typography.headlineSmall,
-            color = SonarCyan,
-            fontWeight = FontWeight.ExtraBold,
-        )
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
-            color = TextSecondary,
-            letterSpacing = 0.5.sp,
-            textAlign = TextAlign.Center,
-        )
-    }
-}
