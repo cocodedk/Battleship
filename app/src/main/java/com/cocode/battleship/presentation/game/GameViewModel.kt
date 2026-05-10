@@ -132,7 +132,7 @@ class GameViewModel : ViewModel() {
                 result.score,
                 isWin = true,
                 earnedBadges = result.earnedBadges,
-                shots = result.stats.totalShots,
+                totalShots = result.stats.totalShots,
                 hits = result.stats.hits
             )
             _state.value = s.copy(
@@ -192,7 +192,7 @@ class GameViewModel : ViewModel() {
                 result.score,
                 isWin = false,
                 earnedBadges = result.earnedBadges,
-                shots = result.stats.totalShots,
+                totalShots = result.stats.totalShots,
                 hits = result.stats.hits
             )
             _state.value = s.copy(

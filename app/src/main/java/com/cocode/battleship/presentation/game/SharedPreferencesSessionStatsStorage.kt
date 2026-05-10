@@ -30,7 +30,7 @@ class SharedPreferencesSessionStatsStorage(context: Context) : SessionStatsStora
             .putStringSet(KEY_EARNED_BADGES, snapshot.earnedBadges.mapTo(mutableSetOf()) { it.name })
             .putInt(KEY_TOTAL_SHOTS_LIFETIME, snapshot.totalShotsLifetime)
             .putInt(KEY_TOTAL_HITS_LIFETIME, snapshot.totalHitsLifetime)
-            .commit()
+            .apply()
     }
 
     private companion object {

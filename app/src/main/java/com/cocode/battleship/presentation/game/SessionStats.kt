@@ -50,9 +50,11 @@ object SessionStats {
         score: Int,
         isWin: Boolean,
         earnedBadges: List<Badge> = emptyList(),
-        shots: Int = 0,
+        totalShots: Int = 0,
         hits: Int = 0
     ) {
+        val safeShots = totalShots.coerceAtLeast(0)
+        val safeHits = hits.coerceAtLeast(0)
         gamesPlayed++
         if (isWin) {
             totalWins++
@@ -62,8 +64,8 @@ object SessionStats {
             currentWinStreak = 0
         }
         if (score > bestScore) bestScore = score
-        totalShotsLifetime += shots
-        totalHitsLifetime += hits
+        totalShotsLifetime += safeShots
+        totalHitsLifetime += safeHits
         _allEarnedBadges.addAll(earnedBadges)
         if (earnedBadges.isNotEmpty()) medalsStorage?.increment(earnedBadges)
         persist()
