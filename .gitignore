@@ -14,3 +14,12 @@
 .cxx
 local.properties
 release.keystore
+
+# IDE / tooling
+/.idea/misc.xml
+.claude/
+.codex
+.mcp.json
+.playwright-mcp/
+.superpowers/
+docs/superpowers/plans/
