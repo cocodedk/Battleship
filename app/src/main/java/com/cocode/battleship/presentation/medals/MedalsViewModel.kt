@@ -12,6 +12,10 @@ class MedalsViewModel(storage: MedalsStorage) : ViewModel() {
     private val _state = MutableStateFlow(buildState(storage.load()))
     val state: StateFlow<MedalsUiState> = _state.asStateFlow()
 
+    fun selectItem(item: MedalItem?) {
+        _state.value = _state.value.copy(selectedItem = item)
+    }
+
     companion object {
         fun factory(storage: MedalsStorage): ViewModelProvider.Factory =
             object : ViewModelProvider.Factory {
