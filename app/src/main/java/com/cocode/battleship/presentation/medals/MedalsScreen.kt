@@ -37,6 +37,7 @@ import com.cocode.battleship.ui.theme.DeepNavy
 import com.cocode.battleship.ui.theme.NavySurface
 import com.cocode.battleship.ui.theme.PhosphorGreen
 import com.cocode.battleship.ui.theme.SonarCyan
+import java.util.Locale
 
 private const val SYM_SECTION = "◆"
 private const val SYM_ARROW = "▶"
@@ -127,7 +128,7 @@ private fun MedalCell(item: MedalItem, onClick: () -> Unit) {
         )
         Spacer(Modifier.height(5.dp))
         Text(
-            text = item.badge.displayName.uppercase(),
+            text = item.badge.displayName.uppercase(Locale.ROOT),
             fontSize = 8.sp,
             letterSpacing = 0.4.sp,
             color = rarityColor(item.badge.rarity).copy(alpha = if (item.isEarned) 0.88f else 0.28f),

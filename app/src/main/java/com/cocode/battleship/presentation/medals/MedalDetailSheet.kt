@@ -17,8 +17,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.util.Locale
 import com.cocode.battleship.R
 import com.cocode.battleship.domain.scoring.Rarity
 import com.cocode.battleship.ui.theme.AmberWarning
@@ -52,7 +54,7 @@ fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
             )
             Spacer(Modifier.height(12.dp))
             Text(
-                text = item.badge.displayName.uppercase(java.util.Locale.ROOT),
+                text = item.badge.displayName.uppercase(Locale.ROOT),
                 style = MaterialTheme.typography.titleMedium,
                 color = rarityColor,
                 fontWeight = FontWeight.ExtraBold,
@@ -73,14 +75,14 @@ fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
                 style = MaterialTheme.typography.labelSmall,
                 color = TextSecondary,
                 letterSpacing = 3.sp,
-                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
             )
             Spacer(Modifier.height(6.dp))
             Text(
                 text = item.badge.unlockHint,
                 style = MaterialTheme.typography.bodyMedium,
                 color = TextPrimary,
-                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
             )
             if (item.isEarned) {
                 Spacer(Modifier.height(12.dp))
@@ -90,6 +92,8 @@ fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
                     color = AmberWarning,
                     fontWeight = FontWeight.Bold,
                     letterSpacing = 1.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
         }
