@@ -1,12 +1,13 @@
 package com.cocode.battleship.presentation.badges
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
@@ -29,42 +30,45 @@ fun BadgeCanvas(badge: Badge, count: Int, modifier: Modifier = Modifier) {
     val isEarned = count > 0
     val color = rarityColor(badge.rarity)
     Box(modifier = modifier) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            val cx = size.width / 2f
-            val cy = size.height / 2f
-            val outerR = size.minDimension * 0.46f
-            val innerR = size.minDimension * 0.20f
-            val drawAlpha = if (isEarned) 1f else 0.28f
-            val c = color.copy(alpha = drawAlpha)
-            val bg = Color(0xFF071828).copy(alpha = drawAlpha)
-            val strokeOuter = Stroke(2.5.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round)
-            val strokeInner = Stroke(1.dp.toPx())
-
-            when (badge.rarity) {
-                Rarity.COMMON -> {
-                    drawCircle(bg, outerR, Offset(cx, cy))
-                    drawCircle(c, outerR, Offset(cx, cy), style = strokeOuter)
-                    drawCircle(c.copy(alpha = c.alpha * 0.45f), outerR * 0.82f, Offset(cx, cy), style = strokeInner)
+        Spacer(
+            Modifier.fillMaxSize().drawWithCache {
+                val cx = size.width / 2f
+                val cy = size.height / 2f
+                val outerR = size.minDimension * 0.46f
+                val innerR = size.minDimension * 0.20f
+                val strokeOuter = Stroke(2.5.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round)
+                val strokeInner = Stroke(1.dp.toPx())
+                val outerPath: Path? = when (badge.rarity) {
+                    Rarity.RARE      -> shieldPath(size.width, size.height)
+                    Rarity.EPIC      -> diamondPath(cx, cy, outerR)
+                    Rarity.LEGENDARY -> starPath(cx, cy, outerR, innerR)
+                    else             -> null
                 }
-                Rarity.RARE -> {
-                    drawPath(shieldPath(size.width, size.height), bg)
-                    drawPath(shieldPath(size.width, size.height), c, style = strokeOuter)
-                    drawPath(shieldPath(size.width, size.height, scale = 0.82f), c.copy(alpha = c.alpha * 0.45f), style = strokeInner)
+                val innerPath: Path? = when (badge.rarity) {
+                    Rarity.RARE -> shieldPath(size.width, size.height, scale = 0.82f)
+                    Rarity.EPIC -> diamondPath(cx, cy, outerR * 0.82f)
+                    else        -> null
                 }
-                Rarity.EPIC -> {
-                    drawPath(diamondPath(cx, cy, outerR), bg)
-                    drawPath(diamondPath(cx, cy, outerR), c, style = strokeOuter)
-                    drawPath(diamondPath(cx, cy, outerR * 0.82f), c.copy(alpha = c.alpha * 0.45f), style = strokeInner)
-                }
-                Rarity.LEGENDARY -> {
-                    drawPath(starPath(cx, cy, outerR, innerR), bg)
-                    drawPath(starPath(cx, cy, outerR, innerR), c, style = strokeOuter)
+                onDrawBehind {
+                    val drawAlpha = if (isEarned) 1f else 0.28f
+                    val c = color.copy(alpha = drawAlpha)
+                    val bg = Color(0xFF071828).copy(alpha = drawAlpha)
+                    if (outerPath != null) {
+                        drawPath(outerPath, bg)
+                        drawPath(outerPath, c, style = strokeOuter)
+                        if (innerPath != null) {
+                            drawPath(innerPath, c.copy(alpha = c.alpha * 0.45f), style = strokeInner)
+                        }
+                    } else {
+                        drawCircle(bg, outerR, Offset(cx, cy))
+                        drawCircle(c, outerR, Offset(cx, cy), style = strokeOuter)
+                        drawCircle(c.copy(alpha = c.alpha * 0.45f), outerR * 0.82f, Offset(cx, cy), style = strokeInner)
+                    }
+                    if (isEarned) drawBadgeSymbol(badge, cx, cy, outerR * 0.42f, c)
+                    else drawLockSymbol(cx, cy, outerR * 0.42f, c)
                 }
             }
-
-            if (isEarned) drawBadgeSymbol(badge, cx, cy, outerR * 0.42f, c)
-            else drawLockSymbol(cx, cy, outerR * 0.42f, c)
-        }
+        )
         if (isEarned) {
             CountBadgeOverlay(
                 count = count,

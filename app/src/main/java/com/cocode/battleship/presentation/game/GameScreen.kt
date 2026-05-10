@@ -49,11 +49,10 @@ import com.cocode.battleship.ui.theme.AmberWarning
 import com.cocode.battleship.ui.theme.NavyCard
 import com.cocode.battleship.ui.theme.PhosphorGreen
 import com.cocode.battleship.ui.theme.SonarCyan
+import com.cocode.battleship.presentation.SYM_ARROW
+import com.cocode.battleship.presentation.SYM_SECTION
 import com.cocode.battleship.ui.theme.TextSecondary
 import kotlinx.coroutines.delay
-
-private const val SYMBOL_ARROW = "▶"
-private const val SYMBOL_SECTION = "◆"
 
 internal fun weaponSelectorVisible(availableWeapons: List<SuperWeapon>): Boolean =
     availableWeapons.isNotEmpty()
@@ -121,7 +120,7 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
                         .padding(horizontal = 14.dp, vertical = 5.dp)
                 ) {
                     Text(
-                        text = "$SYMBOL_ARROW  $indicatorText",
+                        text = "$SYM_ARROW  $indicatorText",
                         color = indicatorColor,
                         style = MaterialTheme.typography.labelLarge,
                         fontWeight = FontWeight.Bold,
@@ -179,7 +178,7 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
 @Composable
 private fun SectionLabel(text: String) {
     Text(
-        text = "$SYMBOL_SECTION  $text",
+        text = "$SYM_SECTION  $text",
         style = MaterialTheme.typography.titleMedium,
         color = TextSecondary,
         letterSpacing = 1.5.sp,

@@ -22,9 +22,8 @@ import com.cocode.battleship.R
 import com.cocode.battleship.ui.theme.NavyBorder
 import com.cocode.battleship.ui.theme.NavyCard
 import com.cocode.battleship.ui.theme.SonarCyan
+import com.cocode.battleship.presentation.SYM_SECTION
 import com.cocode.battleship.ui.theme.TextSecondary
-
-private const val SYM_SECTION = "◆"
 
 @Composable
 internal fun StatItem(label: String, value: String) {

@@ -1,12 +1,13 @@
 package com.cocode.battleship.presentation.medals
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
@@ -25,25 +26,31 @@ fun MedalCanvas(badge: Badge, count: Int, modifier: Modifier = Modifier) {
     val isEarned = count > 0
     val color = rarityColor(badge.rarity)
     Box(modifier = modifier) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            val cx = size.width / 2f
-            val cy = size.height / 2f
-            val outerR = size.minDimension * 0.46f
-            val drawAlpha = if (isEarned) 1f else 0.28f
-            val c = color.copy(alpha = drawAlpha)
-            val strokeOuter = Stroke(2.5.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round)
-
-            drawPath(hexPath(cx, cy, outerR), Color(0xFF071828).copy(alpha = drawAlpha))
-            drawPath(hexPath(cx, cy, outerR), c, style = strokeOuter)
-            drawPath(hexPath(cx, cy, outerR * 0.82f), c.copy(alpha = c.alpha * 0.45f), style = Stroke(1.dp.toPx()))
-            drawVertexAccents(cx, cy, outerR, badge.rarity, c)
-            if (badge.rarity == Rarity.LEGENDARY && isEarned) {
-                drawCircle(c.copy(alpha = 0.12f), outerR * 1.15f, Offset(cx, cy))
-                drawCircle(c.copy(alpha = 0.06f), outerR * 1.3f, Offset(cx, cy))
+        Spacer(
+            Modifier.fillMaxSize().drawWithCache {
+                val cx = size.width / 2f
+                val cy = size.height / 2f
+                val outerR = size.minDimension * 0.46f
+                val strokeOuter = Stroke(2.5.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round)
+                val strokeInner = Stroke(1.dp.toPx())
+                val hex = hexPath(cx, cy, outerR)
+                val hexInner = hexPath(cx, cy, outerR * 0.82f)
+                onDrawBehind {
+                    val drawAlpha = if (isEarned) 1f else 0.28f
+                    val c = color.copy(alpha = drawAlpha)
+                    drawPath(hex, Color(0xFF071828).copy(alpha = drawAlpha))
+                    drawPath(hex, c, style = strokeOuter)
+                    drawPath(hexInner, c.copy(alpha = c.alpha * 0.45f), style = strokeInner)
+                    drawVertexAccents(cx, cy, outerR, badge.rarity, c)
+                    if (badge.rarity == Rarity.LEGENDARY && isEarned) {
+                        drawCircle(c.copy(alpha = 0.12f), outerR * 1.15f, Offset(cx, cy))
+                        drawCircle(c.copy(alpha = 0.06f), outerR * 1.3f, Offset(cx, cy))
+                    }
+                    if (isEarned) drawBadgeSymbol(badge, cx, cy, outerR * 0.42f, c)
+                    else drawLockSymbol(cx, cy, outerR * 0.42f, c)
+                }
             }
-            if (isEarned) drawBadgeSymbol(badge, cx, cy, outerR * 0.42f, c)
-            else drawLockSymbol(cx, cy, outerR * 0.42f, c)
-        }
+        )
         if (isEarned) {
             CountBadgeOverlay(
                 count = count,
@@ -84,4 +91,3 @@ private fun DrawScope.drawVertexAccents(cx: Float, cy: Float, r: Float, rarity: 
         }
     }
 }
-

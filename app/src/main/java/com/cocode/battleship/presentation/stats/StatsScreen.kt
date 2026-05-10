@@ -38,9 +38,8 @@ import com.cocode.battleship.ui.theme.NavyCard
 import com.cocode.battleship.ui.theme.NavySurface
 import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
+import com.cocode.battleship.presentation.SYM_SECTION
 import com.cocode.battleship.ui.theme.TextSecondary
-
-private const val SYM_SECTION = "◆"
 
 @Composable
 fun StatsScreen(onBack: () -> Unit) {

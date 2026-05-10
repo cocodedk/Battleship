@@ -37,11 +37,10 @@ import com.cocode.battleship.presentation.medals.rarityColor
 import com.cocode.battleship.ui.theme.DeepNavy
 import com.cocode.battleship.ui.theme.NavySurface
 import com.cocode.battleship.ui.theme.PhosphorGreen
+import com.cocode.battleship.presentation.SYM_ARROW
+import com.cocode.battleship.presentation.SYM_SECTION
 import com.cocode.battleship.ui.theme.SonarCyan
 import java.util.Locale
-
-private const val SYM_SECTION = "◆"
-private const val SYM_ARROW = "▶"
 
 @Composable
 fun BadgesScreen(viewModel: BadgesViewModel, onBack: () -> Unit) {

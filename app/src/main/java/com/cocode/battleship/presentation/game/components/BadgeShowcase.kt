@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
 import com.cocode.battleship.domain.scoring.Badge
+import com.cocode.battleship.presentation.SYM_SECTION
 import com.cocode.battleship.presentation.badges.BadgeCanvas
 import com.cocode.battleship.ui.theme.NavyBorder
 import com.cocode.battleship.ui.theme.NavyCard

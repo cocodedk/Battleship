@@ -27,57 +27,34 @@ internal fun MenuButtons(
     onViewMedals: () -> Unit,
     onViewBadges: () -> Unit,
 ) {
-    OutlinedButton(
-        onClick = onViewStats,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(44.dp)
-            .alpha(entry.secondaryButtonAlpha)
-            .offset(x = entry.secondaryButtonOffsetX),
-        shape = RoundedCornerShape(4.dp),
-        border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.45f)),
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
-    ) {
-        Text(
-            text = stringResource(R.string.menu_view_stats),
-            style = MaterialTheme.typography.labelLarge,
-            fontWeight = FontWeight.Bold,
-            letterSpacing = 2.sp,
-        )
-    }
+    MenuSecondaryButton(stringResource(R.string.menu_view_stats), onViewStats, entry, borderAlpha = 0.45f, contentAlpha = 1f)
     Spacer(Modifier.height(8.dp))
-    OutlinedButton(
-        onClick = onViewMedals,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(44.dp)
-            .alpha(entry.secondaryButtonAlpha)
-            .offset(x = entry.secondaryButtonOffsetX),
-        shape = RoundedCornerShape(4.dp),
-        border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.35f)),
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan.copy(alpha = 0.8f)),
-    ) {
-        Text(
-            text = stringResource(R.string.menu_view_medals),
-            style = MaterialTheme.typography.labelLarge,
-            fontWeight = FontWeight.Bold,
-            letterSpacing = 2.sp,
-        )
-    }
+    MenuSecondaryButton(stringResource(R.string.menu_view_medals), onViewMedals, entry)
     Spacer(Modifier.height(8.dp))
+    MenuSecondaryButton(stringResource(R.string.menu_badges), onViewBadges, entry)
+}
+
+@Composable
+private fun MenuSecondaryButton(
+    text: String,
+    onClick: () -> Unit,
+    entry: MenuEntryState,
+    borderAlpha: Float = 0.35f,
+    contentAlpha: Float = 0.8f,
+) {
     OutlinedButton(
-        onClick = onViewBadges,
+        onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
             .height(44.dp)
             .alpha(entry.secondaryButtonAlpha)
             .offset(x = entry.secondaryButtonOffsetX),
         shape = RoundedCornerShape(4.dp),
-        border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.35f)),
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan.copy(alpha = 0.8f)),
+        border = BorderStroke(1.dp, SonarCyan.copy(alpha = borderAlpha)),
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan.copy(alpha = contentAlpha)),
     ) {
         Text(
-            text = stringResource(R.string.menu_badges),
+            text = text,
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
             letterSpacing = 2.sp,
