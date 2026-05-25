@@ -8,7 +8,7 @@ lifecycleRuntimeKtx = "2.10.0"
 activityCompose = "1.13.0"
 kotlin = "2.3.20"
 composeBom = "2026.02.01"
-lifecycleViewModel = "2.8.7"
+lifecycleViewModel = "2.10.0"
 coroutines = "1.10.2"
 navigationCompose = "2.8.4"
 
