@@ -75,7 +75,12 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            // R8 shrinks and optimises the release build. No reflection, no JSON/Gson/Retrofit,
+            // no network. Career stats and medals persist via SharedPreferences, but only under
+            // hardcoded string keys and Badge's enum .name (a compile-time literal R8 doesn't
+            // rename), so no keep rules are needed yet.
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
