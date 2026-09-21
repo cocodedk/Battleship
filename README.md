@@ -4,8 +4,8 @@ A local naval combat game for Android. No network connection required — play a
 
 ## Website
 
-- [English](https://cocodedk.github.io/Battleship/)
-- [فارسی (Persian)](https://cocodedk.github.io/Battleship/fa/)
+- [English](https://battleship.cocode.dk/)
+- [فارسی (Persian)](https://battleship.cocode.dk/fa/)
 
 ---
 
