@@ -31,5 +31,5 @@ Battleship is an Android game implementing the classic naval combat game. One pl
 
 - GitHub: https://github.com/cocodedk/Battleship
 - Releases: https://github.com/cocodedk/Battleship/releases
-- Website: https://cocodedk.github.io/Battleship/
+- Website: https://battleship.cocode.dk/
 - Built by: [Cocode](https://cocode.dk)

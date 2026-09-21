@@ -5,7 +5,7 @@
 **Last updated:** 14 July 2026
 
 > The canonical, always-current version of this policy is published at
-> **https://cocodedk.github.io/Battleship/privacy.html**
+> **https://battleship.cocode.dk/privacy.html**
 
 **Battleship does not collect, transmit, or share any personal data.**
 It is a single-player naval combat game (you versus an on-device AI) that runs entirely offline on your device.
