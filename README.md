@@ -16,7 +16,7 @@ A local naval combat game for Android. No network connection required — play a
 - **Fully offline** — no network, no account, no tracking
 - **10×10 grid** — 5-ship fleet (Carrier, Battleship, Cruiser, Submarine, Destroyer)
 - **AI opponent** — hunt/target algorithm with checkerboard parity
-- **Ship placement** — tap a cell to place, tap again to rotate, or deploy the whole fleet with one tap
+- **Ship placement** — tap a cell to place, a separate button switches orientation, or deploy the whole fleet with one tap
 - **Naval Sonar Command aesthetic** — dark navy theme on Material3
 
 ### Super Weapons

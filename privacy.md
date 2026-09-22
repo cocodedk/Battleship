@@ -15,7 +15,7 @@ It is a single-player naval combat game (you versus an on-device AI) that runs e
 The game keeps a record of your play — career statistics (games played, victories, win streaks, best score),
 the highest rank you have reached, and the medals and badges you have earned. This information is stored only in a
 private area on your own device (Android `SharedPreferences`, in private mode). It is never sent to us or to any
-third party. It stays on your phone and is removed if you delete the app or clear its data.
+third party. It stays on your phone and is removed if you delete the app or clear its data. If you have turned on Android backup, a copy may still exist in your own Google backup until you remove it there — see "Device backup" below.
 
 ## No internet, no tracking
 
