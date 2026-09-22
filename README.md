@@ -1,6 +1,6 @@
 # Battleship
 
-A local naval combat game for Android. No network connection required — play against an AI opponent or pass the device for two-player mode.
+A local naval combat game for Android. No network connection required — play against an AI opponent that hunts, targets and works a checkerboard parity.
 
 ## Website
 
@@ -16,8 +16,7 @@ A local naval combat game for Android. No network connection required — play a
 - **Fully offline** — no network, no account, no tracking
 - **10×10 grid** — 5-ship fleet (Carrier, Battleship, Cruiser, Submarine, Destroyer)
 - **AI opponent** — hunt/target algorithm with checkerboard parity
-- **Ship placement** — manual drag-and-drop or one-tap auto-deployment
-- **Two-player mode** — pass-and-play on a single device
+- **Ship placement** — tap a cell to place, tap again to rotate, or deploy the whole fleet with one tap
 - **Naval Sonar Command aesthetic** — dark navy theme on Material3
 
 ### Super Weapons
@@ -32,7 +31,7 @@ Unlock special attack abilities by sinking enemy ships (5 total):
 
 ### Medals & Ranking System
 
-- **15 medals** across 4 rarities (Common, Rare, Epic, Legendary)
+- **33 medals** across 4 rarities (Common, Rare, Epic, Legendary)
   - Examples: Perfect Gunner (win with 0 misses), Flawless Victory (all 5 ships intact), Dead-Eye (80%+ accuracy)
 - **8 career ranks**: Cadet → Ensign → Lieutenant → Captain → Commodore → Vice Admiral → Admiral → Fleet Admiral
 - **Career stats screen** — track accumulated medals, best rank, and win streaks across games and app restarts
