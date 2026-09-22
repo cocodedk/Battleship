@@ -81,7 +81,7 @@
       <div class="briefing-text">
         <p>The enemy fleet lurks somewhere in those waters. Your sonar has detected their presence, but their exact positions remain unknown. Somewhere in that 10×10 grid of grey sea and silence, five ships wait — a Carrier, a Battleship, a Cruiser, a Submarine, a Destroyer. Your orders are simple: find them. Sink them. All of them.</p>
         <p>Deploy your own fleet with care — placement is strategy. Then fire your first shot into the fog. A ping. A splash. A hit. Each sunken enemy ship delivers a super weapon into your arsenal — a Carpet Bomb, a Barrage, a Sonar Sweep, a Torpedo Spread, a Precision Strike. Use them wisely. The AI opponent thinks. It hunts. It adapts.</p>
-        <p>Every battle writes your record. Hit percentages, win streaks, medals earned mid-fight — they all accumulate in your career file. Rise from Cadet to Fleet Admiral. Prove your command is flawless. The ocean doesn't forgive hesitation. Neither does the enemy.</p>
+        <p>Every battle writes your record. Hit percentages, win streaks, medals awarded at the end of each battle — they all accumulate in your career file. Rise from Cadet to Fleet Admiral. Prove your command is flawless. The ocean doesn't forgive hesitation. Neither does the enemy.</p>
       </div>
     </section>
 
@@ -224,7 +224,7 @@
         <div class="weapon-card">
           <span class="weapon-icon">🐠</span>
           <div class="weapon-name">TORPEDO SPREAD</div>
-          <div class="weapon-desc">5-cell vertical salvo punching down a column — depth attack delivered from the deep.</div>
+          <div class="weapon-desc">5-cell vertical salvo centred on the target cell, clipped at the board edge — depth attack delivered from the deep.</div>
           <div class="weapon-pattern">
             <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
             <div class="weapon-pattern-row"><div class="wp-cell hit"></div></div>
@@ -238,22 +238,16 @@
         <div class="weapon-card">
           <span class="weapon-icon">🎯</span>
           <div class="weapon-name">PRECISION STRIKE</div>
-          <div class="weapon-desc">5-cell X-pattern surgical strike — diagonal cross targeting, impossible to evade if a ship hides in the corner.</div>
+          <div class="weapon-desc">5-cell X-pattern surgical strike — diagonal cross centred on the target, clipped at the board edge — in a corner it lands on just 2 cells.</div>
           <div class="weapon-pattern">
             <div class="weapon-pattern-row">
-              <div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div>
+              <div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell hit"></div>
             </div>
             <div class="weapon-pattern-row">
-              <div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div>
+              <div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div>
             </div>
             <div class="weapon-pattern-row">
-              <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
-            </div>
-            <div class="weapon-pattern-row">
-              <div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div>
-            </div>
-            <div class="weapon-pattern-row">
-              <div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div>
+              <div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell hit"></div>
             </div>
           </div>
           <div class="weapon-unlock">Unlocked by sinking the enemy DESTROYER</div>
@@ -266,7 +260,7 @@
     <section>
       <p class="section-label">◆ CLASSIFIED — HONOURS &amp; COMMENDATIONS</p>
       <h2>MEDALS &amp; HONOURS</h2>
-      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.5rem;">33 medals earned mid-game accumulate in your career file. Medals also award bonus score points.</p>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.5rem;">33 medals, awarded when a battle ends, accumulate in your career file.</p>
 
       <div class="medals-tier">
         <div class="tier-label tier-legendary">⭐ LEGENDARY</div>
@@ -295,7 +289,7 @@
           <div class="medal-card medal-epic">
             <span class="medal-icon">👑</span>
             <div class="medal-name">FLAWLESS VICTORY</div>
-            <div class="medal-condition">Win with all 5 of your ships completely intact.</div>
+            <div class="medal-condition">Win with all 5 of your ships still afloat.</div>
           </div>
           <div class="medal-card medal-epic">
             <span class="medal-icon">🔥🔥</span>
@@ -496,7 +490,7 @@
     <section>
       <p class="section-label">◆ COMMAND CENTER — CAREER STATISTICS</p>
       <h2>CAREER COMMAND</h2>
-      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">Two dedicated screens accessible from the main menu: <strong style="color:var(--cyan)">VIEW STATS</strong> shows your rank and career numbers; <strong style="color:var(--cyan)">MEDAL REGISTRY</strong> shows all 33 medals as hexagonal Canvas art with per-badge earn counts. Records persist across app restarts.</p>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">Three dedicated screens accessible from the main menu: <strong style="color:var(--cyan)">CAREER STATS</strong> shows your rank and career numbers; <strong style="color:var(--cyan)">MEDAL REGISTRY</strong> shows all 33 medals as hexagonal Canvas art with per-badge earn counts; <strong style="color:var(--cyan)">BADGES</strong> lists the same 33 awards with the condition for each. Records persist across app restarts.</p>
       <div class="career-panel">
         <div class="career-header">
           <span class="career-rank-badge">⭐</span>
@@ -609,7 +603,7 @@ Navigation Compose  ·  Coroutines  ·  Min SDK 24 (Android 7.0)
 Clean Architecture + MVVM — single GameViewModel across all screens
 
 domain/          ← Pure Kotlin, zero Android deps, fully testable
-  model/         ← Ship, Board, ShipType, CellState, GamePhase, GameState
+  model/         ← Ship, Board, ShipType, CellState, GamePhase, SuperWeapon
   ai/            ← BattleshipAI (stateless hunt/target algorithm)
 
 presentation/    ← Android / Jetpack Compose

@@ -87,9 +87,9 @@
     <rect x="140" y="390" width="220" height="36" rx="4" fill="#0F1E35" stroke="#1A3A5C" stroke-width="1"/>
     <text x="250" y="413" text-anchor="middle" fill="#00D4FF" opacity="0.8">5 SUPER WEAPONS</text>
 
-    <!-- 15 MEDALS -->
+    <!-- 33 MEDALS -->
     <rect x="380" y="390" width="160" height="36" rx="4" fill="#0F1E35" stroke="#1A3A5C" stroke-width="1"/>
-    <text x="460" y="413" text-anchor="middle" fill="#FFD700" opacity="0.85">15 MEDALS</text>
+    <text x="460" y="413" text-anchor="middle" fill="#FFD700" opacity="0.85">33 MEDALS</text>
 
     <!-- 8 RANKS -->
     <rect x="560" y="390" width="130" height="36" rx="4" fill="#0F1E35" stroke="#1A3A5C" stroke-width="1"/>
