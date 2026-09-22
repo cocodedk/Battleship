@@ -13,7 +13,7 @@ Battleship is an Android game implementing the classic naval combat game. One pl
 - Navigation Compose 2.8.4
 - ViewModel + StateFlow (MVVM)
 - Clean Architecture (domain / presentation)
-- No network, no persistence, fully local
+- No network and no accounts; fully local. Career stats and medals are kept on the device in app-private storage.
 
 ## Architecture
 
