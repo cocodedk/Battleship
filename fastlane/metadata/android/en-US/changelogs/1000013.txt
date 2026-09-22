@@ -1,0 +1,1 @@
+Finished the description corrections the previous release left incomplete: the summary and full description no longer mention a two-player mode, the placement text names the separate orientation button, the Persian page says 33 medals rather than 15 and describes the sonar sweep correctly, and both privacy copies now mention Android backup. The game itself is unchanged.

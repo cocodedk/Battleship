@@ -32,7 +32,7 @@ Unlock special attack abilities by sinking enemy ships (5 total):
 ### Medals & Ranking System
 
 - **33 medals** across 4 rarities (Common, Rare, Epic, Legendary)
-  - Examples: Perfect Gunner (win with 0 misses), Flawless Victory (all 5 ships intact), Dead-Eye (80%+ accuracy)
+  - Examples: Perfect Gunner (win with 0 misses), Flawless Victory (all 5 ships still afloat), Dead-Eye (80%+ accuracy)
 - **8 career ranks**: Cadet → Ensign → Lieutenant → Captain → Commodore → Vice Admiral → Admiral → Fleet Admiral
 - **Career stats screen** — track accumulated medals, best rank, and win streaks across games and app restarts
 
@@ -102,7 +102,7 @@ Clean Architecture with two layers. The domain layer has zero Android dependenci
 app/src/main/java/com/cocode/battleship/
 │
 ├── domain/                   ← Pure Kotlin — fully testable
-│   ├── model/                ← Ship, Board, GameState, ShipType, CellState
+│   ├── model/                ← Ship, Board, ShipType, CellState, GamePhase, SuperWeapon
 │   └── ai/                   ← BattleshipAI (hunt/target algorithm)
 │
 ├── presentation/             ← Android + Jetpack Compose
