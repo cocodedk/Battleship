@@ -1,0 +1,1 @@
+Corrected the app description: there is no two-player mode and no drag-and-drop placement, there are 33 medals rather than 15, and career stats are kept between sessions. The game itself is unchanged.
