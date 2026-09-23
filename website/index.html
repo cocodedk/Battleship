@@ -29,6 +29,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://brand.cocode.dk/v1.css">
+  <script type="module" src="https://brand.cocode.dk/v1.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,7 +57,14 @@
   </script>
 </head>
 <body>
-  <a href="fa/" class="lang-switch">فارسی</a>
+
+<!-- The cocode.dk family frame. Without JavaScript its children show instead: a way home
+     and the language links. -->
+<cocode-head project="Battleship" accent="#00D4FF" on-accent="#050C18" dark>
+  <a href="https://cocode.dk">cocode.dk</a>
+  <span class="on">EN</span>
+  <a href="fa/" hreflang="fa">FA</a>
+</cocode-head>
 
   <!-- ═══ HERO ═══ -->
   <header>
@@ -632,7 +641,11 @@ presentation/    ← Android / Jetpack Compose
   </main>
 
   <footer>
-    <p>Apache-2.0 &nbsp;|&nbsp; © 2026 <a href="https://cocode.dk" target="_blank" rel="noreferrer">Cocode</a> &nbsp;|&nbsp; Created by <a href="https://linkedin.com/in/babakbandpey" target="_blank" rel="noreferrer">Babak Bandpey</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+    <p>Apache-2.0 &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a></p>
   </footer>
+
+<cocode-foot repo="cocodedk/Battleship" dark>
+  <a href="https://cocode.dk">cocode.dk</a>
+</cocode-foot>
 </body>
 </html>

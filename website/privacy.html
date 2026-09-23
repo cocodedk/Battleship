@@ -26,9 +26,10 @@
         radial-gradient(900px 500px at 15% -10%, rgba(0,212,255,0.10), transparent 60%),
         var(--bg);
       color: var(--text); line-height: 1.7;
-      padding: 2.5rem 1.25rem 4rem;
     }
-    .container { width: min(760px, 94vw); margin: 0 auto; }
+    /* Padding moved here (was on body) so cocode-head/cocode-foot, as direct children of
+       body, can span the full viewport instead of sitting inset inside body's box. */
+    .container { width: min(760px, 94vw); margin: 0 auto; padding: 2.5rem 0 4rem; }
     .back {
       display: inline-block; margin-bottom: 1.4rem; color: var(--text-secondary);
       text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em;
@@ -60,10 +61,19 @@
     section[dir="rtl"] { font-family: 'Vazirmatn', 'Tahoma', sans-serif; text-align: right; }
     section[dir="rtl"] h2 { border-left: none; border-right: 3px solid var(--cyan); padding-left: 0; padding-right: 0.6rem; }
     section[dir="rtl"] ul { padding-inline-start: 0; padding-inline-end: 1.3em; }
-    footer { color: var(--text-dim); font-size: 0.72rem; letter-spacing: 0.1em; text-align: center; margin-top: 2.5rem; }
+    /* The cocode.dk frame (brand.cocode.dk) lines up with .container's fluid column. */
+    cocode-head, cocode-foot { --cocode-max: min(760px, 94vw); --cocode-gutter: 0px; }
   </style>
+  <link rel="stylesheet" href="https://brand.cocode.dk/v1.css">
+  <script type="module" src="https://brand.cocode.dk/v1.js"></script>
 </head>
 <body>
+
+<!-- The cocode.dk family frame. Without JavaScript its children show instead: a way home. -->
+<cocode-head project="Battleship" accent="#00D4FF" on-accent="#050C18" dark>
+  <a href="https://cocode.dk">cocode.dk</a>
+</cocode-head>
+
   <div class="container">
     <a class="back" href="./index.html">&larr; BATTLESHIP</a>
     <div class="card">
@@ -167,7 +177,10 @@
       </section>
 
     </div>
-    <footer>© 2026 CoCode.dk — Babak Bandpey</footer>
   </div>
+
+<cocode-foot repo="cocodedk/Battleship" dark>
+  <a href="https://cocode.dk">cocode.dk</a>
+</cocode-foot>
 </body>
 </html>
