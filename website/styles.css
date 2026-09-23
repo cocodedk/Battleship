@@ -93,6 +93,8 @@ h1 {
 .btn-outline { border: 1px solid var(--cyan); color: var(--cyan); }
 
 main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+/* The cocode.dk frame (brand.cocode.dk) lines up with main's column; keep the gutters in step. */
+cocode-head, cocode-foot { --cocode-max: 960px; --cocode-gutter: 24px; }
 
 .section-label {
   font-size: 0.75rem;
@@ -349,20 +351,6 @@ section { margin-bottom: 3.5rem; }
 .download-eyemark { font-size: 3rem; margin-bottom: 0.8rem; display: block; }
 .download-desc { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem; }
 
-/* ─── LANGUAGE SWITCH ─── */
-.lang-switch {
-  position: fixed; top: 1rem; right: 1rem;
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  padding: 0.4rem 0.8rem;
-  border-radius: 3px;
-  font-family: inherit;
-  font-size: 0.8rem;
-  z-index: 100;
-}
-.lang-switch:hover { color: var(--cyan); text-decoration: none; }
-
 footer {
   text-align: center;
   padding: 2rem 1.5rem;
@@ -374,7 +362,6 @@ footer {
 
 [dir="rtl"] body { direction: rtl; }
 [dir="rtl"] h1 { letter-spacing: 0.1em; }
-[dir="rtl"] .lang-switch { right: auto; left: 1rem; }
 
 @media (prefers-reduced-motion: reduce) {
   .sonar-ring { animation: none; opacity: 0; }
