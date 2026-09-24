@@ -1,0 +1,34 @@
+/* The hero's sonar finds the fleet. A beam turns every 6s and five contacts — the five ships
+   you are hunting — light up as it passes over them. Each contact's delay is its bearing as a
+   share of the turn (bearing / 360 × 6s), written out by hand because dividing an angle by an
+   angle in calc() is not yet safe to rely on. */
+.sonar-sweep {
+  position: absolute; top: 50%; left: 50%;
+  width: 560px; height: 560px; margin: -280px 0 0 -280px;
+  border-radius: 50%; pointer-events: none;
+  background: conic-gradient(from 0deg, transparent 0deg 290deg, rgba(0, 212, 255, 0.14) 360deg);
+  /* Fade the beam out with range, so the header's bottom edge never cuts it off square. */
+  -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+  mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+  animation: sonar-sweep 6s linear infinite;
+}
+@keyframes sonar-sweep { to { transform: rotate(1turn); } }
+
+.sonar-contact {
+  position: absolute; top: 50%; left: 50%;
+  width: 6px; height: 6px; margin: -3px 0 0 -3px;
+  border-radius: 50%; pointer-events: none;
+  background: var(--cyan); box-shadow: 0 0 10px var(--cyan);
+  transform: rotate(var(--bearing)) translateY(calc(-1 * var(--range)));
+  opacity: 0;
+  animation: sonar-contact 6s linear infinite;
+}
+@keyframes sonar-contact { 0% { opacity: 0.95; } 55%, 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sonar-sweep, .sonar-contact { display: none; }
+}
+
+/* The pulsing rings grow over the buttons, and without this they swallowed taps meant for
+   Download APK on a phone. */
+.sonar-ring { pointer-events: none; }
