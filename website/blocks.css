@@ -1,0 +1,44 @@
+/* The shared cocode-apps blocks (navigation, install, footer) in this site's own look.
+   Structure and touch targets come from css/cocode-nav.css; this file only colours and places them. */
+
+/* Navigation: the name on the left, the links after it, the Persian page's link at the end. */
+.site-bar {
+  max-width: 960px; margin: 0 auto; padding: 0.75rem 1.5rem 0;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0 1rem;
+  position: relative; z-index: 2;
+}
+.site-bar .cocode-nav {
+  flex: 1 1 auto;
+  font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.cocode-nav a { color: var(--text-secondary); }
+.cocode-nav a:hover { color: var(--cyan); text-decoration: none; }
+.cocode-nav a[aria-current="page"], .cocode-nav .brand { color: var(--cyan); }
+.cocode-nav .brand { font-weight: bold; letter-spacing: 0.2em; }
+.cocode-nav .brand img { border-radius: 6px; }
+.lang-other {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.9rem;
+  border: 1px solid var(--border); border-radius: 3px;
+  font-family: 'Vazirmatn', Tahoma, sans-serif; font-size: 0.85rem; color: var(--text-secondary);
+}
+.lang-other:hover { color: var(--cyan); border-color: var(--cyan); text-decoration: none; }
+
+/* Install block, inside .download-section: the F-Droid badge, the APK as the main button, Obtainium as a link. */
+.install {
+  list-style: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 1rem 1.5rem; margin-bottom: 1.5rem;
+}
+.install a { display: inline-flex; align-items: center; min-height: 44px; }
+.install .fdroid img { display: block; max-width: 100%; height: auto; }
+.install .fdroid-soon {
+  padding: 0.7rem 2rem; border: 1px dashed var(--border); border-radius: 3px;
+  color: var(--text-secondary); font-size: 0.85rem; letter-spacing: 0.15em;
+}
+.install li:nth-child(2) a {
+  padding: 0.7rem 2rem; border-radius: 3px; background: var(--cyan); color: var(--bg);
+  font-size: 0.85rem; letter-spacing: 0.15em; font-weight: bold; transition: opacity 0.2s;
+}
+.install li:nth-child(2) a:hover { opacity: 0.85; text-decoration: none; }
+
+/* Footer: the old footer's look (centred, a rule above), with the links kept readable. */
+.cocode-footer { color: var(--text-secondary); line-height: 1.2; }

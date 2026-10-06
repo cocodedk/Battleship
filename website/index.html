@@ -30,8 +30,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css"/>
   <link rel="stylesheet" href="sonar.css"/>
-  <link rel="stylesheet" href="https://brand.cocode.dk/v1.css">
-  <script type="module" src="https://brand.cocode.dk/v1.js"></script>
+  <link rel="stylesheet" href="blocks.css"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -59,13 +58,20 @@
 </head>
 <body>
 
-<!-- The cocode.dk family frame. Without JavaScript its children show instead: a way home
-     and the language links. -->
-<cocode-head project="Battleship" accent="#00D4FF" on-accent="#050C18" dark>
-  <a href="https://cocode.dk">cocode.dk</a>
-  <span class="on">EN</span>
-  <a href="fa/" hreflang="fa">FA</a>
-</cocode-head>
+<div class="site-bar">
+<!-- cocode-apps:nav:start -->
+<link rel="stylesheet" href="/css/cocode-nav.css">
+<a class="skip" href="#main">Skip to content</a>
+<nav class="cocode-nav" aria-label="Battleship">
+  <a class="brand" href="/" data-nav="home" aria-current="page"><img src="/img/icon.png" alt="" width="32" height="32">Battleship</a>
+  <a href="/#how" data-nav="how">How it works</a>
+  <a href="/#install" data-nav="install">Install</a>
+  <a href="/privacy/" data-nav="privacy">Privacy</a>
+  <a href="https://cocode.dk/" data-nav="more">More apps</a>
+</nav>
+<!-- cocode-apps:nav:end -->
+<a class="lang-other" href="fa/" hreflang="fa" lang="fa">فارسی (Persian)</a>
+</div>
 
   <!-- ═══ HERO ═══ -->
   <header>
@@ -83,15 +89,15 @@
     <p class="hero-tagline-main">Your Fleet. Your Strategy. Your Glory.</p>
     <p class="sub-tagline">SINK THE ENEMY FLEET — EARN YOUR RANK — LEAVE NO SHIP STANDING</p>
     <div class="cta-group">
-      <a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk" class="btn btn-primary">⚓ DOWNLOAD APK</a>
+      <a href="#install" class="btn btn-primary">⚓ GET THE APP</a>
       <a href="https://github.com/cocodedk/Battleship" class="btn btn-outline">SOURCE CODE</a>
     </div>
   </header>
 
-  <main>
+  <main id="main">
 
     <!-- ═══ MISSION BRIEFING ═══ -->
-    <section>
+    <section id="how">
       <p class="section-label">◆ CLASSIFIED — MISSION BRIEFING</p>
       <h2>THE BRIEFING</h2>
       <div class="briefing-text">
@@ -634,25 +640,34 @@ presentation/    ← Android / Jetpack Compose
     </section>
 
     <!-- ═══ DOWNLOAD CTA ═══ -->
-    <section class="download-section">
+    <section class="download-section" id="install">
       <span class="download-eyemark">⚓</span>
       <p class="section-label" style="margin-bottom:0.5rem;">◆ FIELD DEPLOYMENT</p>
       <h2>DOWNLOAD &amp; DEPLOY</h2>
-      <p class="download-desc">Free, open-source, offline. No account. No network. Install the APK and take command.</p>
+      <p class="download-desc">Free, open-source, offline. No account. No network. Install the app and take command.</p>
+      <!-- cocode-apps:install:start -->
+<ul class="install" role="list">
+  <li><a class="fdroid" href="https://f-droid.org/packages/com.cocode.battleship/"><img src="/img/get-it-on-fdroid-en.png" alt="Get it on F-Droid" width="240" height="93"></a></li>
+  <li><a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk">Download the APK from GitHub</a></li>
+  <li><a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/cocodedk/Battleship">Auto-update the GitHub APK with Obtainium</a></li>
+</ul>
+<!-- cocode-apps:install:end -->
       <div class="cta-group">
-        <a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk" class="btn btn-primary">⚓ DOWNLOAD APK</a>
         <a href="https://github.com/cocodedk/Battleship" class="btn btn-outline">VIEW SOURCE</a>
       </div>
     </section>
 
   </main>
 
-  <footer>
-    <p>Apache-2.0 &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a></p>
-  </footer>
-
-<cocode-foot repo="cocodedk/Battleship" dark>
-  <a href="https://cocode.dk">cocode.dk</a>
-</cocode-foot>
+  <div class="site-foot">
+<!-- cocode-apps:footer:start -->
+<footer class="cocode-footer">
+  <a href="https://github.com/cocodedk/Battleship">Source code</a> ·
+  <a href="/privacy/">Privacy</a> ·
+  License: Apache-2.0 ·
+  <a href="https://cocode.dk/">Made by Cocode (cocode.dk)</a>
+</footer>
+<!-- cocode-apps:footer:end -->
+  </div>
 </body>
 </html>
