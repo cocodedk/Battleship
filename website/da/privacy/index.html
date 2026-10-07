@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privatlivspolitik | Battleship</title>
-  <meta name="description" content="Privatlivspolitik for Battleship (com.cocode.battleship): et helt offline Android-spil, der ikke indsamler personoplysninger og beholder alt på din enhed." />
+  <meta name="description" content="Privatlivspolitik for Battleship (com.cocode.battleship): et offline Android-spil uden analyse eller reklamer. Spilhistorikken gemmes på din enhed og kan indgå i Androids sikkerhedskopier." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://battleship.cocode.dk/da/privacy/" />
   <link rel="alternate" hreflang="en"        href="https://battleship.cocode.dk/privacy/" />
@@ -53,6 +53,7 @@
     }
     .meta { color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
     .meta code { color: var(--amber); }
+    li code, p code { overflow-wrap: anywhere; }
     p, li { color: var(--text); font-size: 0.94rem; }
     .lead { color: var(--text); margin-top: 1rem; }
     ul { padding-inline-start: 1.3em; margin-top: 0.4rem; }
@@ -103,40 +104,50 @@
       <section lang="da">
         <h1>Privatlivspolitik</h1>
         <p class="meta">Battleship &middot; <code>com.cocode.battleship</code></p>
-        <p class="meta">Sidst opdateret: 14. juli 2026</p>
+        <p class="meta">Sidst opdateret: 7. oktober 2026</p>
 
         <p class="lead"><strong>Battleship indsamler, sender og deler ingen personoplysninger.</strong>
-        Det er et søslagsspil for én spiller (dig mod en AI på enheden), der kører helt offline på din enhed.</p>
+        Det er et søslagsspil for én spiller: du spiller mod en computermodstander, der kører på din enhed, og spillet virker offline.</p>
 
         <h2>Dine spildata</h2>
         <p>Spillet gemmer en oversigt over dine spil: karrierestatistik (antal spil, sejre, sejrsserier og bedste score),
-        den højeste rang, du har nået, og de medaljer og badges, du har optjent. Oplysningerne gemmes kun i et privat
-        område på din egen enhed (Androids <code>SharedPreferences</code> i privat tilstand). De bliver aldrig sendt til
-        os eller til nogen tredjepart. De bliver på din telefon og slettes, hvis du sletter appen eller rydder dens data.
-        Hvis du har slået Androids sikkerhedskopiering til, kan der stadig findes en kopi i din egen Google-sikkerhedskopi,
-        indtil du fjerner den dér. Se <a href="#backup">Sikkerhedskopi på enheden</a> nedenfor.</p>
+        den højeste rang, du har nået, og de medaljer og badges, du har optjent. Appen gemmer oversigten privat på din
+        enhed (Androids <code>SharedPreferences</code> i privat tilstand) og sender den ikke af sted. Vi modtager den aldrig.
+        Den slettes fra din telefon, hvis du sletter appen eller rydder dens data. Android kan kopiere den gennem den
+        sikkerhedskopiering eller dataoverførsel, du selv har sat op. Se <a href="#backup">Sikkerhedskopi på enheden</a> nedenfor.</p>
 
         <h2>Intet internet, ingen sporing</h2>
         <ul>
-          <li>Appen beder <strong>ikke om tilladelse til internetadgang</strong> og kan derfor teknisk set ikke sende dine data nogen steder hen.</li>
+          <li>Appen beder <strong>ikke om tilladelse til internetadgang</strong>, så selve appen kan ikke oprette forbindelse til internettet. Når du trykker på et link, giver den adressen videre til din browser (se <a href="#links">Eksterne links</a>).</li>
           <li>Vi bruger <strong>ingen analyse, ingen fejlrapportering og ingen reklamer</strong>.</li>
-          <li>Der er <strong>ingen tredjeparts-SDK'er, ingen cookies og ingen reklame-id'er</strong>.</li>
-          <li>Den eneste tilladelse, appen angiver, er <strong>VIBRATE</strong>. Det er en almindelig Android-tilladelse,
-          der gives ved installationen, ikke viser nogen forespørgsel og ikke giver appen adgang til nogen af dine data.
-          Den bruges kun til korte vibrationer under spillet, for eksempel når et supervåben affyres.</li>
+          <li>Appen indeholder <strong>ingen SDK'er til analyse eller reklamer</strong> (programpakker fra andre firmaer) og bruger <strong>ingen cookies og ingen reklame-id'er</strong>. De biblioteker, den bruger, kommer fra Google (AndroidX) og JetBrains (Kotlin).</li>
+          <li>Appen beder Android om én tilladelse: <strong>VIBRATE</strong>. Det er en almindelig tilladelse, der gives
+          ved installationen, ikke viser nogen forespørgsel og ikke giver appen adgang til nogen af dine data.
+          Appen bruger den kun til korte vibrationer under spillet, for eksempel når et supervåben affyres.
+          Androids AndroidX-bibliotek tilføjer desuden en tilladelse, der kun findes inde i denne app
+          (<code>com.cocode.battleship.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</code>). Den hindrer andre apps i at sende
+          beskeder til appens interne modtagere, og den giver appen ingen adgang til dine data.</li>
           <li>Appen beder <strong>ikke om adgang til din placering, dine kontakter, dit kamera, din mikrofon eller din lagerplads</strong>.</li>
         </ul>
 
         <h2 id="backup">Sikkerhedskopi på enheden</h2>
         <p>Hvis du har slået Androids automatiske sikkerhedskopiering eller sikkerhedskopiering til din Google-konto til
-        på din enhed, kan operativsystemet tage appens lokale data med i din egen Google-sikkerhedskopi. Det er helt op
-        til dig og Google. Vi har ikke adgang til den. Se
+        på din enhed, kan operativsystemet tage appens lokale data med i din egen Google-sikkerhedskopi, og Android kan
+        kopiere dem til en ny telefon, når du overfører dine data. Det styrer du og Google. Vi har ikke adgang til dem.
+        En sikkerhedskopi bliver liggende hos Google, indtil du fjerner den dér. Se
         <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Googles privatlivspolitik</a> for flere oplysninger.</p>
 
-        <h2>Eksterne links</h2>
-        <p>Appens hovedmenu har links til udviklerens hjemmeside (<a href="https://cocode.dk" rel="noopener" target="_blank">cocode.dk</a>)
-        og til appens udgivelsesside på <a href="https://github.com/cocodedk/Battleship/releases/latest" rel="noopener" target="_blank">GitHub</a>.
-        Når du vælger et link, åbnes din browser. Disse sider følger deres egne privatlivspolitikker.</p>
+        <h2 id="links">Eksterne links</h2>
+        <p>Nogle knapper åbner en webside i din browser. Hovedmenuen har to: <strong>[ cocode.dk ]</strong> (udviklerens hjemmeside,
+        <a href="https://cocode.dk" rel="noopener" target="_blank">cocode.dk</a>) og <strong>[ ÅBN DOWNLOADSIDE ↗ ]</strong> (appens udgivelsesside på
+        <a href="https://github.com/cocodedk/Battleship/releases/latest" rel="noopener" target="_blank">GitHub</a>). Skærmbilledet Om appen
+        (knappen <strong>OM APPEN</strong> i hovedmenuen) har fem: <strong>Se den nyeste version</strong> (appens side på F-Droid),
+        <strong>Læs privatlivspolitikken</strong>, <strong>Åbn hjemmesiden</strong>, <strong>Se kildekoden på GitHub</strong> og
+        <strong>Meld en fejl på GitHub</strong>.</p>
+        <p>Appen åbner kun en side, når du trykker på en af disse knapper. Den giver adressen videre til din browser og lægger ingen
+        oplysninger om dig til den. Selve appen opretter ingen forbindelse. Din browser forbinder derefter til den side, som kan se dit
+        besøg, som alle websider kan, for eksempel din IP-adresse. Hver side følger sin egen privatlivspolitik. Hvis din telefon ikke har
+        en browser, viser appen en besked, og der åbnes ingenting.</p>
 
         <h2>Børn</h2>
         <p>Appen indsamler ikke bevidst data fra nogen, heller ikke fra børn.</p>

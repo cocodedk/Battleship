@@ -1,5 +1,9 @@
-Battleship is a local naval combat game for Android. It requires no network connection, no account and no tracking. Play against an AI opponent that uses a hunt/target algorithm with checkerboard parity.
+Battleship is a naval strategy game for Android. You place your fleet, then you and the computer take turns firing at each other's ships. Sink all five enemy ships to win. The game works offline: it needs no network connection and no account, and it shows no ads and does not track you.
 
-The game is played on a 10x10 grid with a 5-ship fleet: Carrier, Battleship, Cruiser, Submarine and Destroyer. Ships are placed by tapping a cell; a separate button switches the ship between horizontal and vertical, and one tap deploys the whole fleet at random. Sinking an enemy ship unlocks a matching super weapon, such as area bombardment, cross-pattern saturation fire or a sonar sweep.
+The computer searches alternating squares of the grid. After a hit, it fires at the squares around it to find the rest of the ship.
 
-The app tracks career stats across games and app restarts, including 33 medals across four rarity tiers and 8 career ranks from Cadet to Fleet Admiral. All game audio is synthesized at runtime, so no audio files are bundled with the app.
+The game is played on a 10x10 grid. Each side has five ships: Carrier, Battleship, Cruiser, Submarine and Destroyer. To place a ship, tap a square. A separate button turns the ship between horizontal and vertical, and AUTO DEPLOY places the whole fleet at random with one tap. When you sink an enemy ship, you unlock one matching super weapon, a special attack you can use once, such as Carpet Bomb (a 3x3 area), Battleship Barrage (a cross of 9 squares) or Sonar Sweep (a row of 5 squares).
+
+Sound effects mark hits, misses, sunken ships and victories.
+
+The app keeps your game record on your phone: your statistics, 33 medals in four rarity levels and 8 career ranks from Cadet to Fleet Admiral. The record is kept between games and when you close the app. The app is available in English and Danish.

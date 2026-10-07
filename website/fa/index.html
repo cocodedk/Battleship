@@ -47,7 +47,7 @@
     "url": "https://battleship.cocode.dk/fa/",
     "downloadUrl": "https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk",
     "operatingSystem": "Android",
-    "inLanguage": "fa",
+    "inLanguage": ["en", "da"],
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "author": {
       "@type": "Person",
@@ -57,13 +57,13 @@
     },
     "applicationFeature": [
       "5-ship fleet on 10×10 tactical grid",
-      "Hunt/target AI with checkerboard parity",
+      "Computer opponent that searches alternating squares and fires around a hit",
       "5 super weapons unlocked by sinking enemy ships",
       "33 medals across 4 rarity tiers",
       "8-rank career progression system",
-      "PCM-synthesized audio, no audio files",
+      "Sound effects for hits, misses, sunken ships and victories",
       "Visual hit flash and sunk glow effects",
-      "Career stats screen with persistent career stats",
+      "Career statistics and highest rank kept between games",
       "Fully offline — no network, no account, no ads"
     ]
   }
@@ -93,7 +93,7 @@
     <span class="eyemark">◈</span>
     <h1>BATTLESHIP</h1>
     <p class="tagline">[ سیستم فرماندهی دریایی ]</p>
-    <p class="hero-tagline-main">ناوگان شما. استراتژی شما. افتخار شما.</p>
+    <p class="hero-tagline-main">بازی آفلاین نبرد دریایی برای اندروید؛ ناوگان رایانه را پیدا و غرق کنید.</p>
     <p class="sub-tagline">ناوگان دشمن را غرق کنید — رتبه خود را کسب کنید — هیچ کشتی‌ای باقی نماند</p>
     <div class="cta-group">
       <a href="https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk" class="btn btn-primary">⚓ دانلود APK</a>
@@ -106,11 +106,11 @@
     <!-- ═══ MISSION BRIEFING ═══ -->
     <section>
       <p class="section-label">◆ محرمانه — توضیحات مأموریت</p>
-      <h2>بریفینگ مأموریت</h2>
+      <h2>روش بازی</h2>
       <div class="briefing-text">
-        <p>ناوگان دشمن جایی در آن آب‌ها پنهان شده است. سونار شما حضور آن‌ها را تشخیص داده، اما موقعیت دقیقشان هنوز ناشناخته است. جایی در آن شبکه ۱۰×۱۰ از دریای خاکستری و سکوت، پنج کشتی منتظرند — یک ناو هواپیمابر، یک رزمناو، یک کروزر، یک زیردریایی، یک ناوشکن. دستورات شما ساده است: پیداشان کنید. غرقشان کنید. همه را.</p>
-        <p>ناوگان خود را با دقت مستقر کنید — جایابی خود نوعی استراتژی است. سپس اولین شلیک خود را به درون مه انجام دهید. یک پینگ. یک پاشش. یک اصابت. هر کشتی دشمن که غرق می‌کنید یک سلاح فوق‌العاده به زرادخانه شما اضافه می‌کند — یک بمباران فرشی، یک رگبار، یک پیمایش سونار، یک پخش اژدر، یک حمله دقیق. آن‌ها را با خرد استفاده کنید. حریف هوش مصنوعی فکر می‌کند. شکار می‌کند. سازگار می‌شود.</p>
-        <p>هر نبرد پرونده شما را می‌نویسد. درصد اصابت‌ها، رشته پیروزی‌ها، مدال‌هایی که در پایان هر نبرد اعطا می‌شوند — همه در پرونده کارنامه شما انباشته می‌شوند. از ستوان‌یار به فرمانده ناوگان ارتقا یابید. ثابت کنید فرماندهی شما بی‌نقص است. اقیانوس تردید را نمی‌بخشد. دشمن هم نمی‌بخشد.</p>
+        <p>بتلشیپ روی شبکه‌ای ۱۰×۱۰ و در برابر رایانه بازی می‌شود. هر طرف پنج کشتی دارد: ناو هواپیمابر، ناو جنگی، رزمناو، زیردریایی و ناوشکن. جای کشتی‌های رایانه را نمی‌بینید.</p>
+        <p>پنج کشتی خود را دستی یا با دکمهٔ AUTO DEPLOY بچینید و بعد روی INITIATE COMBAT بزنید. شما و رایانه به‌نوبت به یک خانه شلیک می‌کنید. برای شلیک، روی یک خانه در TARGET ZONE بزنید. برای پیروزی، هر پنج کشتی دشمن را غرق کنید.</p>
+        <p>غرق‌کردن هر کشتی دشمن یک حملهٔ ویژهٔ یک‌بارمصرف آزاد می‌کند: بمباران فرشی، رگبار ناو جنگی، پیمایش سونار، پخش اژدر یا حملهٔ دقیق. هر نبرد به سابقهٔ شما اضافه می‌شود: آمار، مدال و رتبه، از دانشجوی افسری تا فرمانده ناوگان.</p>
       </div>
     </section>
 
@@ -143,9 +143,9 @@
             <span class="ship-cell battleship"></span>
           </div>
           <div class="ship-info">
-            <div class="ship-name">رزمناو</div>
+            <div class="ship-name">ناو جنگی</div>
             <div class="ship-size">۴ خانه</div>
-            <div class="ship-unlock">💥 با غرق شدن، رگبار رزمناو را باز می‌کند</div>
+            <div class="ship-unlock">💥 با غرق شدن، رگبار ناو جنگی را باز می‌کند</div>
           </div>
         </div>
 
@@ -156,7 +156,7 @@
             <span class="ship-cell cruiser"></span>
           </div>
           <div class="ship-info">
-            <div class="ship-name">کروزر</div>
+            <div class="ship-name">رزمناو</div>
             <div class="ship-size">۳ خانه</div>
             <div class="ship-unlock">📡 با غرق شدن، پیمایش سونار را باز می‌کند</div>
           </div>
@@ -199,7 +199,7 @@
         <div class="weapon-card">
           <span class="weapon-icon">💣</span>
           <div class="weapon-name">بمباران فرشی</div>
-          <div class="weapon-desc">بمباران منطقه ۳×۳ — ۹ خانه در یک ضربه نابود می‌شوند. مخرب‌ترین سلاح منطقه‌ای در زرادخانه.</div>
+          <div class="weapon-desc">حداکثر ۹ خانه را در مربعی ۳×۳ به مرکزیت خانهٔ هدف می‌زند. الگو در لبهٔ صفحه کوتاه می‌شود.</div>
           <div class="weapon-pattern">
             <div class="weapon-pattern-row">
               <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
@@ -216,8 +216,8 @@
 
         <div class="weapon-card">
           <span class="weapon-icon">💥</span>
-          <div class="weapon-name">رگبار رزمناو</div>
-          <div class="weapon-desc">آتش اشباع صلیبی ۹ خانه‌ای — الگوی به شکل علامت جمع که ردیف مرکزی و ستون مرکزی را می‌کوبد.</div>
+          <div class="weapon-name">رگبار ناو جنگی</div>
+          <div class="weapon-desc">الگویی به شکل علامت جمع: ۵ خانه افقی و ۵ خانه عمودی که در خانهٔ هدف همدیگر را قطع می‌کنند، در مجموع حداکثر ۹ خانه. الگو در لبهٔ صفحه کوتاه می‌شود.</div>
           <div class="weapon-pattern">
             <div class="weapon-pattern-row">
               <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
@@ -235,7 +235,7 @@
               <div class="wp-cell"></div><div class="wp-cell"></div><div class="wp-cell hit"></div><div class="wp-cell"></div><div class="wp-cell"></div>
             </div>
           </div>
-          <div class="weapon-unlock">با غرق کردن رزمناو دشمن باز می‌شود</div>
+          <div class="weapon-unlock">با غرق کردن ناو جنگی دشمن باز می‌شود</div>
         </div>
 
         <div class="weapon-card">
@@ -247,7 +247,7 @@
               <div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div><div class="wp-cell hit"></div>
             </div>
           </div>
-          <div class="weapon-unlock">با غرق کردن کروزر دشمن باز می‌شود</div>
+          <div class="weapon-unlock">با غرق کردن رزمناو دشمن باز می‌شود</div>
         </div>
 
         <div class="weapon-card">
@@ -318,12 +318,12 @@
           <div class="medal-card medal-epic">
             <span class="medal-icon">👑</span>
             <div class="medal-name">پیروزی بی‌نقص</div>
-            <div class="medal-condition">با هر ۵ کشتی خود هنوز شناور، بازی را ببرید.</div>
+            <div class="medal-condition">بازی را طوری ببرید که هر ۵ کشتی شما هنوز شناور باشند.</div>
           </div>
           <div class="medal-card medal-epic">
             <span class="medal-icon">🔥🔥</span>
             <div class="medal-name">آتش‌بار</div>
-            <div class="medal-condition">با رشته ۳ یا بیشتر پیروزی متوالی بازی را ببرید.</div>
+            <div class="medal-condition">۳ بازی یا بیشتر را پشت سر هم ببرید.</div>
           </div>
         </div>
       </div>
@@ -401,14 +401,14 @@
 
         <div class="rank-row">
           <span class="rank-insignia">🎖️</span>
-          <span class="rank-name">ستوان‌یار</span>
+          <span class="rank-name">دانشجوی افسری</span>
           <div class="rank-bar-wrap"><div class="rank-bar" style="width:2%;background:var(--text-dim)"></div></div>
           <span class="rank-score">۰+ امتیاز</span>
         </div>
 
         <div class="rank-row">
           <span class="rank-insignia">⚓</span>
-          <span class="rank-name">ملوان</span>
+          <span class="rank-name">افسر تازه‌کار (Ensign)</span>
           <div class="rank-bar-wrap"><div class="rank-bar" style="width:10%;background:var(--teal)"></div></div>
           <span class="rank-score">۳۵۰+ امتیاز</span>
         </div>
@@ -484,32 +484,32 @@
 
         <div class="sense-card">
           <span class="sense-icon">🔊</span>
-          <div class="sense-title">صدای اصابت PCM</div>
-          <div class="sense-desc">ضربه دو تن: ۱۸۰۰ هرتز که به ۱۰۰۰ هرتز می‌افتد. سنتز‌شده در کد — هیچ فایل صوتی با اپ ارسال نمی‌شود.</div>
+          <div class="sense-title">صدای اصابت</div>
+          <div class="sense-desc">صدای اصابت با دو فرکانس پخش می‌شود: ابتدا ۱۸۰۰ هرتز و سپس ۱۰۰۰ هرتز.</div>
         </div>
 
         <div class="sense-card">
           <span class="sense-icon">💧</span>
-          <div class="sense-title">صدای خطا PCM</div>
-          <div class="sense-desc">پیمایش نزولی از ۵۰۰ هرتز تا ۱۵۰ هرتز — صدای توخالی گلوله‌ای که در اعماق ناپدید می‌شود.</div>
+          <div class="sense-title">صدای شلیک ناموفق</div>
+          <div class="sense-desc">صدایی که از ۵۰۰ هرتز تا ۱۵۰ هرتز پایین می‌آید، مثل گلوله‌ای که در آب ناپدید می‌شود.</div>
         </div>
 
         <div class="sense-card">
           <span class="sense-icon">💀</span>
-          <div class="sense-title">صدای غرق‌شدن PCM</div>
-          <div class="sense-desc">غرش انفجاری باس لایه‌بندی‌شده با نویز — صدای اشتباه‌نشدنی کشتی که از هم می‌پاشد.</div>
+          <div class="sense-title">صدای غرق‌شدن</div>
+          <div class="sense-desc">غرشی بم و آمیخته با نویز، صدای مشخصِ شکستن و غرق‌شدن کشتی.</div>
         </div>
 
         <div class="sense-card">
           <span class="sense-icon">🎺</span>
-          <div class="sense-title">فانفار پیروزی PCM</div>
-          <div class="sense-desc">فانفار پیروزی صعودی — دنباله آکورد C-E-G-C که بالا می‌رود تا فرماندهی شما بر دریاها را نشان دهد.</div>
+          <div class="sense-title">آهنگ پیروزی</div>
+          <div class="sense-desc">هنگام پیروزی، ملودی صعودی با نت‌های دو، می، سل و دو پخش می‌شود.</div>
         </div>
 
         <div class="sense-card">
           <span class="sense-icon">📡</span>
-          <div class="sense-title">پینگ سونار PCM</div>
-          <div class="sense-desc">یک بیپ تیز ۲۲۰۰ هرتزی هنگام انتخاب سلاح فوق‌العاده — سونار می‌گوید: هدف شناسایی شد.</div>
+          <div class="sense-title">صدای انتخاب سلاح</div>
+          <div class="sense-desc">هنگام انتخاب سلاح ویژه، یک بیپ تیز ۲۲۰۰ هرتزی پخش می‌شود.</div>
         </div>
 
       </div>
@@ -519,7 +519,7 @@
     <section>
       <p class="section-label">◆ مرکز فرماندهی — آمار کارنامه</p>
       <h2>مرکز فرماندهی کارنامه</h2>
-      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">سه صفحه اختصاصی از منوی اصلی: <strong style="color:var(--cyan)">CAREER STATS</strong> رتبه و اعداد کارنامه را نشان می‌دهد؛ <strong style="color:var(--cyan)">دفتر مدال‌ها</strong> تمام ۳۳ مدال را با طراحی Canvas شش‌ضلعی و تعداد دفعات کسب هر مدال نمایش می‌دهد؛ <strong style="color:var(--cyan)">BADGES</strong> همان ۳۳ نشان را همراه شرط کسب هرکدام فهرست می‌کند. سوابق پس از بستن اپ نیز باقی می‌مانند.</p>
+      <p style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:1.2rem;">سه صفحه از منوی اصلی باز می‌شود. <strong style="color:var(--cyan)">CAREER STATS</strong> بالاترین رتبه و آمار کارنامهٔ شما را نشان می‌دهد. <strong style="color:var(--cyan)">MEDAL REGISTRY</strong> مدال‌ها و تعداد دفعات کسب هرکدام را نشان می‌دهد؛ برای دیدن روش کسب هر مدال، روی آن بزنید. <strong style="color:var(--cyan)">BADGES</strong> همان نشان‌ها را با طراحی دیگری نمایش می‌دهد؛ برای دیدن شرط کسب هر نشان، روی آن بزنید. سوابق شما پس از بستن برنامه هم می‌ماند.</p>
       <div class="career-panel">
         <div class="career-header">
           <span class="career-rank-badge">⭐</span>
@@ -565,8 +565,8 @@
         </div>
         <div class="feature-card">
           <span class="icon">◈</span>
-          <h3>حریف هوش مصنوعی</h3>
-          <p>الگوریتم شکار/هدف با الگوی شطرنجی — یک چالش تاکتیکی واقعی که سازگار می‌شود.</p>
+          <h3>حریف رایانه‌ای</h3>
+          <p>رایانه ابتدا خانه‌ها را یکی‌درمیان جست‌وجو می‌کند و پس از اصابت، خانه‌های اطراف را هدف می‌گیرد.</p>
         </div>
         <div class="feature-card">
           <span class="icon">⊞</span>
@@ -581,17 +581,17 @@
         <div class="feature-card">
           <span class="icon">🏅</span>
           <h3>۳۳ مدال</h3>
-          <p>چهار سطح نادرت: افسانه‌ای، حماسی، نادر، معمولی. صفحه اختصاصی دفتر مدال‌ها با طراحی Canvas شش‌ضلعی و تعداد کسب هر مدال در تمام دوران.</p>
+          <p>چهار سطح ندرت: افسانه‌ای، حماسی، نادر و معمولی. صفحهٔ MEDAL REGISTRY مدال‌ها و تعداد دفعات کسب هرکدام را نشان می‌دهد.</p>
         </div>
         <div class="feature-card">
           <span class="icon">⭐</span>
           <h3>۸ رتبه نظامی</h3>
-          <p>از ستوان‌یار تا فرمانده ناوگان. بهترین امتیاز شما رتبه کارنامه‌تان را تعیین می‌کند.</p>
+          <p>از دانشجوی افسری تا فرمانده ناوگان. بهترین امتیاز شما رتبهٔ کارنامه‌تان را تعیین می‌کند.</p>
         </div>
         <div class="feature-card">
           <span class="icon">🔊</span>
-          <h3>صدای PCM</h3>
-          <p>صداهای اصابت، خطا، غرق‌شدن، پیروزی و پینگ سونار سنتزشده — بدون هیچ فایل صوتی همراه.</p>
+          <h3>جلوه‌های صوتی</h3>
+          <p>صدای اصابت، شلیک ناموفق، غرق‌شدن کشتی، پیروزی و انتخاب سلاح ویژه.</p>
         </div>
         <div class="feature-card">
           <span class="icon">🚫</span>
@@ -626,7 +626,7 @@ app/build/outputs/apk/debug/app-debug.apk</div>
     <section>
       <p class="section-label">◆ پشته فناوری</p>
       <h2>معماری</h2>
-      <div class="code-block">Kotlin 2.2.10  ·  Jetpack Compose BOM 2026.02.01  ·  Material3
+      <div class="code-block">Kotlin 2.3.21  ·  Jetpack Compose BOM 2026.06.01  ·  Material3
 Navigation Compose  ·  Coroutines  ·  Min SDK 24 (Android 7.0)
 
 Clean Architecture + MVVM — single GameViewModel across all screens

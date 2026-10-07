@@ -1,1 +1,1 @@
-Offline naval combat against an AI opponent, with no ads and no account
+Play Battleship against the computer, offline, with no ads and no account

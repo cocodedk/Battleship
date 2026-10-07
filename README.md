@@ -1,10 +1,11 @@
 # Battleship
 
-A local naval combat game for Android. No network connection required — play against an AI opponent that hunts, targets and works a checkerboard parity.
+A naval strategy game for Android. Place your fleet, then take turns firing at the computer's ships. Sink all five to win. It works offline and needs no account. The computer searches alternating squares and fires at the squares around a hit.
 
 ## Website
 
 - [English](https://battleship.cocode.dk/)
+- [Dansk (Danish)](https://battleship.cocode.dk/da/)
 - [فارسی (Persian)](https://battleship.cocode.dk/fa/)
 
 ---
@@ -13,8 +14,8 @@ A local naval combat game for Android. No network connection required — play a
 
 <!-- cocode-apps:install:start -->
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.cocode.battleship/)
-- [Download the APK from GitHub](https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk)
-- [Auto-update the GitHub APK with Obtainium](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/cocodedk/Battleship)
+- [Download the Android installation file (APK) from GitHub](https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk)
+- [Add the app to Obtainium, an app that keeps it up to date](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/cocodedk/Battleship)
 <!-- cocode-apps:install:end -->
 
 Minimum Android version: **7.0 (API 24)**
@@ -27,9 +28,10 @@ Minimum Android version: **7.0 (API 24)**
 
 - **Fully offline** — no network, no account, no tracking
 - **10×10 grid** — 5-ship fleet (Carrier, Battleship, Cruiser, Submarine, Destroyer)
-- **AI opponent** — hunt/target algorithm with checkerboard parity
+- **Computer opponent** — searches alternating squares of the grid, then targets the squares around a hit
 - **Ship placement** — tap a cell to place, a separate button switches orientation, or deploy the whole fleet with one tap
 - **Naval Sonar Command aesthetic** — dark navy theme on Material3
+- **Languages** — English and Danish; the app follows your phone's language
 
 ### Super Weapons
 
@@ -46,18 +48,18 @@ Unlock special attack abilities by sinking enemy ships (5 total):
 - **33 medals** across 4 rarities (Common, Rare, Epic, Legendary)
   - Examples: Perfect Gunner (win with 0 misses), Flawless Victory (all 5 ships still afloat), Dead-Eye (80%+ accuracy)
 - **8 career ranks**: Cadet → Ensign → Lieutenant → Captain → Commodore → Vice Admiral → Admiral → Fleet Admiral
-- **Career stats screen** — track accumulated medals, best rank, and win streaks across games and app restarts
+- **Career Stats** shows your statistics (games played, victories, win rate, win streaks) and your highest rank. **Medal Registry** shows your accumulated medals. Both keep their records across games and app restarts.
 
 ### Visual & Audio Effects
 
-- **PCM-synthesized audio** — hit impacts, miss sweeps, ship sunk explosions, victory fanfare (no audio files needed)
+- **Sound effects** for hits, misses, sunken ships and victories
 - **Visual effects** — hit flash animations, sunk ship glow pulse, animated sonar UI
 
 ---
 
 ## Privacy
 
-Battleship does not collect, transmit or share any personal data. It requests no internet permission and uses no analytics, crash reporting or advertising. Your career stats, ranks and medals stay in a private area on your device. Read the full policy at <https://battleship.cocode.dk/privacy/>.
+Battleship does not collect, send or share any personal data. It has no internet permission and uses no analytics, crash reporting or advertising. Your game record (career stats, ranks and medals) is stored privately on your device, and the app does not transmit it. If you use Android backup, Android may copy it to your own Google backup. The About screen and the main menu open web pages (for example this policy) in your browser, but only when you tap them. Read the full policy at <https://battleship.cocode.dk/privacy/>.
 
 ---
 
@@ -96,7 +98,7 @@ APK output: `app/build/outputs/apk/release/app-release.apk`
 ./gradlew test
 ```
 
-Unit tests cover the domain layer (pure Kotlin, no Android dependencies).
+Unit tests cover the domain logic (pure Kotlin, no Android dependencies) and the presentation logic that can be tested without a device.
 
 ---
 
@@ -116,7 +118,8 @@ app/src/main/java/com/cocode/battleship/
 │   ├── menu/                 ← MenuScreen
 │   ├── placement/            ← PlacementScreen
 │   ├── game/                 ← GameScreen, GameViewModel, GameOverScreen
-│   ├── stats/                ← StatsScreen (career stats, medals, ranks)
+│   ├── stats/                ← StatsScreen (career stats, highest rank)
+│   ├── medals/               ← MedalsScreen (medal registry)
 │   └── components/           ← Reusable composables (BattleGrid, etc.)
 │
 └── ui/theme/                 ← Material3 theme, colors, typography
@@ -132,12 +135,12 @@ app/src/main/java/com/cocode/battleship/
 
 | Layer | Technology |
 |-------|-----------|
-| Language | Kotlin 2.2.10 |
-| UI | Jetpack Compose BOM 2026.02.01 + Material3 |
+| Language | Kotlin 2.3.21 |
+| UI | Jetpack Compose BOM 2026.06.01 + Material3 |
 | Architecture | Clean Architecture + MVVM |
 | Min SDK | 24 (Android 7.0) |
 | Target SDK | 36 |
-| Build | Gradle 9.3.1 (Kotlin DSL), AGP 9.1.0 |
+| Build | Gradle 9.3.1 (Kotlin DSL), AGP 9.1.1 |
 
 ---
 
