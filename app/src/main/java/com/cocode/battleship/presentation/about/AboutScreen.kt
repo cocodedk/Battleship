@@ -16,6 +16,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -27,13 +28,14 @@ import com.cocode.battleship.ui.theme.NavySurface
 @Composable
 fun AboutRoute(onBack: () -> Unit) {
     val context = LocalContext.current
+    val language = LocalConfiguration.current.locales[0].language
     val versionName = remember { appVersionName(context) }
-    val privacyAvailable = aboutUrl(AboutLink.Privacy, context.packageName) != null
+    val privacyAvailable = aboutUrl(AboutLink.Privacy, context.packageName, language) != null
     AboutScreen(
         versionName = versionName,
         privacyAvailable = privacyAvailable,
         openLink = { link ->
-            val url = aboutUrl(link, context.packageName)
+            val url = aboutUrl(link, context.packageName, language)
             url != null && openUrl(context, url)
         },
         onBack = onBack,

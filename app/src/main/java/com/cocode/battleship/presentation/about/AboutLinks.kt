@@ -15,20 +15,35 @@ private const val PRIVACY_URL = "https://battleship.cocode.dk/privacy/"
 private const val REPO_URL = "https://github.com/cocodedk/Battleship"
 
 /**
- * Where each About link goes. "Check for updates" opens the F-Droid page once the app is live there,
- * the GitHub release until then; the app never asks the network whether a newer version exists.
- * [privacyUrl] is null when the app has no published policy, and the About page then leaves the
- * link out.
+ * Languages the site has both a home page and a privacy page for, at `<site>/<code>/` and
+ * `<site>/<code>/privacy/`. Persian has a home page but no privacy page of its own (its policy is a
+ * section of the English one), so Persian stays on the English pages.
+ */
+private val SITE_LANGUAGES = setOf("da")
+
+private fun localizedWebsite(language: String) =
+    if (language in SITE_LANGUAGES) "$WEBSITE_URL/$language/" else WEBSITE_URL
+
+private fun localizedPrivacy(language: String) =
+    if (language in SITE_LANGUAGES) "$WEBSITE_URL/$language/privacy/" else PRIVACY_URL
+
+/**
+ * Where each About link goes. The website and privacy links follow [language] (a code such as "da"
+ * from the app's current locale) and open the English pages when the site has none in that language.
+ * "Check for updates" opens the F-Droid page once the app is live there, the GitHub release until
+ * then; the app never asks the network whether a newer version exists. [privacyUrl] is null when the
+ * app has no published policy, and the About page then leaves the link out.
  */
 fun aboutUrl(
     link: AboutLink,
     applicationId: String,
+    language: String,
     liveOnFdroid: Boolean = LIVE_ON_FDROID,
-    privacyUrl: String? = PRIVACY_URL,
+    privacyUrl: String? = localizedPrivacy(language),
 ): String? = when (link) {
     AboutLink.Update ->
         if (liveOnFdroid) "https://f-droid.org/packages/$applicationId/" else "$REPO_URL/releases/latest"
-    AboutLink.Website -> WEBSITE_URL
+    AboutLink.Website -> localizedWebsite(language)
     AboutLink.Privacy -> privacyUrl
     AboutLink.Source -> REPO_URL
     AboutLink.Issues -> "$REPO_URL/issues"
