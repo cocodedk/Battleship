@@ -21,5 +21,5 @@
     <string name="about_credits_license">Battleship is free, and its source code is open under the Apache License 2.0. The license lets you use, change and share the app.</string>
     <string name="about_made_by">Made by Cocode (cocode.dk)</string>
     <string name="about_made_by_body">Developed by Babak Bandpey.</string>
-    <string name="about_back">RETURN TO BASE</string>
+    <string name="about_back">BACK TO MAIN MENU</string>
 </resources>
