@@ -10,12 +10,21 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cocode.battleship.R
+import com.cocode.battleship.presentation.about.openUrl
+import com.cocode.battleship.ui.theme.AmberWarning
 import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
 
@@ -24,7 +33,9 @@ private const val URL_APK = "https://github.com/cocodedk/Battleship/releases/lat
 
 @Composable
 internal fun MenuFooter() {
-    val uriHandler = LocalUriHandler.current
+    val context = LocalContext.current
+    // No browser on the phone: say so here instead of crashing (as the About screen does).
+    var linkFailed by remember { mutableStateOf(false) }
 
     Spacer(Modifier.height(12.dp))
     HorizontalDivider(
@@ -47,7 +58,7 @@ internal fun MenuFooter() {
             text = stringResource(R.string.menu_website_link),
             style = MaterialTheme.typography.labelSmall,
             color = SonarCyan.copy(alpha = 0.55f),
-            modifier = Modifier.clickable { uriHandler.openUri(URL_WEBSITE) }
+            modifier = Modifier.clickable { linkFailed = !openUrl(context, URL_WEBSITE) }
         )
         Text(
             text = "·",
@@ -58,7 +69,15 @@ internal fun MenuFooter() {
             text = stringResource(R.string.menu_apk_link),
             style = MaterialTheme.typography.labelSmall,
             color = SonarCyan.copy(alpha = 0.55f),
-            modifier = Modifier.clickable { uriHandler.openUri(URL_APK) }
+            modifier = Modifier.clickable { linkFailed = !openUrl(context, URL_APK) }
+        )
+    }
+    if (linkFailed) {
+        Text(
+            text = stringResource(R.string.about_no_browser),
+            style = MaterialTheme.typography.bodySmall,
+            color = AmberWarning,
+            modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
         )
     }
     Spacer(Modifier.height(16.dp))
