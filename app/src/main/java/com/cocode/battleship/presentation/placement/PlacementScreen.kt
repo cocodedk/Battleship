@@ -39,6 +39,9 @@ import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
 import com.cocode.battleship.presentation.nameRes
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.heightIn
 
 private const val SYMBOL_DEPLOY = "▶"
 private const val SYMBOL_AUTO = "⚡"
@@ -109,10 +112,13 @@ fun PlacementScreen(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 OutlinedButton(
                     onClick = { viewModel.toggleOrientation() },
-                    modifier = Modifier.weight(1f).height(52.dp),
+                    modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 52.dp),
                     shape = RoundedCornerShape(4.dp),
                     border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.6f)),
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
@@ -127,7 +133,7 @@ fun PlacementScreen(
                 }
                 OutlinedButton(
                     onClick = { viewModel.autoPlaceShips() },
-                    modifier = Modifier.weight(1f).height(52.dp),
+                    modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 52.dp),
                     shape = RoundedCornerShape(4.dp),
                     border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.6f)),
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
