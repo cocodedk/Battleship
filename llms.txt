@@ -1,29 +1,29 @@
 # Battleship
 
-> A local Battleship game for Android with no server or network connection required. Built with Kotlin + Jetpack Compose + Material3.
+> A Battleship game for Android that works offline, with no account. Built with Kotlin + Jetpack Compose + Material3. The app is in English and Danish.
 
 ## Overview
 
-Battleship is an Android game implementing the classic naval combat game. One player competes against an AI opponent on a 10×10 grid. Ships are placed manually or auto-deployed. The AI uses a hunt/target algorithm with checkerboard parity for intelligent attack patterns.
+Battleship is an Android version of the classic naval combat game. One player plays against the computer on a 10×10 grid. Ships are placed by hand or automatically. The computer searches alternating squares of the grid and fires at the squares around a hit.
 
 ## Technology Stack
 
-- Kotlin 2.2.10
-- Jetpack Compose (BOM 2026.02.01) + Material3
-- Navigation Compose 2.8.4
+- Kotlin 2.3.21
+- Jetpack Compose (BOM 2026.06.01) + Material3
+- Navigation Compose 2.9.8
 - ViewModel + StateFlow (MVVM)
 - Clean Architecture (domain / presentation)
-- No network and no accounts; fully local. Career stats and medals are kept on the device in app-private storage.
+- No internet permission and no accounts. Career stats and medals are kept on the device in app-private storage, and Android may include them in your own backup.
 
 ## Architecture
 
-- `domain/` — Pure Kotlin models (Ship, Board, ShipType, CellState) and AI (BattleshipAI)
-- `presentation/` — Compose screens (Menu, Placement, Game, GameOver), ViewModel, Navigation
+- `domain/` — Pure Kotlin models (Ship, Board, ShipType, CellState, GamePhase, SuperWeapon) and the computer opponent (BattleshipAI)
+- `presentation/` — Compose screens (Menu, About, Placement, Game, GameOver, Stats, Medals, Badges), ViewModel, Navigation
 
 ## Key Files
 
 - `CLAUDE.md` — Project conventions, architecture, engineering principles
-- `app/src/main/java/com/cocode/battleship/domain/ai/BattleshipAI.kt` — Stateless hunt/target AI
+- `app/src/main/java/com/cocode/battleship/domain/ai/BattleshipAI.kt` — Stateless computer opponent (hunt and target)
 - `app/src/main/java/com/cocode/battleship/presentation/game/GameViewModel.kt` — Single shared ViewModel for all screens
 - `app/src/main/java/com/cocode/battleship/presentation/navigation/BattleshipNavHost.kt` — Navigation with shared ViewModel
 

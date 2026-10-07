@@ -1,0 +1,25 @@
+<resources>
+    <!-- About -->
+    <string name="menu_about">OM APPEN</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_check_updates">Se den nyeste version</string>
+    <string name="about_check_updates_hint">Åbner en webside i din browser. Appen leder aldrig selv efter opdateringer.</string>
+    <string name="about_what_title">Hvad appen gør</string>
+    <string name="about_what">Battleship er et søslagsspil til Android. Du placerer din flåde, og bagefter skiftes du og fjenden til at skyde på hinandens skibe. Appen spiller fjenden, så du spiller alene og uden internet. Sænk alle fem fjendtlige skibe for at vinde. Undervejs optjener du rang, medaljer og badges.</string>
+    <string name="about_privacy_title">Privatliv</string>
+    <string name="about_privacy_no_data">Battleship indsamler, sender og deler ingen personlige data.</string>
+    <string name="about_privacy_no_internet">Appen har ikke tilladelse til at bruge internettet, så den kan ikke sende dine data nogen steder hen. Den har ingen reklamer, ingen analyse og ingen nedbrudsrapporter.</string>
+    <string name="about_privacy_on_device">Din spilhistorik (statistik, rang, medaljer og badges) bliver på din telefon. Vi modtager den aldrig. Bruger du Android-sikkerhedskopiering, kan der også ligge en kopi i din egen sikkerhedskopi hos Google.</string>
+    <string name="about_privacy_link">Læs privatlivspolitikken</string>
+    <string name="about_links_title">Links</string>
+    <string name="about_website">Åbn hjemmesiden</string>
+    <string name="about_source">Se kildekoden på GitHub</string>
+    <string name="about_report">Meld en fejl på GitHub</string>
+    <string name="about_report_hint">For at melde en fejl skal du have en gratis GitHub-konto.</string>
+    <string name="about_no_browser">Denne telefon har ingen app, der kan åbne weblinks. Installér en browser, og prøv igen.</string>
+    <string name="about_credits">Tak og licenser</string>
+    <string name="about_credits_license">Battleship er gratis, og kildekoden er åben under Apache License 2.0. Licensen giver dig lov til at bruge, ændre og dele appen.</string>
+    <string name="about_made_by">Lavet af Cocode (cocode.dk)</string>
+    <string name="about_made_by_body">Udviklet af Babak Bandpey.</string>
+    <string name="about_back">TIL HOVEDMENUEN</string>
+</resources>

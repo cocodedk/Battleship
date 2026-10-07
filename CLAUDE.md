@@ -6,14 +6,13 @@ A local Battleship game for Android. No server, no network connection required.
 
 - **Package**: `com.cocode.battleship`
 - **Min SDK**: 24 (Android 7.0) | **Target SDK**: 36
-- **Kotlin**: 2.2.10 | **AGP**: 9.1.0 | **Gradle**: 9.3.1 (Kotlin DSL)
-- **UI**: Jetpack Compose (BOM 2026.02.01) + Material3
+- **Kotlin**: 2.3.21 | **AGP**: 9.1.1 | **Gradle**: 9.3.1 (Kotlin DSL)
+- **UI**: Jetpack Compose (BOM 2026.06.01) + Material3
 - **Architecture**: Clean Architecture + MVVM
 
 ### Game Modes
 
-- Single player (player vs AI)
-- Two players on the same device (pass-and-play, optional)
+- Single player only: play against the computer
 
 ---
 
@@ -42,7 +41,7 @@ Clean Architecture with two layers. The domain layer has **zero Android dependen
 app/src/main/java/com/cocode/battleship/
 │
 ├── domain/                   ← Pure Kotlin, no Android deps, fully testable
-│   ├── model/                ← Data classes: Ship, Board, GameState, ShipType, CellState
+│   ├── model/                ← Data classes: Ship, Board, ShipType, CellState, GamePhase, SuperWeapon
 │   └── ai/                   ← AI opponent logic (BattleshipAI)
 │
 ├── presentation/             ← Android/Compose code
@@ -89,7 +88,7 @@ app/src/main/java/com/cocode/battleship/
 ### General
 
 - [ ] Kotlin DSL everywhere — no Groovy `.gradle` files
-- [ ] No network, no persistence needed (in-memory game state only)
+- [ ] No network. Active battles use in-memory state; career statistics and medal counts persist locally in SharedPreferences
 
 ---
 
@@ -104,7 +103,7 @@ app/src/main/java/com/cocode/battleship/
 - Use `stringResource()` to avoid duplicated string literals across composables
 
 ### SOLID
-- **S**ingle Responsibility — one class/function does one thing (`BattleshipAI` only picks attacks)
+- **S**ingle Responsibility — one class/function does one thing (`BattleshipAI` chooses the computer's attacks and generates random fleet placements)
 - **O**pen/Closed — extend via new classes, not by modifying stable domain models
 - **L**iskov Substitution — subtypes are substitutable; use sealed classes for variants
 - **I**nterface Segregation — keep domain contracts focused; avoid God objects
@@ -117,14 +116,14 @@ app/src/main/java/com/cocode/battleship/
 - Invoke `superpowers:test-driven-development` before writing any domain logic
 
 ### KISS & YAGNI
-- Don't add features not yet needed (no server, no persistence, no multiplayer until asked)
+- Don't add features not yet needed (no server, no multiplayer until asked)
 - Prefer readable code over clever abstractions; remove dead code immediately
 
 ---
 
 ## Testing
 
-- Unit tests cover the **domain layer only** — no Android framework needed
+- Unit tests cover the **domain logic** and the presentation logic that can be tested without a device — no Android framework needed
 - Test location: `app/src/test/java/com/cocode/battleship/` (not `androidTest/`)
 - Naming convention: `XxxTest.kt` mirroring the source file (e.g., `BattleshipAITest.kt`)
 - Test runner: JUnit4

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privatlivspolitik | Battleship</title>
+  <meta name="description" content="Privatlivspolitik for Battleship (com.cocode.battleship): et offline Android-spil uden analyse eller reklamer. Spilhistorikken gemmes på din enhed og kan indgå i Androids sikkerhedskopier." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://battleship.cocode.dk/da/privacy/" />
+  <link rel="alternate" hreflang="en"        href="https://battleship.cocode.dk/privacy/" />
+  <link rel="alternate" hreflang="da"        href="https://battleship.cocode.dk/da/privacy/" />
+  <link rel="alternate" hreflang="x-default" href="https://battleship.cocode.dk/privacy/" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050C18; --surface: #091524; --card: #0F1E35; --border: #1A3A5C;
+      --cyan: #00D4FF; --green: #00E676; --amber: #FFAB00; --gold: #FFD700;
+      --text: #CCE8FF; --text-secondary: #7AACCC; --text-dim: #2A4D6E;
+      --radius: 14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      background:
+        radial-gradient(900px 500px at 15% -10%, rgba(0,212,255,0.10), transparent 60%),
+        var(--bg);
+      color: var(--text); line-height: 1.7;
+    }
+    /* Padding moved here (was on body) so cocode-head/cocode-foot, as direct children of
+       body, can span the full viewport instead of sitting inset inside body's box. */
+    .container { width: min(760px, 94vw); margin: 0 auto; padding: 2.5rem 0 4rem; }
+    .back {
+      display: inline-block; margin-bottom: 1.4rem; color: var(--text-secondary);
+      text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em;
+    }
+    .back:hover { color: var(--cyan); }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: clamp(1.5rem, 5vw, 2.75rem); box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+    }
+    h1 {
+      color: var(--cyan); text-transform: uppercase; letter-spacing: 0.14em;
+      font-size: clamp(1.6rem, 5vw, 2.3rem); margin-bottom: 0.4rem;
+    }
+    h2 {
+      color: var(--text); text-transform: uppercase; letter-spacing: 0.1em;
+      font-size: 1.05rem; margin: 1.9rem 0 0.5rem;
+      border-left: 3px solid var(--cyan); padding-left: 0.6rem;
+    }
+    .meta { color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+    .meta code { color: var(--amber); }
+    li code, p code { overflow-wrap: anywhere; }
+    p, li { color: var(--text); font-size: 0.94rem; }
+    .lead { color: var(--text); margin-top: 1rem; }
+    ul { padding-inline-start: 1.3em; margin-top: 0.4rem; }
+    li { margin: 0.4rem 0; }
+    strong { color: var(--cyan); }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 2.75rem 0; }
+    /* The cocode.dk frame (brand.cocode.dk) lines up with .container's fluid column. */
+    cocode-head, cocode-foot { --cocode-max: min(760px, 94vw); --cocode-gutter: 0px; }
+    /* The shared cocode-apps navigation and footer (css/cocode-nav.css) line up with .container's column. */
+    .site-bar, .site-foot { width: min(760px, 94vw); margin: 0 auto; }
+    .site-bar { padding-top: 0.5rem; }
+    .cocode-nav { font-size: 0.85rem; letter-spacing: 0.08em; }
+    .cocode-nav a { color: var(--text-secondary); }
+    .cocode-nav a:hover, .cocode-nav a[aria-current="page"] { color: var(--cyan); }
+    .cocode-nav .brand { color: var(--cyan); font-size: 1rem; letter-spacing: 0.14em; text-transform: uppercase; }
+    .site-foot { padding: 1.5rem 0 3rem; color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 0.06em; }
+  </style>
+  <link rel="stylesheet" href="https://brand.cocode.dk/v1.css">
+  <script type="module" src="https://brand.cocode.dk/v1.js"></script>
+</head>
+<body>
+
+<!-- The cocode.dk family frame. Without JavaScript its children show instead: a way home. -->
+<cocode-head project="Battleship" accent="#00D4FF" on-accent="#050C18" dark>
+  <a href="https://cocode.dk">cocode.dk</a>
+</cocode-head>
+
+<div class="site-bar">
+<!-- cocode-apps:nav:start -->
+<link rel="stylesheet" href="/css/cocode-nav.css">
+<a class="skip" href="#main">Spring til indhold</a>
+<nav class="cocode-nav" aria-label="Battleship">
+  <a class="brand" href="/da/" data-nav="home"><img src="/img/icon.png" alt="" width="32" height="32">Battleship</a>
+  <a href="/da/#how" data-nav="how">Sådan virker det</a>
+  <a href="/da/#install" data-nav="install">Installér</a>
+  <a href="/da/privacy/" data-nav="privacy" aria-current="page">Privatliv</a>
+  <a href="/privacy/" hreflang="en" lang="en" data-nav="lang">English</a>
+  <a href="https://cocode.dk/" data-nav="more">Flere apps</a>
+</nav>
+<!-- cocode-apps:nav:end -->
+</div>
+
+  <main class="container" id="main">
+    <a class="back" href="../">&larr; BATTLESHIP</a>
+    <div class="card">
+
+      <section lang="da">
+        <h1>Privatlivspolitik</h1>
+        <p class="meta">Battleship &middot; <code>com.cocode.battleship</code></p>
+        <p class="meta">Sidst opdateret: 7. oktober 2026</p>
+
+        <p class="lead"><strong>Battleship indsamler, sender og deler ingen personoplysninger.</strong>
+        Det er et søslagsspil for én spiller: du spiller mod en computermodstander, der kører på din enhed, og spillet virker offline.</p>
+
+        <h2>Dine spildata</h2>
+        <p>Spillet gemmer en oversigt over dine spil: karrierestatistik (antal spil, sejre, sejrsserier og bedste score),
+        den højeste rang, du har nået, og de medaljer og badges, du har optjent. Appen gemmer oversigten privat på din
+        enhed (Androids <code>SharedPreferences</code> i privat tilstand) og sender den ikke af sted. Vi modtager den aldrig.
+        Den slettes fra din telefon, hvis du sletter appen eller rydder dens data. Android kan kopiere den gennem den
+        sikkerhedskopiering eller dataoverførsel, du selv har sat op. Se <a href="#backup">Sikkerhedskopi på enheden</a> nedenfor.</p>
+
+        <h2>Intet internet, ingen sporing</h2>
+        <ul>
+          <li>Appen beder <strong>ikke om tilladelse til internetadgang</strong>, så selve appen kan ikke oprette forbindelse til internettet. Når du trykker på et link, giver den adressen videre til din browser (se <a href="#links">Eksterne links</a>).</li>
+          <li>Vi bruger <strong>ingen analyse, ingen fejlrapportering og ingen reklamer</strong>.</li>
+          <li>Appen indeholder <strong>ingen SDK'er til analyse eller reklamer</strong> (programpakker fra andre firmaer) og bruger <strong>ingen cookies og ingen reklame-id'er</strong>. De biblioteker, den bruger, kommer fra Google (AndroidX) og JetBrains (Kotlin).</li>
+          <li>Appen beder Android om én tilladelse: <strong>VIBRATE</strong>. Det er en almindelig tilladelse, der gives
+          ved installationen, ikke viser nogen forespørgsel og ikke giver appen adgang til nogen af dine data.
+          Appen bruger den kun til korte vibrationer under spillet, for eksempel når et supervåben affyres.
+          Androids AndroidX-bibliotek tilføjer desuden en tilladelse, der kun findes inde i denne app
+          (<code>com.cocode.battleship.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</code>). Den hindrer andre apps i at sende
+          beskeder til appens interne modtagere, og den giver appen ingen adgang til dine data.</li>
+          <li>Appen beder <strong>ikke om adgang til din placering, dine kontakter, dit kamera, din mikrofon eller din lagerplads</strong>.</li>
+        </ul>
+
+        <h2 id="backup">Sikkerhedskopi på enheden</h2>
+        <p>Hvis du har slået Androids automatiske sikkerhedskopiering eller sikkerhedskopiering til din Google-konto til
+        på din enhed, kan operativsystemet tage appens lokale data med i din egen Google-sikkerhedskopi, og Android kan
+        kopiere dem til en ny telefon, når du overfører dine data. Det styrer du og Google. Vi har ikke adgang til dem, og hvor længe Google
+        gemmer en sikkerhedskopi, bestemmer Google selv. Se
+        <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Googles privatlivspolitik</a> for flere oplysninger.</p>
+
+        <h2 id="links">Eksterne links</h2>
+        <p>Nogle knapper åbner en webside i din browser. Hovedmenuen har to: <strong>[ cocode.dk ]</strong> (udviklerens hjemmeside,
+        <a href="https://cocode.dk" rel="noopener" target="_blank">cocode.dk</a>) og <strong>[ ÅBN DOWNLOADSIDE ↗ ]</strong> (appens udgivelsesside på
+        <a href="https://github.com/cocodedk/Battleship/releases/latest" rel="noopener" target="_blank">GitHub</a>). Skærmbilledet Om appen
+        (knappen <strong>OM APPEN</strong> i hovedmenuen) har fem: <strong>Se den nyeste version</strong> (appens side på F-Droid),
+        <strong>Læs privatlivspolitikken</strong>, <strong>Åbn hjemmesiden</strong>, <strong>Se kildekoden på GitHub</strong> og
+        <strong>Meld en fejl på GitHub</strong>.</p>
+        <p>Appen åbner kun en side, når du trykker på en af disse knapper. Den giver adressen videre til din browser og lægger ingen
+        oplysninger om dig til den. Selve appen opretter ingen forbindelse. Din browser forbinder derefter til den side, som kan se dit
+        besøg, som alle websider kan, for eksempel din IP-adresse. Hver side følger sin egen privatlivspolitik. Hvis din telefon ikke har
+        en browser, viser skærmbilledet Om appen en besked, og der åbnes ingenting.</p>
+
+        <h2>Børn</h2>
+        <p>Appen indsamler ikke bevidst data fra nogen, heller ikke fra børn.</p>
+
+        <h2>Ændringer</h2>
+        <p>Hvis politikken ændres, lægges den opdaterede version på denne side med en ny dato for seneste opdatering.</p>
+
+        <h2>Kontakt</h2>
+        <p>Spørgsmål om politikken kan sendes til
+        <a href="mailto:bb@cocode.dk">bb@cocode.dk</a> (CoCode.dk, udvikler: Babak Bandpey).</p>
+      </section>
+
+    </div>
+  </main>
+
+<div class="site-foot">
+<!-- cocode-apps:footer:start -->
+<footer class="cocode-footer">
+  <a href="https://github.com/cocodedk/Battleship">Kildekode</a> ·
+  <a href="/da/privacy/">Privatliv</a> ·
+  Licens: Apache-2.0 ·
+  <a href="https://cocode.dk/">Lavet af Cocode (cocode.dk)</a>
+</footer>
+<!-- cocode-apps:footer:end -->
+</div>
+
+<cocode-foot repo="cocodedk/Battleship" dark>
+  <a href="https://cocode.dk">cocode.dk</a>
+</cocode-foot>
+</body>
+</html>

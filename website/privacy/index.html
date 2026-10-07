@@ -4,9 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy Policy | Battleship</title>
-  <meta name="description" content="Privacy policy for Battleship (com.cocode.battleship): a fully offline Android game that collects no personal data and keeps everything on your device." />
+  <meta name="description" content="Privacy policy for Battleship (com.cocode.battleship): an offline Android game with no analytics or ads. Game records are stored on your device and may be included in Android backups." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://battleship.cocode.dk/privacy/" />
+  <link rel="alternate" hreflang="en"        href="https://battleship.cocode.dk/privacy/" />
+  <link rel="alternate" hreflang="da"        href="https://battleship.cocode.dk/da/privacy/" />
+  <link rel="alternate" hreflang="x-default" href="https://battleship.cocode.dk/privacy/" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,6 +53,7 @@
     }
     .meta { color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
     .meta code { color: var(--amber); }
+    li code, p code { overflow-wrap: anywhere; }
     p, li { color: var(--text); font-size: 0.94rem; }
     .lead { color: var(--text); margin-top: 1rem; }
     ul { padding-inline-start: 1.3em; margin-top: 0.4rem; }
@@ -96,6 +100,7 @@
   <a href="/#how" data-nav="how">How it works</a>
   <a href="/#install" data-nav="install">Install</a>
   <a href="/privacy/" data-nav="privacy" aria-current="page">Privacy</a>
+  <a href="/da/privacy/" hreflang="da" lang="da" data-nav="lang">Dansk</a>
   <a href="https://cocode.dk/" data-nav="more">More apps</a>
 </nav>
 <!-- cocode-apps:nav:end -->
@@ -109,38 +114,46 @@
       <section lang="en">
         <h1>Privacy Policy</h1>
         <p class="meta">Battleship &middot; <code>com.cocode.battleship</code></p>
-        <p class="meta">Last updated: 14 July 2026</p>
+        <p class="meta">Last updated: 7 October 2026</p>
 
         <p class="lead"><strong>Battleship does not collect, transmit, or share any personal data.</strong>
-        It is a single-player naval combat game (you versus an on-device AI) that runs entirely offline on your device.</p>
+        It is a single-player naval combat game: you play against a computer opponent that runs on your device, and the game works offline.</p>
 
         <h2>Your game data</h2>
-        <p>The game keeps a record of your play — career statistics (games played, victories, win streaks, best score),
-        the highest rank you have reached, and the medals and badges you have earned. This information is stored only in a
-        private area on your own device (Android <code>SharedPreferences</code>, in private mode). It is never sent to us or
-        to any third party. It stays on your phone and is removed if you delete the app or clear its data. If you have turned on Android backup, a copy may still exist in your own Google backup until you remove it there — see <a href="#backup">Device backup</a> below.</p>
+        <p>The game keeps a record of your play: career statistics (games played, victories, win streaks, best score),
+        the highest rank you have reached, and the medals and badges you have earned. The app stores this record privately
+        on your device (Android <code>SharedPreferences</code>, in private mode) and does not transmit it. We never receive it.
+        It is removed from your phone if you delete the app or clear its data. Android may copy it through your configured backup
+        or device-transfer service; see <a href="#backup">Device backup</a> below.</p>
 
         <h2>No internet, no tracking</h2>
         <ul>
-          <li>The app requests <strong>no internet permission</strong>, so it is technically unable to send your data anywhere.</li>
+          <li>The app requests <strong>no internet permission</strong>, so the app itself cannot connect to the internet. When you tap a link, it hands the address to your browser (see <a href="#links">External links</a>).</li>
           <li>We use <strong>no analytics, no crash reporting, and no advertising</strong>.</li>
-          <li>There are <strong>no third-party SDKs, no cookies, and no advertising identifiers</strong>.</li>
-          <li>The only permission the app declares is <strong>VIBRATE</strong> — a normal, install-time Android permission that
-          shows no prompt and gives the app no access to any of your data. It is used solely to produce short haptic feedback
-          (a vibration) during play, for example when a super weapon fires.</li>
+          <li>The app includes <strong>no analytics or advertising SDKs</strong> (software kits from other companies) and uses <strong>no cookies and no advertising identifiers</strong>. The libraries it uses come from Google (AndroidX) and JetBrains (Kotlin).</li>
+          <li>The app asks Android for one permission, <strong>VIBRATE</strong>. It is a normal, install-time permission that
+          shows no prompt and gives the app no access to any of your data. The app uses it only for short vibrations during play,
+          for example when a super weapon fires. Android's AndroidX library also adds a permission that exists only inside this app
+          (<code>com.cocode.battleship.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</code>). It keeps other apps from sending messages
+          to the app's internal receivers, and it gives the app no access to your data.</li>
           <li>The app requests <strong>no access to your location, contacts, camera, microphone, or storage</strong>.</li>
         </ul>
 
         <h2 id="backup">Device backup</h2>
         <p>If you have enabled Android Auto Backup or Google account backup on your device, the operating system
-        may include this app's local data in your own personal Google backup. This is controlled entirely by you
-        and Google — we have no access to it. See
+        may include this app's local data in your own personal Google backup, and Android may copy it to a new phone when you
+        transfer your data. You and Google control this. We have no access to it, and how long Google keeps a backup is up to Google. See
         <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's Privacy Policy</a> for details.</p>
 
-        <h2>External links</h2>
-        <p>The app's main menu contains links to the developer's website (<a href="https://cocode.dk" rel="noopener" target="_blank">cocode.dk</a>)
-        and to the app's releases page on <a href="https://github.com/cocodedk/Battleship/releases/latest" rel="noopener" target="_blank">GitHub</a>.
-        Selecting one opens your browser; those sites are governed by their own privacy policies.</p>
+        <h2 id="links">External links</h2>
+        <p>Some buttons open a web page in your browser. The main menu has two: <strong>[ cocode.dk ]</strong> (the developer's website,
+        <a href="https://cocode.dk" rel="noopener" target="_blank">cocode.dk</a>) and <strong>[ OPEN DOWNLOAD PAGE ↗ ]</strong> (the app's releases page on
+        <a href="https://github.com/cocodedk/Battleship/releases/latest" rel="noopener" target="_blank">GitHub</a>). The About screen (the <strong>ABOUT</strong> button
+        in the main menu) has five: <strong>See the latest version</strong> (the app's page on F-Droid), <strong>Read the privacy policy</strong>,
+        <strong>Open the website</strong>, <strong>See the source code on GitHub</strong> and <strong>Report a problem on GitHub</strong>.</p>
+        <p>The app opens a page only when you tap one of these buttons. It hands the address to your browser and adds no information about you to it.
+        The app itself makes no connection. Your browser then connects to that site, which can see your visit as any website can, for example your IP address.
+        Each site is governed by its own privacy policy. If your phone has no browser, the About screen shows a message and nothing opens.</p>
 
         <h2>Children</h2>
         <p>The app does not knowingly collect data from anyone, including children.</p>
@@ -159,38 +172,44 @@
       <section lang="fa" dir="rtl">
         <h2 class="title">سیاست حفظ حریم خصوصی</h2>
         <p class="meta">بتلشیپ &middot; <code>com.cocode.battleship</code></p>
-        <p class="meta">آخرین به‌روزرسانی: ۱۴ ژوئیه ۲۰۲۶</p>
+        <p class="meta">آخرین به‌روزرسانی: ۷ اکتبر ۲۰۲۶</p>
 
         <p class="lead"><strong>بتلشیپ هیچ داده شخصی‌ای را جمع‌آوری، ارسال یا با دیگران به اشتراک نمی‌گذارد.</strong>
-        این یک بازی نبرد دریایی تک‌نفره (شما در برابر هوش مصنوعیِ روی دستگاه) است که به‌طور کامل و آفلاین روی دستگاه شما اجرا می‌شود.</p>
+        این یک بازی نبرد دریایی تک‌نفره است: شما در برابر یک حریف رایانه‌ای بازی می‌کنید که روی دستگاه خودتان اجرا می‌شود و بازی آفلاین کار می‌کند.</p>
 
         <h2>داده‌های بازی شما</h2>
-        <p>بازی سابقه‌ای از عملکرد شما نگه می‌دارد — آمار کارنامه (تعداد بازی‌ها، پیروزی‌ها، زنجیرهٔ بردها، بهترین امتیاز)،
-        بالاترین رتبه‌ای که رسیده‌اید و مدال‌ها و نشان‌هایی که کسب کرده‌اید. این اطلاعات تنها در یک فضای خصوصی روی دستگاه
-        خودتان (<code>SharedPreferences</code> اندروید در حالت خصوصی) ذخیره می‌شود. این داده‌ها هرگز برای ما یا هیچ شخص ثالثی
-        ارسال نمی‌شود، روی گوشی شما باقی می‌ماند و با حذف برنامه یا پاک‌کردن داده‌های آن از بین می‌رود. اگر پشتیبان‌گیری اندروید را روشن کرده باشید، ممکن است یک نسخه همچنان در پشتیبان‌گیری گوگل خودتان باقی بماند تا زمانی که آن را از آنجا حذف کنید — بخش «پشتیبان‌گیری دستگاه» در ادامه.</p>
+        <p>بازی سابقهٔ بازی شما را نگه می‌دارد: آمار کارنامه (تعداد بازی‌ها، پیروزی‌ها، زنجیرهٔ بردها، بهترین امتیاز)،
+        بالاترین رتبه‌ای که به آن رسیده‌اید و مدال‌ها و نشان‌هایی که گرفته‌اید. برنامه این سابقه را در فضای خصوصی دستگاه
+        خودتان (<code>SharedPreferences</code> اندروید در حالت خصوصی) ذخیره می‌کند و خودش آن را ارسال نمی‌کند. این داده‌ها هرگز به دست ما نمی‌رسد.
+        اگر برنامه را حذف کنید یا داده‌هایش را پاک کنید، از گوشی شما پاک می‌شود. اندروید ممکن است این داده‌ها را از طریق سرویس پشتیبان‌گیری یا انتقال دستگاهِ شما کپی کند. بخش «پشتیبان‌گیری دستگاه» را در ادامه ببینید.</p>
 
         <h2>بدون اینترنت، بدون ردیابی</h2>
         <ul>
-          <li>برنامه <strong>هیچ دسترسی اینترنتی</strong> درخواست نمی‌کند، بنابراین از نظر فنی قادر به ارسال داده‌های شما به هیچ‌جا نیست.</li>
+          <li>برنامه <strong>هیچ مجوز اینترنتی</strong> نمی‌خواهد، پس خودِ برنامه نمی‌تواند به اینترنت وصل شود. وقتی روی پیوندی می‌زنید، فقط نشانی را به مرورگر شما می‌دهد (بخش «پیوندهای بیرونی» را ببینید).</li>
           <li>ما از <strong>هیچ ابزار تحلیلی، گزارش خطا یا تبلیغاتی</strong> استفاده نمی‌کنیم.</li>
-          <li>هیچ <strong>کیت توسعهٔ شخص ثالث، کوکی یا شناسهٔ تبلیغاتی</strong> وجود ندارد.</li>
-          <li>تنها مجوزی که برنامه اعلام می‌کند <strong>VIBRATE (لرزش)</strong> است — یک مجوز عادی و زمان‌نصبِ اندروید که هیچ
-          پیامی نشان نمی‌دهد و به هیچ‌یک از داده‌های شما دسترسی ندارد. این مجوز تنها برای ایجاد بازخورد لمسی کوتاه (لرزش) در
-          حین بازی، مثلاً هنگام شلیک سلاح ویژه، به کار می‌رود.</li>
+          <li>برنامه از <strong>کیت‌های تحلیل رفتار یا تبلیغات، کوکی‌ها و شناسه‌های تبلیغاتی</strong> استفاده نمی‌کند. کتابخانه‌هایی که استفاده می‌کند از گوگل (AndroidX) و جت‌برینز (Kotlin) هستند.</li>
+          <li>برنامه یک مجوز از اندروید می‌خواهد: <strong>VIBRATE (لرزش)</strong>. این مجوزی عادی است که هنگام نصب داده می‌شود، هیچ
+          پیامی نشان نمی‌دهد و به هیچ‌یک از داده‌های شما دسترسی نمی‌دهد. برنامه فقط برای لرزش کوتاه در
+          حین بازی، مثلاً هنگام شلیک سلاح ویژه، از آن استفاده می‌کند. کتابخانهٔ AndroidX نیز یک مجوز داخلیِ مختص همین برنامه
+          اضافه می‌کند (<code dir="ltr">com.cocode.battleship.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</code>). این مجوز جلوی ارسال پیام از برنامه‌های دیگر به گیرنده‌های داخلی
+          برنامه را می‌گیرد و هیچ دسترسی‌ای به داده‌های شما نمی‌دهد.</li>
           <li>برنامه <strong>هیچ دسترسی‌ای به موقعیت مکانی، مخاطبین، دوربین، میکروفون یا حافظهٔ شما</strong> درخواست نمی‌کند.</li>
         </ul>
 
         <h2>پشتیبان‌گیری دستگاه</h2>
         <p>اگر پشتیبان‌گیری خودکار اندروید یا پشتیبان‌گیری حساب گوگل را فعال کرده باشید، سیستم‌عامل ممکن است
-        داده‌های محلی این برنامه را در پشتیبان شخصی گوگل شما بگنجاند. این کار کاملاً توسط شما و گوگل کنترل می‌شود
-        و ما به آن دسترسی نداریم. برای جزئیات به
+        داده‌های محلی این برنامه را در پشتیبان شخصی گوگل شما بگنجاند و هنگام انتقال اطلاعات به گوشی جدید هم آن را کپی کند.
+        این کار را شما و گوگل کنترل می‌کنید. ما به آن دسترسی نداریم و اینکه گوگل نسخهٔ پشتیبان را تا چه زمانی نگه دارد، به خود گوگل بستگی دارد. برای جزئیات به
         <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">سیاست حریم خصوصی گوگل</a> مراجعه کنید.</p>
 
-        <h2>پیوندهای بیرونی</h2>
-        <p>منوی اصلی برنامه شامل پیوندهایی به وب‌سایت توسعه‌دهنده (<a href="https://cocode.dk" rel="noopener" target="_blank">cocode.dk</a>)
-        و صفحهٔ انتشار برنامه در <a href="https://github.com/cocodedk/Battleship/releases/latest" rel="noopener" target="_blank">گیت‌هاب</a> است.
-        انتخاب آن‌ها مرورگر شما را باز می‌کند و این سایت‌ها تابع سیاست‌های حریم خصوصی خودشان هستند.</p>
+        <h2 id="links-fa">پیوندهای بیرونی</h2>
+        <p>چند دکمه یک صفحهٔ وب را در مرورگر شما باز می‌کنند. منوی اصلی دو دکمه دارد: <strong dir="ltr">[ cocode.dk ]</strong> (وب‌سایت توسعه‌دهنده، <a href="https://cocode.dk" rel="noopener" target="_blank">cocode.dk</a>) و
+        <strong dir="ltr">[ OPEN DOWNLOAD PAGE ↗ ]</strong> (صفحهٔ انتشار برنامه در <a href="https://github.com/cocodedk/Battleship/releases/latest" rel="noopener" target="_blank">گیت‌هاب</a>).
+        صفحهٔ About (دکمهٔ <strong dir="ltr">ABOUT</strong> در منوی اصلی) پنج دکمه دارد: <strong dir="ltr">See the latest version</strong> (صفحهٔ برنامه در F-Droid)،
+        <strong dir="ltr">Read the privacy policy</strong>، <strong dir="ltr">Open the website</strong>، <strong dir="ltr">See the source code on GitHub</strong> و <strong dir="ltr">Report a problem on GitHub</strong>.</p>
+        <p>برنامه فقط وقتی صفحه‌ای را باز می‌کند که شما روی یکی از این دکمه‌ها بزنید. نشانی را به مرورگر می‌دهد و هیچ اطلاعاتی دربارهٔ شما به آن اضافه نمی‌کند.
+        خودِ برنامه هیچ اتصالی برقرار نمی‌کند. مرورگر شما به آن سایت وصل می‌شود و سایت، مثل هر وب‌سایت دیگر، می‌تواند بازدید شما را ببیند، مثلاً نشانی IP شما را.
+        هر سایت تابع سیاست حریم خصوصی خودش است. اگر گوشی شما مرورگر نداشته باشد، صفحهٔ About پیامی نشان می‌دهد و چیزی باز نمی‌شود.</p>
 
         <h2>کودکان</h2>
         <p>این برنامه آگاهانه هیچ داده‌ای را از هیچ‌کس، از جمله کودکان، جمع‌آوری نمی‌کند.</p>

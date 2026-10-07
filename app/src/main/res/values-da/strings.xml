@@ -1,0 +1,166 @@
+<resources>
+    <string name="app_name">Battleship</string>
+
+    <!-- Menu -->
+    <string name="menu_title">BATTLESHIP</string>
+    <string name="menu_tagline">Sænk fjendens flåde</string>
+    <string name="menu_start_game">START MISSION</string>
+    <string name="menu_system_label">[ FLÅDENS KOMMANDOSYSTEM ]</string>
+    <string name="menu_game_mode">ENKELTSPILLER  ·  mod AI  ·  10×10 FELTER</string>
+    <string name="menu_view_stats">STATISTIK</string>
+    <string name="menu_developed_by">UDVIKLET AF BABAK BANDPEY</string>
+    <string name="menu_website_link">[ cocode.dk ]</string>
+    <string name="menu_apk_link">[ ÅBN DOWNLOADSIDE ↗ ]</string>
+
+    <!-- Placement -->
+    <string name="placement_title">PLACÉR FLÅDEN</string>
+    <string name="placement_select_cell">VÆLG ET FELT FOR AT PLACERE DIT SKIB</string>
+    <string name="placement_ready">TRYK PÅ %1$s FOR AT STARTE KAMPEN</string>
+    <string name="placement_placing">PLACERER: %1$s (STØRRELSE %2$d)</string>
+    <string name="placement_all_placed">FLÅDEN ER PLACERET. KLAR TIL KAMP</string>
+    <string name="placement_rotate_to_vertical">DREJ TIL LODRET</string>
+    <string name="placement_rotate_to_horizontal">DREJ TIL VANDRET</string>
+    <string name="placement_auto_place">PLACÉR AUTOMATISK</string>
+    <string name="placement_start_battle">GÅ I KAMP</string>
+
+    <!-- Game -->
+    <string name="game_message_format">[COM]  %1$s</string>
+    <string name="game_enemy_waters">MÅLOMRÅDE</string>
+    <string name="game_your_fleet">DIT BRÆT</string>
+    <string name="game_your_turn">DIN TUR: TRYK I MÅLOMRÅDET</string>
+    <string name="game_ai_thinking">FJENDEN BEREGNER...</string>
+
+    <!-- Game status line -->
+    <string name="game_msg_place_ships">Placér dine skibe</string>
+    <string name="game_msg_your_turn">Din tur. Tryk på et felt i MÅLOMRÅDE for at skyde.</string>
+    <string name="game_msg_hit">Træffer! Du ramte et fjendtligt skib.</string>
+    <string name="game_msg_miss">Forbi. Dit skud landede i tomt vand.</string>
+    <string name="game_msg_you_sunk">Du sænkede fjendens %1$s!</string>
+    <string name="game_msg_you_sunk_unknown">Du sænkede et fjendtligt skib!</string>
+    <string name="game_msg_weapon_fired">%1$s affyret!</string>
+    <plurals name="game_msg_weapon_sunk">
+        <item quantity="one">%1$s sænkede fjendens %2$s!</item>
+        <item quantity="other">%1$s sænkede disse fjendtlige skibe: %2$s!</item>
+    </plurals>
+    <string name="game_msg_you_win">Du sænkede hele fjendens flåde. Du har vundet!</string>
+    <string name="game_msg_ai_hit">Fjenden ramte et af dine skibe.</string>
+    <string name="game_msg_ai_sunk">Fjenden sænkede et af dine skibe: %1$s.</string>
+    <string name="game_msg_ai_sunk_unknown">Fjenden sænkede et af dine skibe.</string>
+    <string name="game_msg_ai_missed">Fjenden skød forbi. Din tur.</string>
+    <string name="game_msg_you_lose">Fjenden sænkede hele din flåde. Du har tabt.</string>
+
+    <!-- Game Over -->
+    <string name="game_over_status_victory">[ STATUS: SEJR ]</string>
+    <string name="game_over_status_defeat">[ STATUS: NEDERLAG ]</string>
+    <string name="game_over_you_win">MISSION GENNEMFØRT</string>
+    <string name="game_over_ai_wins">FLÅDEN ER ØDELAGT</string>
+    <string name="game_over_win_subtitle">Fremragende taktik. Fjendens flåde er uskadeliggjort.</string>
+    <string name="game_over_lose_subtitle">Alle skibe er tabt. Fjenden var nådesløs.</string>
+    <string name="game_over_play_again">SPIL IGEN</string>
+    <string name="game_over_main_menu">HOVEDMENU</string>
+
+    <!-- Score & Badges -->
+    <string name="game_over_rank_label">RANG</string>
+    <string name="game_over_score_label">SCORE</string>
+    <string name="game_over_stats_title">KAMPSTATISTIK</string>
+    <string name="game_over_stats_shots">Skud</string>
+    <string name="game_over_stats_hits">Træffere</string>
+    <string name="game_over_stats_misses">Forbiskud</string>
+    <string name="game_over_stats_accuracy">Træfsikkerhed</string>
+    <string name="game_over_stats_ships_sunk">Sænkede skibe</string>
+    <string name="game_over_badges_title">OPTJENTE BADGES</string>
+    <string name="game_over_badges_none">Ingen badges optjent. Kæmp videre, sømand.</string>
+    <string name="game_over_medals_earned_title">OPTJENTE MEDALJER</string>
+    <string name="game_over_view_all_badges">SE ALLE BADGES</string>
+    <string name="game_over_session_label">KARRIERE</string>
+    <string name="game_over_session_games">Spil</string>
+    <string name="game_over_session_wins">Sejre</string>
+    <string name="game_over_session_streak">Sejrsserie</string>
+    <string name="game_over_session_best">Bedste score</string>
+    <string name="game_over_session_footer">Spil: %1$d  ·  Sejre: %2$d  ·  Sejrsserie: %3$d  ·  Bedste score: %4$d</string>
+
+    <!-- Stats Screen -->
+    <string name="stats_title">KARRIEREOVERSIGT</string>
+    <string name="stats_rank_label">HØJESTE RANG</string>
+    <string name="stats_session_title">KARRIERESTATISTIK</string>
+    <string name="stats_games_played">Antal spil</string>
+    <string name="stats_wins">Sejre</string>
+    <string name="stats_best_score">Bedste score</string>
+    <string name="stats_longest_streak">Længste sejrsserie</string>
+    <string name="stats_naval_subtitle">[ FLÅDENS KOMMANDODATABASE ]</string>
+    <string name="stats_best_score_value">Bedste score: %1$d</string>
+    <string name="stats_no_games">Ingen missioner gennemført endnu. Placér din flåde!</string>
+    <string name="stats_win_rate">Sejrsprocent</string>
+    <string name="stats_current_streak">Aktuel sejrsserie</string>
+    <string name="stats_lifetime_title">SAMLET KAMPSTATISTIK</string>
+    <string name="stats_lifetime_shots">Skud i alt</string>
+    <string name="stats_lifetime_accuracy">Træfsikkerhed</string>
+    <string name="stats_back">TIL HOVEDMENUEN</string>
+
+    <!-- Medals Screen -->
+    <string name="menu_view_medals">MEDALJEREGISTER</string>
+    <string name="menu_badges">BADGES</string>
+    <string name="medals_title">MEDALJEREGISTER</string>
+    <string name="medals_earned_format">%1$d / %2$d MEDALJER OPTJENT</string>
+    <string name="medals_back">TIL HOVEDMENUEN</string>
+
+    <!-- Badges Screen -->
+    <string name="badges_title">BADGES</string>
+    <string name="badges_earned_format">%1$d / %2$d OPTJENT</string>
+    <string name="badges_back">TILBAGE</string>
+    <string name="medal_detail_how_to_earn">SÅDAN FÅR DU DEN</string>
+    <string name="medal_detail_rarity_common">◆ ALMINDELIG</string>
+    <string name="medal_detail_rarity_rare">◆ SJÆLDEN</string>
+    <string name="medal_detail_rarity_epic">◆ EPISK</string>
+    <string name="medal_detail_rarity_legendary">◆ LEGENDARISK</string>
+    <string name="medal_detail_earned_count">× %1$d optjent</string>
+    <string name="medal_count_badge">×%1$d</string>
+
+    <!-- Badge Unlock Hints -->
+    <string name="badge_hint_first_blood">Ram fjenden med dit allerførste skud</string>
+    <string name="badge_hint_sharpshooter" formatted="false">Afslut med mindst 60% træfsikkerhed (mindst 10 skud)</string>
+    <string name="badge_hint_dead_eye" formatted="false">Afslut med mindst 80% træfsikkerhed (mindst 10 skud)</string>
+    <string name="badge_hint_hot_streak">Ram mindst 5 gange i træk uden at skyde forbi</string>
+    <string name="badge_hint_unstoppable">Ram mindst 8 gange i træk uden at skyde forbi</string>
+    <string name="badge_hint_flawless_victory">Vind uden at miste et eneste af dine 5 skibe</string>
+    <string name="badge_hint_perfect_gunner">Vind uden at skyde forbi en eneste gang</string>
+    <string name="badge_hint_leviathan_slayer">Sænk fjendens hangarskib som det første skib, du sænker</string>
+    <string name="badge_hint_silent_service">Hold din ubåd uskadt i hele spillet</string>
+    <string name="badge_hint_last_stand">Vind med kun 1 skib tilbage</string>
+    <string name="badge_hint_destroyer_lives">Hold din destroyer uskadt i hele spillet</string>
+    <string name="badge_hint_swim_for_it">Tab uden at have ramt fjenden en eneste gang</string>
+    <string name="badge_hint_fog_of_war">Skyd forbi mindst 10 gange i træk</string>
+    <string name="badge_hint_depth_charge_diplomat">Skyd mindst 100 gange i ét spil</string>
+    <string name="badge_hint_on_fire">Vind mindst 3 spil i træk</string>
+    <string name="badge_hint_blitz">Vind med højst 25 skud</string>
+    <string name="badge_hint_sea_wolf">Vind 5 spil i træk</string>
+    <string name="badge_hint_lucky_dog" formatted="false">Vind med under 25% træfsikkerhed (mindst 20 skud)</string>
+    <string name="badge_hint_cold_opener">Skyd forbi med dit første skud, men vind alligevel</string>
+    <string name="badge_hint_iron_hull">Hold dit slagskib uskadt i hele spillet</string>
+    <string name="badge_hint_cruiser_lives">Hold din krydser uskadt i hele spillet</string>
+    <string name="badge_hint_torpedo_ace">Sænk fjendens ubåd som det første skib, du sænker</string>
+    <string name="badge_hint_battleship_hunter">Sænk fjendens slagskib som det første skib, du sænker</string>
+    <string name="badge_hint_small_game">Sænk fjendens destroyer som det første skib, du sænker</string>
+    <string name="badge_hint_spray_and_pray">Skyd forbi mindst 20 gange i træk</string>
+    <string name="badge_hint_nuclear_option">Skyd mindst 150 gange i ét spil. Et spil slutter, før det er muligt, så denne medalje kan ikke optjenes endnu.</string>
+    <string name="badge_hint_scattershot">Skyd mindst 50 gange og skyd oftere forbi, end du rammer</string>
+    <string name="badge_hint_tactical_retreat">Tab, efter du har sænket mindst 3 fjendtlige skibe</string>
+    <string name="badge_hint_phoenix">Vind med præcis 2 skibe tilbage</string>
+    <string name="badge_hint_spite" formatted="false">Vind med under 30% træfsikkerhed (mindst 30 skud)</string>
+    <string name="badge_hint_fleet_commander">Nå 10 sejre i alt</string>
+    <string name="badge_hint_sea_veteran">Spil dit 25. spil</string>
+    <string name="badge_hint_iron_admiral">Nå 25 sejre i alt</string>
+
+    <!-- Super Weapons -->
+    <string name="weapons_available_label">SUPERVÅBEN</string>
+    <string name="weapon_carpet_bomb_name">TÆPPEBOMBNING</string>
+    <string name="weapon_carpet_bomb_desc">3×3 områdebombardement med målet i midten.</string>
+    <string name="weapon_barrage_name">SLAGSKIBSSPÆRREILD</string>
+    <string name="weapon_barrage_desc">Mættende ild i et kors på 9 felter.</string>
+    <string name="weapon_sonar_name">SONARSCANNING</string>
+    <string name="weapon_sonar_desc">Vandret sonarpuls over 5 felter.</string>
+    <string name="weapon_torpedo_name">TORPEDOSALVE</string>
+    <string name="weapon_torpedo_desc">Lodret torpedosalve over 5 felter.</string>
+    <string name="weapon_precision_name">PRÆCISIONSANGREB</string>
+    <string name="weapon_precision_desc">Kirurgisk angreb i et X over 5 felter.</string>
+</resources>

@@ -1,0 +1,61 @@
+<resources>
+
+    <!-- Ship names (lower case: they are used inside sentences, and upper-cased where shown as a label) -->
+    <string name="ship_carrier">hangarskib</string>
+    <string name="ship_battleship">slagskib</string>
+    <string name="ship_cruiser">krydser</string>
+    <string name="ship_submarine">ubåd</string>
+    <string name="ship_destroyer">destroyer</string>
+
+    <!-- Ranks -->
+    <string name="rank_fleet_admiral">Flådeadmiral</string>
+    <string name="rank_admiral">Admiral</string>
+    <string name="rank_vice_admiral">Viceadmiral</string>
+    <string name="rank_commodore">Kommandør</string>
+    <string name="rank_captain">Kaptajn</string>
+    <string name="rank_lieutenant">Løjtnant</string>
+    <string name="rank_ensign">Sekondløjtnant</string>
+    <string name="rank_cadet">Kadet</string>
+
+    <!-- Super weapons, as named in the battle messages -->
+    <string name="weapon_carpet_bomb_title">Tæppebombning</string>
+    <string name="weapon_barrage_title">Slagskibsspærreild</string>
+    <string name="weapon_sonar_title">Sonarscanning</string>
+    <string name="weapon_torpedo_title">Torpedosalve</string>
+    <string name="weapon_precision_title">Præcisionsangreb</string>
+
+    <!-- Badge and medal names -->
+    <string name="badge_name_first_blood">Første blod</string>
+    <string name="badge_name_sharpshooter">Skarpskytte</string>
+    <string name="badge_name_dead_eye">Falkeøje</string>
+    <string name="badge_name_hot_streak">Træfserie</string>
+    <string name="badge_name_unstoppable">Ustoppelig</string>
+    <string name="badge_name_flawless_victory">Fejlfri sejr</string>
+    <string name="badge_name_perfect_gunner">Perfekt skytte</string>
+    <string name="badge_name_leviathan_slayer">Leviatanens bane</string>
+    <string name="badge_name_silent_service">Tavs tjeneste</string>
+    <string name="badge_name_last_stand">Sidste forsvar</string>
+    <string name="badge_name_destroyer_lives">Destroyeren lever</string>
+    <string name="badge_name_swim_for_it">Svøm for livet</string>
+    <string name="badge_name_fog_of_war">Krigens tåge</string>
+    <string name="badge_name_depth_charge_diplomat">Dybdebombe-diplomat</string>
+    <string name="badge_name_on_fire">I flammer</string>
+    <string name="badge_name_blitz">Lynangreb</string>
+    <string name="badge_name_sea_wolf">Havulv</string>
+    <string name="badge_name_lucky_dog">Heldigper</string>
+    <string name="badge_name_cold_opener">Kold start</string>
+    <string name="badge_name_iron_hull">Jernskrog</string>
+    <string name="badge_name_cruiser_lives">Krydseren lever</string>
+    <string name="badge_name_torpedo_ace">Torpedoes</string>
+    <string name="badge_name_battleship_hunter">Jæger af slagskibe</string>
+    <string name="badge_name_small_game">Småvildt</string>
+    <string name="badge_name_spray_and_pray">Skyd og håb</string>
+    <string name="badge_name_nuclear_option">Atomknappen</string>
+    <string name="badge_name_scattershot">Spredehagl</string>
+    <string name="badge_name_tactical_retreat">Taktisk tilbagetog</string>
+    <string name="badge_name_phoenix">Føniks</string>
+    <string name="badge_name_spite">Trods</string>
+    <string name="badge_name_fleet_commander">Flådechef</string>
+    <string name="badge_name_sea_veteran">Søveteran</string>
+    <string name="badge_name_iron_admiral">Jernadmiral</string>
+</resources>
