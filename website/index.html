@@ -31,6 +31,8 @@
   <link rel="stylesheet" href="styles.css"/>
   <link rel="stylesheet" href="sonar.css"/>
   <link rel="stylesheet" href="blocks.css"/>
+  <link rel="stylesheet" href="https://brand.cocode.dk/v1.css">
+  <script type="module" src="https://brand.cocode.dk/v1.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -58,6 +60,14 @@
 </head>
 <body>
 
+<!-- The cocode.dk family frame. Without JavaScript its children show instead: a way home
+     and the language links. -->
+<cocode-head project="Battleship" accent="#00D4FF" on-accent="#050C18" dark>
+  <a href="https://cocode.dk">cocode.dk</a>
+  <span class="on">EN</span>
+  <a href="fa/" hreflang="fa">FA</a>
+</cocode-head>
+
 <div class="site-bar">
 <!-- cocode-apps:nav:start -->
 <link rel="stylesheet" href="/css/cocode-nav.css">
@@ -70,7 +80,6 @@
   <a href="https://cocode.dk/" data-nav="more">More apps</a>
 </nav>
 <!-- cocode-apps:nav:end -->
-<a class="lang-other" href="fa/" hreflang="fa" lang="fa">فارسی (Persian)</a>
 </div>
 
   <!-- ═══ HERO ═══ -->
@@ -669,5 +678,9 @@ presentation/    ← Android / Jetpack Compose
 </footer>
 <!-- cocode-apps:footer:end -->
   </div>
+
+<cocode-foot repo="cocodedk/Battleship" dark>
+  <a href="https://cocode.dk">cocode.dk</a>
+</cocode-foot>
 </body>
 </html>

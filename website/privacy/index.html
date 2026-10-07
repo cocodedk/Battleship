@@ -60,8 +60,15 @@
     .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 2.75rem 0; }
     section[dir="rtl"] { font-family: 'Vazirmatn', 'Tahoma', sans-serif; text-align: right; }
     section[dir="rtl"] h2 { border-left: none; border-right: 3px solid var(--cyan); padding-left: 0; padding-right: 0.6rem; }
+    /* The Persian title is an h2 (one h1 per page) but keeps the look of the English h1. */
+    section[dir="rtl"] h2.title {
+      color: var(--cyan); text-transform: uppercase; letter-spacing: 0.14em;
+      font-size: clamp(1.6rem, 5vw, 2.3rem); margin: 0 0 0.4rem; border-right: none; padding-right: 0;
+    }
     section[dir="rtl"] ul { padding-inline-start: 0; padding-inline-end: 1.3em; }
-    /* The shared cocode-apps navigation and footer (css/cocode-nav.css) lines up with .container's column. */
+    /* The cocode.dk frame (brand.cocode.dk) lines up with .container's fluid column. */
+    cocode-head, cocode-foot { --cocode-max: min(760px, 94vw); --cocode-gutter: 0px; }
+    /* The shared cocode-apps navigation and footer (css/cocode-nav.css) line up with .container's column. */
     .site-bar, .site-foot { width: min(760px, 94vw); margin: 0 auto; }
     .site-bar { padding-top: 0.5rem; }
     .cocode-nav { font-size: 0.85rem; letter-spacing: 0.08em; }
@@ -70,8 +77,15 @@
     .cocode-nav .brand { color: var(--cyan); font-size: 1rem; letter-spacing: 0.14em; text-transform: uppercase; }
     .site-foot { padding: 1.5rem 0 3rem; color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 0.06em; }
   </style>
+  <link rel="stylesheet" href="https://brand.cocode.dk/v1.css">
+  <script type="module" src="https://brand.cocode.dk/v1.js"></script>
 </head>
 <body>
+
+<!-- The cocode.dk family frame. Without JavaScript its children show instead: a way home. -->
+<cocode-head project="Battleship" accent="#00D4FF" on-accent="#050C18" dark>
+  <a href="https://cocode.dk">cocode.dk</a>
+</cocode-head>
 
 <div class="site-bar">
 <!-- cocode-apps:nav:start -->
@@ -143,7 +157,7 @@
 
       <!-- ==================== PERSIAN (فارسی) ==================== -->
       <section lang="fa" dir="rtl">
-        <h1>سیاست حفظ حریم خصوصی</h1>
+        <h2 class="title">سیاست حفظ حریم خصوصی</h2>
         <p class="meta">بتلشیپ &middot; <code>com.cocode.battleship</code></p>
         <p class="meta">آخرین به‌روزرسانی: ۱۴ ژوئیه ۲۰۲۶</p>
 
@@ -202,5 +216,9 @@
 </footer>
 <!-- cocode-apps:footer:end -->
 </div>
+
+<cocode-foot repo="cocodedk/Battleship" dark>
+  <a href="https://cocode.dk">cocode.dk</a>
+</cocode-foot>
 </body>
 </html>
