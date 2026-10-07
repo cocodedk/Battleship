@@ -13,7 +13,7 @@ data class GameUiState(
     val aiBoard: Board = Board(),
     val isPlayerTurn: Boolean = true,
     val winner: String? = null,
-    val message: String = "Place your ships",
+    val message: GameMessage = GameMessage.PlaceShips,
     val shipsToPlace: List<ShipType> = FLEET,
     val currentShipType: ShipType? = FLEET.first(),
     val isHorizontal: Boolean = true,

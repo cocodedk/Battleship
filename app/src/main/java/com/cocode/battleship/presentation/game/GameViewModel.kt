@@ -67,7 +67,7 @@ class GameViewModel : ViewModel() {
                 phase = GamePhase.BATTLE,
                 aiBoard = aiBoard,
                 isPlayerTurn = true,
-                message = "Your turn — tap to fire!"
+                message = GameMessage.YourTurn
             )
         }
     }
@@ -148,7 +148,7 @@ class GameViewModel : ViewModel() {
                 activeWeaponEffect = weaponEffect,
                 phase = GamePhase.GAME_OVER,
                 winner = "Player",
-                message = "You sunk the fleet! You win!",
+                message = GameMessage.PlayerWon,
                 scoreResult = result
             )
             return
@@ -209,7 +209,7 @@ class GameViewModel : ViewModel() {
                 playerBoard = newPlayerBoard,
                 phase = GamePhase.GAME_OVER,
                 winner = "AI",
-                message = "AI sunk your fleet! You lose!",
+                message = GameMessage.AiWon,
                 scoreResult = result
             )
             return
@@ -218,9 +218,11 @@ class GameViewModel : ViewModel() {
         playAttackSound(cellState)
 
         val aiMsg = when (cellState) {
-            CellState.HIT -> "AI hit your ship!"
-            CellState.SUNK -> "AI sunk your ${newPlayerBoard.ships.find { it.isSunk && it.occupies(row, col) }?.type?.displayName ?: "ship"}!"
-            else -> "AI missed. Your turn!"
+            CellState.HIT -> GameMessage.AiHit
+            CellState.SUNK -> GameMessage.AiSunk(
+                newPlayerBoard.ships.find { it.isSunk && it.occupies(row, col) }?.type
+            )
+            else -> GameMessage.AiMissed
         }
 
         _state.value = s.copy(

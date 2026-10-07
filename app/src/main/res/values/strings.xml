@@ -29,6 +29,25 @@
     <string name="game_your_turn">TARGETING ACTIVE</string>
     <string name="game_ai_thinking">ENEMY CALCULATING...</string>
 
+    <!-- Game status line -->
+    <string name="game_msg_place_ships">Place your ships</string>
+    <string name="game_msg_your_turn">Your turn. Tap a square in TARGET ZONE to fire.</string>
+    <string name="game_msg_hit">Hit! You struck an enemy ship.</string>
+    <string name="game_msg_miss">Miss. Your shot landed in empty water.</string>
+    <string name="game_msg_you_sunk">You sank the enemy %1$s!</string>
+    <string name="game_msg_you_sunk_unknown">You sank an enemy ship!</string>
+    <string name="game_msg_weapon_fired">%1$s fired!</string>
+    <plurals name="game_msg_weapon_sunk">
+        <item quantity="one">%1$s sank the enemy %2$s!</item>
+        <item quantity="other">%1$s sank these enemy ships: %2$s!</item>
+    </plurals>
+    <string name="game_msg_you_win">You sank the whole enemy fleet. You win!</string>
+    <string name="game_msg_ai_hit">The enemy hit one of your ships.</string>
+    <string name="game_msg_ai_sunk">The enemy sank your %1$s.</string>
+    <string name="game_msg_ai_sunk_unknown">The enemy sank one of your ships.</string>
+    <string name="game_msg_ai_missed">The enemy missed. Your turn.</string>
+    <string name="game_msg_you_lose">The enemy sank your whole fleet. You lose.</string>
+
     <!-- Game Over -->
     <string name="game_over_status_victory">[ STATUS: VICTORY ]</string>
     <string name="game_over_status_defeat">[ STATUS: DEFEAT ]</string>
@@ -94,6 +113,7 @@
     <string name="medal_detail_rarity_epic">◆ EPIC</string>
     <string name="medal_detail_rarity_legendary">◆ LEGENDARY</string>
     <string name="medal_detail_earned_count">× %1$d earned</string>
+    <string name="medal_count_badge">×%1$d</string>
 
     <!-- Badge Unlock Hints -->
     <string name="badge_hint_first_blood">Hit the enemy on your very first shot</string>

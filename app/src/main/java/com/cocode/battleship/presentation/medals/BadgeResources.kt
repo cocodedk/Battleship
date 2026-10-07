@@ -40,3 +40,40 @@ internal fun Badge.unlockHintResId(): Int = when (this) {
     Badge.SEA_VETERAN           -> R.string.badge_hint_sea_veteran
     Badge.IRON_ADMIRAL          -> R.string.badge_hint_iron_admiral
 }
+
+@StringRes
+internal fun Badge.nameResId(): Int = when (this) {
+    Badge.FIRST_BLOOD           -> R.string.badge_name_first_blood
+    Badge.SHARPSHOOTER          -> R.string.badge_name_sharpshooter
+    Badge.DEAD_EYE              -> R.string.badge_name_dead_eye
+    Badge.HOT_STREAK            -> R.string.badge_name_hot_streak
+    Badge.UNSTOPPABLE           -> R.string.badge_name_unstoppable
+    Badge.FLAWLESS_VICTORY      -> R.string.badge_name_flawless_victory
+    Badge.PERFECT_GUNNER        -> R.string.badge_name_perfect_gunner
+    Badge.LEVIATHAN_SLAYER      -> R.string.badge_name_leviathan_slayer
+    Badge.SILENT_SERVICE        -> R.string.badge_name_silent_service
+    Badge.LAST_STAND            -> R.string.badge_name_last_stand
+    Badge.DESTROYER_LIVES       -> R.string.badge_name_destroyer_lives
+    Badge.SWIM_FOR_IT           -> R.string.badge_name_swim_for_it
+    Badge.FOG_OF_WAR            -> R.string.badge_name_fog_of_war
+    Badge.DEPTH_CHARGE_DIPLOMAT -> R.string.badge_name_depth_charge_diplomat
+    Badge.ON_FIRE               -> R.string.badge_name_on_fire
+    Badge.BLITZ                 -> R.string.badge_name_blitz
+    Badge.SEA_WOLF              -> R.string.badge_name_sea_wolf
+    Badge.LUCKY_DOG             -> R.string.badge_name_lucky_dog
+    Badge.COLD_OPENER           -> R.string.badge_name_cold_opener
+    Badge.IRON_HULL             -> R.string.badge_name_iron_hull
+    Badge.CRUISER_LIVES         -> R.string.badge_name_cruiser_lives
+    Badge.TORPEDO_ACE           -> R.string.badge_name_torpedo_ace
+    Badge.BATTLESHIP_HUNTER     -> R.string.badge_name_battleship_hunter
+    Badge.SMALL_GAME            -> R.string.badge_name_small_game
+    Badge.SPRAY_AND_PRAY        -> R.string.badge_name_spray_and_pray
+    Badge.NUCLEAR_OPTION        -> R.string.badge_name_nuclear_option
+    Badge.SCATTERSHOT           -> R.string.badge_name_scattershot
+    Badge.TACTICAL_RETREAT      -> R.string.badge_name_tactical_retreat
+    Badge.PHOENIX               -> R.string.badge_name_phoenix
+    Badge.SPITE                 -> R.string.badge_name_spite
+    Badge.FLEET_COMMANDER       -> R.string.badge_name_fleet_commander
+    Badge.SEA_VETERAN           -> R.string.badge_name_sea_veteran
+    Badge.IRON_ADMIRAL          -> R.string.badge_name_iron_admiral
+}

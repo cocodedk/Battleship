@@ -29,6 +29,7 @@ import com.cocode.battleship.ui.theme.AmberWarning
 import com.cocode.battleship.ui.theme.NavyCard
 import com.cocode.battleship.ui.theme.TextPrimary
 import com.cocode.battleship.ui.theme.TextSecondary
+import com.cocode.battleship.presentation.medals.nameResId
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,7 +57,7 @@ fun BadgeDetailSheet(item: BadgeItem, onDismiss: () -> Unit) {
             )
             Spacer(Modifier.height(12.dp))
             Text(
-                text = item.badge.displayName.uppercase(Locale.ROOT),
+                text = stringResource(item.badge.nameResId()).uppercase(Locale.ROOT),
                 style = MaterialTheme.typography.titleMedium,
                 color = color,
                 fontWeight = FontWeight.ExtraBold,

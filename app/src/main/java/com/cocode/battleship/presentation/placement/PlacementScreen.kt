@@ -37,6 +37,7 @@ import com.cocode.battleship.ui.theme.PhosphorGreen
 import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
+import com.cocode.battleship.presentation.nameRes
 
 private const val SYMBOL_DEPLOY = "▶"
 private const val SYMBOL_AUTO = "⚡"
@@ -83,7 +84,7 @@ fun PlacementScreen(
             val currentShip = state.currentShipType
             if (currentShip != null) {
                 Text(
-                    text = currentShip.displayName.uppercase(),
+                    text = stringResource(currentShip.nameRes()).uppercase(),
                     style = MaterialTheme.typography.titleMedium,
                     color = SonarCyan,
                 )

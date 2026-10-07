@@ -15,21 +15,20 @@ fun buildPlayerHitMessage(
     primaryCellState: CellState,
     newlySunkTypes: Set<ShipType>,
     board: Board
-): String {
+): GameMessage {
     if (weapon != null) {
         return if (newlySunkTypes.isNotEmpty()) {
-            "${weapon.displayName} sunk: ${newlySunkTypes.joinToString { it.displayName }}!"
+            GameMessage.WeaponSunk(weapon, newlySunkTypes.toList())
         } else {
-            "${weapon.displayName} fired!"
+            GameMessage.WeaponFired(weapon)
         }
     }
     return when (primaryCellState) {
-        CellState.HIT -> "Hit! Keep going!"
-        CellState.SUNK -> "You sunk a ${
-            board.ships.find { it.isSunk && newlySunkTypes.contains(it.type) }
-                ?.type?.displayName ?: "ship"
-        }!"
-        else -> "Miss."
+        CellState.HIT -> GameMessage.PlayerHit
+        CellState.SUNK -> GameMessage.PlayerSunk(
+            board.ships.find { it.isSunk && newlySunkTypes.contains(it.type) }?.type
+        )
+        else -> GameMessage.PlayerMiss
     }
 }
 

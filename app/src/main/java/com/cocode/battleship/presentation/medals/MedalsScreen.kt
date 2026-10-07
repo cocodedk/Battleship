@@ -125,7 +125,7 @@ private fun MedalCell(item: MedalItem, onClick: () -> Unit) {
         )
         Spacer(Modifier.height(5.dp))
         Text(
-            text = item.badge.displayName.uppercase(Locale.ROOT),
+            text = stringResource(item.badge.nameResId()).uppercase(Locale.ROOT),
             fontSize = 8.sp,
             letterSpacing = 0.4.sp,
             color = rarityColor(item.badge.rarity).copy(alpha = if (item.isEarned) 0.88f else 0.28f),

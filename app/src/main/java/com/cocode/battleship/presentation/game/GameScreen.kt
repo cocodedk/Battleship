@@ -96,7 +96,7 @@ fun GameScreen(viewModel: GameViewModel, onGameOver: () -> Unit) {
                     .padding(horizontal = 12.dp, vertical = 6.dp)
             ) {
                 Text(
-                    text = stringResource(R.string.game_message_format, state.message),
+                    text = stringResource(R.string.game_message_format, state.message.asText()),
                     style = MaterialTheme.typography.bodyMedium,
                     color = SonarCyan.copy(alpha = 0.9f),
                 )

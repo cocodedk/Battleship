@@ -53,7 +53,7 @@ fun MedalDetailSheet(item: MedalItem, onDismiss: () -> Unit) {
             )
             Spacer(Modifier.height(12.dp))
             Text(
-                text = item.badge.displayName.uppercase(Locale.ROOT),
+                text = stringResource(item.badge.nameResId()).uppercase(Locale.ROOT),
                 style = MaterialTheme.typography.titleMedium,
                 color = rarityColor,
                 fontWeight = FontWeight.ExtraBold,
