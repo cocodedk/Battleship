@@ -38,6 +38,7 @@ import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
 import com.cocode.battleship.presentation.nameRes
+import androidx.compose.ui.text.style.TextAlign
 
 private const val SYMBOL_DEPLOY = "▶"
 private const val SYMBOL_AUTO = "⚡"
@@ -64,7 +65,11 @@ fun PlacementScreen(
                 color = SonarCyan,
             )
             Text(
-                text = stringResource(R.string.placement_select_cell),
+                text = if (state.currentShipType != null) {
+                    stringResource(R.string.placement_select_cell)
+                } else {
+                    stringResource(R.string.placement_ready, stringResource(R.string.placement_start_battle))
+                },
                 style = MaterialTheme.typography.labelSmall,
                 color = TextSecondary,
                 letterSpacing = 1.sp,
@@ -107,21 +112,22 @@ fun PlacementScreen(
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedButton(
                     onClick = { viewModel.toggleOrientation() },
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f).height(52.dp),
                     shape = RoundedCornerShape(4.dp),
                     border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.6f)),
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
                 ) {
                     Text(
-                        text = if (state.isHorizontal) "↔  ${stringResource(R.string.placement_rotate_horizontal)}"
-                        else "↕  ${stringResource(R.string.placement_rotate_vertical)}",
+                        text = if (state.isHorizontal) "↕  ${stringResource(R.string.placement_rotate_to_vertical)}"
+                        else "↔  ${stringResource(R.string.placement_rotate_to_horizontal)}",
                         fontSize = 10.sp,
                         letterSpacing = 1.sp,
+                        textAlign = TextAlign.Center,
                     )
                 }
                 OutlinedButton(
                     onClick = { viewModel.autoPlaceShips() },
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f).height(52.dp),
                     shape = RoundedCornerShape(4.dp),
                     border = BorderStroke(1.dp, SonarCyan.copy(alpha = 0.6f)),
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = SonarCyan),
