@@ -14,6 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.cocode.battleship.presentation.about.AboutRoute
 import com.cocode.battleship.presentation.game.GameOverScreen
 import com.cocode.battleship.presentation.game.GameScreen
 import com.cocode.battleship.presentation.game.GameViewModel
@@ -54,8 +55,12 @@ fun BattleshipNavHost(
                     },
                     onViewStats = { navController.navigate(Screen.Stats.route) },
                     onViewMedals = { navController.navigate(Screen.Medals.route) },
-                    onViewBadges = { navController.navigate(Screen.Badges.route) }
+                    onViewBadges = { navController.navigate(Screen.Badges.route) },
+                    onViewAbout = { navController.navigate(Screen.About.route) }
                 )
+            }
+            composable(Screen.About.route) {
+                AboutRoute(onBack = { navController.popBackStack() })
             }
             composable(Screen.Stats.route) {
                 StatsScreen(onBack = { navController.popBackStack() })

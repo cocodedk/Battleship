@@ -10,15 +10,16 @@
     <string name="menu_view_stats">CAREER STATS</string>
     <string name="menu_developed_by">DEVELOPED BY BABAK BANDPEY</string>
     <string name="menu_website_link">[ cocode.dk ]</string>
-    <string name="menu_apk_link">[ GET APK ↗ ]</string>
+    <string name="menu_apk_link">[ OPEN DOWNLOAD PAGE ↗ ]</string>
 
     <!-- Placement -->
     <string name="placement_title">DEPLOY FLEET</string>
     <string name="placement_select_cell">SELECT A CELL TO POSITION YOUR SHIP</string>
+    <string name="placement_ready">TAP %1$s TO START THE BATTLE</string>
     <string name="placement_placing">DEPLOYING: %1$s (SIZE %2$d)</string>
     <string name="placement_all_placed">FLEET DEPLOYED — READY FOR COMBAT</string>
-    <string name="placement_rotate_horizontal">HORIZONTAL</string>
-    <string name="placement_rotate_vertical">VERTICAL</string>
+    <string name="placement_rotate_to_vertical">ROTATE TO VERTICAL</string>
+    <string name="placement_rotate_to_horizontal">ROTATE TO HORIZONTAL</string>
     <string name="placement_auto_place">AUTO DEPLOY</string>
     <string name="placement_start_battle">INITIATE COMBAT</string>
 
@@ -26,8 +27,27 @@
     <string name="game_message_format">[COM]  %1$s</string>
     <string name="game_enemy_waters">TARGET ZONE</string>
     <string name="game_your_fleet">YOUR GRID</string>
-    <string name="game_your_turn">TARGETING ACTIVE</string>
+    <string name="game_your_turn">YOUR TURN: TAP TARGET ZONE TO FIRE</string>
     <string name="game_ai_thinking">ENEMY CALCULATING...</string>
+
+    <!-- Game status line -->
+    <string name="game_msg_place_ships">Place your ships</string>
+    <string name="game_msg_your_turn">Your turn. Tap a square in TARGET ZONE to fire.</string>
+    <string name="game_msg_hit">Hit! You struck an enemy ship.</string>
+    <string name="game_msg_miss">Miss. Your shot landed in empty water.</string>
+    <string name="game_msg_you_sunk">You sank the enemy %1$s!</string>
+    <string name="game_msg_you_sunk_unknown">You sank an enemy ship!</string>
+    <string name="game_msg_weapon_fired">%1$s fired!</string>
+    <plurals name="game_msg_weapon_sunk">
+        <item quantity="one">%1$s sank the enemy %2$s!</item>
+        <item quantity="other">%1$s sank these enemy ships: %2$s!</item>
+    </plurals>
+    <string name="game_msg_you_win">You sank the whole enemy fleet. You win!</string>
+    <string name="game_msg_ai_hit">The enemy hit one of your ships.</string>
+    <string name="game_msg_ai_sunk">The enemy sank your %1$s.</string>
+    <string name="game_msg_ai_sunk_unknown">The enemy sank one of your ships.</string>
+    <string name="game_msg_ai_missed">The enemy missed. Your turn.</string>
+    <string name="game_msg_you_lose">The enemy sank your whole fleet. You lose.</string>
 
     <!-- Game Over -->
     <string name="game_over_status_victory">[ STATUS: VICTORY ]</string>
@@ -55,9 +75,9 @@
     <string name="game_over_session_label">CAREER</string>
     <string name="game_over_session_games">Games</string>
     <string name="game_over_session_wins">Wins</string>
-    <string name="game_over_session_streak">Streak</string>
-    <string name="game_over_session_best">Best</string>
-    <string name="game_over_session_footer">Games: %1$d  ·  Wins: %2$d  ·  Streak: %3$d  ·  Best: %4$d</string>
+    <string name="game_over_session_streak">Win streak</string>
+    <string name="game_over_session_best">Best score</string>
+    <string name="game_over_session_footer">Games: %1$d  ·  Wins: %2$d  ·  Win streak: %3$d  ·  Best score: %4$d</string>
 
     <!-- Stats Screen -->
     <string name="stats_title">CAREER RECORD</string>
@@ -66,39 +86,40 @@
     <string name="stats_games_played">Games Played</string>
     <string name="stats_wins">Victories</string>
     <string name="stats_best_score">Best Score</string>
-    <string name="stats_longest_streak">Longest Streak</string>
+    <string name="stats_longest_streak">Longest Win Streak</string>
     <string name="stats_naval_subtitle">[ NAVAL COMMAND DATABASE ]</string>
     <string name="stats_best_score_value">Best score: %1$d</string>
     <string name="stats_no_games">No missions completed yet. Deploy your fleet!</string>
     <string name="stats_win_rate">Win Rate</string>
-    <string name="stats_current_streak">Current Streak</string>
+    <string name="stats_current_streak">Current Win Streak</string>
     <string name="stats_lifetime_title">LIFETIME COMBAT</string>
     <string name="stats_lifetime_shots">Total Shots</string>
     <string name="stats_lifetime_accuracy">Accuracy</string>
-    <string name="stats_back">RETURN TO BASE</string>
+    <string name="stats_back">BACK TO MAIN MENU</string>
 
     <!-- Medals Screen -->
     <string name="menu_view_medals">MEDAL REGISTRY</string>
     <string name="menu_badges">BADGES</string>
     <string name="medals_title">MEDAL REGISTRY</string>
     <string name="medals_earned_format">%1$d / %2$d MEDALS EARNED</string>
-    <string name="medals_back">RETURN TO BASE</string>
+    <string name="medals_back">BACK TO MAIN MENU</string>
 
     <!-- Badges Screen -->
     <string name="badges_title">BADGES</string>
     <string name="badges_earned_format">%1$d / %2$d EARNED</string>
-    <string name="badges_back">RETURN TO BASE</string>
+    <string name="badges_back">BACK</string>
     <string name="medal_detail_how_to_earn">HOW TO EARN</string>
     <string name="medal_detail_rarity_common">◆ COMMON</string>
     <string name="medal_detail_rarity_rare">◆ RARE</string>
     <string name="medal_detail_rarity_epic">◆ EPIC</string>
     <string name="medal_detail_rarity_legendary">◆ LEGENDARY</string>
     <string name="medal_detail_earned_count">× %1$d earned</string>
+    <string name="medal_count_badge">×%1$d</string>
 
     <!-- Badge Unlock Hints -->
     <string name="badge_hint_first_blood">Hit the enemy on your very first shot</string>
-    <string name="badge_hint_sharpshooter">Finish with 60%% accuracy or better (minimum 10 shots)</string>
-    <string name="badge_hint_dead_eye">Finish with 80%% accuracy or better (minimum 10 shots)</string>
+    <string name="badge_hint_sharpshooter" formatted="false">Finish with 60% accuracy or better (minimum 10 shots)</string>
+    <string name="badge_hint_dead_eye" formatted="false">Finish with 80% accuracy or better (minimum 10 shots)</string>
     <string name="badge_hint_hot_streak">Land at least 5 hits in a row without missing</string>
     <string name="badge_hint_unstoppable">Land at least 8 hits in a row without missing</string>
     <string name="badge_hint_flawless_victory">Win with all 5 of your ships still afloat</string>
@@ -113,7 +134,7 @@
     <string name="badge_hint_on_fire">Win at least 3 games in a row</string>
     <string name="badge_hint_blitz">Win in 25 shots or fewer</string>
     <string name="badge_hint_sea_wolf">Win 5 games in a row</string>
-    <string name="badge_hint_lucky_dog">Win with accuracy below 25%% (minimum 20 shots)</string>
+    <string name="badge_hint_lucky_dog" formatted="false">Win with accuracy below 25% (minimum 20 shots)</string>
     <string name="badge_hint_cold_opener">Miss your first shot but still win</string>
     <string name="badge_hint_iron_hull">Keep your Battleship untouched for the entire game</string>
     <string name="badge_hint_cruiser_lives">Keep your Cruiser untouched for the entire game</string>
@@ -121,11 +142,11 @@
     <string name="badge_hint_battleship_hunter">Sink the enemy Battleship as your first kill</string>
     <string name="badge_hint_small_game">Sink the enemy Destroyer as your first kill</string>
     <string name="badge_hint_spray_and_pray">Miss at least 20 shots in a row</string>
-    <string name="badge_hint_nuclear_option">Fire 150 or more shots in a single game</string>
+    <string name="badge_hint_nuclear_option">Fire 150 or more shots in a single game. A game ends before that is possible, so this medal cannot be earned yet.</string>
     <string name="badge_hint_scattershot">Fire 50 or more shots and miss more than you hit</string>
     <string name="badge_hint_tactical_retreat">Lose after sinking at least 3 enemy ships</string>
     <string name="badge_hint_phoenix">Win with exactly 2 ships surviving</string>
-    <string name="badge_hint_spite">Win with accuracy below 30%% (minimum 30 shots)</string>
+    <string name="badge_hint_spite" formatted="false">Win with accuracy below 30% (minimum 30 shots)</string>
     <string name="badge_hint_fleet_commander">Reach 10 lifetime wins</string>
     <string name="badge_hint_sea_veteran">Play your 25th game</string>
     <string name="badge_hint_iron_admiral">Reach 25 lifetime wins</string>
@@ -134,7 +155,7 @@
     <string name="weapons_available_label">SUPER WEAPONS</string>
     <string name="weapon_carpet_bomb_name">CARPET BOMB</string>
     <string name="weapon_carpet_bomb_desc">3×3 area bombardment centered on target.</string>
-    <string name="weapon_barrage_name">BARRAGE</string>
+    <string name="weapon_barrage_name">BATTLESHIP BARRAGE</string>
     <string name="weapon_barrage_desc">9-cell cross saturation fire.</string>
     <string name="weapon_sonar_name">SONAR SWEEP</string>
     <string name="weapon_sonar_desc">5-cell horizontal sonar ping.</string>

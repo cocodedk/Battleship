@@ -1,0 +1,61 @@
+<resources>
+
+    <!-- Ship names -->
+    <string name="ship_carrier">Carrier</string>
+    <string name="ship_battleship">Battleship</string>
+    <string name="ship_cruiser">Cruiser</string>
+    <string name="ship_submarine">Submarine</string>
+    <string name="ship_destroyer">Destroyer</string>
+
+    <!-- Ranks -->
+    <string name="rank_fleet_admiral">Fleet Admiral</string>
+    <string name="rank_admiral">Admiral</string>
+    <string name="rank_vice_admiral">Vice Admiral</string>
+    <string name="rank_commodore">Commodore</string>
+    <string name="rank_captain">Captain</string>
+    <string name="rank_lieutenant">Lieutenant</string>
+    <string name="rank_ensign">Ensign</string>
+    <string name="rank_cadet">Cadet</string>
+
+    <!-- Super weapons, as named in the battle messages -->
+    <string name="weapon_carpet_bomb_title">Carpet Bomb</string>
+    <string name="weapon_barrage_title">Battleship Barrage</string>
+    <string name="weapon_sonar_title">Sonar Sweep</string>
+    <string name="weapon_torpedo_title">Torpedo Spread</string>
+    <string name="weapon_precision_title">Precision Strike</string>
+
+    <!-- Badge and medal names -->
+    <string name="badge_name_first_blood">First Blood</string>
+    <string name="badge_name_sharpshooter">Sharpshooter</string>
+    <string name="badge_name_dead_eye">Dead-Eye</string>
+    <string name="badge_name_hot_streak">Hot Streak</string>
+    <string name="badge_name_unstoppable">Unstoppable</string>
+    <string name="badge_name_flawless_victory">Flawless Victory</string>
+    <string name="badge_name_perfect_gunner">Perfect Gunner</string>
+    <string name="badge_name_leviathan_slayer">Leviathan Slayer</string>
+    <string name="badge_name_silent_service">Silent Service</string>
+    <string name="badge_name_last_stand">Last Stand</string>
+    <string name="badge_name_destroyer_lives">Destroyer Lives</string>
+    <string name="badge_name_swim_for_it">Swim for It</string>
+    <string name="badge_name_fog_of_war">Fog of War</string>
+    <string name="badge_name_depth_charge_diplomat">Depth Charge Diplomat</string>
+    <string name="badge_name_on_fire">On Fire</string>
+    <string name="badge_name_blitz">Blitz</string>
+    <string name="badge_name_sea_wolf">Sea Wolf</string>
+    <string name="badge_name_lucky_dog">Lucky Dog</string>
+    <string name="badge_name_cold_opener">Cold Opener</string>
+    <string name="badge_name_iron_hull">Iron Hull</string>
+    <string name="badge_name_cruiser_lives">Cruiser Lives</string>
+    <string name="badge_name_torpedo_ace">Torpedo Ace</string>
+    <string name="badge_name_battleship_hunter">Battleship Hunter</string>
+    <string name="badge_name_small_game">Small Game</string>
+    <string name="badge_name_spray_and_pray">Spray and Pray</string>
+    <string name="badge_name_nuclear_option">Nuclear Option</string>
+    <string name="badge_name_scattershot">Scattershot</string>
+    <string name="badge_name_tactical_retreat">Tactical Retreat</string>
+    <string name="badge_name_phoenix">Phoenix</string>
+    <string name="badge_name_spite">Spite</string>
+    <string name="badge_name_fleet_commander">Fleet Commander</string>
+    <string name="badge_name_sea_veteran">Sea Veteran</string>
+    <string name="badge_name_iron_admiral">Iron Admiral</string>
+</resources>

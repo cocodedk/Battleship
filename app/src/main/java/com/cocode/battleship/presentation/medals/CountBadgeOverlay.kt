@@ -9,10 +9,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.cocode.battleship.R
 
 @Composable
 internal fun CountBadgeOverlay(count: Int, modifier: Modifier = Modifier) {
@@ -23,7 +25,7 @@ internal fun CountBadgeOverlay(count: Int, modifier: Modifier = Modifier) {
             .padding(horizontal = 4.dp, vertical = 2.dp)
     ) {
         Text(
-            text = "×$count",
+            text = stringResource(R.string.medal_count_badge, count),
             fontSize = 12.sp,
             fontWeight = FontWeight.ExtraBold,
             color = Color(0xFFFFAA44),

@@ -1,7 +1,6 @@
 package com.cocode.battleship.domain.model
 
 enum class SuperWeapon(
-    val displayName: String,
     val icon: String,
     val displayNameKey: String,
     val descriptionKey: String,
@@ -9,7 +8,6 @@ enum class SuperWeapon(
     val offsets: List<Pair<Int, Int>>
 ) {
     CARPET_BOMB(
-        displayName = "Carpet Bomb",
         icon = "💣",
         displayNameKey = "weapon_carpet_bomb_name",
         descriptionKey = "weapon_carpet_bomb_desc",
@@ -21,7 +19,6 @@ enum class SuperWeapon(
         )
     ),
     BATTLESHIP_BARRAGE(
-        displayName = "Battleship Barrage",
         icon = "🎯",
         displayNameKey = "weapon_barrage_name",
         descriptionKey = "weapon_barrage_desc",
@@ -33,7 +30,6 @@ enum class SuperWeapon(
         )
     ),
     SONAR_SWEEP(
-        displayName = "Sonar Sweep",
         icon = "📡",
         displayNameKey = "weapon_sonar_name",
         descriptionKey = "weapon_sonar_desc",
@@ -41,7 +37,6 @@ enum class SuperWeapon(
         offsets = listOf(0 to -2, 0 to -1, 0 to 0, 0 to 1, 0 to 2)
     ),
     TORPEDO_SPREAD(
-        displayName = "Torpedo Spread",
         icon = "🚀",
         displayNameKey = "weapon_torpedo_name",
         descriptionKey = "weapon_torpedo_desc",
@@ -49,7 +44,6 @@ enum class SuperWeapon(
         offsets = listOf(-2 to 0, -1 to 0, 0 to 0, 1 to 0, 2 to 0)
     ),
     PRECISION_STRIKE(
-        displayName = "Precision Strike",
         icon = "✖",
         displayNameKey = "weapon_precision_name",
         descriptionKey = "weapon_precision_desc",

@@ -1,0 +1,25 @@
+<resources>
+    <!-- About -->
+    <string name="menu_about">ABOUT</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_check_updates">See the latest version</string>
+    <string name="about_check_updates_hint">Opens a web page in your browser. The app never checks for updates by itself.</string>
+    <string name="about_what_title">What the app does</string>
+    <string name="about_what">Battleship is a naval strategy game for Android. You place your fleet, then you and the enemy take turns firing at each other\'s ships. The app plays the enemy, so you play alone and offline. Sink all five enemy ships to win, and earn ranks, medals and badges along the way.</string>
+    <string name="about_privacy_title">Privacy</string>
+    <string name="about_privacy_no_data">Battleship does not collect, send or share any personal data.</string>
+    <string name="about_privacy_no_internet">The app has no permission to use the internet, so it cannot send your data anywhere. It contains no ads, analytics or crash reports.</string>
+    <string name="about_privacy_on_device">Your game record (statistics, ranks, medals and badges) stays on your phone. We never receive it. If you use Android backup, a copy may also be in your own Google backup.</string>
+    <string name="about_privacy_link">Read the privacy policy</string>
+    <string name="about_links_title">Links</string>
+    <string name="about_website">Open the website</string>
+    <string name="about_source">See the source code on GitHub</string>
+    <string name="about_report">Report a problem on GitHub</string>
+    <string name="about_report_hint">Reporting a problem needs a free GitHub account.</string>
+    <string name="about_no_browser">This phone has no app that can open web links. Install a web browser, then try again.</string>
+    <string name="about_credits">Credits and licenses</string>
+    <string name="about_credits_license">Battleship is free, and its source code is open under the Apache License 2.0. The license lets you use, change and share the app.</string>
+    <string name="about_made_by">Made by Cocode (cocode.dk)</string>
+    <string name="about_made_by_body">Developed by Babak Bandpey.</string>
+    <string name="about_back">BACK TO MAIN MENU</string>
+</resources>

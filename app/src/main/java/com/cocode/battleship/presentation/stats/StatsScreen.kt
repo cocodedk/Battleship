@@ -40,6 +40,7 @@ import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.presentation.SYM_SECTION
 import com.cocode.battleship.ui.theme.TextSecondary
+import com.cocode.battleship.presentation.nameRes
 
 @Composable
 fun StatsScreen(onBack: () -> Unit) {
@@ -137,7 +138,7 @@ private fun RankBanner(rank: Rank) {
         )
         Spacer(Modifier.height(6.dp))
         Text(
-            text = rank.displayName.uppercase(),
+            text = stringResource(rank.nameRes()).uppercase(),
             style = MaterialTheme.typography.headlineMedium,
             color = AmberWarning,
             fontWeight = FontWeight.ExtraBold,

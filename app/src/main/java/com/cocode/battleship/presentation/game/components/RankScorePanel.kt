@@ -31,6 +31,7 @@ import com.cocode.battleship.ui.theme.PhosphorGreen
 import com.cocode.battleship.ui.theme.SonarCyan
 import com.cocode.battleship.ui.theme.TextSecondary
 import com.cocode.battleship.ui.theme.TorpedoRed
+import com.cocode.battleship.presentation.nameRes
 
 @Composable
 fun RankScorePanel(scoreResult: ScoreResult, isPlayerWinner: Boolean) {
@@ -58,7 +59,7 @@ fun RankScorePanel(scoreResult: ScoreResult, isPlayerWinner: Boolean) {
             letterSpacing = 3.sp,
         )
         Text(
-            text = scoreResult.rank.displayName.uppercase(),
+            text = stringResource(scoreResult.rank.nameRes()).uppercase(),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.ExtraBold,
             color = rankColor,

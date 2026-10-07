@@ -41,6 +41,7 @@ import com.cocode.battleship.presentation.SYM_ARROW
 import com.cocode.battleship.presentation.SYM_SECTION
 import com.cocode.battleship.ui.theme.SonarCyan
 import java.util.Locale
+import com.cocode.battleship.presentation.medals.nameResId
 
 @Composable
 fun BadgesScreen(viewModel: BadgesViewModel, onBack: () -> Unit) {
@@ -129,7 +130,7 @@ private fun BadgeCell(item: BadgeItem, onClick: () -> Unit) {
         )
         Spacer(Modifier.height(5.dp))
         Text(
-            text = item.badge.displayName.uppercase(Locale.ROOT),
+            text = stringResource(item.badge.nameResId()).uppercase(Locale.ROOT),
             fontSize = 8.sp,
             letterSpacing = 0.4.sp,
             color = rarityColor(item.badge.rarity).copy(alpha = if (item.isEarned) 0.88f else 0.28f),

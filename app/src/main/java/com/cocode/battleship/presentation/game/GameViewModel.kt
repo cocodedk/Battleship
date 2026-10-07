@@ -3,11 +3,11 @@ package com.cocode.battleship.presentation.game
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cocode.battleship.domain.ai.BattleshipAI
+import com.cocode.battleship.domain.model.Board
 import com.cocode.battleship.domain.model.CellState
 import com.cocode.battleship.domain.model.GamePhase
 import com.cocode.battleship.domain.model.Ship
 import com.cocode.battleship.domain.model.SuperWeapon
-import com.cocode.battleship.domain.model.resolveWeaponCells
 import com.cocode.battleship.domain.scoring.GameOutcome
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -67,7 +67,7 @@ class GameViewModel : ViewModel() {
                 phase = GamePhase.BATTLE,
                 aiBoard = aiBoard,
                 isPlayerTurn = true,
-                message = "Your turn — tap to fire!"
+                message = GameMessage.YourTurn
             )
         }
     }
@@ -91,16 +91,8 @@ class GameViewModel : ViewModel() {
 
         val selected = s.selectedWeapon
         val firedCells: List<Pair<Int, Int>>
-        val newAiBoard: com.cocode.battleship.domain.model.Board
-        val weaponEffect = selected?.let {
-            SuperWeaponEffect(
-                triggerId = nextWeaponEffectId++,
-                weapon = it,
-                targetRow = row,
-                targetCol = col,
-                cells = resolveWeaponCells(it, row, col).toSet()
-            )
-        }
+        val newAiBoard: Board
+        val weaponEffect = selected?.let { weaponEffectFor(it, nextWeaponEffectId++, row, col) }
 
         if (selected != null) {
             sounds.playWeaponFire(selected)
@@ -112,34 +104,15 @@ class GameViewModel : ViewModel() {
             newAiBoard = s.aiBoard.receiveAttack(row, col)
         }
 
-        val previouslySunk = s.aiBoard.ships.filter { it.isSunk }.map { it.type }.toSet()
-        val nowSunk = newAiBoard.ships.filter { it.isSunk }.map { it.type }.toSet()
-        val newlySunkTypes = nowSunk - previouslySunk
-
-        val alreadyGrantedTypes = (s.availableWeapons + listOfNotNull(selected))
-            .map { it.unlockShip }.toSet()
-        val newAvailable = s.availableWeapons.filter { it != selected } +
-            newlySunkTypes.filter { it !in alreadyGrantedTypes }.map { SuperWeapon.forShipType(it) }
-
+        val newlySunkTypes = newlySunk(s.aiBoard, newAiBoard)
+        val newAvailable = weaponsAfterAttack(s.availableWeapons, selected, newlySunkTypes)
         val primaryCellState = newAiBoard.getCellState(row, col)
 
         if (newAiBoard.allShipsSunk()) {
             sounds.playWin()
             val newTrackers = updateTrackersForFire(s.trackers, newAiBoard, firedCells, newlySunkTypes)
             val stats = buildGameStats(newTrackers, s.playerBoard, newAiBoard, GameOutcome.WIN)
-            val result = computeScoreResult(
-                stats,
-                sessionWinStreak = SessionStats.currentWinStreak + 1,
-                sessionTotalWins = SessionStats.totalWins + 1,
-                sessionGamesPlayed = SessionStats.gamesPlayed + 1
-            )
-            SessionStats.record(
-                result.score,
-                isWin = true,
-                earnedBadges = result.earnedBadges,
-                totalShots = result.stats.totalShots,
-                hits = result.stats.hits
-            )
+            val result = recordFinishedGame(stats)
             _state.value = s.copy(
                 aiBoard = newAiBoard,
                 trackers = newTrackers,
@@ -148,7 +121,7 @@ class GameViewModel : ViewModel() {
                 activeWeaponEffect = weaponEffect,
                 phase = GamePhase.GAME_OVER,
                 winner = "Player",
-                message = "You sunk the fleet! You win!",
+                message = GameMessage.PlayerWon,
                 scoreResult = result
             )
             return
@@ -192,24 +165,12 @@ class GameViewModel : ViewModel() {
         if (newPlayerBoard.allShipsSunk()) {
             sounds.playLose()
             val stats = buildGameStats(s.trackers, newPlayerBoard, s.aiBoard, GameOutcome.LOSS)
-            val result = computeScoreResult(
-                stats,
-                sessionWinStreak = SessionStats.currentWinStreak,
-                sessionTotalWins = SessionStats.totalWins,
-                sessionGamesPlayed = SessionStats.gamesPlayed + 1
-            )
-            SessionStats.record(
-                result.score,
-                isWin = false,
-                earnedBadges = result.earnedBadges,
-                totalShots = result.stats.totalShots,
-                hits = result.stats.hits
-            )
+            val result = recordFinishedGame(stats)
             _state.value = s.copy(
                 playerBoard = newPlayerBoard,
                 phase = GamePhase.GAME_OVER,
                 winner = "AI",
-                message = "AI sunk your fleet! You lose!",
+                message = GameMessage.AiWon,
                 scoreResult = result
             )
             return
@@ -217,28 +178,18 @@ class GameViewModel : ViewModel() {
 
         playAttackSound(cellState)
 
-        val aiMsg = when (cellState) {
-            CellState.HIT -> "AI hit your ship!"
-            CellState.SUNK -> "AI sunk your ${newPlayerBoard.ships.find { it.isSunk && it.occupies(row, col) }?.type?.displayName ?: "ship"}!"
-            else -> "AI missed. Your turn!"
-        }
-
         _state.value = s.copy(
             playerBoard = newPlayerBoard,
             isPlayerTurn = true,
-            message = aiMsg
+            message = aiAttackMessage(cellState, newPlayerBoard, row, col)
         )
     }
 
-    private fun playAttackSound(cellState: CellState) {
-        when (cellState) {
-            CellState.HIT -> sounds.playHit()
-            CellState.SUNK -> sounds.playSunk()
-            else -> sounds.playMiss()
-        }
+    private fun playAttackSound(cellState: CellState) = when (cellState) {
+        CellState.HIT -> sounds.playHit()
+        CellState.SUNK -> sounds.playSunk()
+        else -> sounds.playMiss()
     }
 
-    fun resetGame() {
-        _state.value = GameUiState()
-    }
+    fun resetGame() { _state.value = GameUiState() }
 }
