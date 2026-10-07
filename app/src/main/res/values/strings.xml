@@ -107,7 +107,7 @@
     <!-- Badges Screen -->
     <string name="badges_title">BADGES</string>
     <string name="badges_earned_format">%1$d / %2$d EARNED</string>
-    <string name="badges_back">BACK TO MAIN MENU</string>
+    <string name="badges_back">BACK</string>
     <string name="medal_detail_how_to_earn">HOW TO EARN</string>
     <string name="medal_detail_rarity_common">◆ COMMON</string>
     <string name="medal_detail_rarity_rare">◆ RARE</string>
