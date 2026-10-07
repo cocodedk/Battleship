@@ -26,12 +26,15 @@ internal fun MenuButtons(
     onViewStats: () -> Unit,
     onViewMedals: () -> Unit,
     onViewBadges: () -> Unit,
+    onViewAbout: () -> Unit,
 ) {
     MenuSecondaryButton(stringResource(R.string.menu_view_stats), onViewStats, entry, borderAlpha = 0.45f, contentAlpha = 1f)
     Spacer(Modifier.height(8.dp))
     MenuSecondaryButton(stringResource(R.string.menu_view_medals), onViewMedals, entry)
     Spacer(Modifier.height(8.dp))
     MenuSecondaryButton(stringResource(R.string.menu_badges), onViewBadges, entry)
+    Spacer(Modifier.height(8.dp))
+    MenuSecondaryButton(stringResource(R.string.menu_about), onViewAbout, entry)
 }
 
 @Composable

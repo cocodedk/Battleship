@@ -49,7 +49,7 @@ import com.cocode.battleship.ui.theme.TextDim
 import com.cocode.battleship.ui.theme.TextSecondary
 
 @Composable
-fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}, onViewMedals: () -> Unit = {}, onViewBadges: () -> Unit = {}) {
+fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}, onViewMedals: () -> Unit = {}, onViewBadges: () -> Unit = {}, onViewAbout: () -> Unit = {}) {
     val context = LocalContext.current
     val prefersReducedMotion = remember {
         Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f
@@ -166,6 +166,7 @@ fun MenuScreen(onStartGame: () -> Unit, onViewStats: () -> Unit = {}, onViewMeda
                 onViewStats = onViewStats,
                 onViewMedals = onViewMedals,
                 onViewBadges = onViewBadges,
+                onViewAbout = onViewAbout,
             )
 
             Spacer(Modifier.height(16.dp))
