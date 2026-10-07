@@ -9,6 +9,18 @@ A local naval combat game for Android. No network connection required — play a
 
 ---
 
+## Download
+
+<!-- cocode-apps:install:start -->
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.cocode.battleship/)
+- [Download the APK from GitHub](https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk)
+- [Auto-update the GitHub APK with Obtainium](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/cocodedk/Battleship)
+<!-- cocode-apps:install:end -->
+
+Minimum Android version: **7.0 (API 24)**
+
+---
+
 ## Features
 
 ### Core Gameplay
@@ -43,17 +55,13 @@ Unlock special attack abilities by sinking enemy ships (5 total):
 
 ---
 
-## Download
+## Privacy
 
-Grab the latest stable APK directly:
-
-[**Download Battleship.apk**](https://github.com/cocodedk/Battleship/releases/latest/download/Battleship.apk)
-
-Minimum Android version: **7.0 (API 24)**
+Battleship does not collect, transmit or share any personal data. It requests no internet permission and uses no analytics, crash reporting or advertising. Your career stats, ranks and medals stay in a private area on your device. Read the full policy at <https://battleship.cocode.dk/privacy/>.
 
 ---
 
-## Build from Source
+## Build
 
 **Prerequisites:** Android SDK, JDK 17+
 
@@ -82,9 +90,7 @@ export KEY_PASSWORD=<password>
 
 APK output: `app/build/outputs/apk/release/app-release.apk`
 
----
-
-## Tests
+### Tests
 
 ```bash
 ./gradlew test
@@ -132,6 +138,12 @@ app/src/main/java/com/cocode/battleship/
 | Min SDK | 24 (Android 7.0) |
 | Target SDK | 36 |
 | Build | Gradle 9.3.1 (Kotlin DSL), AGP 9.1.0 |
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for local setup, the git hooks, the build and test commands and the coding style.
 
 ---
 
