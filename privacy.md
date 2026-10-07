@@ -34,8 +34,8 @@ or device-transfer service; see "Device backup" below.
 
 If you have enabled Android Auto Backup or Google account backup on your device, the operating system
 may include this app's local data in your own personal Google backup, and Android may copy it to a new phone when you
-transfer your data. You and Google control this. We have no access to it. A backup copy stays in your Google backup until
-you remove it there. See [Google's Privacy Policy](https://policies.google.com/privacy) for details.
+transfer your data. You and Google control this. We have no access to it, and how long Google keeps a backup is up to
+Google. See [Google's Privacy Policy](https://policies.google.com/privacy) for details.
 
 ## External links
 
@@ -48,7 +48,7 @@ button in the main menu) has five: **See the latest version** (the app's page on
 The app opens a page only when you tap one of these buttons. It hands the address to your browser and adds no information
 about you to it. The app itself makes no connection. Your browser then connects to that site, which can see your visit as
 any website can, for example your IP address. Each site is governed by its own privacy policy. If your phone has no
-browser, the app shows a message and nothing opens.
+browser, the About screen shows a message and nothing opens.
 
 ## Children
 
