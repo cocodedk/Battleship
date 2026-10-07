@@ -17,7 +17,7 @@
     <string name="about_report">Meld en fejl på GitHub</string>
     <string name="about_report_hint">For at melde en fejl skal du have en gratis GitHub-konto.</string>
     <string name="about_no_browser">Denne telefon har ingen app, der kan åbne weblinks. Installér en browser, og prøv igen.</string>
-    <string name="about_credits">Credits og licenser</string>
+    <string name="about_credits">Tak og licenser</string>
     <string name="about_credits_license">Battleship er gratis, og kildekoden er åben under Apache License 2.0. Licensen giver dig lov til at bruge, ændre og dele appen.</string>
     <string name="about_made_by">Lavet af Cocode (cocode.dk)</string>
     <string name="about_made_by_body">Udviklet af Babak Bandpey.</string>
