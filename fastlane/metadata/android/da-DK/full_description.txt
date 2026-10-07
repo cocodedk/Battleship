@@ -1,0 +1,5 @@
+Battleship er et søslagsspil til Android, der kører helt lokalt. Det kræver ingen netforbindelse, ingen konto og ingen sporing. Du spiller mod en AI-modstander, der bruger en hunt/target-algoritme med skakbrætsparitet.
+
+Spillet foregår på et bræt på 10x10 felter med en flåde på 5 skibe: hangarskib, slagskib, krydser, ubåd og destroyer. Du placerer et skib ved at trykke på et felt. En separat knap skifter skibet mellem vandret og lodret, og med ét tryk placeres hele flåden tilfældigt. Når du sænker et fjendtligt skib, låser du et tilsvarende supervåben op, for eksempel områdebombardement, mættende ild i et kors eller en sonarscanning.
+
+Appen gemmer din karrierestatistik på tværs af spil og genstarter, blandt andet 33 medaljer fordelt på fire sjældenhedsniveauer og 8 karrieregrader fra Cadet til Fleet Admiral. Al lyd i spillet syntetiseres, mens du spiller, så appen indeholder ingen lydfiler.
